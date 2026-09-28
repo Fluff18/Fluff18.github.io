@@ -99,9 +99,11 @@ section{padding:70px 0}
 .about p{margin:0 0 14px;color:var(--fg)}
 
 /* skills */
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 40px}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media (max-width:1000px){.skills-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:760px){.skills-grid{grid-template-columns:1fr}}
-.skill{padding:8px 0}
+.skill{padding:12px 14px;border:1px solid var(--line);border-radius:6px;font-family:var(--display);font-weight:600;font-size:14px;color:var(--fg);background:rgba(120,160,230,.06);display:flex;align-items:center;gap:10px}
+.skill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);flex:0 0 auto}
 .skill .name{display:flex;justify-content:space-between;font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)}
 .skill .name span{color:var(--dim)}
 .bar{height:8px;background:rgba(120,160,230,.12);border-radius:4px;margin-top:8px;overflow:hidden}
@@ -204,7 +206,7 @@ footer{position:relative;z-index:2;margin-left:var(--side);text-align:center;fon
   <div class="container">
     <div class="section-title">
       <h2>About</h2>
-      <p>I turn messy engineering problems into AI products people actually use. At HPE Storage I build the agents, developer tools and knowledge systems that about 150 engineers use every week to debug production storage, and I own the platform that scores whether those agents are any good.</p>
+      <p>I turn messy engineering problems into AI products people actually use. On the AI team serving all of HPE Storage, I build the agents, developer tools and knowledge systems engineers use to debug production storage, and I own the platform that scores whether those agents are any good.</p>
     </div>
     <div class="box reveal">
       <div class="about-grid">
@@ -212,7 +214,7 @@ footer{position:relative;z-index:2;margin-left:var(--side);text-align:center;fon
           <h3>AI Engineer &amp; Product Builder</h3>
           <p class="role">Founder habits, engineer's hands. Zero-to-one is where I do my best work.</p>
           <ul class="facts">
-            <li><strong>Job:</strong> <span>AI Engineer, HPE Storage AI team</span></li>
+            <li><strong>Job:</strong> <span>AI Engineer, AI team for all of HPE Storage</span></li>
             <li><strong>Previously:</strong> <span>Cloud Software Engineer, HPE Storage (2023 – 2026)</span></li>
             <li><strong>City:</strong> <span>San Jose, California</span></li>
             <li><strong>Email:</strong> <span>rkoushik@asu.edu</span></li>
@@ -225,7 +227,7 @@ footer{position:relative;z-index:2;margin-left:var(--side);text-align:center;fon
             <li><strong>Major:</strong> <span>Computer Science</span></li>
             <li><strong>Focus:</strong> <span>Agents, MCP tooling, RAG, evaluation, observability</span></li>
           </ul>
-          <p style="margin-top:18px;color:var(--muted)">Most of my recent code was written by AI agents under my direction as architect, reviewer and deployer. I ship to real users in weeks and I kill false wins before they ship.</p>
+          <p style="margin-top:18px;color:var(--muted)">I ship to real users in weeks and I kill false wins before they ship.</p>
         </div>
       </div>
     </div>
@@ -237,18 +239,18 @@ footer{position:relative;z-index:2;margin-left:var(--side);text-align:center;fon
     <div class="section-title"><h2>Skills</h2></div>
     <div class="box reveal">
       <div class="skills-grid">
-        <div class="skill"><div class="name">AI agents &amp; LLM systems <span>90%</span></div><div class="bar"><i style="--w:90%"></i></div></div>
-        <div class="skill"><div class="name">Python / FastAPI <span>90%</span></div><div class="bar"><i style="--w:90%"></i></div></div>
-        <div class="skill"><div class="name">Prompt &amp; context engineering <span>90%</span></div><div class="bar"><i style="--w:90%"></i></div></div>
-        <div class="skill"><div class="name">Evaluation &amp; experiment design <span>85%</span></div><div class="bar"><i style="--w:85%"></i></div></div>
-        <div class="skill"><div class="name">RAG / pgvector / MCP <span>85%</span></div><div class="bar"><i style="--w:85%"></i></div></div>
-        <div class="skill"><div class="name">Postgres / SQL <span>85%</span></div><div class="bar"><i style="--w:85%"></i></div></div>
-        <div class="skill"><div class="name">Go <span>80%</span></div><div class="bar"><i style="--w:80%"></i></div></div>
-        <div class="skill"><div class="name">Kubernetes / Helm / Docker <span>80%</span></div><div class="bar"><i style="--w:80%"></i></div></div>
-        <div class="skill"><div class="name">React / TypeScript <span>75%</span></div><div class="bar"><i style="--w:75%"></i></div></div>
-        <div class="skill"><div class="name">Spark / Trino / data pipelines <span>70%</span></div><div class="bar"><i style="--w:70%"></i></div></div>
-        <div class="skill"><div class="name">Swift / iOS <span>65%</span></div><div class="bar"><i style="--w:65%"></i></div></div>
-        <div class="skill"><div class="name">GDB / core-dump analysis <span>70%</span></div><div class="bar"><i style="--w:70%"></i></div></div>
+        <div class="skill">AI agents &amp; LLM systems</div>
+        <div class="skill">Python / FastAPI</div>
+        <div class="skill">Prompt &amp; context engineering</div>
+        <div class="skill">Evaluation &amp; experiment design</div>
+        <div class="skill">RAG / pgvector / MCP</div>
+        <div class="skill">Postgres / SQL</div>
+        <div class="skill">Go</div>
+        <div class="skill">Kubernetes / Helm / Docker</div>
+        <div class="skill">React / TypeScript</div>
+        <div class="skill">Spark / Trino / data pipelines</div>
+        <div class="skill">Swift / iOS</div>
+        <div class="skill">GDB / core-dump analysis</div>
       </div>
     </div>
   </div>
@@ -297,7 +299,13 @@ footer{position:relative;z-index:2;margin-left:var(--side);text-align:center;fon
           </div>
           <h3>Recognition</h3>
           <div class="item">
-            <h4>HPE Ideathon winner</h4>
+            <h4>Two hackathon wins and two Fellow Review selections</h4>
+            <h5>2026</h5>
+            <p>Innovation projects taken into company-wide production across HPE Storage: an AI agent, its harness, and a self-learning component.</p>
+          </div>
+          <div class="item">
+            <h4>HPE hackathon winner</h4>
+            <h5>2024</h5>
             <p>RAG PDF chatbot. Also received HPE Early Career Technologist recognition.</p>
           </div>
         </div>
@@ -308,7 +316,7 @@ footer{position:relative;z-index:2;margin-left:var(--side);text-align:center;fon
             <h5>Feb 2026 – Present</h5>
             <p class="org">Hewlett Packard Enterprise, Storage AI team, San Jose, CA</p>
             <ul>
-              <li>Built the <strong>MCP tool server</strong> that storage experts use inside Copilot and every team agent runs on: <strong>6,300+ tool calls a week from ~150 engineers</strong>. Led the P0 response when an agent posted without consent and shipped a human-approval gate on every write.</li>
+              <li>Built the <strong>MCP tool server</strong> that storage experts use inside Copilot and every team agent runs on: <strong>6,300+ tool calls a week across HPE Storage</strong>. Led the P0 response when an agent posted without consent and shipped a human-approval gate on every write.</li>
               <li>Own the <strong>agent observability platform</strong>: one pane for what every agent did, where it failed and its accuracy against expert feedback. Idea to three deployments in four weeks; scores agents at <strong>80% over 2,129 expert judgements</strong>.</li>
               <li>Turned six years of debugging history into a <strong>retrieval knowledge base</strong>: 13,005 bugs mined, 5,600 grounded analyses in nine days, 22 pull requests merged from nine contributors.</li>
               <li>Took an <strong>alert-investigation agent to production</strong> (289-alert eval replay, CI gate, 553 tests) and led self-learning agent experiments: 17 arms, 690 runs, and an honest zero-lift result after catching data leakage.</li>
