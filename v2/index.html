@@ -208,72 +208,48 @@ footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--
   </div>
 </section>
 
-<!-- 2 · AGENTS -->
-<section class="chapter center" id="work" data-tint="#ffb454" data-label="Agents" data-shape="octa">
-  <div class="panel wide">
-    <p class="eyebrow">Work · 01</p>
-    <h2>AI agents that do real engineering work.</h2>
-    <p class="lede">Agents only matter if they finish the job. These ran on real alerts, real crash dumps and real bugs.</p>
-    <div class="cards">
-      <div class="card"><h3>Alert investigation agent</h3><p>Storage arrays raise alerts that engineers triage by hand, and many are false alarms. Built an agent that investigates from the logs first, and took it to production with a full test suite and CI gate.</p><p class="out">Replays 289 real alerts in eval. Live on 1,000+ conversations.</p></div>
-      <div class="card"><h3>Root-cause agent with memory</h3><p>An agent that root-causes product bugs and writes reusable knowledge after every run. Led the experiment program: 17 isolated arms, 690 runs in three days.</p><p class="out">Fixed retrieval from 0 to 11 of 56 hard bugs solved.</p></div>
-      <div class="card"><h3>Team agent framework</h3><p>Part of the team whose investigation agent was chosen as the HPE Storage AI framework. Re-architected its specialist loop into a LangGraph subgraph with per-tool summarisation.</p><p class="out">Adopted as the team standard for new agents.</p></div>
-    </div>
+<!-- 2 · AI: AGENTS & PLATFORMS -->
+<section class="chapter" id="work" data-tint="#ffb454" data-label="Agents & platforms" data-shape="octa">
+  <div class="panel">
+    <p class="eyebrow">HPE Storage AI team · 2026</p>
+    <h2>Agents and the platform they run on.</h2>
+    <p class="lede">Shipped to about 150 engineers a week who debug production storage arrays.</p>
+    <ul class="built">
+      <li>Built the tool server that experts use inside Copilot and that every team agent runs on: 6,300+ tool calls a week. Led the P0 response when an agent posted without consent and shipped a human-approval gate on every write.</li>
+      <li>Took an alert-investigation agent to production: replays 289 real alerts in eval, live on 1,000+ conversations, full test suite and CI gate.</li>
+      <li>Ran live core-dump debugging as a service across five crash servers, 13,000 requests in 43 days. Recovered a fleet-wide outage the same day it hit.</li>
+      <li>Built an approval-gated access portal for 200+ beta users in about a day, plus a browser UI so engineers without a dev setup can run the agents.</li>
+    </ul>
   </div>
 </section>
 
-<!-- 3 · PLATFORMS -->
-<section class="chapter center" id="platforms" data-tint="#7d8cff" data-label="Platforms" data-shape="knot">
-  <div class="panel wide">
-    <p class="eyebrow">Work · 02</p>
-    <h2>Developer platforms engineers use every day.</h2>
-    <p class="lede">Internal tooling is a product. It has users, outages, safety incidents and adoption numbers.</p>
-    <div class="cards">
-      <div class="card"><h3>MCP tool server</h3><p>One Model Context Protocol server for Bugzilla, GDB, code search and investigation tools, used by experts inside Copilot and by the team's agents. Led the P0 response when an agent posted without consent and shipped a human-approval gate on every write.</p><p class="out">6,300+ tool calls a week from about 150 engineers.</p></div>
-      <div class="card"><h3>Live debugging as a service</h3><p>Ran the service that opens GDB sessions on core dumps for humans and agents across five crash servers. Root-caused a desync that broke every agent command, and recovered a fleet-wide outage the same day.</p><p class="out">13,000 requests in the first 43 days.</p></div>
-      <div class="card"><h3>Access portal and no-code UI</h3><p>Approval-gated access to AI tools, built in about a day, so 200+ beta users could get in safely. Then a browser UI that lets engineers without a dev setup run the debugging agent with stop-and-steer.</p><p class="out">Unblocked the beta without a support queue.</p></div>
-    </div>
+<!-- 3 · AI: KNOWLEDGE & EVALUATION -->
+<section class="chapter right" id="evaluation" data-tint="#6fd3ff" data-label="Knowledge & evaluation" data-shape="ico">
+  <div class="panel">
+    <p class="eyebrow">HPE Storage AI team · 2026</p>
+    <h2>Knowledge for the agents, and proof they work.</h2>
+    <p class="lede">If you can't score it, you shipped a demo.</p>
+    <ul class="built">
+      <li>Own the agent observability platform: one pane for what every agent did, where it failed, and its accuracy against expert feedback. Idea to three deployments in four weeks; 80% accuracy scored over 2,129 expert judgements.</li>
+      <li>Turned six years of debugging history into a retrieval knowledge base: 13,005 bugs mined, 5,600 grounded analyses in nine days, 22 pull requests merged from nine contributors.</li>
+      <li>Led experiments on self-learning agents: 17 isolated arms, 690 runs in three days. Caught data leakage behind a reported 62.9% win and reported an honest zero lift.</li>
+      <li>Daily customer-bug intelligence pipeline with LLM classification, coverage from 50% to 99%, feeding a leadership dashboard.</li>
+    </ul>
   </div>
 </section>
 
-<!-- 4 · KNOWLEDGE -->
-<section class="chapter center" id="knowledge" data-tint="#ff7a9a" data-label="Knowledge" data-shape="cloud">
-  <div class="panel wide">
-    <p class="eyebrow">Work · 03</p>
-    <h2>Knowledge systems built from years of history.</h2>
-    <p class="lede">The best model is useless without the team's memory. I turned six years of debugging history into something agents can retrieve.</p>
-    <div class="cards">
-      <div class="card"><h3>Debugging knowledge base</h3><p>Mined 13,005 bugs with real debugging sessions and generated grounded analyses at scale with a deterministic prompt that stopped hallucinated commands. Owned generation and ingestion; merged 22 pull requests from nine contributors.</p><p class="out">5,600 new analyses in nine days. Vector store grew 5×.</p></div>
-      <div class="card"><h3>Customer-bug intelligence</h3><p>A daily pipeline that classifies customer and AI-tool bugs with an open-weight model, feeding an executive dashboard. Revived it after it silently died and fixed five root causes.</p><p class="out">Coverage from about 50% to 99%. 74 customer escapes traced to 62 root causes.</p></div>
-      <div class="card"><h3>Text-to-SQL over the warehouse</h3><p>Open-weight model querying Trino with self-correction so non-engineers can ask questions of the data.</p><p class="out">68% to 100% on strict test cases.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 5 · EVALUATION -->
-<section class="chapter center" id="evaluation" data-tint="#6fd3ff" data-label="Evaluation" data-shape="ico">
-  <div class="panel wide">
-    <p class="eyebrow">Work · 04</p>
-    <h2>Measuring what agents actually do.</h2>
-    <p class="lede">If you can't score it, you shipped a demo. This is the work I'm proudest of.</p>
-    <div class="cards">
-      <div class="card"><h3>Agent observability platform</h3><p>Owner. One pane for every agent: what it did, per-step latency, tool calls, failures, and accuracy against expert feedback. Any agent onboards with one YAML file. Pitched it to senior leadership and led the design review.</p><p class="out">26,843 real events normalised. Scores agents at 80% accuracy over 2,129 expert judgements.</p></div>
-      <div class="card"><h3>Honest negative results</h3><p>Evaluated a self-learning "forever agent" for alert triage. Caught data leakage behind a reported 62.9% win, built a malformed-output detector that exposed a fake gain, and reported zero lift.</p><p class="out">Saved the team from shipping a result that wasn't real.</p></div>
-      <div class="card"><h3>Blind triage study</h3><p>Ten agents triaged ten closed bugs against the real fixes. Model confidence was inversely correlated with correctness.</p><p class="out">Confidence can't gate auto-triage. Human-in-the-loop stays.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 6 · PRODUCT ENGINEERING -->
-<section class="chapter center" id="products" data-tint="#35b8ff" data-label="Products" data-shape="rings">
-  <div class="panel wide">
-    <p class="eyebrow">Work · 05 · 2023 – 2026</p>
+<!-- 4 · PRE-AI PRODUCT ENGINEERING -->
+<section class="chapter" id="products" data-tint="#35b8ff" data-label="Product engineering" data-shape="rings">
+  <div class="panel">
+    <p class="eyebrow">HPE Storage · 2023 – 2026</p>
     <h2>Enterprise product engineering, before the agents.</h2>
-    <p class="lede">Two years shipping features that enterprise customers run their data on. It taught me what "production" means.</p>
-    <div class="cards">
-      <div class="card"><h3>Storage migration and replication</h3><p>Go and JavaScript on HPE's data-mobility product across 3PAR, Primera, Alletra and Nimble arrays. Remote Copy in Peer Motion, and a Nimble-to-Alletra iSCSI migration that was the year's largest feature.</p><p class="out">15 tagged builds, 47 defects fixed, 5 release lines.</p></div>
-      <div class="card"><h3>Observability for 10,000+ customers</h3><p>Monitoring dashboards and Spark log pipelines for the teams supporting HPE storage customers. Setup and serviceability analytics that shaped the first-time-install experience.</p><p class="out">Investigation time from 30 minutes to 3. HPE Ideathon winner.</p></div>
-    </div>
+    <p class="lede">Features that enterprise customers run their data on. It taught me what "production" means.</p>
+    <ul class="built">
+      <li>Two years in Go and JavaScript on HPE's data-mobility product across 3PAR, Primera, Alletra and Nimble arrays: 15 tagged builds, 47 defects fixed, 5 release lines.</li>
+      <li>Shipped Remote Copy support in Peer Motion and a Nimble-to-Alletra iSCSI migration path, the year's largest feature.</li>
+      <li>Built monitoring dashboards and Spark log pipelines for teams supporting 10,000+ customers. Investigation time from 30 minutes to 3.</li>
+      <li>Won the HPE Ideathon with a RAG chatbot and received Early Career Technologist recognition.</li>
+    </ul>
   </div>
 </section>
 
@@ -320,11 +296,6 @@ footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--
           <li><b>True Random Numbers from Entropy Sources in Portable Computers</b></li>
           <li><b>ViStA: Video Streaming and Analytics Benchmark</b></li>
           <li><b>PipeGAN</b>, pipeline parallelism for GANs</li>
-        </ul>
-        <h3 style="margin-top:22px">Recognition</h3>
-        <ul class="pubs">
-          <li>HPE Ideathon winner (RAG PDF chatbot)</li>
-          <li>HPE Early Career Technologist recognition</li>
         </ul>
       </div>
     </div>
