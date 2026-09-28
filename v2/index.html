@@ -8,25 +8,23 @@
 <link rel="icon" href="../assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap">
 <style>
 /* Layout: a fixed WebGL warp behind a vertical strip of full-height chapters; the camera travels one tunnel segment per chapter. */
 :root{
-  --bg:#040816; --bg2:#08122e;
-  --panel:rgba(6,13,36,.60); --panel-edge:rgba(150,196,255,.16); --line:rgba(150,196,255,.14);
-  --fg:#e9eefc; --muted:#a3b3d8; --dim:#6f82ad;
-  --accent:#4f8cff; --cyan:#7fe3ff; --amber:#ffb454;
-  --display:'Syne',ui-sans-serif,system-ui,sans-serif;
-  --body:'Manrope',ui-sans-serif,system-ui,sans-serif;
-  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-  --tint:#4f8cff;
+  --bg:#02040c; --panel:rgba(3,6,18,.82); --panel-edge:rgba(120,160,230,.14); --line:rgba(120,160,230,.14);
+  --fg:#f1f4fa; --muted:#b9c3d9; --dim:#7c88a6;
+  --accent:#3d7bff; --cyan:#6fd3ff; --amber:#ffb454;
+  --display:'Poppins',ui-sans-serif,system-ui,sans-serif;
+  --body:'Open Sans',ui-sans-serif,system-ui,sans-serif;
+  --tint:#3d7bff;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-html.nogl body{background:radial-gradient(ellipse at 50% 20%,#0d1f52 0%,#071233 40%,#040816 100%)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html.nogl body{background:radial-gradient(ellipse at 50% 20%,#0a1533 0%,#050b1f 40%,#02040c 100%)}
 a{color:var(--cyan);text-decoration:none}
 a:hover{text-decoration:underline}
 :focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:2px}
@@ -34,123 +32,115 @@ img{max-width:100%}
 
 #warp{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
 html.nogl #warp{display:none}
-.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,transparent 50%,rgba(2,5,16,.6) 100%)}
-.progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:6;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--accent),var(--cyan))}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(2,4,12,.15) 35%,rgba(2,4,12,.75) 100%)}
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:6;transform-origin:0 50%;transform:scaleX(var(--p,0));background:var(--cyan)}
 
 .topbar{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;
-  padding:calc(14px + env(safe-area-inset-top,0px)) clamp(16px,4vw,40px) 14px;
-  background:linear-gradient(180deg,rgba(4,8,22,.85),rgba(4,8,22,0));pointer-events:none}
+  padding:calc(16px + env(safe-area-inset-top,0px)) clamp(16px,4vw,40px) 16px;
+  background:linear-gradient(180deg,rgba(2,4,12,.9),rgba(2,4,12,0));pointer-events:none}
 .topbar>*{pointer-events:auto}
-.brand{font-family:var(--display);font-weight:700;letter-spacing:.02em;color:var(--fg);font-size:15px}
-.brand small{font-family:var(--mono);font-weight:400;color:var(--dim);font-size:11px;margin-left:10px;letter-spacing:.08em}
-.toplinks{display:flex;gap:18px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.brand{font-family:var(--display);font-weight:600;color:var(--fg);font-size:16px}
+.toplinks{display:flex;gap:22px;font-size:14px;font-weight:600}
 .toplinks a{color:var(--muted)}
-.toplinks a:hover{color:var(--cyan);text-decoration:none}
+.toplinks a:hover{color:#fff;text-decoration:none}
 @media (max-width:640px){.toplinks{display:none}}
 
 .dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
-.dots a{display:block;width:8px;height:8px;border-radius:50%;background:rgba(150,196,255,.28);position:relative;transition:background .3s,transform .3s}
+.dots a{display:block;width:8px;height:8px;border-radius:50%;background:rgba(120,160,230,.3);position:relative;transition:background .3s,transform .3s}
 .dots a:hover{text-decoration:none}
-.dots a.active{background:var(--tint);transform:scale(1.35);box-shadow:0 0 12px var(--tint)}
-.dots a span{position:absolute;right:18px;top:50%;transform:translateY(-50%);white-space:nowrap;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);opacity:0;transition:opacity .2s;pointer-events:none}
+.dots a.active{background:#fff;transform:scale(1.3)}
+.dots a span{position:absolute;right:18px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:12px;color:var(--muted);opacity:0;transition:opacity .2s;pointer-events:none}
 .dots a:hover span,.dots a:focus-visible span{opacity:1}
 @media (max-width:900px){.dots{display:none}}
 
 main{position:relative;z-index:2}
-.chapter{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding-block:clamp(72px,12vh,140px);padding-inline:clamp(16px,6vw,96px)}
+.chapter{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding-block:clamp(80px,12vh,140px);padding-inline:clamp(16px,6vw,96px)}
 .chapter.right{justify-content:flex-end}
 .chapter.center{justify-content:center}
-.panel{width:min(100%,760px);min-width:0;padding:clamp(22px,3.6vw,44px);background:var(--panel);border:1px solid var(--panel-edge);border-radius:6px;
-  backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);
-  box-shadow:0 30px 80px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06);
+.panel{width:min(100%,680px);min-width:0;padding:clamp(24px,3.6vw,44px);background:var(--panel);border:1px solid var(--panel-edge);border-radius:8px;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
   transform:translateY(18px);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
-.panel.wide{width:min(100%,1040px)}
+.panel.wide{width:min(100%,980px)}
 .chapter.in .panel{transform:none}
 @media (prefers-reduced-motion:reduce){.panel{transform:none;transition:none}}
 
-.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--tint);margin:0 0 14px;display:flex;flex-wrap:wrap;gap:6px 14px}
-.eyebrow .sep{color:var(--dim)}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05;letter-spacing:-.01em}
-h1{font-size:clamp(40px,7.2vw,92px);font-weight:800}
-h2{font-size:clamp(30px,4.6vw,56px);font-weight:800}
-h3{font-size:18px;font-weight:700;line-height:1.3}
-.lede{font-size:clamp(17px,1.5vw,20px);line-height:1.55;color:var(--fg);margin:18px 0 0;max-width:62ch}
-.what{color:var(--muted);margin:16px 0 0;max-width:68ch}
-.built{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:9px;max-width:72ch}
-.built li{position:relative;padding-left:20px;color:var(--fg);font-size:15px;line-height:1.5}
-.built li::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:1.5px;background:var(--tint)}
-.built b{font-weight:600;color:#fff}
-.num{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--cyan);font-size:.94em}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 0;padding:0;list-style:none}
-.tags li{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);padding:4px 9px;border-radius:3px}
+.eyebrow{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin:0 0 12px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(38px,6vw,68px);font-weight:700;letter-spacing:-.01em}
+h2{font-size:clamp(26px,3.4vw,40px);font-weight:600}
+h3{font-size:18px;font-weight:600}
+.lede{font-size:clamp(17px,1.4vw,19px);color:var(--muted);margin:14px 0 0;max-width:60ch}
+.built{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:12px;max-width:62ch}
+.built li{position:relative;padding-left:22px;line-height:1.6}
+.built li::before{content:"";position:absolute;left:0;top:.75em;width:8px;height:8px;border-radius:50%;background:var(--cyan)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0;padding:0;list-style:none}
+.tags li{font-size:13px;font-weight:600;color:var(--muted);background:rgba(120,160,230,.1);padding:5px 11px;border-radius:999px}
 
 /* hero */
 .hero .panel{background:transparent;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0;width:min(100%,900px)}
-.hero-grid{display:flex;gap:clamp(20px,4vw,48px);align-items:center;flex-wrap:wrap}
+.hero-grid{display:flex;gap:clamp(24px,4vw,48px);align-items:center;flex-wrap:wrap}
 .hero-grid>div{min-width:0;flex:1 1 380px}
-.avatar{width:clamp(96px,14vw,168px);height:clamp(96px,14vw,168px);border-radius:50%;object-fit:cover;flex:0 0 auto;
-  border:1px solid rgba(150,196,255,.3);box-shadow:0 0 0 8px rgba(79,140,255,.08),0 0 60px rgba(79,140,255,.25)}
-.hero .lede{color:var(--muted)}
-.links{display:flex;flex-wrap:wrap;gap:10px 22px;margin:26px 0 0;padding:0;list-style:none;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
-.links a{color:var(--fg);border-bottom:1px solid var(--line);padding-bottom:2px}
-.links a:hover{color:var(--cyan);border-color:var(--cyan);text-decoration:none}
-.cue{margin:56px 0 0;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:12px}
+.avatar{width:clamp(110px,14vw,170px);height:clamp(110px,14vw,170px);border-radius:50%;object-fit:cover;flex:0 0 auto;border:3px solid rgba(255,255,255,.14);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.hero .lede{color:var(--muted);text-shadow:0 2px 20px rgba(0,0,0,.8)}
+.hero h1,.hero .eyebrow{text-shadow:0 2px 24px rgba(0,0,0,.8)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 0;padding:0;list-style:none}
+.links a{display:inline-block;font-family:var(--display);font-weight:600;font-size:14px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:9px 16px;border-radius:999px}
+.links a:hover{background:rgba(255,255,255,.16);text-decoration:none}
+.cue{margin:56px 0 0;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:12px}
 .cue i{display:inline-block;width:1px;height:38px;background:linear-gradient(180deg,var(--cyan),transparent);animation:cue 2.2s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:scaleY(.4);transform-origin:top;opacity:.5}50%{transform:scaleY(1);opacity:1}}
 @media (prefers-reduced-motion:reduce){.cue i{animation:none}}
 
 /* timeline */
-.timeline{list-style:none;margin:26px 0 0;padding:0 0 0 18px;border-left:1px solid var(--line);display:grid;gap:18px}
-.timeline li{position:relative;padding-left:14px}
-.timeline li::before{content:"";position:absolute;left:-22px;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--tint);box-shadow:0 0 10px var(--tint)}
-.timeline time{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--tint);display:block}
-.timeline h3{margin:2px 0 4px}
-.timeline p{margin:0;color:var(--muted);font-size:14.5px}
+.timeline{list-style:none;margin:22px 0 0;padding:0 0 0 20px;border-left:2px solid var(--line);display:grid;gap:16px}
+.timeline li{position:relative;padding-left:12px}
+.timeline li::before{content:"";position:absolute;left:-26px;top:.5em;width:10px;height:10px;border-radius:50%;background:var(--cyan)}
+.timeline time{font-size:13px;font-weight:600;color:var(--cyan);display:block;letter-spacing:.04em}
+.timeline h3{margin:0}
+.timeline p{margin:0;color:var(--muted);font-size:15px}
 
 /* stats */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin:26px 0 0;background:var(--line);border:1px solid var(--line)}
-@media (max-width:820px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{background:rgba(4,8,22,.55);padding:18px 16px;min-width:0}
-.stat .n{font-family:var(--display);font-weight:800;font-size:clamp(26px,3vw,40px);line-height:1;color:var(--amber);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.stat .n small{font-size:.55em;color:var(--muted);font-weight:700;margin-left:2px}
-.stat .l{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:8px;line-height:1.4}
-.note{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin:14px 0 0;letter-spacing:.02em}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0 0}
+@media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:rgba(120,160,230,.06);border:1px solid var(--line);border-radius:8px;padding:18px 18px;min-width:0}
+.stat .n{font-family:var(--display);font-weight:700;font-size:clamp(28px,3vw,40px);line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+.stat .n small{font-size:.55em;color:var(--cyan);font-weight:600;margin-left:2px}
+.stat .l{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.45}
 
 /* cards */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:24px 0 0}
-.card{border:1px solid var(--line);padding:16px 16px 18px;min-width:0;background:rgba(4,8,22,.35)}
-.card h3{font-size:15px;margin:0 0 6px}
-.card .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tint);margin:0 0 8px}
-.card p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:22px 0 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:18px;min-width:0;background:rgba(120,160,230,.05)}
+.card h3{font-size:16px;margin:0 0 6px}
+.card p{margin:0;font-size:15px;color:var(--muted);line-height:1.55}
 
 /* two-col */
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin:22px 0 0}
 .cols>div{min-width:0}
-.cols h3{font-size:13px;font-family:var(--mono);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--tint);margin:0 0 12px}
+.cols h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin:0 0 12px}
 .roles{list-style:none;margin:0;padding:0;display:grid;gap:14px}
-.roles li{display:grid;gap:2px}
-.roles .r{font-weight:600;color:#fff;font-size:15px}
-.roles .o{color:var(--muted);font-size:13.5px}
-.roles time{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--dim)}
-.pubs{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.pubs li{font-size:14px;color:var(--muted)}
-.pubs b{display:block;color:#fff;font-weight:600}
+.roles li{display:grid;gap:2px;font-size:15px}
+.roles .r{font-family:var(--display);font-weight:600;color:#fff;font-size:16px}
+.roles .o{color:var(--muted)}
+.roles time{font-size:13px;color:var(--dim)}
+.pubs{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px;color:var(--muted)}
+.pubs b{color:#fff;font-weight:600}
 
 /* skills */
-.skillgroups{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px 28px;margin:24px 0 0}
+.skillgroups{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px 28px;margin:22px 0 0}
 .skillgroups>div{min-width:0}
-.skillgroups h3{font-size:12px;font-family:var(--mono);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--tint);margin:0 0 10px}
-.skillgroups ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
-.skillgroups li{font-size:13px;color:var(--fg);border:1px solid var(--line);padding:4px 9px;border-radius:3px;background:rgba(4,8,22,.3)}
+.skillgroups h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin:0 0 10px}
+.skillgroups ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.skillgroups li{font-size:14px;font-weight:600;color:var(--fg);background:rgba(120,160,230,.1);padding:5px 12px;border-radius:999px}
 
 /* contact */
 .email{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0 0}
-.email code{font-family:var(--mono);font-size:clamp(15px,2.2vw,22px);color:#fff;background:rgba(4,8,22,.5);border:1px solid var(--line);padding:10px 14px;border-radius:4px;user-select:all;min-width:0;overflow-wrap:anywhere}
-.btn{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--bg);background:var(--cyan);border:0;padding:12px 16px;border-radius:4px;cursor:pointer;font-weight:500}
+.email code{font-family:var(--display);font-weight:600;font-size:clamp(16px,2.2vw,22px);color:#fff;background:rgba(120,160,230,.08);border:1px solid var(--line);padding:10px 16px;border-radius:8px;user-select:all;min-width:0;overflow-wrap:anywhere}
+.btn{font-family:var(--display);font-weight:600;font-size:14px;color:#03060f;background:var(--cyan);border:0;padding:12px 18px;border-radius:999px;cursor:pointer}
 .btn:hover{filter:brightness(1.1)}
-.ghost{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg);border:1px solid var(--line);padding:11px 16px;border-radius:4px}
-.ghost:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none}
-footer{position:relative;z-index:2;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--dim);padding:24px 16px calc(28px + env(safe-area-inset-bottom,0px))}
+.ghost{display:inline-block;font-family:var(--display);font-weight:600;font-size:14px;color:#fff;border:1px solid rgba(255,255,255,.2);padding:11px 18px;border-radius:999px}
+.ghost:hover{background:rgba(255,255,255,.1);text-decoration:none}
+footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--dim);padding:24px 16px calc(28px + env(safe-area-inset-bottom,0px))}
 </style>
 </head>
 <body>
@@ -159,9 +149,9 @@ footer{position:relative;z-index:2;text-align:center;font-family:var(--mono);fon
 <div class="progress" aria-hidden="true"></div>
 
 <header class="topbar">
-  <a class="brand" href="#top">RMK <small>PORTFOLIO</small></a>
+  <a class="brand" href="#top">Rahul M Koushik</a>
   <nav class="toplinks" aria-label="Sections">
-    <a href="#arc">Arc</a><a href="#work">Work</a><a href="#research">Research</a><a href="#before">Before</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    <a href="#about">About</a><a href="#work">Work</a><a href="#research">Research</a><a href="#before">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
   </nav>
 </header>
 
@@ -170,285 +160,237 @@ footer{position:relative;z-index:2;text-align:center;font-family:var(--mono);fon
 <main id="top">
 
 <!-- 0 · HERO -->
-<section class="chapter hero in" id="hero" data-tint="#4f8cff" data-label="Start">
+<section class="chapter hero in" id="hero" data-tint="#3d7bff" data-label="Start">
   <div class="panel">
     <div class="hero-grid">
-      <img class="avatar" src="profile.jpg" alt="Rahul M Koushik" width="168" height="168">
+      <img class="avatar" src="profile.jpg" alt="Rahul M Koushik" width="170" height="170">
       <div>
-        <p class="eyebrow"><span>Software engineer</span><span class="sep">/</span><span>HPE Storage</span><span class="sep">/</span><span>San Jose, CA</span></p>
+        <p class="eyebrow">Software Engineer · HPE Storage · San Jose, CA</p>
         <h1>Rahul M Koushik</h1>
-        <p class="lede">I build AI agents for storage engineers, and the tooling that keeps them honest: MCP tool servers, RAG knowledge bases, evaluation harnesses, and the observability platform that scores every agent on the team.</p>
+        <p class="lede">I build AI agents for storage engineers, and the tooling that keeps them honest.</p>
         <ul class="links">
           <li><a href="https://github.com/Fluff18" target="_blank" rel="noopener">GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/rkoushik1808/" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a href="https://scholar.google.com/citations?user=sd2DSzEAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a></li>
           <li><a href="#contact">Email</a></li>
         </ul>
-        <p class="cue"><i></i> Scroll to travel</p>
+        <p class="cue"><i></i> Scroll</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 1 · ARC -->
-<section class="chapter right" id="arc" data-tint="#5aa9ff" data-label="The arc" data-shape="ring">
+<!-- 1 · ABOUT -->
+<section class="chapter right" id="about" data-tint="#3d7bff" data-label="About" data-shape="ring">
   <div class="panel">
-    <p class="eyebrow"><span>Chapter 01</span><span class="sep">/</span><span>The arc</span></p>
+    <p class="eyebrow">About</p>
     <h2>From storage product code to the AI team that debugs it.</h2>
+    <p class="lede">Two years shipping data-mobility features on HPE storage arrays, now building the agents, tools and evaluation platform the same engineers use every day.</p>
     <ol class="timeline">
-      <li><time>2017 – 2021</time><h3>PES University, Bengaluru</h3><p>B.Tech, Computer Science &amp; Engineering. GPA 8.2 / 10.</p></li>
-      <li><time>2021 – 2023</time><h3>Arizona State University</h3><p>M.S. Computer Science. GPA 3.59 / 4. Research aide at The Luminosity Lab.</p></li>
-      <li><time>2023 – 2024</time><h3>HPE Storage · Serviceability &amp; observability</h3><p>Dashboards for teams supporting 10,000+ customers; Spark pipelines over millions of log lines a day.</p></li>
-      <li><time>2024 – Feb 2026</time><h3>HPE Storage · Concorde product engineer</h3><p>Go and JavaScript on Peer Motion and Remote Copy across 3PAR, Primera, Alletra and Nimble arrays.</p></li>
-      <li><time>Feb 2026 – now</time><h3>HPE Storage · Mindstone AI team</h3><p>AI agents, MCP tooling, RAG knowledge base, agent evaluation, and owner of the agent observability platform.</p></li>
+      <li><time>Feb 2026 – now</time><h3>HPE Storage · AI team</h3><p>AI agents, MCP tooling, RAG knowledge base, agent evaluation and observability.</p></li>
+      <li><time>2024 – 2026</time><h3>HPE Storage · Product engineer</h3><p>Go and JavaScript on Peer Motion and Remote Copy.</p></li>
+      <li><time>2023 – 2024</time><h3>HPE Storage · Observability</h3><p>Dashboards and log pipelines for teams supporting 10,000+ customers.</p></li>
+      <li><time>2021 – 2023</time><h3>Arizona State University</h3><p>M.S. Computer Science, GPA 3.59.</p></li>
+      <li><time>2017 – 2021</time><h3>PES University</h3><p>B.Tech Computer Science, GPA 8.2.</p></li>
     </ol>
   </div>
 </section>
 
 <!-- 2 · NUMBERS -->
-<section class="chapter center" id="numbers" data-tint="#7fe3ff" data-label="By the numbers" data-shape="cloud">
+<section class="chapter center" id="numbers" data-tint="#6fd3ff" data-label="Numbers" data-shape="cloud">
   <div class="panel wide">
-    <p class="eyebrow"><span>Chapter 02</span><span class="sep">/</span><span>Seven months on the AI team, by the numbers</span><span class="sep">/</span><span>Feb – Sep 2026</span></p>
+    <p class="eyebrow">Seven months on the AI team</p>
     <h2>Shipped, measured, and used by real engineers.</h2>
     <div class="stats">
-      <div class="stat"><div class="n">397</div><div class="l">commits across 17 repos in 7 months</div></div>
-      <div class="stat"><div class="n">6.3K<small>+</small></div><div class="l">tool calls / week on the MCP platform, ~150 weekly users</div></div>
-      <div class="stat"><div class="n">26,843</div><div class="l">real agent events normalised byte-identically</div></div>
-      <div class="stat"><div class="n">80.3<small>%</small></div><div class="l">agent accuracy scored over 2,129 SME judgements</div></div>
-      <div class="stat"><div class="n">13,005</div><div class="l">bugs mined with real GDB sessions → 2,786 candidates</div></div>
-      <div class="stat"><div class="n">7.1<small>×</small></div><div class="l">growth in core-dump analyses (484 → 3,454) in 9 days</div></div>
-      <div class="stat"><div class="n">553</div><div class="l">tests landed and 7,683 lint lines cleared for prod readiness</div></div>
-      <div class="stat"><div class="n">100<small>%</small></div><div class="l">text-to-SQL on strict cases, up from 68%</div></div>
+      <div class="stat"><div class="n">397</div><div class="l">commits across 17 repos</div></div>
+      <div class="stat"><div class="n">6.3K<small>+</small></div><div class="l">tool calls a week on the MCP platform</div></div>
+      <div class="stat"><div class="n">150</div><div class="l">weekly users</div></div>
+      <div class="stat"><div class="n">80<small>%</small></div><div class="l">agent accuracy over 2,129 expert judgements</div></div>
+      <div class="stat"><div class="n">13K</div><div class="l">bugs mined into a RAG knowledge base</div></div>
+      <div class="stat"><div class="n">7<small>×</small></div><div class="l">growth in core-dump analyses in 9 days</div></div>
     </div>
-    <p class="note">Numbers come from git history and archived sessions. Estimates and proxy metrics are left out.</p>
   </div>
 </section>
 
 <!-- 3 · SANCTUM -->
-<section class="chapter" id="work" data-tint="#7fe3ff" data-label="Sanctum" data-shape="ico">
+<section class="chapter" id="work" data-tint="#6fd3ff" data-label="Sanctum" data-shape="ico">
   <div class="panel">
-    <p class="eyebrow"><span>Chapter 03</span><span class="sep">/</span><span>Owner</span><span class="sep">/</span><span>Aug – Sep 2026</span></p>
-    <h2>Sanctum. One pane for every AI agent.</h2>
-    <p class="what">Agent observability and accuracy platform: what each agent did, per-step latency, tool calls, context growth, where it failed, and accuracy against SME and user feedback. Went from a prototype to three concurrent deployments and a passed formal design review in four weeks.</p>
+    <p class="eyebrow">Owner · Aug – Sep 2026</p>
+    <h2>Sanctum</h2>
+    <p class="lede">One pane for every AI agent on the team: what it did, per-step latency, tool calls, where it failed, and accuracy against expert feedback.</p>
     <ul class="built">
-      <li><b>Manifest contract.</b> Any agent onboards with one YAML file and one Helm line, zero platform code. Replaced 5 agent-specific route families with a single trace API of <span class="num">16</span> endpoints.</li>
-      <li><b>Normaliser</b> unifying 3 agent data shapes (JSONL blobs, append-only event rows, relational logs), byte-identical across <span class="num">26,843</span> real events; injection-shaped identifiers rejected at load.</li>
-      <li><b>Agent score card</b> with accuracy over time: Shuri <span class="num">80.3%</span> over 2,129 SME judgements, Sentinel chat <span class="num">86.4%</span> over 686 votes.</li>
-      <li><b>Two-tier performance layer:</b> response cache with pre-warm, per-run metrics ledger, strictly read-only agent databases with tight connect and statement timeouts.</li>
-      <li><b>Self-onboarding kit:</b> a Copilot skill, read-only DB introspector and three validation gates; plus an experimental LLM onboarding agent (~3.4K lines) with nonce-gated human approval and secret redaction.</li>
-      <li><b>Found through Sanctum:</b> an agent under-reporting tool calls, a 14 MB payload breaking drill-downs, a Postgres NFS hang with 401 queued connections, and a copy-paste error in the leadership ground truth.</li>
-      <li>Pitched to senior leadership; led the design review and demo. Most code written by AI agents under my direction as architect, spec author, reviewer and deployer.</li>
+      <li>Any agent onboards with one YAML file and one Helm line. No platform code.</li>
+      <li>Normalised 26,843 real events from three different agent formats, byte-identical.</li>
+      <li>Prototype to three deployments and a passed design review in four weeks.</li>
     </ul>
-    <ul class="tags"><li>FastAPI</li><li>psycopg</li><li>React / TypeScript</li><li>Vite</li><li>Tailwind</li><li>Helm</li><li>Harbor</li><li>Postgres</li></ul>
+    <ul class="tags"><li>FastAPI</li><li>React</li><li>Postgres</li><li>Helm</li></ul>
   </div>
 </section>
 
 <!-- 4 · MCP SERVER -->
-<section class="chapter right" id="mcp" data-tint="#8b7dff" data-label="MCP server" data-shape="knot">
+<section class="chapter right" id="mcp" data-tint="#7d8cff" data-label="MCP server" data-shape="knot">
   <div class="panel">
-    <p class="eyebrow"><span>Chapter 04</span><span class="sep">/</span><span>Major contributor</span><span class="sep">/</span><span>Feb – Sep 2026</span></p>
-    <h2>The MCP server SMEs and agents both run on.</h2>
-    <p class="what">Model Context Protocol tool server (Bugzilla, GDB, ReviewBoard, code search, investigation tools) used by subject-matter experts inside Copilot and by the team's agents. 93 commits over 84 sessions.</p>
+    <p class="eyebrow">Major contributor · Feb – Sep 2026</p>
+    <h2>MCP tool server</h2>
+    <p class="lede">The Model Context Protocol server that storage experts use inside Copilot and that the team's agents run on: Bugzilla, GDB, code search and investigation tools.</p>
     <ul class="built">
-      <li><b>Led a P0 AI-safety response.</b> An agent posted to Bugzilla without consent. Prototyped a hash-bound approval token, found its self-approval loophole, then shipped a server-side MCP elicitation approval gate over every write path.</li>
-      <li><b>Knowledge-capture flywheel:</b> one call produces 4 artifacts per investigation (log analysis, GDB analysis, design context, hypothesis ratings), synced hourly into a <span class="num">1,434</span>-entry pgvector strategy base.</li>
-      <li><b>Async rewrite:</b> 12 blocking calls moved to aiohttp, so a 5-minute GDB command no longer froze the server for everyone.</li>
-      <li><b>Root-caused AI GDB hangs:</b> the model was copying docstring examples into tool arguments. Fixed with placeholder contracts, server pre-flight 422s and request IDs.</li>
-      <li>Hybrid semantic + keyword duplicate-bug search; LLM comment-relevance pipeline with chunking, Postgres cache and bounded concurrency (~3 s per bug).</li>
-      <li>Fixed a multi-environment 404 outage and a stale tool catalog from shared <code>:latest</code> tags (34 → 50 tools). Bug-ID traceability on every tool call.</li>
-      <li>Demo video, setup and troubleshooting guides, doc audit of 15 undocumented tools, and an agent-framework recommendation for a 10-person hackathon.</li>
+      <li>Led a P0 safety response after an agent posted to Bugzilla without consent. Shipped a server-side human-approval gate on every write.</li>
+      <li>Moved 12 blocking calls to async, so one slow GDB command no longer froze the server for everyone.</li>
+      <li>Built the knowledge-capture loop: every investigation feeds a 1,400-entry vector strategy base.</li>
     </ul>
-    <ul class="tags"><li>MCP / FastMCP</li><li>Elicitation</li><li>asyncio / aiohttp</li><li>pgvector</li><li>Kubernetes</li><li>Bugzilla API</li></ul>
+    <ul class="tags"><li>MCP</li><li>asyncio</li><li>pgvector</li><li>Kubernetes</li></ul>
   </div>
 </section>
 
 <!-- 5 · GDB SERVER -->
 <section class="chapter" id="gdb" data-tint="#3fd1c9" data-label="GDB server" data-shape="rings">
   <div class="panel">
-    <p class="eyebrow"><span>Chapter 05</span><span class="sep">/</span><span>Acting owner / operator</span><span class="sep">/</span><span>Apr – Aug 2026</span></p>
-    <h2>Live GDB sessions as a service.</h2>
-    <p class="what">FastAPI service running live GDB sessions in containers on core dumps, for SMEs and for the team's debugging agents, across 5 crash servers. <span class="num">13,110</span> requests in 43 days.</p>
+    <p class="eyebrow">Acting owner · Apr – Aug 2026</p>
+    <h2>Live GDB as a service</h2>
+    <p class="lede">A service that runs live GDB sessions on core dumps for humans and agents, across five crash servers. 13,000 requests in its first 43 days.</p>
     <ul class="built">
-      <li><b>Prompt-desync root cause.</b> A slow startup emitted multiple <code>(gdb)</code> prompts, so responses ran one behind and 7 of 7 agent commands failed. Tried three buffer-drain designs, shipped a marker-sync handshake to all 5 production servers.</li>
-      <li><b>Same-day fleet recovery.</b> A catatonic error on all 5 servers traced to an NFS cleanup deleting an out-of-repo wrapper script. Removed the dependency, added pre-flight checks.</li>
-      <li>Overturned the team's "image broken" root cause with direct evidence, avoiding an unneeded rebuild.</li>
-      <li>Pre-flight validation (500 → 422 with available-file hints), UUID request tracing, compressed-core rejection, per-user session limits.</li>
+      <li>Root-caused a prompt desync that made 7 of 7 agent commands fail, and shipped the fix fleet-wide.</li>
+      <li>Recovered a fleet-wide outage the same day it hit.</li>
+      <li>Overturned a wrong "image broken" diagnosis with evidence, avoiding an unneeded rebuild.</li>
     </ul>
-    <ul class="tags"><li>FastAPI</li><li>GDB</li><li>Core-dump analysis</li><li>Containers</li><li>NFS</li></ul>
+    <ul class="tags"><li>FastAPI</li><li>GDB</li><li>Containers</li></ul>
   </div>
 </section>
 
 <!-- 6 · SCARLET -->
-<section class="chapter right" id="scarlet" data-tint="#ff6b8a" data-label="Scarlet" data-shape="cloud">
+<section class="chapter right" id="scarlet" data-tint="#ff7a9a" data-label="Scarlet" data-shape="cloud">
   <div class="panel">
-    <p class="eyebrow"><span>Chapter 06</span><span class="sep">/</span><span>Owner of generation &amp; ingestion</span><span class="sep">/</span><span>2026</span></p>
-    <h2>Scarlet. A knowledge base built from six years of bugs.</h2>
-    <p class="what">pgvector RAG corpus of past GDB and log investigations plus design docs, retrieved by every agent on the team and by the MCP strategy tools.</p>
+    <p class="eyebrow">Owner of generation and ingestion · 2026</p>
+    <h2>Scarlet knowledge base</h2>
+    <p class="lede">A RAG corpus built from six years of debugging history, retrieved by every agent on the team.</p>
     <ul class="built">
-      <li><b>Mined 6 years of Bugzilla:</b> <span class="num">13,005</span> bugs with real GDB sessions filtered to 2,786 candidates through an incremental, paginated discovery pipeline.</li>
-      <li><b>Batch generation pipeline</b> (Copilot CLI + Claude) with a deterministic 7-section grounded prompt that stopped hallucinated GDB commands; 53 parallel processes, self-healing reruns (55 of 55 recovered), 100% input/output parity.</li>
-      <li>Core analyses <span class="num">484 → 3,454</span> and log analyses <span class="num">912 → 3,583</span>: about 5,600 new analyses in 9 days.</li>
-      <li>Versioned v2 pgvector tables, <span class="num">1,321 → 7,262</span> rows, all unique; hourly CronJob ingesting SME-approved investigations at 1.4× weight.</li>
-      <li>Found a silent duplicate bug (key-case mismatch in 6 paths), a platform returning HTTP 200 on failed writes, and a ConfigMap pointing at the wrong Postgres.</li>
-      <li>Data-quality reset to FIXED-only curation, ~4,500 junk artifacts purged. Merged 22 of 35 PRs from 9 contributors and coordinated a 1,414-analysis gap-fill.</li>
-      <li>Prototyped a self-hosted Gemma-4-31B generator on vLLM / H100 with a quality audit.</li>
+      <li>Mined 13,005 bugs with real GDB sessions and generated 5,600 grounded analyses in nine days.</li>
+      <li>Grew the vector store from 1,321 to 7,262 rows with hourly ingestion of expert-approved investigations.</li>
+      <li>Merged 22 pull requests from nine contributors and purged 4,500 junk artifacts.</li>
     </ul>
-    <ul class="tags"><li>pgvector</li><li>RAG</li><li>Embeddings</li><li>Kubernetes CronJob</li><li>vLLM</li><li>Copilot CLI</li></ul>
+    <ul class="tags"><li>pgvector</li><li>RAG</li><li>vLLM</li><li>CronJobs</li></ul>
   </div>
 </section>
 
 <!-- 7 · SENTINEL -->
 <section class="chapter" id="sentinel" data-tint="#ffb454" data-label="Sentinel" data-shape="octa">
   <div class="panel">
-    <p class="eyebrow"><span>Chapter 07</span><span class="sep">/</span><span>Major contributor</span><span class="sep">/</span><span>May – Aug 2026</span></p>
-    <h2>Sentinel. An agent that investigates alerts before a human has to.</h2>
-    <p class="what">LLM ReAct agent that investigates storage-array alerts from logs and event logs to cut false customer-impact alerts, with a chat UI and an investigate API for the team console.</p>
+    <p class="eyebrow">Major contributor · May – Aug 2026</p>
+    <h2>Sentinel</h2>
+    <p class="lede">An agent that investigates storage-array alerts from logs before a human has to, cutting false customer-impact alerts.</p>
     <ul class="built">
-      <li><b>P0 maintenance detection:</b> mined 111 quorum-witness investigations and built human / root / automation activity attribution as tunable YAML, A/B/C tested on three deployments.</li>
-      <li>Root-caused misses (a noise filter hiding an iLO power reset, wrong log type) and de-duplicated guidance 4× → 1×. Fixed an S3 pagination bug hiding up to 1,956 recent log files per query.</li>
-      <li><b>Tool study</b> over 107 calls and 50 sessions: ~18% false "no match" fixed by raising a cap from 10 to 24; consolidated 13 tools into 5.</li>
-      <li><b>Eval:</b> async batch runner replaying 289 alerts; OOM root cause (4Gi → 10Gi); 20-case regression harness checking evidence and command recall.</li>
-      <li><b>Prod readiness:</b> credentials moved to Kubernetes secrets, <span class="num">553</span> tests (783 passing in 22 s), first CI gate on PRs, 7,683 lint lines fixed.</li>
-      <li>vLLM tuning (thinking budget 4096 → 3072, context 128K → 80K, concurrency 3 → 10) with Prometheus context metrics. Conversations API for a partner team, live on 1,007 conversations.</li>
+      <li>Built maintenance detection for a P0, tested A/B/C across three deployments.</li>
+      <li>Took it to production: 553 tests, a CI gate, secrets moved to Kubernetes, 7,683 lint issues cleared.</li>
+      <li>Eval harness replaying 289 real alerts, plus a 20-case regression suite.</li>
     </ul>
-    <ul class="tags"><li>ReAct</li><li>vLLM</li><li>Prometheus</li><li>Kubernetes</li><li>S3</li><li>pytest</li></ul>
+    <ul class="tags"><li>ReAct</li><li>vLLM</li><li>Prometheus</li></ul>
   </div>
 </section>
 
-<!-- 8 · CONCORDE RCA -->
-<section class="chapter right" id="research" data-tint="#5ec8ff" data-label="RCA agent research" data-shape="dodeca">
+<!-- 8 · RESEARCH -->
+<section class="chapter right" id="research" data-tint="#9d8cff" data-label="Research" data-shape="dodeca">
   <div class="panel">
-    <p class="eyebrow"><span>Chapter 08</span><span class="sep">/</span><span>Led experiment arms, co-led program</span><span class="sep">/</span><span>Aug 25 – Sep 16, 2026</span></p>
-    <h2>A self-learning root-cause agent, measured properly.</h2>
-    <p class="what">Agent that root-causes Concorde bugs and writes reusable knowledge after each run. My job was the experiments and the measurement rigor behind them.</p>
+    <p class="eyebrow">Led experiments · Jul – Sep 2026</p>
+    <h2>Can an agent learn from its own runs?</h2>
+    <p class="lede">Two research programs on self-improving agents: a root-cause agent with reusable memory, and a "forever agent" for alert triage. My job was the experiments and the rigor.</p>
     <ul class="built">
-      <li>Built a 95-bug corpus with per-bug RCAs and 6 source-grounded domain skills; pulled a 1,459-bug expansion set.</li>
-      <li><b>17+ isolated Helm experiment arms</b> (skills, RAG, SFT, reflector variants, held-out, retrieval), about <span class="num">690</span> runs by day three.</li>
-      <li>Found 13 preloaded skills eating ~90% of context; trimmed 87% (168K → 22K chars).</li>
-      <li>Proved recall mathematically impossible under Jaccard (max 0.069 &lt; 0.10) and switched to containment: <span class="num">0/56 → 11/56</span>, with offline replay of every routing decision.</li>
-      <li>Found 6 silent defects invalidating the memory results, including a store wiped between runs, a leak guard that never fired, and 29 of 37 wrong catalog entries.</li>
-      <li><b>Measurement rigor:</b> judge SD 2.5 vs agent SD 27.2, minimum-detectable-effect analysis, a malformed-output detector at 100% precision over 335 runs that exposed a fake "+3.7" gain, a Simpson's paradox correction, and a frozen-KB control that disproved a claimed "learning decay".</li>
-      <li>Fine-tuned model eval solved 0 of 21 held-out bugs, which drove the pivot to RCA-only. Built a 159-bug benchmark with frozen, cited ground truth and a 1,249-line dependency-free bounded-memory engine reproducing the paper's numbers.</li>
+      <li>Ran 17 isolated experiment arms and 690 runs in three days.</li>
+      <li>Found six silent defects that invalidated the memory results, and a leak behind a reported 62.9% win. Reported an honest zero lift.</li>
+      <li>Built a malformed-output detector at 100% precision that exposed a fake gain, and a frozen-knowledge control that disproved a claimed "learning decay".</li>
     </ul>
-    <ul class="tags"><li>LLM-as-judge</li><li>Eval design</li><li>Helm</li><li>SFT</li><li>Agent memory</li><li>Statistics</li></ul>
+    <ul class="tags"><li>LLM-as-judge</li><li>Eval design</li><li>Agent memory</li></ul>
   </div>
 </section>
 
-<!-- 9 · SHURI + BLIND TRIAGE -->
-<section class="chapter" id="shuri" data-tint="#a78bfa" data-label="Forever agent" data-shape="tetra">
-  <div class="panel">
-    <p class="eyebrow"><span>Chapter 09</span><span class="sep">/</span><span>Led research → build → eval</span><span class="sep">/</span><span>Jul 15 – Aug 14, 2026</span></p>
-    <h2>Shuri "forever agent": an honest negative result.</h2>
-    <p class="what">Can an alert-triage agent keep learning from its own episodes? I built the reflector and memory, ran the evaluation, and reported that at scale it did not help.</p>
-    <ul class="built">
-      <li>Architecture evaluation for the team lead and six iterations of the experiment plan; reflector pipeline (reduce, synthesize, decide, reconcile, log) with shadow tables and an isolated sandbox.</li>
-      <li>18 learned rules from 480 episodes (10 deterministic at 100% purity), wave rollback, net-positive auto-disable, and Brier calibration that exposed a 103× SOFTWARE → TEST blind spot.</li>
-      <li>Retrieval-first memory: 668 runs into 488 episodes, 1536-d pgvector kNN gated by cosine ≥ 0.85.</li>
-      <li><b>Caught leakage</b> behind a reported 62.9% and reported an honest ~0 lift; net result at scale was −24 over 272.</li>
-      <li>Root-caused "LLM timeouts" to a corporate proxy on internal H200 traffic: 200 OK in about a second afterwards.</li>
-      <li>Theory write-up: Bayes error 0.10 – 0.21, embedding holds 71% of label entropy. Alert taxonomy over 3,813 alerts and 2,243 systems.</li>
-      <li><b>Blind LLM triage eval:</b> 10 closed bugs at pre-fix checkout, 10 parallel agents graded against the real fix. Layer 8/10, file 7/10, root cause 6/10, shippable patch 5/10, and model confidence inversely correlated with correctness, so confidence cannot gate auto-triage.</li>
-    </ul>
-    <ul class="tags"><li>Agent memory / reflection</li><li>pgvector kNN</li><li>Calibration</li><li>Leakage control</li><li>Postgres</li></ul>
-  </div>
-</section>
-
-<!-- 10 · PLATFORM & TOOLING -->
-<section class="chapter center" id="platform" data-tint="#4f8cff" data-label="Platform & tooling" data-shape="grid">
+<!-- 9 · PLATFORM -->
+<section class="chapter center" id="platform" data-tint="#3d7bff" data-label="Platform" data-shape="grid">
   <div class="panel wide">
-    <p class="eyebrow"><span>Chapter 10</span><span class="sep">/</span><span>Platform, data and tooling</span><span class="sep">/</span><span>Apr – Sep 2026</span></p>
+    <p class="eyebrow">Also built · Apr – Sep 2026</p>
     <h2>The plumbing around the agents.</h2>
     <div class="cards">
-      <div class="card"><p class="k">Owner · Jun – Sep</p><h3>Customer-bug intelligence</h3><p>Daily CronJob ingesting customer and GenAI bugs with LLM classification (qwen3.6-27b) at 99.8% yield. Revived a silently dead job with 5 root-cause fixes; completeness ~50% → 99.3%, corpus 393 → 2,099 bugs. Escape analysis of 74 customer bugs into 62 root causes.</p></div>
-      <div class="card"><p class="k">Creator · Apr – Aug</p><h3>Insights dashboards</h3><p>Observability dashboard built in three days: user → tool → trace → GDB session drill-down and exec adoption KPIs (237 users, 8.96K calls in 60 days). Real-time tail daemon, freshness 6 h → ~1 s. Recovered silent data loss and backfilled 19,600 events after an outage.</p></div>
-      <div class="card"><p class="k">Sole builder · Apr – May</p><h3>Access portal + investigation UI</h3><p>Access-governance portal (FastAPI, JWT, Postgres, React, Helm) in about 24 hours: two-stage approval, role-scoped tool visibility, 200+ beta users. No-code investigation UI streaming Copilot CLI over SSE with stop-and-steer.</p></div>
-      <div class="card"><p class="k">Contributor</p><h3>Aether agent framework</h3><p>Part of the team whose investigation agent won Fellow Review and became the HPE Storage AI framework. Re-architected the specialist ReAct loop into a 4-node LangGraph subgraph with a per-tool summarisation policy registry.</p></div>
-      <div class="card"><p class="k">Spike</p><h3>Text-to-SQL</h3><p>Gemma-4-31B → Trino with self-correction: 68% → 100% on 10 strict cases × 5 repeats using 6 prompt rules. Found the 504s were a 60 s proxy timeout.</p></div>
-      <div class="card"><p class="k">Developer tools</p><h3>Secret scanner + SQL analyzer</h3><p>Secret scanner and AST unbounded-SQL analyzer as git hooks and CI, re-engineered after a rejected v1 to chain existing hooks. Blocking false positives 102 / 121 / 588 → 0 across three repos. Handled a leaked default credential across 3 releases.</p></div>
-      <div class="card"><p class="k">Eval</p><h3>Three-phase agent eval</h3><p>Isolated agent session per bug → structured extraction → rubric LLM judge (50 / 20 / 20 / 10) on a 17-bug set. Monthly GDB-macro knowledge CronJob with chunked LLM ingestion.</p></div>
-      <div class="card"><p class="k">Enablement</p><h3>SME knowledge program</h3><p>Kicked off an SME knowledge program with the Arcus org: templates, cadence, ingestion proof of concept. Personal work knowledge base archiving every session across 25+ repos with Jira sync.</p></div>
+      <div class="card"><h3>Customer-bug intelligence</h3><p>Daily pipeline classifying customer bugs with an LLM at 99.8% yield. Coverage went from about 50% to 99%.</p></div>
+      <div class="card"><h3>Insights dashboards</h3><p>Usage and trace dashboards built in three days. Log freshness from six hours to one second.</p></div>
+      <div class="card"><h3>Access portal</h3><p>Approval-gated access to AI tools for 200+ beta users, built in about a day.</p></div>
+      <div class="card"><h3>Text-to-SQL</h3><p>Open-weight model querying Trino with self-correction, 68% to 100% on strict test cases.</p></div>
+      <div class="card"><h3>Developer tools</h3><p>Secret scanner and unbounded-SQL analyzer in CI. False positives across three repos brought to zero.</p></div>
+      <div class="card"><h3>Agent framework</h3><p>Part of the team whose investigation agent was chosen as the HPE Storage AI framework.</p></div>
     </div>
   </div>
 </section>
 
-<!-- 11 · CONCORDE PRODUCT ENGINEERING -->
-<section class="chapter right" id="concorde" data-tint="#35b8ff" data-label="Concorde" data-shape="ring">
+<!-- 10 · CONCORDE -->
+<section class="chapter" id="concorde" data-tint="#35b8ff" data-label="Product engineering" data-shape="ring">
   <div class="panel">
-    <p class="eyebrow"><span>Chapter 11</span><span class="sep">/</span><span>Product engineer</span><span class="sep">/</span><span>2024 – Feb 2026</span></p>
-    <h2>Two years shipping storage migration and replication.</h2>
-    <p class="what">Go and JavaScript on Concorde, HPE's storage data-mobility product: 97 commits on master, +13.9K / −1.7K lines, 15 tagged builds, 47 defects fixed, 5 release lines.</p>
+    <p class="eyebrow">Product engineer · 2024 – Feb 2026</p>
+    <h2>Storage migration and replication</h2>
+    <p class="lede">Go and JavaScript on HPE's data-mobility product across 3PAR, Primera, Alletra and Nimble arrays. 15 tagged builds, 47 defects fixed.</p>
     <ul class="built">
-      <li><b>Remote Copy in Peer Motion:</b> backend discovery of 3PAR Remote Copy groups, create and display of RC groups and targets, 13 RC defects fixed.</li>
-      <li><b>Nimble → Arcus iSCSI</b> with VLAN and multilink (+1.4K lines, the largest feature); 3PAR iSCSI Peer Motion backend.</li>
-      <li>New migration paths: Arcus / GreenLake for Block Storage as source, Alletra 9K → 9K. Domain-aware, multi-tenant Peer Motion with 13 domain defects closed.</li>
-      <li>DSCC trigger-source tracking; a 10-story unit-test campaign adding 3.46K lines of Go tests.</li>
-      <li><b>Pivot to AI inside the team:</b> BugBeacon dashboard features, an API-doc agent piloted in English, Japanese and Chinese, and a Bugzilla-to-PR agentic pipeline playbook.</li>
+      <li>Remote Copy support in Peer Motion, from array discovery to replication groups.</li>
+      <li>Nimble to Alletra iSCSI migration with VLAN and multilink, the largest feature shipped that year.</li>
+      <li>Multi-tenant migration paths and a 3,400-line unit-test campaign.</li>
     </ul>
-    <ul class="tags"><li>Go</li><li>JavaScript</li><li>3PAR</li><li>Primera</li><li>Alletra 9000 / MP</li><li>Nimble</li><li>Arcus</li><li>FC / iSCSI</li></ul>
+    <ul class="tags"><li>Go</li><li>JavaScript</li><li>FC / iSCSI</li></ul>
   </div>
 </section>
 
-<!-- 12 · BEFORE -->
-<section class="chapter center" id="before" data-tint="#6aa8ff" data-label="Before" data-shape="rings">
+<!-- 11 · BEFORE -->
+<section class="chapter center" id="before" data-tint="#3d7bff" data-label="Experience" data-shape="rings">
   <div class="panel wide">
-    <p class="eyebrow"><span>Chapter 12</span><span class="sep">/</span><span>Before the AI team</span><span class="sep">/</span><span>2020 – 2024</span></p>
-    <h2>Observability, iOS, networking, and three papers.</h2>
+    <p class="eyebrow">Earlier</p>
+    <h2>Experience, education and papers.</h2>
     <div class="cols">
       <div>
         <h3>Experience</h3>
         <ul class="roles">
-          <li><span class="r">Cloud Software Engineer · HPE Storage</span><span class="o">Monitoring dashboards for teams supporting 10,000+ customers; Spark pipelines over millions of logs a day (Humio, S3, Trino, Delta, Parquet, Jenkins). Investigation time ~30 min → ~3 min. Setup and serviceability analytics. Early Career Technologist recognition; won the HPE Ideathon with a RAG PDF chatbot.</span><time>Jun 2023 – 2024 · San Jose</time></li>
-          <li><span class="r">Research Aide · The Luminosity Lab, ASU</span><span class="o">Led the iOS team revamping a client's mobile apps; HealthKit HRV capture; telehealth flow on Zoom Meeting SDK and Firebase saving ~15 min per visit.</span><time>Feb 2022 – May 2023 · Tempe</time></li>
-          <li><span class="r">Software Engineering Intern · Aruba, HPE</span><span class="o">Test-automation tool for network topologies, saving an estimated 150K engineering hours a year; MPLS features on embedded switches and routers.</span><time>May – Aug 2022 · Tempe</time></li>
-          <li><span class="r">Technical Undergraduate Intern · Webex by Cisco</span><span class="o">Call-scheduling and background-connection APIs for the iOS SDK v3; built the Kitchen Sink sample app.</span><time>Jan – Jul 2021 · Bengaluru</time></li>
-          <li><span class="r">Full-stack Engineer · Qescapades</span><span class="o">Responsive site and blog that lifted traffic 30% and engagement 80%.</span><time>May – Dec 2020 · Bengaluru</time></li>
+          <li><span class="r">Cloud Software Engineer · HPE Storage</span><span class="o">Monitoring dashboards for 10,000+ customers; investigation time from 30 minutes to 3. Won the HPE Ideathon.</span><time>2023 – 2024</time></li>
+          <li><span class="r">Research Aide · The Luminosity Lab, ASU</span><span class="o">Led the iOS team; built a telehealth flow on the Zoom SDK.</span><time>2022 – 2023</time></li>
+          <li><span class="r">Software Engineering Intern · Aruba, HPE</span><span class="o">Test-automation tool saving an estimated 150K engineering hours a year.</span><time>2022</time></li>
+          <li><span class="r">Intern · Webex by Cisco</span><span class="o">APIs and sample app for the Webex iOS SDK.</span><time>2021</time></li>
         </ul>
       </div>
       <div>
-        <h3>Publications</h3>
-        <ul class="pubs">
-          <li><b>Generation of True Random Numbers using Entropy Sources present within Portable Computers</b>Device sensors and packet round-trip time as entropy sources for practical TRNGs.</li>
-          <li><b>ViStA: Video Streaming and Analytics Benchmark</b>A microservice architecture that streams and analyses video simultaneously with high cohesion and low coupling.</li>
-          <li><b>PipeGAN</b>A batch-splitting pipeline-parallelism algorithm for GANs with coordinated gradient updates, giving model parallelism with stable training and high hardware utilisation.</li>
-        </ul>
-        <h3 style="margin-top:22px">Education</h3>
+        <h3>Education</h3>
         <ul class="roles">
-          <li><span class="r">M.S. Computer Science · Arizona State University</span><time>2021 – 2023 · GPA 3.59 / 4</time></li>
-          <li><span class="r">B.Tech CSE · PES University</span><time>2017 – 2021 · GPA 8.2 / 10</time></li>
+          <li><span class="r">M.S. Computer Science · Arizona State University</span><time>2021 – 2023 · GPA 3.59</time></li>
+          <li><span class="r">B.Tech CSE · PES University</span><time>2017 – 2021 · GPA 8.2</time></li>
+        </ul>
+        <h3 style="margin-top:22px">Publications</h3>
+        <ul class="pubs">
+          <li><b>True Random Numbers from Entropy Sources in Portable Computers</b></li>
+          <li><b>ViStA: Video Streaming and Analytics Benchmark</b></li>
+          <li><b>PipeGAN</b>, pipeline parallelism for GANs</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 13 · SKILLS -->
-<section class="chapter" id="skills" data-tint="#7fe3ff" data-label="Skills" data-shape="grid">
+<!-- 12 · SKILLS -->
+<section class="chapter" id="skills" data-tint="#6fd3ff" data-label="Skills" data-shape="grid">
   <div class="panel wide">
-    <p class="eyebrow"><span>Chapter 13</span><span class="sep">/</span><span>Skills</span></p>
+    <p class="eyebrow">Skills</p>
     <h2>What I reach for.</h2>
     <div class="skillgroups">
-      <div><h3>Agents</h3><ul><li>ReAct</li><li>LangGraph</li><li>MCP / FastMCP</li><li>Elicitation</li><li>Agent memory &amp; reflection</li><li>Prompt &amp; context engineering</li><li>Copilot CLI batch</li></ul></div>
-      <div><h3>Retrieval &amp; models</h3><ul><li>RAG</li><li>pgvector</li><li>Hybrid search</li><li>gte-Qwen2 / bge embeddings</li><li>vLLM</li><li>Gemma · Qwen · Claude · GPT</li><li>Fine-tuning data &amp; eval</li></ul></div>
-      <div><h3>Evaluation</h3><ul><li>LLM-as-judge</li><li>Power / MDE analysis</li><li>Leakage control</li><li>Experiment arms</li><li>Calibration</li><li>Regression harnesses</li></ul></div>
-      <div><h3>Languages &amp; frameworks</h3><ul><li>Python</li><li>FastAPI</li><li>asyncio</li><li>Go</li><li>React / TypeScript</li><li>SQL</li><li>Swift</li></ul></div>
-      <div><h3>Infrastructure</h3><ul><li>Postgres</li><li>Kubernetes</li><li>Helm</li><li>Docker / Harbor</li><li>GitHub Actions</li><li>Prometheus / Grafana</li><li>Trino</li><li>S3</li></ul></div>
-      <div><h3>Storage &amp; debugging</h3><ul><li>GDB / core-dump analysis</li><li>3PAR · Primera · Alletra · Arcus</li><li>Remote Copy</li><li>Peer Motion</li><li>FC / iSCSI</li></ul></div>
+      <div><h3>Agents &amp; retrieval</h3><ul><li>ReAct</li><li>LangGraph</li><li>MCP</li><li>RAG</li><li>pgvector</li><li>vLLM</li><li>Prompt engineering</li></ul></div>
+      <div><h3>Evaluation</h3><ul><li>LLM-as-judge</li><li>Experiment design</li><li>Leakage control</li><li>Regression harnesses</li></ul></div>
+      <div><h3>Languages</h3><ul><li>Python</li><li>Go</li><li>TypeScript</li><li>SQL</li><li>Swift</li></ul></div>
+      <div><h3>Infrastructure</h3><ul><li>Postgres</li><li>Kubernetes</li><li>Helm</li><li>Docker</li><li>GitHub Actions</li><li>Prometheus</li><li>Trino</li></ul></div>
     </div>
   </div>
 </section>
 
-<!-- 14 · CONTACT -->
-<section class="chapter center" id="contact" data-tint="#4f8cff" data-label="Contact" data-shape="ico">
+<!-- 13 · CONTACT -->
+<section class="chapter center" id="contact" data-tint="#3d7bff" data-label="Contact" data-shape="ico">
   <div class="panel">
-    <p class="eyebrow"><span>Chapter 14</span><span class="sep">/</span><span>End of the line</span></p>
-    <h2>Building agents that engineers trust? Let's talk.</h2>
-    <p class="what">Based in San Jose, California. Best reached by email or LinkedIn.</p>
+    <p class="eyebrow">Contact</p>
+    <h2>Let's talk.</h2>
+    <p class="lede">Based in San Jose, California. Best reached by email or LinkedIn.</p>
     <div class="email"><code id="email">rkoushik@asu.edu</code><button class="btn" id="copy" type="button">Copy</button><a class="ghost" href="https://www.linkedin.com/in/rkoushik1808/" target="_blank" rel="noopener">LinkedIn</a><a class="ghost" href="https://github.com/Fluff18" target="_blank" rel="noopener">GitHub</a></div>
   </div>
 </section>
 
 </main>
-<footer>Rahul M Koushik · Built with Three.js · <a href="#top">Back to the start</a></footer>
+<footer>Rahul M Koushik · <a href="#top">Back to the start</a></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.152.2/three.min.js"></script>
 <script>
@@ -521,7 +463,7 @@ footer{position:relative;z-index:2;text-align:center;font-family:var(--mono);fon
   } catch (e){ document.documentElement.classList.add('nogl'); return; }
   var isSmall = innerWidth < 800;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isSmall ? 1.5 : 1.75));
-  renderer.setClearColor(0x040816, 1);
+  renderer.setClearColor(0x02040c, 1);
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.1, 600);
   scene.add(camera);
@@ -549,7 +491,7 @@ footer{position:relative;z-index:2;text-align:center;font-family:var(--mono);fon
     'float fbm(vec3 p){float a=0.5,s=0.0;for(int i=0;i<4;i++){s+=a*snoise(p);p=p*2.03+vec3(1.7,9.2,3.1);a*=0.5;}return s;}'
   ].join('\n');
 
-  /* sky: an inside-out sphere painted with flowing nebula noise */
+  /* sky: an inside-out sphere painted with slow, dark nebula noise */
   var sky = new THREE.Mesh(
     new THREE.SphereGeometry(400, 32, 24),
     new THREE.ShaderMaterial({
@@ -559,23 +501,22 @@ footer{position:relative;z-index:2;text-align:center;font-family:var(--mono);fon
         'void main(){vec3 d=normalize(vDir);' +
         'vec3 p=d*2.4+vec3(0.0,0.0,-uTravel*0.012)+vec3(uTime*0.012,uTime*0.008,0.0);' +
         'float n=fbm(p);float n2=fbm(p*2.3+vec3(7.1,3.3,1.9));' +
-        'vec3 deep=vec3(0.012,0.028,0.085);vec3 mid=vec3(0.045,0.12,0.34);' +
-        'vec3 col=mix(deep,mid,smoothstep(-0.25,0.65,n));' +
-        'col+=uTint*0.20*smoothstep(0.2,0.75,n2);' +
-        'float fwd=smoothstep(0.5,1.0,-d.z);col+=uTint*(0.10+uWarp*0.45)*fwd*fwd;' +
-        'col-=vec3(0.02)*smoothstep(0.2,1.0,d.y);' +
+        'vec3 deep=vec3(0.006,0.012,0.04);vec3 mid=vec3(0.025,0.06,0.19);' +
+        'vec3 col=mix(deep,mid,smoothstep(-0.2,0.7,n));' +
+        'col+=uTint*0.07*smoothstep(0.3,0.8,n2);' +
+        'float fwd=smoothstep(0.5,1.0,-d.z);col+=uTint*(0.04+uWarp*0.25)*fwd*fwd;' +
         'gl_FragColor=vec4(col,1.0);}'
     })
   );
   sky.renderOrder = -10; scene.add(sky);
 
   /* stars: points in a long cylinder, wrapped in the vertex shader as the camera travels */
-  var COUNT = isSmall ? 2200 : 4200, LEN = U.uLen.value;
+  var COUNT = isSmall ? 1500 : 2800, LEN = U.uLen.value;
   var pos = new Float32Array(COUNT * 3), size = new Float32Array(COUNT), seed = new Float32Array(COUNT);
   for (var i = 0; i < COUNT; i++){
     var r = 2.5 + Math.pow(Math.random(), 0.6) * 48, a = Math.random() * Math.PI * 2;
     pos[i*3] = Math.cos(a) * r; pos[i*3+1] = Math.sin(a) * r; pos[i*3+2] = Math.random() * LEN;
-    size[i] = 1.2 + Math.random() * 2.6; seed[i] = Math.random();
+    size[i] = 1.0 + Math.random() * 2.2; seed[i] = Math.random();
   }
   var sg = new THREE.BufferGeometry();
   sg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
@@ -586,16 +527,16 @@ footer{position:relative;z-index:2;text-align:center;font-family:var(--mono);fon
     vertexShader:'attribute float aSize;attribute float aSeed;uniform float uTravel,uLen,uPixelRatio;varying float vA;varying float vS;' +
       'void main(){vec3 p=position;p.z=mod(p.z+uTravel,uLen)-uLen;vec4 mv=modelViewMatrix*vec4(p,1.0);float d=-mv.z;' +
       'vA=smoothstep(uLen,uLen*0.55,d)*smoothstep(0.0,5.0,d);vS=aSeed;' +
-      'gl_PointSize=clamp(aSize*uPixelRatio*(150.0/max(d,1.0)),1.0,10.0*uPixelRatio);gl_Position=projectionMatrix*mv;}',
+      'gl_PointSize=clamp(aSize*uPixelRatio*(150.0/max(d,1.0)),1.0,8.0*uPixelRatio);gl_Position=projectionMatrix*mv;}',
     fragmentShader:'precision mediump float;uniform vec3 uTint;uniform float uTime;varying float vA;varying float vS;' +
       'void main(){vec2 c=gl_PointCoord-0.5;float r=length(c);float a=smoothstep(0.5,0.08,r);' +
-      'float tw=0.7+0.3*sin(uTime*(1.2+vS*2.5)+vS*40.0);vec3 col=mix(vec3(0.86,0.92,1.0),uTint,vS*0.55);' +
-      'if(vS>0.93)col=vec3(1.0,0.86,0.62);gl_FragColor=vec4(col,a*vA*tw);}'
+      'float tw=0.7+0.3*sin(uTime*(1.2+vS*2.5)+vS*40.0);vec3 col=mix(vec3(0.8,0.87,1.0),uTint,vS*0.5);' +
+      'if(vS>0.93)col=vec3(1.0,0.86,0.62);gl_FragColor=vec4(col,a*vA*tw*0.7);}'
   }));
   scene.add(stars);
 
   /* streaks: line segments that stretch toward the camera with warp speed */
-  var SC = isSmall ? 500 : 1100;
+  var SC = isSmall ? 400 : 800;
   var lp = new Float32Array(SC * 6), lt = new Float32Array(SC * 2), ls = new Float32Array(SC * 2);
   for (i = 0; i < SC; i++){
     r = 3 + Math.pow(Math.random(), 0.7) * 40; a = Math.random() * Math.PI * 2;
@@ -613,11 +554,11 @@ footer{position:relative;z-index:2;text-align:center;font-family:var(--mono);fon
       'void main(){vec3 p=position;p.z=mod(p.z+uTravel,uLen)-uLen;p.z+=aT*uWarp*(5.0+aSeed*14.0);' +
       'vec4 mv=modelViewMatrix*vec4(p,1.0);float d=-mv.z;' +
       'vA=smoothstep(uLen,uLen*0.5,d)*smoothstep(0.0,4.0,d)*(1.0-aT*0.85)*min(uWarp*1.6,1.0);gl_Position=projectionMatrix*mv;}',
-    fragmentShader:'precision mediump float;uniform vec3 uTint;varying float vA;void main(){gl_FragColor=vec4(mix(vec3(0.75,0.88,1.0),uTint,0.4),vA*0.85);}'
+    fragmentShader:'precision mediump float;uniform vec3 uTint;varying float vA;void main(){gl_FragColor=vec4(mix(vec3(0.75,0.88,1.0),uTint,0.4),vA*0.6);}'
   }));
   scene.add(streaks);
 
-  /* tunnel: a translucent tube of rings and light streaks flowing past */
+  /* tunnel: a faint tube of rings and light streaks flowing past */
   var TUBE = 260;
   var tube = new THREE.Mesh(
     new THREE.CylinderGeometry(15, 15, TUBE, 48, 1, true),
@@ -629,7 +570,7 @@ footer{position:relative;z-index:2;text-align:center;font-family:var(--mono);fon
         'float rings=smoothstep(0.90,1.0,sin(t*0.30))*0.5;' +
         'float st=snoise(vec3(vUv.x*20.0,t*0.045,uTime*0.06));float streak=smoothstep(0.30,0.95,st);' +
         'float endFade=smoothstep(0.0,0.35,along)*smoothstep(1.0,0.7,along);' +
-        'float a=(rings*0.35+streak*0.28)*endFade*(0.22+uWarp*1.1);' +
+        'float a=(rings*0.35+streak*0.28)*endFade*(0.10+uWarp*0.8);' +
         'vec3 col=mix(uTint,vec3(0.55,0.78,1.0),0.35);gl_FragColor=vec4(col*a,a);}'
     })
   );
@@ -637,25 +578,24 @@ footer{position:relative;z-index:2;text-align:center;font-family:var(--mono);fon
 
   /* chapter objects: wireframe solids parked along the tunnel, one per chapter */
   function edges(geo, tint, op){
-    var m = new THREE.LineSegments(new THREE.EdgesGeometry(geo, 12), new THREE.LineBasicMaterial({color:tint, transparent:true, opacity:op||0.55, blending:THREE.AdditiveBlending, depthWrite:false}));
-    return m;
+    return new THREE.LineSegments(new THREE.EdgesGeometry(geo, 12), new THREE.LineBasicMaterial({color:tint, transparent:true, opacity:op||0.45, blending:THREE.AdditiveBlending, depthWrite:false}));
   }
   function shape(kind, tint){
     var g = new THREE.Group();
     if (kind === 'ico') g.add(edges(new THREE.IcosahedronGeometry(3.4, 1), tint));
-    else if (kind === 'knot') g.add(edges(new THREE.TorusKnotGeometry(2.4, 0.55, 80, 10), tint, 0.4));
-    else if (kind === 'rings'){ for (var k = 0; k < 5; k++){ var rg = edges(new THREE.TorusGeometry(2.2 + k * 0.5, 0.02, 4, 72), tint, 0.5 - k * 0.07); rg.position.z = -k * 1.6; g.add(rg); } }
+    else if (kind === 'knot') g.add(edges(new THREE.TorusKnotGeometry(2.4, 0.55, 80, 10), tint, 0.32));
+    else if (kind === 'rings'){ for (var k = 0; k < 5; k++){ var rg = edges(new THREE.TorusGeometry(2.2 + k * 0.5, 0.02, 4, 72), tint, 0.42 - k * 0.06); rg.position.z = -k * 1.6; g.add(rg); } }
     else if (kind === 'octa') g.add(edges(new THREE.OctahedronGeometry(3.6, 0), tint));
     else if (kind === 'dodeca') g.add(edges(new THREE.DodecahedronGeometry(3.2, 0), tint));
     else if (kind === 'tetra') g.add(edges(new THREE.TetrahedronGeometry(3.8, 1), tint));
-    else if (kind === 'ring') g.add(edges(new THREE.TorusGeometry(3.4, 0.9, 8, 48), tint, 0.4));
-    else if (kind === 'grid') g.add(edges(new THREE.BoxGeometry(5, 5, 5, 3, 3, 3), tint, 0.4));
+    else if (kind === 'ring') g.add(edges(new THREE.TorusGeometry(3.4, 0.9, 8, 48), tint, 0.32));
+    else if (kind === 'grid') g.add(edges(new THREE.BoxGeometry(5, 5, 5, 3, 3, 3), tint, 0.32));
     else if (kind === 'cloud'){
       var n = 500, cp = new Float32Array(n * 3);
       for (var q = 0; q < n; q++){ var u = Math.random() * 2 - 1, ph = Math.random() * Math.PI * 2, rr = Math.cbrt(Math.random()) * 3.8, sq = Math.sqrt(1 - u * u); cp[q*3] = rr * sq * Math.cos(ph); cp[q*3+1] = rr * sq * Math.sin(ph); cp[q*3+2] = rr * u; }
       var cg = new THREE.BufferGeometry(); cg.setAttribute('position', new THREE.BufferAttribute(cp, 3));
-      g.add(new THREE.Points(cg, new THREE.PointsMaterial({color:tint, size:0.07, transparent:true, opacity:0.8, blending:THREE.AdditiveBlending, depthWrite:false})));
-      g.add(edges(new THREE.IcosahedronGeometry(3.9, 1), tint, 0.18));
+      g.add(new THREE.Points(cg, new THREE.PointsMaterial({color:tint, size:0.07, transparent:true, opacity:0.7, blending:THREE.AdditiveBlending, depthWrite:false})));
+      g.add(edges(new THREE.IcosahedronGeometry(3.9, 1), tint, 0.15));
     }
     return g;
   }
