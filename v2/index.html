@@ -4,382 +4,471 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Rahul Koushik</title>
-<meta name="description" content="Rahul M Koushik. Software engineer at HPE Storage building AI agents, MCP tooling, RAG knowledge bases, evaluation harnesses and agent observability.">
+<meta name="description" content="Rahul M Koushik. AI engineer and product builder at HPE Storage: agents, developer platforms, knowledge systems and evaluation.">
 <link rel="icon" href="../assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Open+Sans:wght@400;600&family=Raleway:wght@600;700&display=swap">
 <style>
-/* Layout: a fixed WebGL warp behind a vertical strip of full-height chapters; the camera travels one tunnel segment per chapter. */
+/* Layout: the original iPortfolio structure (fixed left sidebar, stacked sections) over a fixed WebGL warp that travels one segment per section. */
 :root{
-  --bg:#02040c; --panel:rgba(3,6,18,.82); --panel-edge:rgba(120,160,230,.14); --line:rgba(120,160,230,.14);
+  --bg:#02040c; --panel:rgba(3,6,18,.80); --line:rgba(120,160,230,.14);
   --fg:#f1f4fa; --muted:#b9c3d9; --dim:#7c88a6;
-  --accent:#3d7bff; --cyan:#6fd3ff; --amber:#ffb454;
+  --accent:#3d7bff; --cyan:#6fd3ff;
   --display:'Poppins',ui-sans-serif,system-ui,sans-serif;
+  --title:'Raleway',ui-sans-serif,system-ui,sans-serif;
   --body:'Open Sans',ui-sans-serif,system-ui,sans-serif;
-  --tint:#3d7bff;
+  --side:300px;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 html.nogl body{background:radial-gradient(ellipse at 50% 20%,#0a1533 0%,#050b1f 40%,#02040c 100%)}
 a{color:var(--cyan);text-decoration:none}
 a:hover{text-decoration:underline}
 :focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:2px}
 img{max-width:100%}
+h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.2}
 
 #warp{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
 html.nogl #warp{display:none}
 .vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(2,4,12,.15) 35%,rgba(2,4,12,.75) 100%)}
-.progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:6;transform-origin:0 50%;transform:scaleX(var(--p,0));background:var(--cyan)}
 
-.topbar{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;
-  padding:calc(16px + env(safe-area-inset-top,0px)) clamp(16px,4vw,40px) 16px;
-  background:linear-gradient(180deg,rgba(2,4,12,.9),rgba(2,4,12,0));pointer-events:none}
-.topbar>*{pointer-events:auto}
-.brand{font-family:var(--display);font-weight:600;color:var(--fg);font-size:16px}
-.toplinks{display:flex;gap:22px;font-size:14px;font-weight:600}
-.toplinks a{color:var(--muted)}
-.toplinks a:hover{color:#fff;text-decoration:none}
-@media (max-width:640px){.toplinks{display:none}}
+/* sidebar */
+#sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--side);z-index:20;padding:calc(30px + env(safe-area-inset-top,0px)) 24px 30px;
+  background:rgba(2,4,12,.88);border-right:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  display:flex;flex-direction:column;align-items:center;overflow-y:auto;transition:transform .4s ease}
+.profile img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:6px solid rgba(255,255,255,.08);display:block;margin:0 auto}
+.profile h1{font-size:24px;font-weight:600;margin:14px 0 0;text-align:center}
+.profile h1 a{color:#fff}
+.profile h1 a:hover{text-decoration:none}
+.social{display:flex;justify-content:center;gap:8px;margin:14px 0 0;padding:0;list-style:none}
+.social a{display:flex;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.08);align-items:center;justify-content:center;color:#fff}
+.social a:hover{background:var(--accent);text-decoration:none}
+.social svg{width:18px;height:18px;fill:currentColor}
+.navmenu{width:100%;margin:34px 0 0;padding:0;list-style:none;display:grid;gap:4px}
+.navmenu a{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:6px;color:var(--muted);font-family:var(--display);font-weight:500;font-size:15px}
+.navmenu a:hover,.navmenu a.active{color:#fff;background:rgba(120,160,230,.1);text-decoration:none}
+.navmenu a.active{color:var(--cyan)}
+.navmenu svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.side-foot{margin-top:auto;padding-top:24px;font-size:12px;color:var(--dim);text-align:center}
 
-.dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
-.dots a{display:block;width:8px;height:8px;border-radius:50%;background:rgba(120,160,230,.3);position:relative;transition:background .3s,transform .3s}
-.dots a:hover{text-decoration:none}
-.dots a.active{background:#fff;transform:scale(1.3)}
-.dots a span{position:absolute;right:18px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:12px;color:var(--muted);opacity:0;transition:opacity .2s;pointer-events:none}
-.dots a:hover span,.dots a:focus-visible span{opacity:1}
-@media (max-width:900px){.dots{display:none}}
+.navtoggle{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:16px;z-index:30;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(2,4,12,.85);color:#fff;display:none;align-items:center;justify-content:center;cursor:pointer}
+.navtoggle svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+@media (max-width:1199px){
+  #sidebar{transform:translateX(-100%)}
+  body.nav-open #sidebar{transform:none}
+  .navtoggle{display:flex}
+}
 
-main{position:relative;z-index:2}
-.chapter{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding-block:clamp(80px,12vh,140px);padding-inline:clamp(16px,6vw,96px)}
-.chapter.right{justify-content:flex-end}
-.chapter.center{justify-content:center}
-.panel{width:min(100%,680px);min-width:0;padding:clamp(24px,3.6vw,44px);background:var(--panel);border:1px solid var(--panel-edge);border-radius:8px;
-  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  box-shadow:0 30px 80px rgba(0,0,0,.5);
-  transform:translateY(18px);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
-.panel.wide{width:min(100%,980px)}
-.chapter.in .panel{transform:none}
-@media (prefers-reduced-motion:reduce){.panel{transform:none;transition:none}}
-
-.eyebrow{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin:0 0 12px}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
-h1{font-size:clamp(38px,6vw,68px);font-weight:700;letter-spacing:-.01em}
-h2{font-size:clamp(26px,3.4vw,40px);font-weight:600}
-h3{font-size:18px;font-weight:600}
-.lede{font-size:clamp(17px,1.4vw,19px);color:var(--muted);margin:14px 0 0;max-width:60ch}
-.built{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:12px;max-width:62ch}
-.built li{position:relative;padding-left:22px;line-height:1.6}
-.built li::before{content:"";position:absolute;left:0;top:.75em;width:8px;height:8px;border-radius:50%;background:var(--cyan)}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0;padding:0;list-style:none}
-.tags li{font-size:13px;font-weight:600;color:var(--muted);background:rgba(120,160,230,.1);padding:5px 11px;border-radius:999px}
+/* content */
+main{position:relative;z-index:2;margin-left:var(--side)}
+@media (max-width:1199px){main{margin-left:0}}
+section{padding:70px 0}
+.container{width:min(100%,1000px);margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+.section-title{margin:0 0 28px}
+.section-title h2{font-family:var(--title);font-size:32px;font-weight:700;padding-bottom:16px;position:relative}
+.section-title h2::after{content:"";position:absolute;left:0;bottom:0;width:50px;height:3px;background:var(--cyan)}
+.section-title p{color:var(--muted);margin:14px 0 0;max-width:70ch}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:clamp(22px,3vw,36px);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 30px 80px rgba(0,0,0,.45)}
 
 /* hero */
-.hero .panel{background:transparent;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0;width:min(100%,900px)}
-.hero-grid{display:flex;gap:clamp(24px,4vw,48px);align-items:center;flex-wrap:wrap}
-.hero-grid>div{min-width:0;flex:1 1 380px}
-.avatar{width:clamp(110px,14vw,170px);height:clamp(110px,14vw,170px);border-radius:50%;object-fit:cover;flex:0 0 auto;border:3px solid rgba(255,255,255,.14);box-shadow:0 20px 60px rgba(0,0,0,.6)}
-.hero .lede{color:var(--muted);text-shadow:0 2px 20px rgba(0,0,0,.8)}
-.hero h1,.hero .eyebrow{text-shadow:0 2px 24px rgba(0,0,0,.8)}
-.links{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 0;padding:0;list-style:none}
-.links a{display:inline-block;font-family:var(--display);font-weight:600;font-size:14px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:9px 16px;border-radius:999px}
-.links a:hover{background:rgba(255,255,255,.16);text-decoration:none}
-.cue{margin:56px 0 0;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:12px}
-.cue i{display:inline-block;width:1px;height:38px;background:linear-gradient(180deg,var(--cyan),transparent);animation:cue 2.2s ease-in-out infinite}
-@keyframes cue{0%,100%{transform:scaleY(.4);transform-origin:top;opacity:.5}50%{transform:scaleY(1);opacity:1}}
-@media (prefers-reduced-motion:reduce){.cue i{animation:none}}
+#hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:100px 0}
+#hero h1{font-size:clamp(40px,6vw,64px);font-weight:700;text-shadow:0 2px 24px rgba(0,0,0,.8)}
+#hero .typed-line{font-size:clamp(20px,2.4vw,26px);color:var(--muted);margin:14px 0 0;text-shadow:0 2px 20px rgba(0,0,0,.8)}
+#hero .typed{color:var(--cyan);font-weight:600;border-right:2px solid var(--cyan);padding-right:3px;animation:caret 1s steps(1) infinite}
+@keyframes caret{50%{border-color:transparent}}
+#hero .eyebrow{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin:0 0 10px}
+#hero .cta{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0}
+.pill{display:inline-block;font-family:var(--display);font-weight:600;font-size:14px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:9px 18px;border-radius:999px}
+.pill:hover{background:rgba(255,255,255,.16);text-decoration:none}
+.pill.solid{background:var(--cyan);color:#03060f;border-color:var(--cyan)}
 
-/* timeline */
-.timeline{list-style:none;margin:22px 0 0;padding:0 0 0 20px;border-left:2px solid var(--line);display:grid;gap:16px}
-.timeline li{position:relative;padding-left:12px}
-.timeline li::before{content:"";position:absolute;left:-26px;top:.5em;width:10px;height:10px;border-radius:50%;background:var(--cyan)}
-.timeline time{font-size:13px;font-weight:600;color:var(--cyan);display:block;letter-spacing:.04em}
-.timeline h3{margin:0}
-.timeline p{margin:0;color:var(--muted);font-size:15px}
-
-/* stats */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0 0}
-@media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{background:rgba(120,160,230,.06);border:1px solid var(--line);border-radius:8px;padding:18px 18px;min-width:0}
-.stat .n{font-family:var(--display);font-weight:700;font-size:clamp(28px,3vw,40px);line-height:1;color:#fff;font-variant-numeric:tabular-nums}
-.stat .n small{font-size:.55em;color:var(--cyan);font-weight:600;margin-left:2px}
-.stat .l{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.45}
-
-/* cards */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:22px 0 0}
-.card{border:1px solid var(--line);border-radius:8px;padding:18px;min-width:0;background:rgba(120,160,230,.05)}
-.card h3{font-size:16px;margin:0 0 6px}
-.card p{margin:0;font-size:15px;color:var(--muted);line-height:1.55}
-
-.card .out{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);color:#fff;font-weight:600;font-size:14.5px}
-.stats.compact{grid-template-columns:repeat(3,1fr);margin-top:22px}
-@media (max-width:700px){.stats.compact{grid-template-columns:1fr 1fr}}
-.stats.compact .stat{padding:14px 16px}
-.stats.compact .n{font-size:clamp(24px,2.4vw,32px)}
-.principles{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:14px;max-width:62ch}
-.principles li{position:relative;padding-left:22px;line-height:1.6;color:var(--muted)}
-.principles li::before{content:"";position:absolute;left:0;top:.75em;width:8px;height:8px;border-radius:50%;background:var(--cyan)}
-.principles b{color:#fff;font-weight:600}
-/* two-col */
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin:22px 0 0}
-.cols>div{min-width:0}
-.cols h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin:0 0 12px}
-.roles{list-style:none;margin:0;padding:0;display:grid;gap:14px}
-.roles li{display:grid;gap:2px;font-size:15px}
-.roles .r{font-family:var(--display);font-weight:600;color:#fff;font-size:16px}
-.roles .o{color:var(--muted)}
-.roles time{font-size:13px;color:var(--dim)}
-.pubs{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px;color:var(--muted)}
-.pubs b{color:#fff;font-weight:600}
+/* about */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media (max-width:760px){.about-grid{grid-template-columns:1fr}}
+.about-grid>div{min-width:0}
+.about h3{font-size:22px;font-weight:600;color:var(--cyan)}
+.about .role{color:var(--muted);margin:6px 0 16px;font-style:italic}
+.facts{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.facts li{display:flex;gap:10px;font-size:15px}
+.facts li::before{content:"›";color:var(--cyan);font-weight:700}
+.facts strong{color:#fff;font-weight:600;margin-right:6px}
+.about p{margin:0 0 14px;color:var(--fg)}
 
 /* skills */
-.skillgroups{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px 28px;margin:22px 0 0}
-.skillgroups>div{min-width:0}
-.skillgroups h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin:0 0 10px}
-.skillgroups ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.skillgroups li{font-size:14px;font-weight:600;color:var(--fg);background:rgba(120,160,230,.1);padding:5px 12px;border-radius:999px}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 40px}
+@media (max-width:760px){.skills-grid{grid-template-columns:1fr}}
+.skill{padding:8px 0}
+.skill .name{display:flex;justify-content:space-between;font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)}
+.skill .name span{color:var(--dim)}
+.bar{height:8px;background:rgba(120,160,230,.12);border-radius:4px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--cyan));border-radius:4px;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.in .bar i{width:var(--w)}
+@media (prefers-reduced-motion:reduce){.bar i{width:var(--w);transition:none}}
+
+/* resume */
+.resume-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:32px}
+@media (max-width:900px){.resume-grid{grid-template-columns:1fr}}
+.resume-grid>div{min-width:0}
+.resume h3{font-family:var(--title);font-size:24px;font-weight:700;margin:0 0 18px}
+.resume h3+.item{margin-top:0}
+.item{position:relative;padding:0 0 22px 22px;border-left:2px solid var(--line)}
+.item::before{content:"";position:absolute;left:-8px;top:2px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan)}
+.item h4{font-size:17px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:.02em}
+.item h5{font-family:var(--display);font-size:13px;font-weight:600;color:var(--cyan);background:rgba(111,211,255,.1);display:inline-block;padding:4px 12px;border-radius:4px;margin:8px 0}
+.item .org{margin:0 0 8px;color:var(--muted);font-style:italic}
+.item p{margin:0 0 8px;color:var(--muted);font-size:15px}
+.item ul{margin:0;padding-left:18px;color:var(--fg);font-size:15px;display:grid;gap:6px}
+.item ul li::marker{color:var(--cyan)}
+.item strong{color:#fff;font-weight:600}
+
+/* portfolio */
+.filters{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:0 0 26px;padding:0;list-style:none}
+.filters button{font-family:var(--display);font-weight:600;font-size:14px;color:var(--muted);background:transparent;border:1px solid transparent;padding:8px 18px;border-radius:999px;cursor:pointer;text-transform:uppercase;letter-spacing:.04em}
+.filters button:hover{color:#fff}
+.filters button.active{color:#03060f;background:var(--cyan)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+.tile{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;background:var(--panel);border:1px solid var(--line);min-width:0}
+.tile[hidden]{display:none}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.tile:hover img{transform:scale(1.06)}
+.tile .cap{position:absolute;inset:auto 0 0 0;padding:14px 16px;background:linear-gradient(0deg,rgba(2,4,12,.95),rgba(2,4,12,0));display:grid;gap:2px}
+.tile .cap h4{font-size:16px;font-weight:600;color:#fff}
+.tile .cap p{margin:0;font-size:13px;color:var(--muted)}
+.tile .cap a{font-family:var(--display);font-size:13px;font-weight:600;color:var(--cyan);margin-top:4px}
+.tile.ai{padding:18px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;background:linear-gradient(160deg,rgba(61,123,255,.18),rgba(3,6,18,.85))}
+.tile.ai .k{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}
+.tile.ai h4{font-size:18px;color:#fff}
+.tile.ai p{margin:0;font-size:14px;color:var(--muted);line-height:1.5}
+.tile.ai .m{font-family:var(--display);font-weight:600;font-size:14px;color:#fff;border-top:1px solid var(--line);padding-top:8px;margin-top:4px}
 
 /* contact */
-.email{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0 0}
-.email code{font-family:var(--display);font-weight:600;font-size:clamp(16px,2.2vw,22px);color:#fff;background:rgba(120,160,230,.08);border:1px solid var(--line);padding:10px 16px;border-radius:8px;user-select:all;min-width:0;overflow-wrap:anywhere}
-.btn{font-family:var(--display);font-weight:600;font-size:14px;color:#03060f;background:var(--cyan);border:0;padding:12px 18px;border-radius:999px;cursor:pointer}
-.btn:hover{filter:brightness(1.1)}
-.ghost{display:inline-block;font-family:var(--display);font-weight:600;font-size:14px;color:#fff;border:1px solid rgba(255,255,255,.2);padding:11px 18px;border-radius:999px}
-.ghost:hover{background:rgba(255,255,255,.1);text-decoration:none}
-footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--dim);padding:24px 16px calc(28px + env(safe-area-inset-bottom,0px))}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.contact-grid>div{min-width:0;padding:18px;border:1px solid var(--line);border-radius:8px;background:rgba(120,160,230,.05)}
+.contact-grid h4{font-size:14px;color:var(--cyan);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.contact-grid p{margin:6px 0 0;font-size:15px;overflow-wrap:anywhere}
+.contact-grid code{font-family:var(--display);font-size:16px;color:#fff}
+footer{position:relative;z-index:2;margin-left:var(--side);text-align:center;font-size:13px;color:var(--dim);padding:24px 16px calc(28px + env(safe-area-inset-bottom,0px))}
+@media (max-width:1199px){footer{margin-left:0}}
+.reveal{transform:translateY(16px);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.in .reveal{transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{transform:none;transition:none}}
 </style>
 </head>
 <body>
 <canvas id="warp" aria-hidden="true"></canvas>
 <div class="vignette" aria-hidden="true"></div>
-<div class="progress" aria-hidden="true"></div>
 
-<header class="topbar">
-  <a class="brand" href="#top">Rahul M Koushik</a>
-  <nav class="toplinks" aria-label="Sections">
-    <a href="#now">Now</a><a href="#work">Work</a><a href="#how">How I work</a><a href="#before">Background</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+<button class="navtoggle" id="navtoggle" type="button" aria-label="Toggle navigation" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+
+<header id="sidebar">
+  <div class="profile">
+    <img src="profile.jpg" alt="Rahul M Koushik" width="120" height="120">
+    <h1><a href="#hero">Rahul M Koushik</a></h1>
+    <ul class="social">
+      <li><a href="https://github.com/Fluff18" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg></a></li>
+      <li><a href="https://www.linkedin.com/in/rkoushik1808/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6c.5-.9 1.7-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.1zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.4H3.5V9h3.6v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg></a></li>
+      <li><a href="https://scholar.google.com/citations?user=sd2DSzEAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zm0 14.5L5 13.7V17c0 1.8 3.1 4 7 4s7-2.2 7-4v-3.3l-7 3.8z"/></svg></a></li>
+    </ul>
+  </div>
+  <nav aria-label="Sections">
+    <ul class="navmenu" id="navmenu">
+      <li><a href="#hero" class="active"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v10h-6v-6H9v6H3z"/></svg>Home</a></li>
+      <li><a href="#about"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>About</a></li>
+      <li><a href="#skills"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Skills</a></li>
+      <li><a href="#resume"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>Resume</a></li>
+      <li><a href="#portfolio"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg>Portfolio</a></li>
+      <li><a href="#contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contact</a></li>
+    </ul>
   </nav>
+  <div class="side-foot">San Jose, California</div>
 </header>
 
-<ol class="dots" id="dots" aria-label="Chapters"></ol>
+<main>
 
-<main id="top">
+<section id="hero" data-tint="#3d7bff">
+  <div class="container">
+    <p class="eyebrow">AI engineer · Product builder · HPE Storage</p>
+    <h1>Rahul M Koushik</h1>
+    <p class="typed-line">I'm into <span class="typed" id="typed" data-items="building AI agents that ship|zero-to-one products|developer platforms|honest evaluation"></span></p>
+    <div class="cta"><a class="pill solid" href="#resume">Resume</a><a class="pill" href="#portfolio">Portfolio</a><a class="pill" href="#contact">Contact</a></div>
+  </div>
+</section>
 
-<!-- 0 · HERO -->
-<section class="chapter hero in" id="hero" data-tint="#3d7bff" data-label="Start">
-  <div class="panel">
-    <div class="hero-grid">
-      <img class="avatar" src="profile.jpg" alt="Rahul M Koushik" width="170" height="170">
-      <div>
-        <p class="eyebrow">AI engineer · Product builder · San Jose, CA</p>
-        <h1>Rahul M Koushik</h1>
-        <p class="lede">I turn messy engineering problems into AI products people actually use. Agents, developer platforms and knowledge systems, shipped in weeks and measured honestly.</p>
-        <ul class="links">
-          <li><a href="https://github.com/Fluff18" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/rkoushik1808/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://scholar.google.com/citations?user=sd2DSzEAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a></li>
-          <li><a href="#contact">Email</a></li>
-        </ul>
-        <p class="cue"><i></i> Scroll</p>
+<section id="about" class="about" data-tint="#3d7bff" data-shape="ring">
+  <div class="container">
+    <div class="section-title">
+      <h2>About</h2>
+      <p>I turn messy engineering problems into AI products people actually use. At HPE Storage I build the agents, developer tools and knowledge systems that about 150 engineers use every week to debug production storage, and I own the platform that scores whether those agents are any good.</p>
+    </div>
+    <div class="box reveal">
+      <div class="about-grid">
+        <div>
+          <h3>AI Engineer &amp; Product Builder</h3>
+          <p class="role">Founder habits, engineer's hands. Zero-to-one is where I do my best work.</p>
+          <ul class="facts">
+            <li><strong>Job:</strong> <span>AI Engineer, HPE Storage AI team</span></li>
+            <li><strong>Previously:</strong> <span>Product engineer on HPE's data-mobility product</span></li>
+            <li><strong>City:</strong> <span>San Jose, California</span></li>
+            <li><strong>Email:</strong> <span>rkoushik@asu.edu</span></li>
+          </ul>
+        </div>
+        <div>
+          <ul class="facts" style="margin-top:0">
+            <li><strong>College:</strong> <span>Arizona State University</span></li>
+            <li><strong>Degree:</strong> <span>Master of Science</span></li>
+            <li><strong>Major:</strong> <span>Computer Science</span></li>
+            <li><strong>Focus:</strong> <span>Agents, MCP tooling, RAG, evaluation, observability</span></li>
+          </ul>
+          <p style="margin-top:18px;color:var(--muted)">Most of my recent code was written by AI agents under my direction as architect, reviewer and deployer. I ship to real users in weeks and I kill false wins before they ship.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 1 · NOW -->
-<section class="chapter right" id="now" data-tint="#3d7bff" data-label="Now" data-shape="ring">
-  <div class="panel">
-    <p class="eyebrow">Now</p>
-    <h2>Building AI for the engineers who keep enterprise storage running.</h2>
-    <p class="lede">At HPE Storage I work on a small AI team that ships agents and tooling to the engineers debugging production arrays. About 150 of them use what we build every week.</p>
-    <ul class="built">
-      <li>Own the platform that scores every agent on the team, from idea to three deployments in four weeks.</li>
-      <li>Two years before that, shipped storage-migration features to enterprise customers as a product engineer.</li>
-      <li>Drawn to zero-to-one problems where the product, the model and the users all have to be figured out at once.</li>
-    </ul>
-    <div class="stats compact">
-      <div class="stat"><div class="n">150</div><div class="l">weekly users of the tools I helped build</div></div>
-      <div class="stat"><div class="n">6.3K<small>+</small></div><div class="l">tool calls a week</div></div>
-      <div class="stat"><div class="n">4<small>wks</small></div><div class="l">idea to production for the last platform I owned</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 2 · AI: AGENTS & PLATFORMS -->
-<section class="chapter" id="work" data-tint="#ffb454" data-label="Agents & platforms" data-shape="octa">
-  <div class="panel">
-    <p class="eyebrow">HPE Storage AI team · 2026</p>
-    <h2>Agents and the platform they run on.</h2>
-    <p class="lede">Shipped to about 150 engineers a week who debug production storage arrays.</p>
-    <ul class="built">
-      <li>Built the tool server that experts use inside Copilot and that every team agent runs on: 6,300+ tool calls a week. Led the P0 response when an agent posted without consent and shipped a human-approval gate on every write.</li>
-      <li>Took an alert-investigation agent to production: replays 289 real alerts in eval, live on 1,000+ conversations, full test suite and CI gate.</li>
-      <li>Ran live core-dump debugging as a service across five crash servers, 13,000 requests in 43 days. Recovered a fleet-wide outage the same day it hit.</li>
-      <li>Built an approval-gated access portal for 200+ beta users in about a day, plus a browser UI so engineers without a dev setup can run the agents.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- 3 · AI: KNOWLEDGE & EVALUATION -->
-<section class="chapter right" id="evaluation" data-tint="#6fd3ff" data-label="Knowledge & evaluation" data-shape="ico">
-  <div class="panel">
-    <p class="eyebrow">HPE Storage AI team · 2026</p>
-    <h2>Knowledge for the agents, and proof they work.</h2>
-    <p class="lede">If you can't score it, you shipped a demo.</p>
-    <ul class="built">
-      <li>Own the agent observability platform: one pane for what every agent did, where it failed, and its accuracy against expert feedback. Idea to three deployments in four weeks; 80% accuracy scored over 2,129 expert judgements.</li>
-      <li>Turned six years of debugging history into a retrieval knowledge base: 13,005 bugs mined, 5,600 grounded analyses in nine days, 22 pull requests merged from nine contributors.</li>
-      <li>Led experiments on self-learning agents: 17 isolated arms, 690 runs in three days. Caught data leakage behind a reported 62.9% win and reported an honest zero lift.</li>
-      <li>Daily customer-bug intelligence pipeline with LLM classification, coverage from 50% to 99%, feeding a leadership dashboard.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- 4 · PRE-AI PRODUCT ENGINEERING -->
-<section class="chapter" id="products" data-tint="#35b8ff" data-label="Product engineering" data-shape="rings">
-  <div class="panel">
-    <p class="eyebrow">HPE Storage · 2023 – 2026</p>
-    <h2>Enterprise product engineering, before the agents.</h2>
-    <p class="lede">Features that enterprise customers run their data on. It taught me what "production" means.</p>
-    <ul class="built">
-      <li>Two years in Go and JavaScript on HPE's data-mobility product across 3PAR, Primera, Alletra and Nimble arrays: 15 tagged builds, 47 defects fixed, 5 release lines.</li>
-      <li>Shipped Remote Copy support in Peer Motion and a Nimble-to-Alletra iSCSI migration path, the year's largest feature.</li>
-      <li>Built monitoring dashboards and Spark log pipelines for teams supporting 10,000+ customers. Investigation time from 30 minutes to 3.</li>
-      <li>Won the HPE Ideathon with a RAG chatbot and received Early Career Technologist recognition.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- 7 · HOW I WORK -->
-<section class="chapter" id="how" data-tint="#9d8cff" data-label="How I work" data-shape="dodeca">
-  <div class="panel">
-    <p class="eyebrow">How I work</p>
-    <h2>Founder habits, engineer's hands.</h2>
-    <ul class="principles">
-      <li><b>Ship to real users in weeks.</b> An access portal in a day, dashboards in three days, an observability platform in four weeks.</li>
-      <li><b>Own the whole loop.</b> Spec, build, deploy, demo, then pitch to senior leadership and run the design review.</li>
-      <li><b>Kill false wins early.</b> Leakage, Simpson's paradox, fake gains. Reporting zero lift is part of the job.</li>
-      <li><b>Lead without the title.</b> Ran a P0 safety incident, merged 22 teammate PRs, wrote the guides and demo video that got experts onboarded.</li>
-      <li><b>Direct AI, don't just use it.</b> Most of the recent code was written by AI agents under my direction as architect, reviewer and deployer.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- 8 · BACKGROUND -->
-<section class="chapter center" id="before" data-tint="#3d7bff" data-label="Background" data-shape="grid">
-  <div class="panel wide">
-    <p class="eyebrow">Background</p>
-    <h2>Experience, education and papers.</h2>
-    <div class="cols">
-      <div>
-        <h3>Experience</h3>
-        <ul class="roles">
-          <li><span class="r">AI Engineer · HPE Storage AI team</span><time>Feb 2026 – now · San Jose</time></li>
-          <li><span class="r">Product Engineer · HPE Storage, Concorde</span><time>2024 – Feb 2026 · San Jose</time></li>
-          <li><span class="r">Cloud Software Engineer · HPE Storage</span><time>2023 – 2024 · San Jose</time></li>
-          <li><span class="r">Research Aide · The Luminosity Lab, ASU</span><span class="o">Led the iOS team; telehealth on the Zoom SDK.</span><time>2022 – 2023 · Tempe</time></li>
-          <li><span class="r">Software Engineering Intern · Aruba, HPE</span><span class="o">Test automation saving an estimated 150K engineering hours a year.</span><time>2022</time></li>
-          <li><span class="r">Intern · Webex by Cisco</span><span class="o">APIs and sample app for the Webex iOS SDK.</span><time>2021</time></li>
-        </ul>
-      </div>
-      <div>
-        <h3>Education</h3>
-        <ul class="roles">
-          <li><span class="r">M.S. Computer Science · Arizona State University</span><time>2021 – 2023 · GPA 3.59</time></li>
-          <li><span class="r">B.Tech CSE · PES University</span><time>2017 – 2021 · GPA 8.2</time></li>
-        </ul>
-        <h3 style="margin-top:22px">Publications</h3>
-        <ul class="pubs">
-          <li><b>True Random Numbers from Entropy Sources in Portable Computers</b></li>
-          <li><b>ViStA: Video Streaming and Analytics Benchmark</b></li>
-          <li><b>PipeGAN</b>, pipeline parallelism for GANs</li>
-        </ul>
+<section id="skills" data-tint="#6fd3ff" data-shape="grid">
+  <div class="container">
+    <div class="section-title"><h2>Skills</h2></div>
+    <div class="box reveal">
+      <div class="skills-grid">
+        <div class="skill"><div class="name">AI agents &amp; LLM systems <span>90%</span></div><div class="bar"><i style="--w:90%"></i></div></div>
+        <div class="skill"><div class="name">Python / FastAPI <span>90%</span></div><div class="bar"><i style="--w:90%"></i></div></div>
+        <div class="skill"><div class="name">Prompt &amp; context engineering <span>90%</span></div><div class="bar"><i style="--w:90%"></i></div></div>
+        <div class="skill"><div class="name">Evaluation &amp; experiment design <span>85%</span></div><div class="bar"><i style="--w:85%"></i></div></div>
+        <div class="skill"><div class="name">RAG / pgvector / MCP <span>85%</span></div><div class="bar"><i style="--w:85%"></i></div></div>
+        <div class="skill"><div class="name">Postgres / SQL <span>85%</span></div><div class="bar"><i style="--w:85%"></i></div></div>
+        <div class="skill"><div class="name">Go <span>80%</span></div><div class="bar"><i style="--w:80%"></i></div></div>
+        <div class="skill"><div class="name">Kubernetes / Helm / Docker <span>80%</span></div><div class="bar"><i style="--w:80%"></i></div></div>
+        <div class="skill"><div class="name">React / TypeScript <span>75%</span></div><div class="bar"><i style="--w:75%"></i></div></div>
+        <div class="skill"><div class="name">Spark / Trino / data pipelines <span>70%</span></div><div class="bar"><i style="--w:70%"></i></div></div>
+        <div class="skill"><div class="name">Swift / iOS <span>65%</span></div><div class="bar"><i style="--w:65%"></i></div></div>
+        <div class="skill"><div class="name">GDB / core-dump analysis <span>70%</span></div><div class="bar"><i style="--w:70%"></i></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 9 · SKILLS -->
-<section class="chapter" id="skills" data-tint="#6fd3ff" data-label="Skills" data-shape="tetra">
-  <div class="panel wide">
-    <p class="eyebrow">Skills</p>
-    <h2>What I reach for.</h2>
-    <div class="skillgroups">
-      <div><h3>Agents &amp; retrieval</h3><ul><li>ReAct</li><li>LangGraph</li><li>MCP</li><li>RAG</li><li>pgvector</li><li>vLLM</li><li>Prompt engineering</li></ul></div>
-      <div><h3>Evaluation</h3><ul><li>LLM-as-judge</li><li>Experiment design</li><li>Leakage control</li><li>Regression harnesses</li></ul></div>
-      <div><h3>Languages</h3><ul><li>Python</li><li>Go</li><li>TypeScript</li><li>SQL</li><li>Swift</li></ul></div>
-      <div><h3>Infrastructure</h3><ul><li>Postgres</li><li>Kubernetes</li><li>Helm</li><li>Docker</li><li>GitHub Actions</li><li>Prometheus</li><li>Trino</li></ul></div>
+<section id="resume" class="resume" data-tint="#7d8cff" data-shape="ico">
+  <div class="container">
+    <div class="section-title">
+      <h2>Resume</h2>
+      <p>I embrace hard problems and work them the same way every time: understand the user, find the constraint, ship something real, then measure it honestly.</p>
+    </div>
+    <div class="box reveal">
+      <div class="resume-grid">
+        <div>
+          <h3>Summary</h3>
+          <div class="item">
+            <h4>Rahul M Koushik</h4>
+            <p>AI engineer and product builder. Agents, developer platforms, knowledge systems and evaluation, shipped to real users.</p>
+            <ul><li>San Jose, CA</li><li>rkoushik@asu.edu</li></ul>
+          </div>
+          <h3>Education</h3>
+          <div class="item">
+            <h4>Master of Science, Computer Science</h4>
+            <h5>Aug 2021 – May 2023</h5>
+            <p class="org">Arizona State University, Tempe, AZ</p>
+            <p>GPA 3.59 / 4.00</p>
+          </div>
+          <div class="item">
+            <h4>Bachelor of Technology, Computer Science &amp; Engineering</h4>
+            <h5>Aug 2017 – Jul 2021</h5>
+            <p class="org">PES University, Bengaluru, India</p>
+            <p>GPA 8.2 / 10.0</p>
+          </div>
+          <h3>Publications</h3>
+          <div class="item">
+            <h4>True Random Numbers from Entropy Sources in Portable Computers</h4>
+            <p>Device sensors and packet round-trip time as entropy sources for practical true random number generators.</p>
+          </div>
+          <div class="item">
+            <h4>ViStA: Video Streaming and Analytics Benchmark</h4>
+            <p>A microservice architecture that streams and analyses video simultaneously with high cohesion and low coupling.</p>
+          </div>
+          <div class="item">
+            <h4>PipeGAN</h4>
+            <p>A batch-splitting pipeline-parallelism algorithm for GANs with coordinated gradient updates and high hardware utilisation.</p>
+          </div>
+          <h3>Recognition</h3>
+          <div class="item">
+            <h4>HPE Ideathon winner</h4>
+            <p>RAG PDF chatbot. Also received HPE Early Career Technologist recognition.</p>
+          </div>
+        </div>
+        <div>
+          <h3>Professional Experience</h3>
+          <div class="item">
+            <h4>AI Engineer</h4>
+            <h5>Feb 2026 – Present</h5>
+            <p class="org">Hewlett Packard Enterprise, Storage AI team, San Jose, CA</p>
+            <ul>
+              <li>Built the <strong>MCP tool server</strong> that storage experts use inside Copilot and every team agent runs on: <strong>6,300+ tool calls a week from ~150 engineers</strong>. Led the P0 response when an agent posted without consent and shipped a human-approval gate on every write.</li>
+              <li>Own the <strong>agent observability platform</strong>: one pane for what every agent did, where it failed and its accuracy against expert feedback. Idea to three deployments in four weeks; scores agents at <strong>80% over 2,129 expert judgements</strong>.</li>
+              <li>Turned six years of debugging history into a <strong>retrieval knowledge base</strong>: 13,005 bugs mined, 5,600 grounded analyses in nine days, 22 pull requests merged from nine contributors.</li>
+              <li>Took an <strong>alert-investigation agent to production</strong> (289-alert eval replay, CI gate, 553 tests) and led self-learning agent experiments: 17 arms, 690 runs, and an honest zero-lift result after catching data leakage.</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h4>Product Engineer, Data Mobility</h4>
+            <h5>2024 – Feb 2026</h5>
+            <p class="org">Hewlett Packard Enterprise, Storage, San Jose, CA</p>
+            <ul>
+              <li>Go and JavaScript on HPE's data-mobility product across 3PAR, Primera, Alletra and Nimble arrays: <strong>15 tagged builds, 47 defects fixed, 5 release lines</strong>.</li>
+              <li>Shipped Remote Copy support in Peer Motion and a Nimble-to-Alletra iSCSI migration path, the year's largest feature.</li>
+              <li>Multi-tenant migration paths and a unit-test campaign adding 3,400 lines of Go tests.</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h4>Cloud Software Engineer</h4>
+            <h5>Jun 2023 – 2024</h5>
+            <p class="org">Hewlett Packard Enterprise, Storage, San Jose, CA</p>
+            <ul>
+              <li>Built monitoring dashboards and Spark log pipelines for teams supporting <strong>10,000+ customers</strong>; investigation time from ~30 minutes to ~3.</li>
+              <li>Setup and serviceability analytics (first-try success, retries, time to install) that shaped the install experience for four device types.</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h4>Research Aide</h4>
+            <h5>Feb 2022 – May 2023</h5>
+            <p class="org">The Luminosity Lab, Tempe, AZ</p>
+            <ul>
+              <li>Led the iOS team revamping a client's mobile apps; captured HRV from Apple Watch HealthKit for analysis.</li>
+              <li>Designed a telehealth flow on the Zoom Meeting SDK and Firebase that saves about 15 minutes per visit.</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h4>Software Engineering Intern</h4>
+            <h5>May 2022 – Aug 2022</h5>
+            <p class="org">Aruba, Hewlett Packard Enterprise, Tempe, AZ</p>
+            <ul>
+              <li>Built a test-automation tool for network topologies, saving an estimated 150K engineering hours a year.</li>
+              <li>Implemented MPLS features for embedded switches and routers.</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h4>Technical Undergraduate Intern</h4>
+            <h5>Jan 2021 – Jul 2021</h5>
+            <p class="org">Webex by Cisco, Bengaluru, India</p>
+            <ul>
+              <li>Call-scheduling and background-connection APIs for the Webex iOS SDK v3; built the Kitchen Sink sample app.</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h4>Full-stack Engineer</h4>
+            <h5>May 2020 – Dec 2020</h5>
+            <p class="org">Qescapades, Bengaluru, India</p>
+            <ul>
+              <li>New responsive website and blog that raised traffic 30% and engagement 80%.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 10 · CONTACT -->
-<section class="chapter center" id="contact" data-tint="#3d7bff" data-label="Contact" data-shape="ico">
-  <div class="panel">
-    <p class="eyebrow">Contact</p>
-    <h2>Building something? Let's talk.</h2>
-    <p class="lede">Based in San Jose, California. Best reached by email or LinkedIn.</p>
-    <div class="email"><code id="email">rkoushik@asu.edu</code><button class="btn" id="copy" type="button">Copy</button><a class="ghost" href="https://www.linkedin.com/in/rkoushik1808/" target="_blank" rel="noopener">LinkedIn</a><a class="ghost" href="https://github.com/Fluff18" target="_blank" rel="noopener">GitHub</a></div>
+<section id="portfolio" data-tint="#ffb454" data-shape="knot">
+  <div class="container">
+    <div class="section-title"><h2>Portfolio</h2></div>
+    <ul class="filters" id="filters">
+      <li><button type="button" class="active" data-f="all">All</button></li>
+      <li><button type="button" data-f="ai">AI</button></li>
+      <li><button type="button" data-f="mobile">Mobile</button></li>
+      <li><button type="button" data-f="fullstack">FullStack</button></li>
+      <li><button type="button" data-f="cloud">Cloud</button></li>
+    </ul>
+    <div class="grid" id="grid">
+      <div class="tile ai" data-cat="ai"><span class="k">AI · Owner</span><h4>Agent observability platform</h4><p>One pane for every agent: steps, tool calls, failures and accuracy against expert feedback. Onboard with one YAML file.</p><span class="m">Idea to 3 deployments in 4 weeks</span></div>
+      <div class="tile ai" data-cat="ai"><span class="k">AI · Platform</span><h4>MCP tool server</h4><p>Bugzilla, GDB, code search and investigation tools for experts in Copilot and for the team's agents.</p><span class="m">6,300+ tool calls a week</span></div>
+      <div class="tile ai" data-cat="ai"><span class="k">AI · RAG</span><h4>Debugging knowledge base</h4><p>Six years of bug history mined into grounded analyses that agents retrieve.</p><span class="m">13,005 bugs · 5,600 analyses in 9 days</span></div>
+      <div class="tile ai" data-cat="ai"><span class="k">AI · Agent</span><h4>Alert investigation agent</h4><p>Investigates storage-array alerts from logs before a human has to.</p><span class="m">553 tests · live on 1,000+ conversations</span></div>
+      <div class="tile ai" data-cat="ai"><span class="k">AI · Service</span><h4>Live GDB as a service</h4><p>Core-dump debugging sessions for humans and agents across five crash servers.</p><span class="m">13,000 requests in 43 days</span></div>
+      <div class="tile ai" data-cat="ai"><span class="k">AI · Research</span><h4>Self-learning agent experiments</h4><p>17 experiment arms, 690 runs. Caught leakage behind a reported win and reported zero lift.</p><span class="m">Honest negative result</span></div>
+      <div class="tile" data-cat="mobile"><img src="img/p1.jpg" alt="Fetch Recipes app" loading="lazy"><div class="cap"><h4>Fetch Recipes</h4><p>iOS recipe app</p><a href="../FetchRecipes-details.html">More details</a></div></div>
+      <div class="tile" data-cat="fullstack"><img src="img/p2.jpg" alt="RideShare app" loading="lazy"><div class="cap"><h4>RideShare App</h4><p>Full-stack ride sharing</p><a href="../Uber-details.html">More details</a></div></div>
+      <div class="tile" data-cat="mobile"><img src="img/p3.jpg" alt="Handwriting recognition Android app" loading="lazy"><div class="cap"><h4>Handwriting Recognition</h4><p>Android app</p><a href="../AndroidApp-details.html">More details</a></div></div>
+      <div class="tile" data-cat="mobile"><img src="img/p4.jpg" alt="Zoom telehealth solution" loading="lazy"><div class="cap"><h4>Zoom Telehealth</h4><p>Zoom SDK + Firebase</p><a href="../Zoom-details.html">More details</a></div></div>
+      <div class="tile" data-cat="cloud"><img src="img/p5.jpg" alt="PaaS face recognition service" loading="lazy"><div class="cap"><h4>PaaS Face Recognition</h4><p>Live-streamed video on Kubernetes</p><a href="../PaaS-details.html">More details</a></div></div>
+      <div class="tile" data-cat="mobile"><img src="img/p6.jpg" alt="Expense tracker app" loading="lazy"><div class="cap"><h4>Expense Tracker</h4><p>iOS app</p><a href="../ExpenseTracker-details.html">More details</a></div></div>
+      <div class="tile" data-cat="fullstack"><img src="img/p7.jpg" alt="E-commerce website" loading="lazy"><div class="cap"><h4>E-Commerce Website</h4><p>Full-stack storefront</p><a href="../E-Commercee-details.html">More details</a></div></div>
+      <div class="tile" data-cat="cloud"><img src="img/p9.jpg" alt="IaaS face recognition on AWS" loading="lazy"><div class="cap"><h4>IaaS Face Recognition</h4><p>AWS EC2 autoscaling</p><a href="../IaaS-details.html">More details</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" data-tint="#3d7bff" data-shape="rings">
+  <div class="container">
+    <div class="section-title"><h2>Contact</h2><p>Building something? Best reached by email or LinkedIn.</p></div>
+    <div class="box reveal">
+      <div class="contact-grid">
+        <div><h4>Email</h4><p><code>rkoushik@asu.edu</code></p></div>
+        <div><h4>LinkedIn</h4><p><a href="https://www.linkedin.com/in/rkoushik1808/" target="_blank" rel="noopener">linkedin.com/in/rkoushik1808</a></p></div>
+        <div><h4>GitHub</h4><p><a href="https://github.com/Fluff18" target="_blank" rel="noopener">github.com/Fluff18</a></p></div>
+        <div><h4>Location</h4><p>San Jose, California</p></div>
+      </div>
+    </div>
   </div>
 </section>
 
 </main>
-<footer>Rahul M Koushik · <a href="#top">Back to the start</a></footer>
+<footer>Rahul M Koushik · <a href="#hero">Back to top</a></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.152.2/three.min.js"></script>
 <script>
 (function(){
   'use strict';
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+  var chapters = Array.prototype.slice.call(document.querySelectorAll('main > section[data-tint]'));
   var N = chapters.length, SEG = 42;
 
-  /* ---------- nav dots, progress, active chapter ---------- */
-  var dots = document.getElementById('dots');
-  chapters.forEach(function(c){
-    var li = document.createElement('li'), a = document.createElement('a');
-    a.href = '#' + c.id; a.setAttribute('aria-label', c.dataset.label);
-    var s = document.createElement('span'); s.textContent = c.dataset.label; a.appendChild(s);
-    li.appendChild(a); dots.appendChild(li);
-  });
-  var dotLinks = Array.prototype.slice.call(dots.querySelectorAll('a'));
+  /* ---------- nav, typed text, filters ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#navmenu a'));
+  var toggle = document.getElementById('navtoggle');
+  toggle.addEventListener('click', function(){ var open = document.body.classList.toggle('nav-open'); toggle.setAttribute('aria-expanded', open ? 'true' : 'false'); });
+  navLinks.forEach(function(a){ a.addEventListener('click', function(){ document.body.classList.remove('nav-open'); toggle.setAttribute('aria-expanded', 'false'); }); });
+
   var active = 0;
   function setActive(i){
-    if (i === active && chapters[i].classList.contains('in')) return;
     active = i;
-    dotLinks.forEach(function(d, k){ d.classList.toggle('active', k === i); });
-    document.documentElement.style.setProperty('--tint', chapters[i].dataset.tint);
+    var id = '#' + chapters[i].id;
+    navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === id); });
   }
   if ('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting){
-          e.target.classList.add('in');
-          if (e.intersectionRatio >= 0.35) setActive(chapters.indexOf(e.target));
-        }
-      });
-    }, {threshold:[0.1,0.35,0.6]});
+      entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('in'); });
+    }, {threshold:0.15});
     chapters.forEach(function(c){ io.observe(c); });
   } else { chapters.forEach(function(c){ c.classList.add('in'); }); }
 
-  var progress = document.querySelector('.progress');
-  var copy = document.getElementById('copy');
-  copy.addEventListener('click', function(){
-    var t = document.getElementById('email').textContent;
-    function fallback(){ var r = document.createRange(); r.selectNodeContents(document.getElementById('email')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
-    if (navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(t).then(function(){ copy.textContent = 'Copied'; setTimeout(function(){ copy.textContent = 'Copy'; }, 1600); }, fallback);
-    } else fallback();
+  var typed = document.getElementById('typed');
+  var items = typed.dataset.items.split('|'), ti = 0, ci = 0, del = false;
+  function type(){
+    var w = items[ti];
+    typed.textContent = w.slice(0, ci);
+    if (!del && ci < w.length){ ci++; setTimeout(type, 70); }
+    else if (!del){ del = true; setTimeout(type, 1800); }
+    else if (ci > 0){ ci--; setTimeout(type, 35); }
+    else { del = false; ti = (ti + 1) % items.length; setTimeout(type, 400); }
+  }
+  if (reduce) typed.textContent = items[0]; else type();
+
+  var filters = document.getElementById('filters'), tiles = Array.prototype.slice.call(document.querySelectorAll('#grid .tile'));
+  filters.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    filters.querySelectorAll('button').forEach(function(x){ x.classList.toggle('active', x === b); });
+    tiles.forEach(function(t){ t.hidden = b.dataset.f !== 'all' && t.dataset.cat !== b.dataset.f; });
+    measure();
   });
 
   /* ---------- scroll → travel mapping ---------- */
   var centers = [];
-  function measure(){
-    centers = chapters.map(function(c){ return c.offsetTop + c.offsetHeight / 2 - innerHeight / 2; });
-  }
+  function measure(){ centers = chapters.map(function(c){ return c.offsetTop + Math.min(c.offsetHeight, innerHeight) / 2 - innerHeight / 2; }); }
   measure();
   addEventListener('resize', measure);
   addEventListener('load', measure);
@@ -390,6 +479,11 @@ footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--
     }
     return N - 1;
   }
+  function activeFor(y){
+    var best = 0;
+    for (var k = 0; k < N; k++){ if (chapters[k].offsetTop - innerHeight * 0.45 <= y) best = k; }
+    return best;
+  }
 
   /* ---------- WebGL ---------- */
   var canvas = document.getElementById('warp');
@@ -397,7 +491,7 @@ footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--
   try {
     if (!window.THREE) throw new Error('no three');
     renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:false, alpha:false, powerPreference:'high-performance'});
-  } catch (e){ document.documentElement.classList.add('nogl'); return; }
+  } catch (e){ document.documentElement.classList.add('nogl'); addEventListener('scroll', function(){ setActive(activeFor(scrollY)); }, {passive:true}); return; }
   var isSmall = innerWidth < 800;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isSmall ? 1.5 : 1.75));
   renderer.setClearColor(0x02040c, 1);
@@ -428,7 +522,6 @@ footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--
     'float fbm(vec3 p){float a=0.5,s=0.0;for(int i=0;i<4;i++){s+=a*snoise(p);p=p*2.03+vec3(1.7,9.2,3.1);a*=0.5;}return s;}'
   ].join('\n');
 
-  /* sky: an inside-out sphere painted with slow, dark nebula noise */
   var sky = new THREE.Mesh(
     new THREE.SphereGeometry(400, 32, 24),
     new THREE.ShaderMaterial({
@@ -447,7 +540,6 @@ footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--
   );
   sky.renderOrder = -10; scene.add(sky);
 
-  /* stars: points in a long cylinder, wrapped in the vertex shader as the camera travels */
   var COUNT = isSmall ? 1500 : 2800, LEN = U.uLen.value;
   var pos = new Float32Array(COUNT * 3), size = new Float32Array(COUNT), seed = new Float32Array(COUNT);
   for (var i = 0; i < COUNT; i++){
@@ -459,7 +551,7 @@ footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--
   sg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
   sg.setAttribute('aSize', new THREE.BufferAttribute(size, 1));
   sg.setAttribute('aSeed', new THREE.BufferAttribute(seed, 1));
-  var stars = new THREE.Points(sg, new THREE.ShaderMaterial({
+  scene.add(new THREE.Points(sg, new THREE.ShaderMaterial({
     uniforms:U, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
     vertexShader:'attribute float aSize;attribute float aSeed;uniform float uTravel,uLen,uPixelRatio;varying float vA;varying float vS;' +
       'void main(){vec3 p=position;p.z=mod(p.z+uTravel,uLen)-uLen;vec4 mv=modelViewMatrix*vec4(p,1.0);float d=-mv.z;' +
@@ -469,10 +561,8 @@ footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--
       'void main(){vec2 c=gl_PointCoord-0.5;float r=length(c);float a=smoothstep(0.5,0.08,r);' +
       'float tw=0.7+0.3*sin(uTime*(1.2+vS*2.5)+vS*40.0);vec3 col=mix(vec3(0.8,0.87,1.0),uTint,vS*0.5);' +
       'if(vS>0.93)col=vec3(1.0,0.86,0.62);gl_FragColor=vec4(col,a*vA*tw*0.7);}'
-  }));
-  scene.add(stars);
+  })));
 
-  /* streaks: line segments that stretch toward the camera with warp speed */
   var SC = isSmall ? 400 : 800;
   var lp = new Float32Array(SC * 6), lt = new Float32Array(SC * 2), ls = new Float32Array(SC * 2);
   for (i = 0; i < SC; i++){
@@ -485,17 +575,15 @@ footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--
   lg.setAttribute('position', new THREE.BufferAttribute(lp, 3));
   lg.setAttribute('aT', new THREE.BufferAttribute(lt, 1));
   lg.setAttribute('aSeed', new THREE.BufferAttribute(ls, 1));
-  var streaks = new THREE.LineSegments(lg, new THREE.ShaderMaterial({
+  scene.add(new THREE.LineSegments(lg, new THREE.ShaderMaterial({
     uniforms:U, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
     vertexShader:'attribute float aT;attribute float aSeed;uniform float uTravel,uLen,uWarp;varying float vA;' +
       'void main(){vec3 p=position;p.z=mod(p.z+uTravel,uLen)-uLen;p.z+=aT*uWarp*(5.0+aSeed*14.0);' +
       'vec4 mv=modelViewMatrix*vec4(p,1.0);float d=-mv.z;' +
       'vA=smoothstep(uLen,uLen*0.5,d)*smoothstep(0.0,4.0,d)*(1.0-aT*0.85)*min(uWarp*1.6,1.0);gl_Position=projectionMatrix*mv;}',
     fragmentShader:'precision mediump float;uniform vec3 uTint;varying float vA;void main(){gl_FragColor=vec4(mix(vec3(0.75,0.88,1.0),uTint,0.4),vA*0.6);}'
-  }));
-  scene.add(streaks);
+  })));
 
-  /* tunnel: a faint tube of rings and light streaks flowing past */
   var TUBE = 260;
   var tube = new THREE.Mesh(
     new THREE.CylinderGeometry(15, 15, TUBE, 48, 1, true),
@@ -513,27 +601,16 @@ footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--
   );
   tube.rotation.x = -Math.PI / 2; tube.position.z = -TUBE / 2; scene.add(tube);
 
-  /* chapter objects: wireframe solids parked along the tunnel, one per chapter */
   function edges(geo, tint, op){
-    return new THREE.LineSegments(new THREE.EdgesGeometry(geo, 12), new THREE.LineBasicMaterial({color:tint, transparent:true, opacity:op||0.45, blending:THREE.AdditiveBlending, depthWrite:false}));
+    return new THREE.LineSegments(new THREE.EdgesGeometry(geo, 12), new THREE.LineBasicMaterial({color:tint, transparent:true, opacity:op||0.4, blending:THREE.AdditiveBlending, depthWrite:false}));
   }
   function shape(kind, tint){
     var g = new THREE.Group();
     if (kind === 'ico') g.add(edges(new THREE.IcosahedronGeometry(3.4, 1), tint));
-    else if (kind === 'knot') g.add(edges(new THREE.TorusKnotGeometry(2.4, 0.55, 80, 10), tint, 0.32));
-    else if (kind === 'rings'){ for (var k = 0; k < 5; k++){ var rg = edges(new THREE.TorusGeometry(2.2 + k * 0.5, 0.02, 4, 72), tint, 0.42 - k * 0.06); rg.position.z = -k * 1.6; g.add(rg); } }
-    else if (kind === 'octa') g.add(edges(new THREE.OctahedronGeometry(3.6, 0), tint));
-    else if (kind === 'dodeca') g.add(edges(new THREE.DodecahedronGeometry(3.2, 0), tint));
-    else if (kind === 'tetra') g.add(edges(new THREE.TetrahedronGeometry(3.8, 1), tint));
-    else if (kind === 'ring') g.add(edges(new THREE.TorusGeometry(3.4, 0.9, 8, 48), tint, 0.32));
-    else if (kind === 'grid') g.add(edges(new THREE.BoxGeometry(5, 5, 5, 3, 3, 3), tint, 0.32));
-    else if (kind === 'cloud'){
-      var n = 500, cp = new Float32Array(n * 3);
-      for (var q = 0; q < n; q++){ var u = Math.random() * 2 - 1, ph = Math.random() * Math.PI * 2, rr = Math.cbrt(Math.random()) * 3.8, sq = Math.sqrt(1 - u * u); cp[q*3] = rr * sq * Math.cos(ph); cp[q*3+1] = rr * sq * Math.sin(ph); cp[q*3+2] = rr * u; }
-      var cg = new THREE.BufferGeometry(); cg.setAttribute('position', new THREE.BufferAttribute(cp, 3));
-      g.add(new THREE.Points(cg, new THREE.PointsMaterial({color:tint, size:0.07, transparent:true, opacity:0.7, blending:THREE.AdditiveBlending, depthWrite:false})));
-      g.add(edges(new THREE.IcosahedronGeometry(3.9, 1), tint, 0.15));
-    }
+    else if (kind === 'knot') g.add(edges(new THREE.TorusKnotGeometry(2.4, 0.55, 80, 10), tint, 0.3));
+    else if (kind === 'rings'){ for (var k = 0; k < 5; k++){ var rg = edges(new THREE.TorusGeometry(2.2 + k * 0.5, 0.02, 4, 72), tint, 0.4 - k * 0.06); rg.position.z = -k * 1.6; g.add(rg); } }
+    else if (kind === 'ring') g.add(edges(new THREE.TorusGeometry(3.4, 0.9, 8, 48), tint, 0.3));
+    else if (kind === 'grid') g.add(edges(new THREE.BoxGeometry(5, 5, 5, 3, 3, 3), tint, 0.3));
     return g;
   }
   var objs = [];
@@ -541,36 +618,31 @@ footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--
     if (!c.dataset.shape) return;
     var o = shape(c.dataset.shape, new THREE.Color(c.dataset.tint));
     o.userData.z0 = -(i * SEG) - 15;
-    o.userData.side = c.classList.contains('right') ? -1 : (c.classList.contains('center') ? 0 : 1);
+    o.userData.side = (i % 2) ? 1 : -1;
     o.userData.spin = 0.15 + Math.random() * 0.2;
     o.userData.mats = [];
     o.traverse(function(ch){ if (ch.material){ ch.material.userData.op = ch.material.opacity; o.userData.mats.push(ch.material); } });
     o.visible = false; scene.add(o); objs.push(o);
   });
 
-  /* ---------- frame loop ---------- */
   var travel = 0, travelTarget = 0, lastTravel = 0, warp = 0, mx = 0, my = 0, tmx = 0, tmy = 0;
   var tintTarget = new THREE.Color(chapters[0].dataset.tint);
   var running = true, last = performance.now();
   addEventListener('pointermove', function(e){ if (e.pointerType === 'touch') return; tmx = e.clientX / innerWidth * 2 - 1; tmy = e.clientY / innerHeight * 2 - 1; }, {passive:true});
   document.addEventListener('visibilitychange', function(){ running = !document.hidden; if (running){ last = performance.now(); requestAnimationFrame(frame); } });
-  function resize(){
-    camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
-    renderer.setSize(innerWidth, innerHeight, false);
-  }
+  function resize(){ camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight, false); }
   addEventListener('resize', resize); resize();
 
   function frame(now){
     if (!running) return;
     var dt = Math.min(0.05, (now - last) / 1000); last = now;
     var y = scrollY || pageYOffset || 0;
-    var docH = Math.max(1, document.documentElement.scrollHeight - innerHeight);
-    progress.style.setProperty('--p', Math.min(1, y / docH).toFixed(4));
+    var cur = activeFor(y); if (cur !== active) setActive(cur);
 
     travelTarget = chapterFloat(y) * SEG;
     var k = reduce ? 1 : 1 - Math.pow(0.0025, dt);
     travel += (travelTarget - travel) * k;
-    var idle = reduce ? 0 : 1.6 * dt;                     /* slow cruise even at rest */
+    var idle = reduce ? 0 : 1.6 * dt;
     travel += idle;
     var v = (travel - lastTravel) / Math.max(dt, 1e-3) - idle / Math.max(dt, 1e-3);
     lastTravel = travel;
@@ -586,14 +658,14 @@ footer{position:relative;z-index:2;text-align:center;font-size:13px;color:var(--
     camera.rotation.z = Math.sin(now / 9000) * 0.02;
     var fov = 70 + warp * 10; if (Math.abs(camera.fov - fov) > 0.05){ camera.fov = fov; camera.updateProjectionMatrix(); }
 
-    var xo = Math.min(6.5, 5.2 * camera.aspect);
+    var xo = Math.min(7, 5.6 * camera.aspect);
     for (var i = 0; i < objs.length; i++){
       var o = objs[i], z = o.userData.z0 + travel;
       o.visible = z > -110 && z < 3;
       if (!o.visible) continue;
       var fade = Math.min(1, (z + 110) / 55) * Math.min(1, (3 - z) / 7);
       for (var m = 0; m < o.userData.mats.length; m++) o.userData.mats[m].opacity = o.userData.mats[m].userData.op * fade;
-      o.position.set(o.userData.side * xo, o.userData.side === 0 ? 3.2 : 0.4, z);
+      o.position.set(o.userData.side * xo, 1.5, z);
       o.rotation.y += o.userData.spin * dt; o.rotation.x += o.userData.spin * 0.6 * dt;
       var sc = 1 + warp * 0.12; o.scale.set(sc, sc, sc);
     }
