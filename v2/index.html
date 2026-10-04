@@ -139,25 +139,23 @@ footer{position:relative;z-index:2;margin-left:var(--side);text-align:center;fon
 .item.small p{font-size:14px}
 
 /* portfolio */
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-@media (max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.tabs button{font-family:var(--display);font-weight:500;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);background:transparent;border:1.5px solid var(--navy);padding:9px 18px;border-radius:999px;cursor:pointer}
+.tabs button:hover{background:rgba(11,31,92,.08)}
+.tabs button.on{background:var(--navy);color:var(--cream)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:1000px){.grid{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.grid{grid-template-columns:1fr}}
-.tile{position:relative;border-radius:18px;overflow:hidden;background:var(--cream2);border:1.5px solid var(--line);min-width:0;display:flex;flex-direction:column;cursor:pointer;transition:background .25s,color .25s,border-color .25s,transform .25s}
-.tile:hover{background:var(--navy);border-color:var(--navy);transform:translateY(-3px)}
-.tile:hover h4,.tile:hover p,.tile:hover .meta,.tile:hover .meta b,.tile:hover h4 span{color:var(--cream)}
-.tile img.cv{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.tile{position:relative;border-radius:18px;overflow:hidden;background:var(--cream2);border:1.5px solid var(--line);min-width:0;display:flex;flex-direction:column;cursor:pointer;transition:transform .25s,box-shadow .25s,border-color .25s}
+.tile[hidden]{display:none}
+.tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(11,31,92,.18);border-color:rgba(11,31,92,.35)}
+.tile img.cv{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border-bottom:1.5px solid var(--line)}
 .tile .tb{padding:16px 18px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
-.tile h4{font-size:13.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.tile h4{font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--navy);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .tile h4 span{font-family:var(--body);font-size:12px;font-weight:400;color:var(--dim);flex:0 0 auto}
 .tile p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5;flex:1}
 .tile .meta{font-size:11.5px;color:var(--dim);margin-top:8px;letter-spacing:.04em}
 .tile .meta b{color:var(--muted);font-weight:500}
-.tile.feat{grid-column:span 2;grid-row:span 2}
-.tile.feat img.cv{aspect-ratio:auto;flex:1;min-height:0}
-.tile.feat h4{font-size:16px}
-.tile.feat p{font-size:14.5px;flex:0}
-.tile.feat .tb{flex:0 0 auto}
-@media (max-width:560px){.tile.feat{grid-column:span 1;grid-row:span 1}.tile.feat img.cv{aspect-ratio:16/10;flex:none}}
 
 /* detail */
 .detail .head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:0 0 16px}
@@ -337,7 +335,8 @@ footer{position:relative;z-index:2;margin-left:var(--side);text-align:center;fon
     <section id="portfolio" data-tint="#4f8cff" data-shape="knot" class="sec">
   <div class="container"><div class="box">
         <div class="section-title"><h2>Portfolio</h2><p>Personal projects. Open any of them for the full story, the architecture and screenshots. Work at HPE is in the resume.</p></div>
-        <div class="grid" id="grid"></div>
+        <div class="tabs" id="tabs"><button type="button" class="on" data-g="all">All</button><button type="button" data-g="ai">AI &amp; agents</button><button type="button" data-g="apps">Apps</button><button type="button" data-g="research">Research</button><button type="button" data-g="earlier">Earlier</button></div>
+<div class="grid" id="grid"></div>
       </div></div>
 </section>
 
@@ -378,91 +377,91 @@ footer{position:relative;z-index:2;margin-left:var(--side);text-align:center;fon
 
   /* ---------- projects ---------- */
   var PROJECTS = [
-    {id:'zzz', title:'Zzz', k:'iOS + Android · 2026', tag:'Gamified goal tracker on iOS and Android, released on Google Play.', cat:'Apps', year:'2026', cover:'img/c-zzz.jpg', coverFeat:'img/c-zzz-feat.jpg', tint:'#ffb454',
+    {id:'zzz', title:'Zzz', k:'iOS + Android · 2026', tag:'Gamified goal tracker on iOS and Android, released on Google Play.', cat:'Apps', year:'2026', group:'apps', cover:'img/c-zzz.jpg', tint:'#ffb454',
       sum:'A gamified goal tracker. Weekly and monthly quests across four life sectors (health and fitness, hobbies, relationships, career), points for progress, and rewards you define yourself and redeem with those points: a boba, a LEGO kit, a trip to Japan.',
       hl:['SwiftUI on iOS 17+ with no third-party UI dependencies; a Kotlin twin on Android, released on Google Play.','Supabase for auth and data; the app runs fully on local data until you sign in.','Grew out of two earlier attempts: a weekly web task tracker (Do) and a React Native prototype (DuoQuest).','Privacy policy and support site published for the store listing.'],
       stack:['SwiftUI','Kotlin','Supabase','XcodeGen','Firebase'],
       links:[['Google Play','https://play.google.com/store/apps/details?id=com.rahulkoushik.zzz']],
       arch:{nodes:[{id:'ios',label:'iOS app',sub:'SwiftUI',c:0,r:0},{id:'and',label:'Android app',sub:'Kotlin',c:0,r:1},{id:'sb',label:'Supabase',sub:'Auth · Postgres',c:1,r:0.5,hi:1},{id:'play',label:'Google Play',sub:'release',c:1,r:1.6},{id:'site',label:'Privacy site',sub:'GitHub Pages',c:2,r:1.6}],edges:[['ios','sb'],['and','sb'],['and','play'],['play','site']]},
       gallery:['img/g/zzzicon.jpg']},
-    {id:'zuo', title:'Zuo', k:'Personal AI harness · 2026', tag:'Personal AI harness: job queue, budgets, voice capture and agents.', cat:'AI harness', year:'2026', cover:'img/c-zuo.jpg', tint:'#5aa9ff',
+    {id:'zuo', title:'Zuo', k:'Personal AI harness · 2026', tag:'Personal AI harness: job queue, budgets, voice capture and agents.', cat:'AI harness', year:'2026', group:'ai', cover:'img/c-zuo.jpg', tint:'#5aa9ff',
       sum:'My personal AI harness: a local multi-provider prompt app with a job queue, budgets and a project board, plus the agents and clients that hang off it. Several iterations over the year, each one teaching the next.',
       hl:['Harness on the Mac: multi-provider prompt app, job queue with budgets, project board for orchestrating agents on the Max plan.','Voice capture that works on the phone: Web Audio recorder, silence and noise gating, Whisper warmed while you talk.','Agent team that turns Instagram posts into production-ready web sections, with a gallery to review them.','iOS PromptConsole client and a Windows side that runs vLLM and receives exchange logs.','Earlier iterations: a Telegram chief-of-staff agent on LangGraph with human-in-the-loop approvals, a containerized multi-agent app builder (BuilderOS), a Go agent on the ADK, and an audio analysis and transcription pipeline.'],
       stack:['Python','FastAPI','LangGraph','Whisper','vLLM','Swift','Next.js','Docker'],
       links:[],
       arch:{nodes:[{id:'ios',label:'iOS client',sub:'PromptConsole',c:0,r:0},{id:'web',label:'Web app',sub:'/app · /board',c:0,r:1},{id:'voice',label:'Voice',sub:'VAD · Whisper',c:0,r:2},{id:'h',label:'Harness',sub:'job queue · budgets',c:1,r:1,hi:1},{id:'cl',label:'Claude / OpenAI',sub:'API',c:2,r:0},{id:'pc',label:'Windows PC',sub:'vLLM',c:2,r:1},{id:'ag',label:'UI agents',sub:'posts → sections',c:2,r:2}],edges:[['ios','h'],['web','h'],['voice','h'],['h','cl'],['h','pc'],['h','ag']]},
       gallery:[]},
-    {id:'catan', title:'Catan Arena', k:'Self-learning agents · 2026', tag:'Self-learning agent testbed with a statistical pass bar.', cat:'Research', year:'2026', cover:'img/c-catan.jpg', tint:'#ffb454',
+    {id:'catan', title:'Catan Arena', k:'Self-learning agents · 2026', tag:'Self-learning agent testbed with a statistical pass bar.', cat:'Research', year:'2026', group:'research', cover:'img/c-catan.jpg', tint:'#ffb454',
       sum:'A testbed that proves the forever-agent loop on a closed world: one learning agent plays full Catan against three frozen copies of its starting self. By symmetry the no-learning null is a 25% win rate; learning is demonstrated only when the rolling win rate’s 95% Wilson interval clears 25%.',
       hl:['Loop: actor plays, watcher records, consolidator distils episodes into memory the actor reads next game.','Engine self-tests for invariants: card conservation, victory points, seat symmetry.','Dashboard with live win-rate interval; headless mode runs generations in the terminal; state persists and resumes.','Same loop later informed the self-learning work on the HPE agents.'],
       stack:['Python','Game engine','Statistics','Claude'],
       links:[],
       arch:{nodes:[{id:'eng',label:'Catan engine',sub:'4 seats',c:0,r:1},{id:'act',label:'Learning actor',c:1,r:0,hi:1},{id:'frz',label:'3 frozen copies',c:1,r:2},{id:'w',label:'Watcher',sub:'episodes',c:2,r:0},{id:'con',label:'Consolidator',sub:'rules',c:3,r:0},{id:'mem',label:'Memory',c:3,r:1.3,hi:1},{id:'dash',label:'Dashboard',sub:'Wilson interval',c:2,r:2}],edges:[['eng','act'],['eng','frz'],['act','w'],['w','con'],['con','mem'],['mem','act','reads'],['eng','dash']]},
       gallery:[]},
-    {id:'aitutor', title:'AI Tutor', k:'Learning app · 2026', tag:'Duolingo meets Instagram for learning AI engineering.', cat:'Apps', year:'2026', cover:'img/c-aitutor.jpg', tint:'#6fd3ff',
+    {id:'aitutor', title:'AI Tutor', k:'Learning app · 2026', tag:'Duolingo meets Instagram for learning AI engineering.', cat:'Apps', year:'2026', group:'apps', cover:'img/c-aitutor.jpg', tint:'#6fd3ff',
       sum:'A personal, adaptive way to learn AI engineering, built like Duolingo meets Instagram: a path of levels you unlock one at a time, and a feed of swipeable carousels built from Reddit, Hacker News, arXiv and YouTube.',
       hl:['Path: levels → lessons → quizzes → checkpoints. Feed: swipe up for the next post, sideways through its slides; like, save, ask or skip.','Practice tab with flashcards and weak spots; profiles with separate progress for several people on one server.','Claude through the Claude Code CLI (Opus for lessons and quizzes, Sonnet for summaries and grading) with free NVIDIA Nemotron as automatic fallback.','Pure standard-library Python server, no build step; yt-dlp for video sources.'],
       stack:['Python','PWA','Claude','Nemotron','yt-dlp'],
       links:[],
       arch:{nodes:[{id:'src',label:'Sources',sub:'Reddit · HN · arXiv · YouTube',c:0,r:0.5},{id:'ing',label:'Ingest',c:1,r:0.5},{id:'llm',label:'Claude / Nemotron',sub:'lessons · carousels · grading',c:2,r:0.5,hi:1},{id:'srv',label:'Server',sub:'stdlib Python',c:3,r:0.5,hi:1},{id:'path',label:'Path',c:4,r:0},{id:'feed',label:'Feed',c:4,r:1},{id:'me',label:'Practice · Me',c:4,r:2}],edges:[['src','ing'],['ing','llm'],['llm','srv'],['srv','path'],['srv','feed'],['srv','me']]},
       gallery:['img/g/tutoricon.jpg']},
-    {id:'musaic', title:'musaic', k:'Generative media · 2026', tag:'Automated lo-fi music channel, from generation to upload.', cat:'Generative media', year:'2026', cover:'img/c-musaic.jpg', tint:'#c084fc',
+    {id:'musaic', title:'musaic', k:'Generative media · 2026', tag:'Automated lo-fi music channel, from generation to upload.', cat:'Generative media', year:'2026', group:'ai', cover:'img/c-musaic.jpg', tint:'#c084fc',
       sum:'An automated lo-fi music channel. Each run generates the music, a thumbnail and a matching background, writes SEO metadata and chapters, encodes an HD video and uploads it to YouTube.',
       hl:['Stable Audio for 3-minute clips, ten variations per video; Pydub to merge segments and remove murmur.','GPT-4 for titles, descriptions, tags and chapter markers.','Thumbnails from DALL-E 3 (animated) or Vertex Imagen (realistic); Veo backgrounds that match the thumbnail’s style, alternating each run.','FFmpeg at 1080p CRF 18 with 320k audio; assets in Google Cloud Storage; YouTube Data API upload with OAuth.'],
       stack:['Python','Stable Audio','GPT-4','DALL-E 3','Vertex AI','Veo','FFmpeg','YouTube API'],
       links:[['GitHub','https://github.com/Fluff18/musaic']],
       arch:{nodes:[{id:'sa',label:'Stable Audio',sub:'music',c:0,r:0},{id:'gpt',label:'GPT-4',sub:'metadata',c:0,r:1},{id:'img',label:'DALL-E / Imagen',sub:'thumbnail',c:0,r:2},{id:'veo',label:'Veo',sub:'background',c:1,r:2},{id:'ff',label:'FFmpeg',sub:'1080p encode',c:2,r:1,hi:1},{id:'gcs',label:'Cloud Storage',c:3,r:0},{id:'yt',label:'YouTube',sub:'upload',c:3,r:1.5,hi:1}],edges:[['sa','ff'],['gpt','yt'],['img','veo'],['veo','ff'],['ff','gcs'],['ff','yt']]},
       gallery:[]},
-    {id:'drone', title:'Drone Inspection Sim', k:'Robotics · 2026', tag:'PX4 and Gazebo inspection drone with a Pi-class AI agent.', cat:'Robotics', year:'2026', cover:'img/c-drone.jpg', tint:'#3fd1c9',
+    {id:'drone', title:'Drone Inspection Sim', k:'Robotics · 2026', tag:'PX4 and Gazebo inspection drone with a Pi-class AI agent.', cat:'Robotics', year:'2026', group:'research', cover:'img/c-drone.jpg', tint:'#3fd1c9',
       sum:'An autonomous infrastructure-inspection drone in pure simulation, no hardware. PX4 flies an X500 quad through a custom depot-yard world in Gazebo while an AI agent, capped to Raspberry Pi 5 resources, works the camera feed.',
       hl:['PX4 v1.17 built from source so the stack runs natively on arm64 and x86_64; Gazebo Harmonic with RGB and depth cameras.','Camera bridge republishes Gazebo topics over TCP; MAVLink over UDP on a shared Docker network.','Agent constrained to 4 CPU, 8 GB and no GPU to mirror the target edge hardware.','Custom world because the stock scene renders as a white screen with a faint horizon.'],
       stack:['PX4 SITL','Gazebo','MAVLink','Docker','Python'],
       links:[],
       arch:{nodes:[{id:'gz',label:'Gazebo',sub:'depot-yard world',c:0,r:0.5,hi:1},{id:'px',label:'PX4 SITL',sub:'X500 quad',c:1,r:0},{id:'cb',label:'Camera bridge',sub:'TCP',c:1,r:1},{id:'ag',label:'AI agent',sub:'Pi-5 class limits',c:2,r:0.5,hi:1}],edges:[['gz','px'],['gz','cb'],['px','ag','MAVLink'],['cb','ag','frames']]},
       gallery:['img/g/drone.jpg']},
-    {id:'quantum', title:'Quantum Slot Machine', k:'Quantum · 2025', tag:'Randomness from real qubits on IBM Quantum hardware.', cat:'Research', year:'2025', cover:'img/c-quantum.jpg', tint:'#a78bfa',
+    {id:'quantum', title:'Quantum Slot Machine', k:'Quantum · 2025', tag:'Randomness from real qubits on IBM Quantum hardware.', cat:'Research', year:'2025', group:'research', cover:'img/c-quantum.jpg', tint:'#a78bfa',
       sum:'A slot machine whose randomness comes from measuring real qubits. Each spin prepares three qubits, rotates them into superposition, optionally entangles them, measures, and maps the result to symbols.',
       hl:['Runs on real IBM Quantum hardware with an API token, or on the Qiskit Aer simulator.','FastAPI and Qiskit backend; React frontend.','A demonstration that randomness can come from quantum measurement rather than a pseudo-random generator.'],
       stack:['Python','Qiskit','FastAPI','React','IBM Quantum'],
       links:[['GitHub','https://github.com/Fluff18/QuantumSlot']],
       arch:{nodes:[{id:'ui',label:'React UI',c:0,r:0.5},{id:'api',label:'FastAPI',c:1,r:0.5},{id:'qk',label:'Qiskit circuit',sub:'3 qubits · RY · CNOT',c:2,r:0.5,hi:1},{id:'ibm',label:'IBM Quantum',sub:'hardware',c:3,r:0},{id:'aer',label:'Aer simulator',c:3,r:1}],edges:[['ui','api'],['api','qk'],['qk','ibm'],['qk','aer']]},
       gallery:[]},
-    {id:'fetch', title:'Fetch Recipes', k:'iOS · 2022', tag:'Swift recipe app over TheMealDB.', cat:'iOS', year:'2022', cover:'img/c-fetch.jpg', tint:'#ffb454',
+    {id:'fetch', title:'Fetch Recipes', k:'iOS · 2022', tag:'Swift recipe app over TheMealDB.', cat:'iOS', year:'2022', group:'earlier', cover:'img/c-fetch.jpg', tint:'#ffb454',
       sum:'A sample, scalable Swift app that shows categories of food and their recipes in a clean, user-friendly way. Built for the Fetch Rewards apprenticeship test.',
       hl:['A network manager that handles every call to TheMealDB API.','Category list, meal list and recipe detail with ingredients and measures.'],
       stack:['Swift','UIKit','URLSession'],
       links:[],
       arch:{nodes:[{id:'ui',label:'Views',sub:'categories · meals · recipe',c:0,r:0.5},{id:'nm',label:'Network manager',c:1,r:0.5,hi:1},{id:'api',label:'TheMealDB API',c:2,r:0.5}],edges:[['ui','nm'],['nm','api']]},
       gallery:['img/g/fr1.jpg','img/g/fr2.jpg','img/g/fr3.jpg','img/g/fr4.jpg']},
-    {id:'rideshare', title:'RideShare', k:'Distributed systems · 2020', tag:'Fault-tolerant database-as-a-service on AWS for a ride app.', cat:'Distributed systems', year:'2020', cover:'img/c-rideshare.jpg', tint:'#5aa9ff',
+    {id:'rideshare', title:'RideShare', k:'Distributed systems · 2020', tag:'Fault-tolerant database-as-a-service on AWS for a ride app.', cat:'Distributed systems', year:'2020', group:'earlier', cover:'img/c-rideshare.jpg', tint:'#5aa9ff',
       sum:'A ride-sharing service backed by a fault-tolerant, highly available database-as-a-service on AWS. Users and rides run as their own services behind a load balancer; every database operation goes through an orchestrator.',
       hl:['Three EC2 instances: users, rides and orchestrator, each running Docker containers.','Orchestrator runs RabbitMQ, Zookeeper, a master and slaves; reads and writes go through separate queues for eventual consistency.','Zookeeper watches the master and promotes a slave on failure; slaves scale with request volume.'],
       stack:['Python','Flask','Docker','RabbitMQ','Zookeeper','AWS EC2'],
       links:[],
       arch:{nodes:[{id:'lb',label:'Load balancer',c:0,r:0.5},{id:'u',label:'Users service',c:1,r:0},{id:'r',label:'Rides service',c:1,r:1},{id:'o',label:'Orchestrator',sub:'RabbitMQ · Zookeeper',c:2,r:0.5,hi:1},{id:'m',label:'Master DB',c:3,r:0},{id:'s',label:'Slaves',sub:'scale out',c:3,r:1}],edges:[['lb','u'],['lb','r'],['u','o'],['r','o'],['o','m','writes'],['o','s','reads']]},
       gallery:[]},
-    {id:'hand', title:'Handwriting Recognition', k:'Android · 2022', tag:'Digit recognition split across worker phones.', cat:'Android', year:'2022', cover:'img/c-hand.jpg', tint:'#6fd3ff',
+    {id:'hand', title:'Handwriting Recognition', k:'Android · 2022', tag:'Digit recognition split across worker phones.', cat:'Android', year:'2022', group:'earlier', cover:'img/c-hand.jpg', tint:'#6fd3ff',
       sum:'A mobile app that improves handwritten-digit recognition throughput by splitting each captured image into four parts and sending them to worker phones for parallel classification.',
       hl:['Distributed computing across phones over the local network.','About 30% better processing efficiency than classifying on one device.'],
       stack:['Kotlin','Android','TensorFlow Lite'],
       links:[],
       arch:{nodes:[{id:'cam',label:'Capture',sub:'split into 4',c:0,r:0.5},{id:'w1',label:'Worker phone',c:1,r:0},{id:'w2',label:'Worker phone',c:1,r:1},{id:'agg',label:'Aggregate',sub:'result',c:2,r:0.5,hi:1}],edges:[['cam','w1'],['cam','w2'],['w1','agg'],['w2','agg']]},
       gallery:['img/g/mc.jpg','img/g/hand.jpg']},
-    {id:'zoom', title:'Zoom Telehealth', k:'iOS + Android TV · 2022', tag:'Doctor-driven telehealth on the Zoom Meeting SDK.', cat:'iOS + Android TV', year:'2022', cover:'img/c-zoom.jpg', tint:'#5aa9ff',
+    {id:'zoom', title:'Zoom Telehealth', k:'iOS + Android TV · 2022', tag:'Doctor-driven telehealth on the Zoom Meeting SDK.', cat:'iOS + Android TV', year:'2022', group:'earlier', cover:'img/c-zoom.jpg', tint:'#5aa9ff',
       sum:'A practical telehealth flow built on the Zoom Meeting SDK and Firebase for ASU’s Luminosity Lab and Phoenix Children’s Hospital: a doctor starts a meeting and remotely drives the patient’s Android TV.',
       hl:['Doctor app on iOS; patient side on Android TV with remote control from the doctor’s end.','Firebase for signalling and session state.','Saves roughly 15 minutes per visit compared with the manual flow.'],
       stack:['Swift','Zoom Meeting SDK','Firebase','Android TV'],
       links:[],
       arch:{nodes:[{id:'doc',label:'Doctor app',sub:'iOS',c:0,r:0.5},{id:'fb',label:'Firebase',sub:'signalling',c:1,r:0,hi:1},{id:'zm',label:'Zoom Meeting SDK',c:1,r:1,hi:1},{id:'tv',label:'Patient',sub:'Android TV',c:2,r:0.5}],edges:[['doc','fb'],['doc','zm'],['fb','tv'],['zm','tv']]},
       gallery:['img/g/zoom1.jpg','img/g/zoom2.jpg','img/g/zoom3.jpg']},
-    {id:'paas', title:'PaaS Face Recognition', k:'Cloud · 2022', tag:'Live face recognition with Lambda, SQS and a Raspberry Pi.', cat:'Cloud', year:'2022', cover:'img/c-paas.jpg', tint:'#3fd1c9',
+    {id:'paas', title:'PaaS Face Recognition', k:'Cloud · 2022', tag:'Live face recognition with Lambda, SQS and a Raspberry Pi.', cat:'Cloud', year:'2022', group:'earlier', cover:'img/c-paas.jpg', tint:'#3fd1c9',
       sum:'Real-time face recognition on live video from a Raspberry Pi using AWS platform services. Frames flow through SQS to Lambda, which recognises the person and looks up their academic record in DynamoDB.',
       hl:['93% recognition accuracy on the live stream.','Raspberry Pi records and streams; Lambda functions run the model; DynamoDB stores and serves records.'],
       stack:['AWS Lambda','SQS','S3','DynamoDB','Raspberry Pi','Python'],
       links:[],
       arch:{nodes:[{id:'pi',label:'Raspberry Pi',sub:'live video',c:0,r:0.5},{id:'sqs',label:'SQS',c:1,r:0.5},{id:'lam',label:'Lambda',sub:'recognition',c:2,r:0.5,hi:1},{id:'ddb',label:'DynamoDB',sub:'records',c:3,r:0},{id:'s3',label:'S3',c:3,r:1}],edges:[['pi','sqs'],['sqs','lam'],['lam','ddb'],['lam','s3']]},
       gallery:['img/g/paas.jpg']},
-    {id:'iaas', title:'IaaS Face Recognition', k:'Cloud · 2022', tag:'Elastic face recognition on autoscaled EC2.', cat:'Cloud', year:'2022', cover:'img/c-iaas.jpg', tint:'#3fd1c9',
+    {id:'iaas', title:'IaaS Face Recognition', k:'Cloud · 2022', tag:'Elastic face recognition on autoscaled EC2.', cat:'Cloud', year:'2022', group:'earlier', cover:'img/c-iaas.jpg', tint:'#3fd1c9',
       sum:'A cost-effective, fault-tolerant, elastic face-recognition service on raw AWS infrastructure. A web tier takes images, an app tier runs the deep-learning model, and the app tier scales in and out with the queue.',
       hl:['Handles up to 100 concurrent requests by scaling EC2 app-tier instances on queue depth.','SQS between tiers; S3 for inputs and outputs.'],
       stack:['AWS EC2','SQS','S3','Python','Deep learning'],
@@ -523,9 +522,16 @@ footer{position:relative;z-index:2;margin-left:var(--side);text-align:center;fon
   }
   var grid = document.getElementById('grid');
   PROJECTS.forEach(function(p, i){
-    var t = document.createElement('div'); t.className = 'tile' + (i === 0 ? ' feat' : ''); t.dataset.i = i; t.setAttribute('role', 'link'); t.tabIndex = 0;
-    t.innerHTML = '<img class="cv" src="' + (i === 0 && p.coverFeat ? p.coverFeat : p.cover) + '" alt="" loading="lazy"><div class="tb"><h4>' + esc(p.title) + '<span>' + esc(p.year) + '</span></h4><p>' + esc(p.tag) + '</p><div class="meta"><b>' + esc(p.cat) + '</b> · Open →</div></div>';
+    var t = document.createElement('div'); t.className = 'tile'; t.dataset.i = i; t.dataset.g = p.group; t.setAttribute('role', 'link'); t.tabIndex = 0;
+    t.innerHTML = '<img class="cv" src="' + p.cover + '" alt="" loading="lazy"><div class="tb"><h4>' + esc(p.title) + '<span>' + esc(p.year) + '</span></h4><p>' + esc(p.tag) + '</p><div class="meta"><b>' + esc(p.cat) + '</b> · Open →</div></div>';
     grid.appendChild(t);
+  });
+  var tabs = document.getElementById('tabs');
+  tabs.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    tabs.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x === b); });
+    Array.prototype.forEach.call(grid.children, function(t){ t.hidden = b.dataset.g !== 'all' && t.dataset.g !== b.dataset.g; });
+    measure();
   });
   function detailHTML(p){
     var gal = p.gallery.map(function(g){ return '<img src="' + g + '" alt="' + esc(p.title) + ' screenshot" loading="lazy">'; }).join('');
