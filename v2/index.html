@@ -70,14 +70,15 @@ html.nogl #warp{display:none}
 .slide{position:absolute;left:0;top:0;width:960px;transition:opacity .6s}
 #stage.zoomed .slide:not(.active){opacity:.45}
 #stage.overview .slide{cursor:pointer}
-.slide .body{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:clamp(22px,3vw,40px);overflow-y:auto;overscroll-behavior:contain;
+.slide .body{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:clamp(22px,3vw,40px);overflow:visible;
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 30px 80px rgba(0,0,0,.5)}
 .slide.hero .body{background:transparent;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:24px;display:flex;flex-direction:column;justify-content:center}
-.section-title{margin:0 0 22px}
+.section-title{margin:0 0 18px}
 .section-title h2{font-family:var(--title);font-size:30px;font-weight:700;padding-bottom:14px;position:relative}
 .section-title h2::after{content:"";position:absolute;left:0;bottom:0;width:50px;height:3px;background:var(--cyan)}
 .section-title p{color:var(--muted);margin:14px 0 0;max-width:70ch}
 
+#stage.mobile .slide .body{overflow-y:auto;overscroll-behavior:contain}
 /* hud */
 .hud{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:21;display:flex;align-items:center;gap:6px;background:rgba(2,4,12,.85);border:1px solid var(--line);border-radius:999px;padding:6px 8px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .hud button{width:36px;height:36px;border-radius:50%;border:0;background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center}
@@ -121,33 +122,34 @@ html.nogl #warp{display:none}
 .resume-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:36px}
 @media (max-width:900px){.resume-grid{grid-template-columns:1fr}}
 .resume-grid>div{min-width:0}
-.resume h3{font-family:var(--title);font-size:22px;font-weight:700;margin:0 0 18px}
-.item{position:relative;padding:0 0 26px 22px;border-left:2px solid var(--line)}
+.resume h3{font-family:var(--title);font-size:20px;font-weight:700;margin:0 0 12px}
+.item{position:relative;padding:0 0 18px 22px;border-left:2px solid var(--line)}
 .item::before{content:"";position:absolute;left:-8px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan)}
 .item h4{font-size:18px;font-weight:600;color:#fff}
 .item h5{font-family:var(--display);font-size:13px;font-weight:600;color:var(--cyan);background:rgba(111,211,255,.1);display:inline-block;padding:4px 12px;border-radius:4px;margin:8px 0}
 .item .org{margin:0 0 10px;color:var(--muted);font-size:15px}
 .item p{margin:0 0 6px;color:var(--muted);font-size:15px}
-.item ul{margin:0;padding-left:18px;color:var(--fg);font-size:15.5px;line-height:1.75;display:grid;gap:10px}
+.item ul{margin:0;padding-left:18px;color:var(--fg);font-size:15px;line-height:1.6;display:grid;gap:7px}
 .item ul li::marker{color:var(--cyan)}
 .item.small h4{font-size:15.5px}
-.item.small{padding-bottom:18px}
+.item.small{padding-bottom:12px}
+.item.small h5{margin:4px 0}
+.item.small p{font-size:14px}
 
 /* portfolio */
 .filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 22px;padding:0;list-style:none}
 .filters button{font-family:var(--display);font-weight:600;font-size:13px;color:var(--muted);background:transparent;border:1px solid transparent;padding:7px 16px;border-radius:999px;cursor:pointer;text-transform:uppercase;letter-spacing:.04em}
 .filters button:hover{color:#fff}
 .filters button.active{color:#03060f;background:var(--cyan)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 @media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:560px){.grid{grid-template-columns:1fr}}
 .tile{position:relative;border-radius:8px;overflow:hidden;background:rgba(120,160,230,.05);border:1px solid var(--line);min-width:0;display:flex;flex-direction:column}
 .tile[hidden]{display:none}
-.tile img{width:100%;aspect-ratio:1;object-fit:cover;display:block;transition:transform .6s}
+.tile img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;transition:transform .6s}
 .tile:hover img{transform:scale(1.05)}
-.tile .cap{padding:14px 16px 16px;display:grid;gap:4px;flex:1}
-.tile .cap h4{font-size:16px;font-weight:600;color:#fff}
-.tile .cap p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5}
+.tile .cap{padding:12px 14px 14px;display:grid;gap:3px;flex:1;align-content:start}
+.tile .cap h4{font-size:15px;font-weight:600;color:#fff}
+.tile .cap p{margin:0;font-size:13px;color:var(--muted);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .tile .cap .k{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan)}
 .tile .cap a{font-family:var(--display);font-size:13px;font-weight:600;color:var(--cyan);margin-top:6px}
 
@@ -251,7 +253,7 @@ html.nogl #warp{display:none}
       </div>
     </section>
 
-    <section class="slide resume" id="resume" data-tint="#7d8cff" data-shape="ico">
+    <section class="slide resume" id="resume" data-w="1180" data-tint="#7d8cff" data-shape="ico">
       <div class="body">
         <div class="section-title"><h2>Resume</h2></div>
         <div class="resume-grid">
@@ -262,8 +264,7 @@ html.nogl #warp{display:none}
               <h5>Feb 2026 – Present</h5>
               <p class="org">Hewlett Packard Enterprise · Storage AI team · San Francisco Bay Area</p>
               <ul>
-                <li>Built the MCP tool server that storage experts use inside Copilot and every team agent runs on: 6,300+ tool calls a week across HPE Storage.</li>
-                <li>Led the P0 response when an agent posted to Bugzilla without consent, and shipped a human-approval gate on every write.</li>
+                <li>Built the MCP tool server that storage experts use inside Copilot and every team agent runs on: 6,300+ tool calls a week across HPE Storage. Led the P0 response to an unsafe agent write and shipped a human-approval gate.</li>
                 <li>Own the agent observability platform: one pane for each agent's steps, failures and accuracy against expert feedback. Idea to three deployments in four weeks.</li>
                 <li>Turned six years of debugging history into a retrieval knowledge base: 13,005 bugs mined, 5,600 grounded analyses in nine days.</li>
                 <li>Took an alert-investigation agent to production and led self-learning agent experiments, including an honest zero-lift result after catching data leakage.</li>
@@ -312,31 +313,40 @@ html.nogl #warp{display:none}
       </div>
     </section>
 
-    <section class="slide" id="portfolio" data-tint="#ffb454" data-shape="knot">
+    <section class="slide" id="portfolio" data-w="1180" data-nav="#portfolio" data-tint="#ffb454" data-shape="knot">
       <div class="body">
-        <div class="section-title"><h2>Portfolio</h2><p>Personal projects, most of them built since mid-2025. Work at HPE is covered in the resume.</p></div>
-        <ul class="filters" id="filters">
-          <li><button type="button" class="active" data-f="all">All</button></li>
-          <li><button type="button" data-f="ai">AI &amp; agents</button></li>
-          <li><button type="button" data-f="apps">Apps</button></li>
-          <li><button type="button" data-f="research">Research</button></li>
-          <li><button type="button" data-f="earlier">Earlier</button></li>
-        </ul>
-        <div class="grid" id="grid">
-          <div class="tile" data-cat="apps"><img src="img/zzz.jpg" alt="Zzz app" loading="lazy"><div class="cap"><span class="k">iOS + Android · 2026</span><h4>Zzz</h4><p>Gamified goal tracker: weekly and monthly quests across health, hobbies, relationships and career, with points you redeem on rewards you set yourself. SwiftUI on iOS, Kotlin on Android, released on Google Play.</p><a href="https://play.google.com/store/apps/details?id=com.rahulkoushik.zzz" target="_blank" rel="noopener">Google Play</a></div></div>
+        <div class="section-title"><h2>Portfolio · AI &amp; agents</h2><p>Personal projects built since mid-2025. Work at HPE is covered in the resume.</p></div>
+        <div class="grid">
           <div class="tile" data-cat="ai"><img src="img/zuo.jpg" alt="Zuo" loading="lazy"><div class="cap"><span class="k">AI harness · 2026</span><h4>Zuo</h4><p>Personal AI harness: a local multi-provider job queue with budgets and a project board, voice capture, an iOS client and a Windows vLLM box. Earlier iterations include a Telegram chief-of-staff agent on LangGraph and a containerized multi-agent app builder.</p></div></div>
-          <div class="tile" data-cat="research"><img src="img/catan.jpg" alt="Catan Arena" loading="lazy"><div class="cap"><span class="k">Self-learning agents · 2026</span><h4>Catan Arena</h4><p>One learning agent plays full Catan against three frozen copies of itself. Learning only counts when the rolling win rate's 95% confidence interval clears the 25% null.</p></div></div>
-          <div class="tile" data-cat="apps"><img src="img/aitutor.jpg" alt="AI Tutor" loading="lazy"><div class="cap"><span class="k">Learning app · 2026</span><h4>AI Tutor</h4><p>Duolingo meets Instagram for learning AI engineering: an unlockable path of lessons and quizzes plus a swipeable feed built from Reddit, Hacker News, arXiv and YouTube.</p></div></div>
           <div class="tile" data-cat="ai"><img src="img/musaic.jpg" alt="musaic" loading="lazy"><div class="cap"><span class="k">Generative media · 2026</span><h4>musaic</h4><p>Automated lo-fi music channel: generates the music, thumbnails, backgrounds and metadata, encodes in HD and uploads to YouTube on a schedule.</p><a href="https://github.com/Fluff18/musaic" target="_blank" rel="noopener">GitHub</a></div></div>
           <div class="tile" data-cat="ai"><img src="img/aethon.jpg" alt="AETHON" loading="lazy"><div class="cap"><span class="k">Edge AI · 2026</span><h4>AETHON</h4><p>Edge intelligence demo for drones: a local vision-language model fused with telemetry to flag anomalies and people, with a lightweight fallback when resources run out.</p></div></div>
-          <div class="tile" data-cat="research"><img src="img/drone.jpg" alt="Drone inspection simulator" loading="lazy"><div class="cap"><span class="k">Robotics · 2026</span><h4>Drone Inspection Sim</h4><p>Autonomous infrastructure-inspection drone in pure simulation: PX4 SITL and Gazebo, a custom depot-yard world, and an AI agent capped to Raspberry Pi 5 resources.</p></div></div>
-          <div class="tile" data-cat="research"><img src="img/nfl.jpg" alt="NFL TacticAI" loading="lazy"><div class="cap"><span class="k">Geometric deep learning · 2026</span><h4>NFL TacticAI</h4><p>TacticAI-style graph attention network on NFL Big Data Bowl tracking data: predicts the receiver and the outcome at the moment the quarterback releases the ball.</p></div></div>
           <div class="tile" data-cat="ai"><img src="img/resumecoach.jpg" alt="Resume Coach" loading="lazy"><div class="cap"><span class="k">Career tools · 2026</span><h4>Resume Coach</h4><p>AI resume review from three perspectives (ATS, recruiter, hiring manager) with job-targeted scoring, a resume studio and an application tracker.</p><a href="https://github.com/Fluff18/ProjectX" target="_blank" rel="noopener">GitHub</a></div></div>
-          <div class="tile" data-cat="apps"><img src="img/nivaas.jpg" alt="Nivaas" loading="lazy"><div class="cap"><span class="k">Web app · 2026</span><h4>Nivaas</h4><p>Mobile-first app for small builders in India to manage and sell apartment projects. Built for low-literacy users with photos, icons and numbers, in four languages.</p></div></div>
           <div class="tile" data-cat="ai"><img src="img/apifix.jpg" alt="apifix" loading="lazy"><div class="cap"><span class="k">Developer tools · 2026</span><h4>apifix</h4><p>Dependabot for API breaking changes: detects the break and auto-ships migration pull requests to the API's consumers.</p></div></div>
           <div class="tile" data-cat="ai"><img src="img/factoryops.jpg" alt="FactoryOps" loading="lazy"><div class="cap"><span class="k">Industrial AI · 2026</span><h4>FactoryOps</h4><p>Factory sensor-data investigation: converts raw HDF5 telemetry into dashboards and runs an LLM-driven investigation endpoint on top.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="portfolio-apps" data-w="1180" data-nav="#portfolio" data-tint="#ff7a9a" data-shape="ico">
+      <div class="body">
+        <div class="section-title"><h2>Portfolio · Apps &amp; research</h2><p>Shipped apps and research experiments.</p></div>
+        <div class="grid">
+          <div class="tile" data-cat="apps"><img src="img/zzz.jpg" alt="Zzz app" loading="lazy"><div class="cap"><span class="k">iOS + Android · 2026</span><h4>Zzz</h4><p>Gamified goal tracker: weekly and monthly quests across health, hobbies, relationships and career, with points you redeem on rewards you set yourself. SwiftUI on iOS, Kotlin on Android, released on Google Play.</p><a href="https://play.google.com/store/apps/details?id=com.rahulkoushik.zzz" target="_blank" rel="noopener">Google Play</a></div></div>
+          <div class="tile" data-cat="research"><img src="img/catan.jpg" alt="Catan Arena" loading="lazy"><div class="cap"><span class="k">Self-learning agents · 2026</span><h4>Catan Arena</h4><p>One learning agent plays full Catan against three frozen copies of itself. Learning only counts when the rolling win rate's 95% confidence interval clears the 25% null.</p></div></div>
+          <div class="tile" data-cat="apps"><img src="img/aitutor.jpg" alt="AI Tutor" loading="lazy"><div class="cap"><span class="k">Learning app · 2026</span><h4>AI Tutor</h4><p>Duolingo meets Instagram for learning AI engineering: an unlockable path of lessons and quizzes plus a swipeable feed built from Reddit, Hacker News, arXiv and YouTube.</p></div></div>
+          <div class="tile" data-cat="research"><img src="img/drone.jpg" alt="Drone inspection simulator" loading="lazy"><div class="cap"><span class="k">Robotics · 2026</span><h4>Drone Inspection Sim</h4><p>Autonomous infrastructure-inspection drone in pure simulation: PX4 SITL and Gazebo, a custom depot-yard world, and an AI agent capped to Raspberry Pi 5 resources.</p></div></div>
+          <div class="tile" data-cat="research"><img src="img/nfl.jpg" alt="NFL TacticAI" loading="lazy"><div class="cap"><span class="k">Geometric deep learning · 2026</span><h4>NFL TacticAI</h4><p>TacticAI-style graph attention network on NFL Big Data Bowl tracking data: predicts the receiver and the outcome at the moment the quarterback releases the ball.</p></div></div>
+          <div class="tile" data-cat="apps"><img src="img/nivaas.jpg" alt="Nivaas" loading="lazy"><div class="cap"><span class="k">Web app · 2026</span><h4>Nivaas</h4><p>Mobile-first app for small builders in India to manage and sell apartment projects. Built for low-literacy users with photos, icons and numbers, in four languages.</p></div></div>
           <div class="tile" data-cat="research"><img src="img/quantum.jpg" alt="Quantum Slot Machine" loading="lazy"><div class="cap"><span class="k">Quantum · 2025</span><h4>Quantum Slot Machine</h4><p>Slot machine whose randomness comes from measuring real qubits on IBM Quantum hardware, with a Qiskit simulator fallback.</p><a href="https://github.com/Fluff18/QuantumSlot" target="_blank" rel="noopener">GitHub</a></div></div>
-          <div class="tile" data-cat="earlier"><img src="img/p1.jpg" alt="Fetch Recipes app" loading="lazy"><div class="cap"><span class="k">iOS · 2023</span><h4>Fetch Recipes</h4><p>iOS recipe app.</p><a href="../FetchRecipes-details.html">More details</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="portfolio-earlier" data-w="1180" data-nav="#portfolio" data-tint="#6fd3ff" data-shape="grid">
+      <div class="body">
+        <div class="section-title"><h2>Portfolio · Earlier</h2><p>Student and early-career projects, 2021 – 2023.</p></div>
+        <div class="grid">
+          <div class="tile" data-cat="earlier"><img src="img/p1.jpg" alt="Fetch Recipes app" loading="lazy"><div class="cap"><span class="k">iOS · 2023</span><h4>Fetch Recipes</h4><p>iOS recipe app built against a live API.</p><a href="../FetchRecipes-details.html">More details</a></div></div>
           <div class="tile" data-cat="earlier"><img src="img/p2.jpg" alt="RideShare app" loading="lazy"><div class="cap"><span class="k">Full stack · 2022</span><h4>RideShare App</h4><p>Full-stack ride sharing.</p><a href="../Uber-details.html">More details</a></div></div>
           <div class="tile" data-cat="earlier"><img src="img/p3.jpg" alt="Handwriting recognition Android app" loading="lazy"><div class="cap"><span class="k">Android · 2022</span><h4>Handwriting Recognition</h4><p>Android app.</p><a href="../AndroidApp-details.html">More details</a></div></div>
           <div class="tile" data-cat="earlier"><img src="img/p4.jpg" alt="Zoom telehealth solution" loading="lazy"><div class="cap"><span class="k">iOS · 2022</span><h4>Zoom Telehealth</h4><p>Zoom SDK + Firebase.</p><a href="../Zoom-details.html">More details</a></div></div>
@@ -365,7 +375,7 @@ html.nogl #warp{display:none}
 
 <div class="hud" role="toolbar" aria-label="Navigation">
   <button type="button" id="prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></button>
-  <span class="count" id="count">1 / 6</span>
+  <span class="count" id="count">1 / 8</span>
   <button type="button" id="next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></button>
   <button type="button" id="ov" aria-label="Overview" title="Overview (O)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
 </div>
@@ -378,7 +388,7 @@ html.nogl #warp{display:none}
   var stage = document.getElementById('stage'), canvas2d = document.getElementById('canvas');
   var slides = Array.prototype.slice.call(canvas2d.querySelectorAll('.slide'));
   var N = slides.length, SEG = 42;
-  var POS = [ {x:0,y:0,r:0}, {x:1400,y:380,r:-2.5}, {x:2750,y:-220,r:2}, {x:4100,y:420,r:-1.5}, {x:5500,y:-180,r:2.5}, {x:6800,y:300,r:0} ];
+  var POS = [ {x:0,y:0,r:0}, {x:1500,y:380,r:-2.5}, {x:2950,y:-220,r:2}, {x:4500,y:420,r:-1.5}, {x:6100,y:-200,r:2.5}, {x:7600,y:360,r:-2}, {x:9100,y:-160,r:1.5}, {x:10500,y:300,r:0} ];
 
   /* ---------- sidebar, typed text, filters ---------- */
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('#navmenu a'));
@@ -397,13 +407,6 @@ html.nogl #warp{display:none}
   }
   if (reduce) typed.textContent = items[0]; else type();
 
-  var filters = document.getElementById('filters'), tiles = Array.prototype.slice.call(document.querySelectorAll('#grid .tile'));
-  filters.addEventListener('click', function(e){
-    var b = e.target.closest('button'); if (!b) return;
-    filters.querySelectorAll('button').forEach(function(x){ x.classList.toggle('active', x === b); });
-    tiles.forEach(function(t){ t.hidden = b.dataset.f !== 'all' && t.dataset.cat !== b.dataset.f; });
-  });
-
   /* ---------- camera ---------- */
   var active = 0, overview = false, locked = false, anim = null;
   var cur = {x:0, y:0, s:1, r:0};
@@ -412,21 +415,22 @@ html.nogl #warp{display:none}
     stageW = stage.clientWidth; stageH = stage.clientHeight;
     mobile = stageW < 760;
     W = mobile ? stageW - 24 : 960;
+    stage.classList.toggle('mobile', mobile);
     slides.forEach(function(s, i){
       var p = POS[i], r = mobile ? 0 : p.r;
-      s.style.width = W + 'px';
+      s.style.width = (mobile ? W : (+s.dataset.w || W)) + 'px';
       s.style.transform = 'translate(' + p.x + 'px,' + p.y + 'px) rotate(' + r + 'deg) translate(-50%,-50%)';
-      var sc = fitScale(i);
-      var b = s.querySelector('.body'); b.style.maxHeight = ((stageH - (mobile ? 56 : 96)) / sc) + 'px';
-      if (s.classList.contains('hero')) b.style.minHeight = ((stageH - (mobile ? 56 : 96)) / sc) + 'px';
+      var b = s.querySelector('.body');
+      b.style.maxHeight = mobile ? (stageH - 56) + 'px' : '';
+      b.style.minHeight = s.classList.contains('hero') ? (mobile ? (stageH - 56) : Math.min(stageH - 96, 640)) + 'px' : '';
     });
     applyCamera(overview ? overviewCam() : slideCam(active));
   }
-  function fitScale(i){ return Math.min(1, (stageW - (mobile ? 0 : 72)) / W); }
+  function fitScale(i){ var h = slides[i].offsetHeight || 1, w = slides[i].offsetWidth || W; return mobile ? 1 : Math.min(1, (stageW - 72) / w, (stageH - 72) / h); }
   function slideCam(i){ var p = POS[i]; return {x:p.x, y:p.y, s:fitScale(i), r:mobile ? 0 : p.r}; }
   function overviewCam(){
     var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
-    slides.forEach(function(s, i){ var h = s.offsetHeight, p = POS[i]; minX = Math.min(minX, p.x - W/2); maxX = Math.max(maxX, p.x + W/2); minY = Math.min(minY, p.y - h/2); maxY = Math.max(maxY, p.y + h/2); });
+    slides.forEach(function(s, i){ var h = s.offsetHeight, w = s.offsetWidth, p = POS[i]; minX = Math.min(minX, p.x - w/2); maxX = Math.max(maxX, p.x + w/2); minY = Math.min(minY, p.y - h/2); maxY = Math.max(maxY, p.y + h/2); });
     var sc = Math.min(stageW / (maxX - minX), stageH / (maxY - minY)) * 0.9;
     return {x:(minX + maxX) / 2, y:(minY + maxY) / 2, s:sc, r:0};
   }
@@ -447,7 +451,7 @@ html.nogl #warp{display:none}
   function setActive(i){
     active = i;
     slides.forEach(function(s, k){ s.classList.toggle('active', k === i); });
-    navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + slides[i].id); });
+    var navId = slides[i].dataset.nav || ('#' + slides[i].id); navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === navId); });
     countEl.textContent = (i + 1) + ' / ' + N;
     try { history.replaceState(null, '', '#' + slides[i].id); } catch(e){}
   }
