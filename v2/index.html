@@ -13,10 +13,10 @@
 /* Layout: main slides parked on one large canvas plus a row of project-detail slides beneath the portfolio; the camera zooms out and flies to the chosen slide (Prezi-style) over a fixed WebGL warp. */
 :root{
   --bg:#02040c; --side-bg:rgba(1,2,8,.94);
-  --panel-a:rgba(16,22,44,.92); --panel-b:rgba(6,9,22,.94); --panel-edge:rgba(255,255,255,.09);
-  --line:rgba(140,170,230,.14); --chip:rgba(140,170,230,.1);
-  --fg:#f1f4fa; --muted:#b9c3d9; --dim:#7c88a6;
-  --accent:#3d7bff; --cyan:#6fd3ff; --warm:#ffb454;
+  --panel:rgba(9,12,24,.9); --panel-edge:rgba(255,255,255,.08);
+  --line:rgba(255,255,255,.08); --chip:rgba(255,255,255,.04);
+  --fg:#eef1f8; --muted:#a9b2c7; --dim:#6b7488;
+  --accent:#4f8cff; --cyan:#7fb4ff; --warm:#ffb454;
   --display:'Poppins',ui-sans-serif,system-ui,sans-serif;
   --title:'Raleway',ui-sans-serif,system-ui,sans-serif;
   --body:'Open Sans',ui-sans-serif,system-ui,sans-serif;
@@ -25,21 +25,21 @@
 }
 :root[data-theme="turquoise"]{
   --bg:#020d0e; --side-bg:rgba(1,6,7,.94);
-  --panel-a:rgba(8,34,38,.92); --panel-b:rgba(3,12,14,.94); --panel-edge:rgba(255,255,255,.09);
-  --line:rgba(80,220,205,.16); --chip:rgba(80,220,205,.1);
-  --fg:#eefbf9; --muted:#b6d9d4; --dim:#6f9b96;
-  --accent:#14b8a6; --cyan:#40e0d0; --warm:#ffcf6b;
+  --panel:rgba(5,16,18,.9); --panel-edge:rgba(255,255,255,.08);
+  --line:rgba(255,255,255,.08); --chip:rgba(255,255,255,.04);
+  --fg:#edf7f6; --muted:#a7c4c0; --dim:#678883;
+  --accent:#2dd4bf; --cyan:#5eead4; --warm:#ffcf6b;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.7;overflow:hidden;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.65;overflow:hidden;-webkit-font-smoothing:antialiased}
 html.nogl body{background:radial-gradient(ellipse at 50% 20%,#0a1533 0%,#050b1f 40%,#02040c 100%)}
 html.nogl[data-theme="turquoise"] body{background:radial-gradient(ellipse at 50% 20%,#0b3a3a 0%,#052020 40%,#020d0e 100%)}
 a{color:var(--cyan);text-decoration:none}
 a:hover{text-decoration:underline}
 :focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:2px}
 img{max-width:100%}
-h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.2}
+h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.2;letter-spacing:-.01em}
 
 #warp{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
 html.nogl #warp{display:none}
@@ -49,24 +49,25 @@ html.nogl #warp{display:none}
 #sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--side);z-index:20;padding:calc(30px + env(safe-area-inset-top,0px)) 24px calc(20px + env(safe-area-inset-bottom,0px));
   background:var(--side-bg);border-right:1px solid rgba(255,255,255,.06);
   display:flex;flex-direction:column;align-items:center;overflow-y:auto;transition:transform .4s ease}
-.profile img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:6px solid rgba(255,255,255,.08);display:block;margin:0 auto}
-.profile h1{font-size:24px;font-weight:600;margin:14px 0 0;text-align:center}
+.profile img{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.1);display:block;margin:0 auto}
+.profile h1{font-size:19px;font-weight:600;margin:14px 0 0;text-align:center}
 .profile h1 a{color:#fff}
 .profile h1 a:hover{text-decoration:none}
 .social{display:flex;justify-content:center;gap:8px;margin:14px 0 0;padding:0;list-style:none}
-.social a{display:flex;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.08);align-items:center;justify-content:center;color:#fff}
+.social a{display:flex;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.06);align-items:center;justify-content:center;color:var(--muted)}
 .social a:hover{background:var(--accent);text-decoration:none}
-.social svg{width:18px;height:18px;fill:currentColor}
+.social svg{width:15px;height:15px;fill:currentColor}
 .navmenu{width:100%;margin:30px 0 0;padding:0;list-style:none;display:grid;gap:4px}
-.navmenu a{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:6px;color:var(--muted);font-family:var(--display);font-weight:500;font-size:15px}
+.navmenu a{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;color:var(--muted);font-family:var(--display);font-weight:500;font-size:14px}
 .navmenu a:hover,.navmenu a.active{color:#fff;background:rgba(255,255,255,.06);text-decoration:none}
-.navmenu a.active{color:var(--cyan)}
-.navmenu svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
-.side-foot{margin-top:auto;padding-top:24px;font-size:12px;color:var(--dim);text-align:center;line-height:1.6;display:grid;gap:10px;justify-items:center}
+.navmenu a.active{color:#fff}
+.navmenu svg{width:16px;height:16px;opacity:.7;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.side-foot{margin-top:auto;padding-top:24px;font-size:11.5px;color:var(--dim);text-align:center;line-height:1.6;display:grid;gap:12px;justify-items:center}
 .side-foot kbd{font-family:var(--display);font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--muted)}
 .themes{display:flex;gap:8px;align-items:center}
 .themes span{font-family:var(--display);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
-.themes button{width:22px;height:22px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0}
+.themes button{width:18px;height:18px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;opacity:.7}
+.themes button.on{opacity:1}
 .themes button[data-t="blue"]{background:linear-gradient(135deg,#3d7bff,#0a1a4a)}
 .themes button[data-t="turquoise"]{background:linear-gradient(135deg,#40e0d0,#063a38)}
 .themes button.on{border-color:#fff}
@@ -84,111 +85,112 @@ html.nogl #warp{display:none}
 @media (max-width:1199px){#stage{left:0}}
 #canvas{position:absolute;left:0;top:0;width:0;height:0;transform-origin:0 0;will-change:transform}
 .slide{position:absolute;left:0;top:0;width:960px;transition:opacity .6s}
-#stage.zoomed .slide:not(.active){opacity:.4}
+#stage.zoomed .slide:not(.active){opacity:.3}
 #stage.overview .slide{cursor:pointer}
-.slide .body{background:linear-gradient(160deg,var(--panel-a),var(--panel-b));border:1px solid var(--panel-edge);border-top:3px solid var(--tint,var(--cyan));border-radius:12px;padding:clamp(22px,3vw,40px);overflow:visible;
-  box-shadow:0 40px 90px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.05)}
+.slide .body{background:var(--panel);border:1px solid var(--panel-edge);border-radius:14px;padding:clamp(24px,3vw,44px);overflow:visible;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 30px 80px rgba(0,0,0,.5)}
 #stage.mobile .slide .body{overflow-y:auto;overscroll-behavior:contain}
 .slide.hero .body{background:transparent;border:0;box-shadow:none;padding:24px;display:flex;flex-direction:column;justify-content:center}
-.section-title{margin:0 0 18px}
-.section-title h2{font-family:var(--title);font-size:30px;font-weight:700;padding-bottom:14px;position:relative}
-.section-title h2::after{content:"";position:absolute;left:0;bottom:0;width:50px;height:3px;background:var(--tint,var(--cyan))}
-.section-title p{color:var(--muted);margin:14px 0 0;max-width:70ch}
+.section-title{margin:0 0 22px}
+.section-title h2{font-size:26px;font-weight:600}
+.section-title p{color:var(--muted);margin:8px 0 0;max-width:70ch;font-size:15px}
 
 /* hud */
 .hud{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:21;display:flex;align-items:center;gap:6px;background:var(--side-bg);border:1px solid var(--line);border-radius:999px;padding:6px 8px}
-.hud button{height:36px;min-width:36px;border-radius:999px;border:0;background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--display);font-size:13px;font-weight:600;padding:0 8px}
+.hud button{height:32px;min-width:32px;border-radius:999px;border:0;background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--display);font-size:13px;font-weight:600;padding:0 8px}
 .hud button:hover{color:#fff;background:rgba(255,255,255,.08)}
-.hud button.on{color:var(--cyan)}
+.hud button.on{color:#fff}
 .hud button[hidden]{display:none}
-.hud svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hud svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .hud .count{font-family:var(--display);font-size:13px;color:var(--muted);padding:0 8px;font-variant-numeric:tabular-nums}
 
 /* hero */
 .hero h1{font-size:clamp(40px,6vw,64px);font-weight:700;text-shadow:0 2px 24px rgba(0,0,0,.8)}
 .hero .typed-line{font-size:clamp(20px,2.4vw,26px);color:var(--muted);margin:14px 0 0;text-shadow:0 2px 20px rgba(0,0,0,.8)}
-.hero .typed{color:var(--cyan);font-weight:600;border-right:2px solid var(--cyan);padding-right:3px;animation:caret 1s steps(1) infinite}
+.hero .typed{color:#fff;font-weight:600;border-right:2px solid var(--muted);padding-right:3px;animation:caret 1s steps(1) infinite}
 @keyframes caret{50%{border-color:transparent}}
-.hero .eyebrow{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin:0 0 10px}
+.hero .eyebrow{font-family:var(--display);font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--muted);margin:0 0 12px}
 .hero .cta{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0}
-.pill{display:inline-block;font-family:var(--display);font-weight:600;font-size:14px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:9px 18px;border-radius:999px;cursor:pointer}
+.pill{display:inline-block;font-family:var(--display);font-weight:500;font-size:14px;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.18);padding:9px 18px;border-radius:8px;cursor:pointer}
 .pill:hover{background:rgba(255,255,255,.16);text-decoration:none}
-.pill.solid{background:var(--cyan);color:#03060f;border-color:var(--cyan)}
-.hero .cue{margin:44px 0 0;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.pill.solid{background:var(--accent);color:#fff;border-color:var(--accent)}
+.hero .cue{margin:44px 0 0;font-size:12.5px;color:var(--dim)}
 
 /* about */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 @media (max-width:760px){.about-grid{grid-template-columns:1fr}}
 .about-grid>div{min-width:0}
-.about h3{font-size:22px;font-weight:600;color:var(--cyan)}
+.about h3{font-size:20px;font-weight:600;color:#fff}
 .about .role{color:var(--muted);margin:6px 0 16px;font-style:italic}
 .facts{list-style:none;padding:0;margin:0;display:grid;gap:10px}
 .facts li{display:flex;gap:10px;font-size:15px}
-.facts li::before{content:"›";color:var(--cyan);font-weight:700}
-.facts strong{color:#fff;font-weight:600;margin-right:6px}
+.facts li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--dim);margin-top:.65em;flex:0 0 auto}
+.facts strong{color:var(--muted);font-weight:600;margin-right:6px;min-width:84px}
 
 /* skills */
 .skills-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 @media (max-width:1000px){.skills-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.skills-grid{grid-template-columns:1fr}}
-.skill{padding:12px 14px;border:1px solid var(--line);border-radius:6px;font-family:var(--display);font-weight:600;font-size:14px;color:var(--fg);background:var(--chip);display:flex;align-items:center;gap:10px}
-.skill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);flex:0 0 auto}
+.skill{padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-family:var(--display);font-weight:500;font-size:14px;color:var(--fg);background:var(--chip)}
 
 /* resume */
 .resume-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:36px}
 @media (max-width:900px){.resume-grid{grid-template-columns:1fr}}
 .resume-grid>div{min-width:0}
-.resume h3{font-family:var(--title);font-size:20px;font-weight:700;margin:0 0 12px}
+.resume h3{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:0 0 14px}
 .item{position:relative;padding:0 0 18px 22px;border-left:2px solid var(--line)}
-.item::before{content:"";position:absolute;left:-8px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan)}
-.item h4{font-size:18px;font-weight:600;color:#fff}
-.item h5{font-family:var(--display);font-size:13px;font-weight:600;color:var(--cyan);background:var(--chip);display:inline-block;padding:4px 12px;border-radius:4px;margin:8px 0}
-.item .org{margin:0 0 10px;color:var(--muted);font-size:15px}
+.item::before{content:"";position:absolute;left:-5px;top:8px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.item h4{font-size:17px;font-weight:600;color:#fff}
+.item h5{font-family:var(--display);font-size:13px;font-weight:500;color:var(--dim);display:block;margin:4px 0 2px}
+.item .org{margin:0 0 10px;color:var(--muted);font-size:14px}
 .item p{margin:0 0 6px;color:var(--muted);font-size:15px}
-.item ul{margin:0;padding-left:18px;color:var(--fg);font-size:15px;line-height:1.6;display:grid;gap:7px}
-.item ul li::marker{color:var(--cyan)}
-.item.small h4{font-size:15.5px}
+.item ul{margin:0;padding-left:16px;color:var(--fg);font-size:14.5px;line-height:1.6;display:grid;gap:7px}
+.item ul li::marker{color:var(--dim)}
+.item.small h4{font-size:15px}
 .item.small{padding-bottom:12px}
 .item.small h5{margin:4px 0}
 .item.small p{font-size:14px}
 
 /* portfolio */
-.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-.tile{position:relative;border-radius:8px;overflow:hidden;background:var(--chip);border:1px solid var(--line);min-width:0;display:flex;flex-direction:column;cursor:pointer;transition:transform .3s,border-color .3s}
-.tile:hover{transform:translateY(-3px);border-color:var(--cyan)}
-.tile img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
-.tile .cap{padding:10px 12px 12px;display:grid;gap:2px}
-.tile .cap h4{font-size:14.5px;font-weight:600;color:#fff}
-.tile .cap .k{font-family:var(--display);font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan)}
-.tile .cap .more{font-size:12px;color:var(--dim);margin-top:2px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+.tile{position:relative;border-radius:12px;background:var(--chip);border:1px solid var(--line);min-width:0;display:flex;flex-direction:column;gap:6px;padding:18px 18px 16px;cursor:pointer;transition:border-color .25s,background .25s}
+.tile:hover{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.06)}
+.tile h4{font-size:15.5px;font-weight:600;color:#fff;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.tile h4 span{font-family:var(--body);font-size:12px;font-weight:400;color:var(--dim);flex:0 0 auto}
+.tile p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5;flex:1}
+.tile .meta{font-size:12px;color:var(--dim);margin-top:6px}
+.tile .meta b{color:var(--muted);font-weight:500}
+.tile.wide{grid-column:span 2}
+@media (max-width:560px){.tile.wide{grid-column:span 1}}
 
 /* detail */
 .detail .head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:0 0 16px}
-.detail .head h2{font-family:var(--title);font-size:30px;font-weight:700}
-.detail .k{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin:0 0 6px}
+.detail .head h2{font-size:28px;font-weight:600}
+.detail .k{font-family:var(--display);font-size:12.5px;font-weight:500;color:var(--dim);margin:0 0 6px}
 .detail .links{display:flex;gap:8px;flex-wrap:wrap}
-.detail .links a{display:inline-block;font-family:var(--display);font-weight:600;font-size:13px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:7px 14px;border-radius:999px}
-.detail .links a:hover{background:rgba(255,255,255,.16);text-decoration:none}
+.detail .links a{display:inline-block;font-family:var(--display);font-weight:500;font-size:13px;color:#fff;background:var(--accent);border:1px solid var(--accent);padding:7px 14px;border-radius:8px}
+.detail .links a:hover{filter:brightness(1.1);text-decoration:none}
 .detail .cols{display:grid;grid-template-columns:1.05fr 1fr;gap:28px}
 @media (max-width:900px){.detail .cols{grid-template-columns:1fr}}
 .detail .cols>div{min-width:0}
 .detail p.sum{margin:0 0 12px;color:var(--fg);font-size:15.5px}
-.detail h3{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px}
+.detail h3{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:16px 0 8px}
 .detail ul.hl{margin:0;padding-left:18px;color:var(--fg);font-size:14.5px;line-height:1.6;display:grid;gap:6px}
-.detail ul.hl li::marker{color:var(--cyan)}
+.detail ul.hl li::marker{color:var(--dim)}
 .detail .stack{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
-.detail .stack li{font-family:var(--display);font-size:12px;font-weight:600;color:var(--muted);background:var(--chip);border:1px solid var(--line);padding:4px 10px;border-radius:999px}
-.detail svg.arch{width:100%;height:auto;display:block;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:8px}
+.detail .stack li{font-family:var(--display);font-size:12px;font-weight:500;color:var(--muted);background:var(--chip);border:1px solid var(--line);padding:4px 10px;border-radius:6px}
+.detail svg.arch{width:100%;height:auto;display:block;background:rgba(0,0,0,.2);border:1px solid var(--line);border-radius:10px}
 .detail .arch .n rect{fill:var(--chip);stroke:var(--line);stroke-width:1.2}
-.detail .arch .n.hi rect{stroke:var(--cyan)}
+.detail .arch .n.hi rect{stroke:var(--accent)}
 .detail .arch .n text{fill:var(--fg);font-family:var(--display);font-size:11px;font-weight:600}
 .detail .arch .n text.s{fill:var(--dim);font-weight:400;font-size:9.5px}
-.detail .arch .e{stroke:var(--cyan);stroke-width:1.3;fill:none;opacity:.8}
+.detail .arch .e{stroke:rgba(255,255,255,.4);stroke-width:1.2;fill:none}
 .detail .arch .e.m{marker-end:url(#arr)}
 .detail .arch text.lab{fill:var(--dim);font-family:var(--body);font-size:9.5px}
 .detail .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0 0}
-.detail .gallery img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:6px;border:1px solid var(--line);display:block;cursor:zoom-in;background:#000}
+.detail .gallery img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:8px;border:1px solid var(--line);display:block;cursor:zoom-in;background:rgba(0,0,0,.3)}
 .detail .note{font-size:12.5px;color:var(--dim);margin:8px 0 0}
 
 /* lightbox */
@@ -199,7 +201,7 @@ html.nogl #warp{display:none}
 /* contact */
 .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
 .contact-grid>div{min-width:0;padding:18px;border:1px solid var(--line);border-radius:8px;background:var(--chip)}
-.contact-grid h4{font-size:14px;color:var(--cyan);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.contact-grid h4{font-size:12px;color:var(--dim);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 .contact-grid p{margin:6px 0 0;font-size:15px;overflow-wrap:anywhere}
 .contact-grid code{font-family:var(--display);font-size:16px;color:#fff}
 </style>
@@ -245,7 +247,7 @@ html.nogl #warp{display:none}
         <h1>Rahul M Koushik</h1>
         <p class="typed-line">I'm into <span class="typed" id="typed" data-items="building AI agents that ship|zero-to-one products|developer platforms|honest evaluation"></span></p>
         <div class="cta"><a class="pill solid" href="#resume">Resume</a><a class="pill" href="#portfolio">Portfolio</a><a class="pill" href="#contact">Contact</a></div>
-        <p class="cue">Scroll, swipe or press ↓ to travel</p>
+        <p class="cue">Scroll or press ↓ to continue</p>
       </div>
     </section>
 
@@ -345,7 +347,7 @@ html.nogl #warp{display:none}
 
     <section class="slide" id="portfolio" data-w="1180" data-tint="#ffb454" data-shape="knot">
       <div class="body">
-        <div class="section-title"><h2>Portfolio</h2><p>Personal projects. Click any one to drill into what it does, how it is built and what it looks like. Work at HPE is covered in the resume.</p></div>
+        <div class="section-title"><h2>Portfolio</h2><p>Personal projects. Open any of them for the full story, the architecture and screenshots. Work at HPE is in the resume.</p></div>
         <div class="grid" id="grid"></div>
       </div>
     </section>
@@ -384,91 +386,91 @@ html.nogl #warp{display:none}
   /* ---------- projects ---------- */
   /* arch: nodes {id,label,sub?,c (column),r (row),hi?}; edges [from,to,label?] */
   var PROJECTS = [
-    {id:'zzz', title:'Zzz', k:'iOS + Android · 2026', cover:'img/zzz.jpg', tint:'#ffb454',
+    {id:'zzz', title:'Zzz', k:'iOS + Android · 2026', tag:'Gamified goal tracker on iOS and Android, released on Google Play.', cat:'Apps', year:'2026', cover:'img/zzz.jpg', tint:'#ffb454',
       sum:'A gamified goal tracker. Weekly and monthly quests across four life sectors (health and fitness, hobbies, relationships, career), points for progress, and rewards you define yourself and redeem with those points: a boba, a LEGO kit, a trip to Japan.',
       hl:['SwiftUI on iOS 17+ with no third-party UI dependencies; a Kotlin twin on Android, released on Google Play.','Supabase for auth and data; the app runs fully on local data until you sign in.','Grew out of two earlier attempts: a weekly web task tracker (Do) and a React Native prototype (DuoQuest).','Privacy policy and support site published for the store listing.'],
       stack:['SwiftUI','Kotlin','Supabase','XcodeGen','Firebase'],
       links:[['Google Play','https://play.google.com/store/apps/details?id=com.rahulkoushik.zzz']],
       arch:{nodes:[{id:'ios',label:'iOS app',sub:'SwiftUI',c:0,r:0},{id:'and',label:'Android app',sub:'Kotlin',c:0,r:1},{id:'sb',label:'Supabase',sub:'Auth · Postgres',c:1,r:0.5,hi:1},{id:'play',label:'Google Play',sub:'release',c:1,r:1.6},{id:'site',label:'Privacy site',sub:'GitHub Pages',c:2,r:1.6}],edges:[['ios','sb'],['and','sb'],['and','play'],['play','site']]},
       gallery:['img/g/zzzicon.jpg']},
-    {id:'zuo', title:'Zuo', k:'Personal AI harness · 2026', cover:'img/zuo.jpg', tint:'#5aa9ff',
+    {id:'zuo', title:'Zuo', k:'Personal AI harness · 2026', tag:'Personal AI harness: job queue, budgets, voice capture and agents.', cat:'AI harness', year:'2026', cover:'img/zuo.jpg', tint:'#5aa9ff',
       sum:'My personal AI harness: a local multi-provider prompt app with a job queue, budgets and a project board, plus the agents and clients that hang off it. Several iterations over the year, each one teaching the next.',
       hl:['Harness on the Mac: multi-provider prompt app, job queue with budgets, project board for orchestrating agents on the Max plan.','Voice capture that works on the phone: Web Audio recorder, silence and noise gating, Whisper warmed while you talk.','Agent team that turns Instagram posts into production-ready web sections, with a gallery to review them.','iOS PromptConsole client and a Windows side that runs vLLM and receives exchange logs.','Earlier iterations: a Telegram chief-of-staff agent on LangGraph with human-in-the-loop approvals, a containerized multi-agent app builder (BuilderOS), a Go agent on the ADK, and an audio analysis and transcription pipeline.'],
       stack:['Python','FastAPI','LangGraph','Whisper','vLLM','Swift','Next.js','Docker'],
       links:[],
       arch:{nodes:[{id:'ios',label:'iOS client',sub:'PromptConsole',c:0,r:0},{id:'web',label:'Web app',sub:'/app · /board',c:0,r:1},{id:'voice',label:'Voice',sub:'VAD · Whisper',c:0,r:2},{id:'h',label:'Harness',sub:'job queue · budgets',c:1,r:1,hi:1},{id:'cl',label:'Claude / OpenAI',sub:'API',c:2,r:0},{id:'pc',label:'Windows PC',sub:'vLLM',c:2,r:1},{id:'ag',label:'UI agents',sub:'posts → sections',c:2,r:2}],edges:[['ios','h'],['web','h'],['voice','h'],['h','cl'],['h','pc'],['h','ag']]},
       gallery:[]},
-    {id:'catan', title:'Catan Arena', k:'Self-learning agents · 2026', cover:'img/catan.jpg', tint:'#ffb454',
+    {id:'catan', title:'Catan Arena', k:'Self-learning agents · 2026', tag:'Self-learning agent testbed with a statistical pass bar.', cat:'Research', year:'2026', cover:'img/catan.jpg', tint:'#ffb454',
       sum:'A testbed that proves the forever-agent loop on a closed world: one learning agent plays full Catan against three frozen copies of its starting self. By symmetry the no-learning null is a 25% win rate; learning is demonstrated only when the rolling win rate’s 95% Wilson interval clears 25%.',
       hl:['Loop: actor plays, watcher records, consolidator distils episodes into memory the actor reads next game.','Engine self-tests for invariants: card conservation, victory points, seat symmetry.','Dashboard with live win-rate interval; headless mode runs generations in the terminal; state persists and resumes.','Same loop later informed the self-learning work on the HPE agents.'],
       stack:['Python','Game engine','Statistics','Claude'],
       links:[],
       arch:{nodes:[{id:'eng',label:'Catan engine',sub:'4 seats',c:0,r:1},{id:'act',label:'Learning actor',c:1,r:0,hi:1},{id:'frz',label:'3 frozen copies',c:1,r:2},{id:'w',label:'Watcher',sub:'episodes',c:2,r:0},{id:'con',label:'Consolidator',sub:'rules',c:3,r:0},{id:'mem',label:'Memory',c:3,r:1.3,hi:1},{id:'dash',label:'Dashboard',sub:'Wilson interval',c:2,r:2}],edges:[['eng','act'],['eng','frz'],['act','w'],['w','con'],['con','mem'],['mem','act','reads'],['eng','dash']]},
       gallery:[]},
-    {id:'aitutor', title:'AI Tutor', k:'Learning app · 2026', cover:'img/aitutor.jpg', tint:'#6fd3ff',
+    {id:'aitutor', title:'AI Tutor', k:'Learning app · 2026', tag:'Duolingo meets Instagram for learning AI engineering.', cat:'Apps', year:'2026', cover:'img/aitutor.jpg', tint:'#6fd3ff',
       sum:'A personal, adaptive way to learn AI engineering, built like Duolingo meets Instagram: a path of levels you unlock one at a time, and a feed of swipeable carousels built from Reddit, Hacker News, arXiv and YouTube.',
       hl:['Path: levels → lessons → quizzes → checkpoints. Feed: swipe up for the next post, sideways through its slides; like, save, ask or skip.','Practice tab with flashcards and weak spots; profiles with separate progress for several people on one server.','Claude through the Claude Code CLI (Opus for lessons and quizzes, Sonnet for summaries and grading) with free NVIDIA Nemotron as automatic fallback.','Pure standard-library Python server, no build step; yt-dlp for video sources.'],
       stack:['Python','PWA','Claude','Nemotron','yt-dlp'],
       links:[],
       arch:{nodes:[{id:'src',label:'Sources',sub:'Reddit · HN · arXiv · YouTube',c:0,r:0.5},{id:'ing',label:'Ingest',c:1,r:0.5},{id:'llm',label:'Claude / Nemotron',sub:'lessons · carousels · grading',c:2,r:0.5,hi:1},{id:'srv',label:'Server',sub:'stdlib Python',c:3,r:0.5,hi:1},{id:'path',label:'Path',c:4,r:0},{id:'feed',label:'Feed',c:4,r:1},{id:'me',label:'Practice · Me',c:4,r:2}],edges:[['src','ing'],['ing','llm'],['llm','srv'],['srv','path'],['srv','feed'],['srv','me']]},
       gallery:['img/g/tutoricon.jpg']},
-    {id:'musaic', title:'musaic', k:'Generative media · 2026', cover:'img/musaic.jpg', tint:'#c084fc',
+    {id:'musaic', title:'musaic', k:'Generative media · 2026', tag:'Automated lo-fi music channel, from generation to upload.', cat:'Generative media', year:'2026', cover:'img/musaic.jpg', tint:'#c084fc',
       sum:'An automated lo-fi music channel. Each run generates the music, a thumbnail and a matching background, writes SEO metadata and chapters, encodes an HD video and uploads it to YouTube.',
       hl:['Stable Audio for 3-minute clips, ten variations per video; Pydub to merge segments and remove murmur.','GPT-4 for titles, descriptions, tags and chapter markers.','Thumbnails from DALL-E 3 (animated) or Vertex Imagen (realistic); Veo backgrounds that match the thumbnail’s style, alternating each run.','FFmpeg at 1080p CRF 18 with 320k audio; assets in Google Cloud Storage; YouTube Data API upload with OAuth.'],
       stack:['Python','Stable Audio','GPT-4','DALL-E 3','Vertex AI','Veo','FFmpeg','YouTube API'],
       links:[['GitHub','https://github.com/Fluff18/musaic']],
       arch:{nodes:[{id:'sa',label:'Stable Audio',sub:'music',c:0,r:0},{id:'gpt',label:'GPT-4',sub:'metadata',c:0,r:1},{id:'img',label:'DALL-E / Imagen',sub:'thumbnail',c:0,r:2},{id:'veo',label:'Veo',sub:'background',c:1,r:2},{id:'ff',label:'FFmpeg',sub:'1080p encode',c:2,r:1,hi:1},{id:'gcs',label:'Cloud Storage',c:3,r:0},{id:'yt',label:'YouTube',sub:'upload',c:3,r:1.5,hi:1}],edges:[['sa','ff'],['gpt','yt'],['img','veo'],['veo','ff'],['ff','gcs'],['ff','yt']]},
       gallery:[]},
-    {id:'drone', title:'Drone Inspection Sim', k:'Robotics · 2026', cover:'img/drone.jpg', tint:'#3fd1c9',
+    {id:'drone', title:'Drone Inspection Sim', k:'Robotics · 2026', tag:'PX4 and Gazebo inspection drone with a Pi-class AI agent.', cat:'Robotics', year:'2026', cover:'img/drone.jpg', tint:'#3fd1c9',
       sum:'An autonomous infrastructure-inspection drone in pure simulation, no hardware. PX4 flies an X500 quad through a custom depot-yard world in Gazebo while an AI agent, capped to Raspberry Pi 5 resources, works the camera feed.',
       hl:['PX4 v1.17 built from source so the stack runs natively on arm64 and x86_64; Gazebo Harmonic with RGB and depth cameras.','Camera bridge republishes Gazebo topics over TCP; MAVLink over UDP on a shared Docker network.','Agent constrained to 4 CPU, 8 GB and no GPU to mirror the target edge hardware.','Custom world because the stock scene renders as a white screen with a faint horizon.'],
       stack:['PX4 SITL','Gazebo','MAVLink','Docker','Python'],
       links:[],
       arch:{nodes:[{id:'gz',label:'Gazebo',sub:'depot-yard world',c:0,r:0.5,hi:1},{id:'px',label:'PX4 SITL',sub:'X500 quad',c:1,r:0},{id:'cb',label:'Camera bridge',sub:'TCP',c:1,r:1},{id:'ag',label:'AI agent',sub:'Pi-5 class limits',c:2,r:0.5,hi:1}],edges:[['gz','px'],['gz','cb'],['px','ag','MAVLink'],['cb','ag','frames']]},
       gallery:['img/g/drone.jpg']},
-    {id:'quantum', title:'Quantum Slot Machine', k:'Quantum · 2025', cover:'img/quantum.jpg', tint:'#a78bfa',
+    {id:'quantum', title:'Quantum Slot Machine', k:'Quantum · 2025', tag:'Randomness from real qubits on IBM Quantum hardware.', cat:'Research', year:'2025', cover:'img/quantum.jpg', tint:'#a78bfa',
       sum:'A slot machine whose randomness comes from measuring real qubits. Each spin prepares three qubits, rotates them into superposition, optionally entangles them, measures, and maps the result to symbols.',
       hl:['Runs on real IBM Quantum hardware with an API token, or on the Qiskit Aer simulator.','FastAPI and Qiskit backend; React frontend.','A demonstration that randomness can come from quantum measurement rather than a pseudo-random generator.'],
       stack:['Python','Qiskit','FastAPI','React','IBM Quantum'],
       links:[['GitHub','https://github.com/Fluff18/QuantumSlot']],
       arch:{nodes:[{id:'ui',label:'React UI',c:0,r:0.5},{id:'api',label:'FastAPI',c:1,r:0.5},{id:'qk',label:'Qiskit circuit',sub:'3 qubits · RY · CNOT',c:2,r:0.5,hi:1},{id:'ibm',label:'IBM Quantum',sub:'hardware',c:3,r:0},{id:'aer',label:'Aer simulator',c:3,r:1}],edges:[['ui','api'],['api','qk'],['qk','ibm'],['qk','aer']]},
       gallery:[]},
-    {id:'fetch', title:'Fetch Recipes', k:'iOS · 2022', cover:'img/p1.jpg', tint:'#ffb454',
+    {id:'fetch', title:'Fetch Recipes', k:'iOS · 2022', tag:'Swift recipe app over TheMealDB.', cat:'iOS', year:'2022', cover:'img/p1.jpg', tint:'#ffb454',
       sum:'A sample, scalable Swift app that shows categories of food and their recipes in a clean, user-friendly way. Built for the Fetch Rewards apprenticeship test.',
       hl:['A network manager that handles every call to TheMealDB API.','Category list, meal list and recipe detail with ingredients and measures.'],
       stack:['Swift','UIKit','URLSession'],
       links:[],
       arch:{nodes:[{id:'ui',label:'Views',sub:'categories · meals · recipe',c:0,r:0.5},{id:'nm',label:'Network manager',c:1,r:0.5,hi:1},{id:'api',label:'TheMealDB API',c:2,r:0.5}],edges:[['ui','nm'],['nm','api']]},
       gallery:['img/g/fr1.jpg','img/g/fr2.jpg','img/g/fr3.jpg','img/g/fr4.jpg']},
-    {id:'rideshare', title:'RideShare', k:'Distributed systems · 2020', cover:'img/p2.jpg', tint:'#5aa9ff',
+    {id:'rideshare', title:'RideShare', k:'Distributed systems · 2020', tag:'Fault-tolerant database-as-a-service on AWS for a ride app.', cat:'Distributed systems', year:'2020', cover:'img/p2.jpg', tint:'#5aa9ff',
       sum:'A ride-sharing service backed by a fault-tolerant, highly available database-as-a-service on AWS. Users and rides run as their own services behind a load balancer; every database operation goes through an orchestrator.',
       hl:['Three EC2 instances: users, rides and orchestrator, each running Docker containers.','Orchestrator runs RabbitMQ, Zookeeper, a master and slaves; reads and writes go through separate queues for eventual consistency.','Zookeeper watches the master and promotes a slave on failure; slaves scale with request volume.'],
       stack:['Python','Flask','Docker','RabbitMQ','Zookeeper','AWS EC2'],
       links:[],
       arch:{nodes:[{id:'lb',label:'Load balancer',c:0,r:0.5},{id:'u',label:'Users service',c:1,r:0},{id:'r',label:'Rides service',c:1,r:1},{id:'o',label:'Orchestrator',sub:'RabbitMQ · Zookeeper',c:2,r:0.5,hi:1},{id:'m',label:'Master DB',c:3,r:0},{id:'s',label:'Slaves',sub:'scale out',c:3,r:1}],edges:[['lb','u'],['lb','r'],['u','o'],['r','o'],['o','m','writes'],['o','s','reads']]},
       gallery:[]},
-    {id:'hand', title:'Handwriting Recognition', k:'Android · 2022', cover:'img/p3.jpg', tint:'#6fd3ff',
+    {id:'hand', title:'Handwriting Recognition', k:'Android · 2022', tag:'Digit recognition split across worker phones.', cat:'Android', year:'2022', cover:'img/p3.jpg', tint:'#6fd3ff',
       sum:'A mobile app that improves handwritten-digit recognition throughput by splitting each captured image into four parts and sending them to worker phones for parallel classification.',
       hl:['Distributed computing across phones over the local network.','About 30% better processing efficiency than classifying on one device.'],
       stack:['Kotlin','Android','TensorFlow Lite'],
       links:[],
       arch:{nodes:[{id:'cam',label:'Capture',sub:'split into 4',c:0,r:0.5},{id:'w1',label:'Worker phone',c:1,r:0},{id:'w2',label:'Worker phone',c:1,r:1},{id:'agg',label:'Aggregate',sub:'result',c:2,r:0.5,hi:1}],edges:[['cam','w1'],['cam','w2'],['w1','agg'],['w2','agg']]},
       gallery:['img/g/mc.jpg','img/g/hand.jpg']},
-    {id:'zoom', title:'Zoom Telehealth', k:'iOS + Android TV · 2022', cover:'img/p4.jpg', tint:'#5aa9ff',
+    {id:'zoom', title:'Zoom Telehealth', k:'iOS + Android TV · 2022', tag:'Doctor-driven telehealth on the Zoom Meeting SDK.', cat:'iOS + Android TV', year:'2022', cover:'img/p4.jpg', tint:'#5aa9ff',
       sum:'A practical telehealth flow built on the Zoom Meeting SDK and Firebase for ASU’s Luminosity Lab and Phoenix Children’s Hospital: a doctor starts a meeting and remotely drives the patient’s Android TV.',
       hl:['Doctor app on iOS; patient side on Android TV with remote control from the doctor’s end.','Firebase for signalling and session state.','Saves roughly 15 minutes per visit compared with the manual flow.'],
       stack:['Swift','Zoom Meeting SDK','Firebase','Android TV'],
       links:[],
       arch:{nodes:[{id:'doc',label:'Doctor app',sub:'iOS',c:0,r:0.5},{id:'fb',label:'Firebase',sub:'signalling',c:1,r:0,hi:1},{id:'zm',label:'Zoom Meeting SDK',c:1,r:1,hi:1},{id:'tv',label:'Patient',sub:'Android TV',c:2,r:0.5}],edges:[['doc','fb'],['doc','zm'],['fb','tv'],['zm','tv']]},
       gallery:['img/g/zoom1.jpg','img/g/zoom2.jpg','img/g/zoom3.jpg']},
-    {id:'paas', title:'PaaS Face Recognition', k:'Cloud · 2022', cover:'img/p5.jpg', tint:'#3fd1c9',
+    {id:'paas', title:'PaaS Face Recognition', k:'Cloud · 2022', tag:'Live face recognition with Lambda, SQS and a Raspberry Pi.', cat:'Cloud', year:'2022', cover:'img/p5.jpg', tint:'#3fd1c9',
       sum:'Real-time face recognition on live video from a Raspberry Pi using AWS platform services. Frames flow through SQS to Lambda, which recognises the person and looks up their academic record in DynamoDB.',
       hl:['93% recognition accuracy on the live stream.','Raspberry Pi records and streams; Lambda functions run the model; DynamoDB stores and serves records.'],
       stack:['AWS Lambda','SQS','S3','DynamoDB','Raspberry Pi','Python'],
       links:[],
       arch:{nodes:[{id:'pi',label:'Raspberry Pi',sub:'live video',c:0,r:0.5},{id:'sqs',label:'SQS',c:1,r:0.5},{id:'lam',label:'Lambda',sub:'recognition',c:2,r:0.5,hi:1},{id:'ddb',label:'DynamoDB',sub:'records',c:3,r:0},{id:'s3',label:'S3',c:3,r:1}],edges:[['pi','sqs'],['sqs','lam'],['lam','ddb'],['lam','s3']]},
       gallery:['img/g/paas.jpg']},
-    {id:'iaas', title:'IaaS Face Recognition', k:'Cloud · 2022', cover:'img/p9.jpg', tint:'#3fd1c9',
+    {id:'iaas', title:'IaaS Face Recognition', k:'Cloud · 2022', tag:'Elastic face recognition on autoscaled EC2.', cat:'Cloud', year:'2022', cover:'img/p9.jpg', tint:'#3fd1c9',
       sum:'A cost-effective, fault-tolerant, elastic face-recognition service on raw AWS infrastructure. A web tier takes images, an app tier runs the deep-learning model, and the app tier scales in and out with the queue.',
       hl:['Handles up to 100 concurrent requests by scaling EC2 app-tier instances on queue depth.','SQS between tiers; S3 for inputs and outputs.'],
       stack:['AWS EC2','SQS','S3','Python','Deep learning'],
@@ -485,7 +487,7 @@ html.nogl #warp{display:none}
     var W = PAD * 2 + (cols + 1) * CW + cols * GX, H = PAD * 2 + (rows + 1) * (CH + GY);
     var pos = {};
     a.nodes.forEach(function(n){ pos[n.id] = {x:PAD + n.c * (CW + GX), y:PAD + n.r * (CH + GY)}; });
-    var out = '<svg class="arch" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Architecture"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" style="fill:var(--cyan)"/></marker></defs>';
+    var out = '<svg class="arch" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Architecture"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" style="fill:rgba(255,255,255,.5)"/></marker></defs>';
     a.edges.forEach(function(e){
       var p = pos[e[0]], q = pos[e[1]];
       var x1 = p.x + CW, y1 = p.y + CH / 2, x2 = q.x, y2 = q.y + CH / 2, d;
@@ -504,8 +506,8 @@ html.nogl #warp{display:none}
   }
   var grid = document.getElementById('grid');
   PROJECTS.forEach(function(p, i){
-    var t = document.createElement('div'); t.className = 'tile'; t.dataset.i = i;
-    t.innerHTML = '<img src="' + p.cover + '" alt="' + esc(p.title) + '" loading="lazy"><div class="cap"><span class="k">' + esc(p.k) + '</span><h4>' + esc(p.title) + '</h4><span class="more">Open ›</span></div>';
+    var t = document.createElement('div'); t.className = 'tile' + (i < 3 ? ' wide' : ''); t.dataset.i = i;
+    t.innerHTML = '<h4>' + esc(p.title) + '<span>' + esc(p.year) + '</span></h4><p>' + esc(p.tag) + '</p><div class="meta"><b>' + esc(p.cat) + '</b> · Open →</div>';
     grid.appendChild(t);
     var s = document.createElement('section'); s.className = 'slide detail'; s.id = 'p-' + p.id; s.dataset.w = '1180'; s.dataset.tint = p.tint; s.dataset.nav = '#portfolio';
     var gal = p.gallery.map(function(g){ return '<img src="' + g + '" alt="' + esc(p.title) + ' screenshot" loading="lazy">'; }).join('');
@@ -519,9 +521,9 @@ html.nogl #warp{display:none}
   var mains = slides.filter(function(s){ return !s.classList.contains('detail'); });
   var details = slides.filter(function(s){ return s.classList.contains('detail'); });
   var N = mains.length, SEG = 42;
-  var POS = [ {x:0,y:0,r:0}, {x:1500,y:380,r:-2.5}, {x:2950,y:-220,r:2}, {x:4500,y:420,r:-1.5}, {x:6100,y:-200,r:2.5}, {x:7600,y:360,r:0} ];
+  var POS = [ {x:0,y:0,r:0}, {x:1500,y:300,r:0}, {x:2950,y:-180,r:0}, {x:4500,y:320,r:0}, {x:6100,y:-160,r:0}, {x:7600,y:280,r:0} ];
   var PORT = 4;
-  var DPOS = details.map(function(s, k){ var row = Math.floor(k / 7), col = k % 7; return {x:POS[PORT].x - 3 * 1350 + col * 1350 + (row ? 675 : 0), y:POS[PORT].y + 1600 + row * 1000, r:(k % 2 ? 1.5 : -1.5)}; });
+  var DPOS = details.map(function(s, k){ var row = Math.floor(k / 7), col = k % 7; return {x:POS[PORT].x - 3 * 1350 + col * 1350 + (row ? 675 : 0), y:POS[PORT].y + 1600 + row * 1000, r:0}; });
   stage.addEventListener('scroll', function(){ stage.scrollTop = 0; stage.scrollLeft = 0; });
   function posOf(s){ var i = mains.indexOf(s); return i >= 0 ? POS[i] : DPOS[details.indexOf(s)]; }
   slides.forEach(function(s){ s.style.setProperty('--tint', s.dataset.tint); });
