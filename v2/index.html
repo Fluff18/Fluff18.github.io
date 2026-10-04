@@ -378,7 +378,7 @@ footer{position:relative;z-index:2;margin-left:var(--side);text-align:center;fon
 
   /* ---------- projects ---------- */
   var PROJECTS = [
-    {id:'zzz', title:'Zzz', k:'iOS + Android · 2026', tag:'Gamified goal tracker on iOS and Android, released on Google Play.', cat:'Apps', year:'2026', cover:'img/c-zzz.jpg', tint:'#ffb454',
+    {id:'zzz', title:'Zzz', k:'iOS + Android · 2026', tag:'Gamified goal tracker on iOS and Android, released on Google Play.', cat:'Apps', year:'2026', cover:'img/c-zzz.jpg', coverFeat:'img/c-zzz-feat.jpg', tint:'#ffb454',
       sum:'A gamified goal tracker. Weekly and monthly quests across four life sectors (health and fitness, hobbies, relationships, career), points for progress, and rewards you define yourself and redeem with those points: a boba, a LEGO kit, a trip to Japan.',
       hl:['SwiftUI on iOS 17+ with no third-party UI dependencies; a Kotlin twin on Android, released on Google Play.','Supabase for auth and data; the app runs fully on local data until you sign in.','Grew out of two earlier attempts: a weekly web task tracker (Do) and a React Native prototype (DuoQuest).','Privacy policy and support site published for the store listing.'],
       stack:['SwiftUI','Kotlin','Supabase','XcodeGen','Firebase'],
@@ -524,7 +524,7 @@ footer{position:relative;z-index:2;margin-left:var(--side);text-align:center;fon
   var grid = document.getElementById('grid');
   PROJECTS.forEach(function(p, i){
     var t = document.createElement('div'); t.className = 'tile' + (i === 0 ? ' feat' : ''); t.dataset.i = i; t.setAttribute('role', 'link'); t.tabIndex = 0;
-    t.innerHTML = '<img class="cv" src="' + p.cover + '" alt="" loading="lazy"><div class="tb"><h4>' + esc(p.title) + '<span>' + esc(p.year) + '</span></h4><p>' + esc(p.tag) + '</p><div class="meta"><b>' + esc(p.cat) + '</b> · Open →</div></div>';
+    t.innerHTML = '<img class="cv" src="' + (i === 0 && p.coverFeat ? p.coverFeat : p.cover) + '" alt="" loading="lazy"><div class="tb"><h4>' + esc(p.title) + '<span>' + esc(p.year) + '</span></h4><p>' + esc(p.tag) + '</p><div class="meta"><b>' + esc(p.cat) + '</b> · Open →</div></div>';
     grid.appendChild(t);
   });
   function detailHTML(p){
