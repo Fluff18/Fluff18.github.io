@@ -125,7 +125,7 @@ nav.top>*{pointer-events:auto}
 @keyframes swapin{from{opacity:0;transform:translateY(10px) scale(.96)}}
 @media(max-width:900px){.ptable{grid-template-columns:1fr}.elinfo{position:static}}
 /* work */
-.acc{display:flex;gap:10px;height:min(72vh,620px);margin-top:36px}
+.acc{display:flex;gap:10px;height:min(64vh,540px);margin-top:36px}
 .acc .item{flex:1;min-width:64px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);position:relative;overflow:hidden;cursor:pointer;transition:flex .55s cubic-bezier(.2,.7,.2,1)}
 .acc .item.open{flex:7}
 .acc .vt{position:absolute;left:0;top:0;bottom:0;width:64px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:18px 0}
@@ -135,7 +135,7 @@ nav.top>*{pointer-events:auto}
 .acc .item.open .vt .plus{transform:rotate(45deg)}
 .acc .body{position:absolute;inset:0 0 0 64px;opacity:0;transform:translateX(28px);transition:opacity .35s .15s,transform .6s .1s cubic-bezier(.2,.7,.2,1);display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:22px}
 .acc .item.open .body{opacity:1;transform:none}
-.acc .body img{width:100%;height:100%;object-fit:contain;border-radius:16px;background:var(--paper2);padding:14px;border:1px solid var(--line)}
+.acc .body img{width:100%;height:100%;object-fit:cover;object-position:center;border-radius:16px;background:var(--paper2);border:1px solid var(--line)}.acc .body img.fit{object-fit:contain;padding:12px}
 .acc .body .txt{display:flex;flex-direction:column;justify-content:flex-end;gap:10px;min-width:0}
 .acc .body h3{margin:0;font-size:clamp(22px,2.6vw,36px);letter-spacing:-.03em;line-height:1.05}
 .acc .body p{margin:0;color:var(--ink2);font-size:14px}
@@ -445,7 +445,7 @@ EL.forEach(function(e,i){var f=famColor(e[2]);var d=document.createElement('div'
  d.addEventListener('mouseenter',show);d.addEventListener('click',show);grid.appendChild(d)});
 /* work accordion */
 var P=[
-{id:'zuo',t:'Zuo',k:'Personal AI harness · 2026',g:'ai',tag:'Job queue, budgets, voice capture and agent teams, controlled from my phone; free NVIDIA, a PC GPU and a laptop as workers, Claude as planner.',img:'img/c-zuo.jpg'},
+{id:'zuo',t:'Zuo',k:'Personal AI harness · 2026',g:'ai',fit:1,tag:'Job queue, budgets, voice capture and agent teams, controlled from my phone; free NVIDIA, a PC GPU and a laptop as workers, Claude as planner.',img:'img/c-zuo.jpg'},
 {id:'aitutor',t:'AI Tutor',k:'Learning app · 2026',g:'apps',tag:'Duolingo meets Instagram for learning AI engineering: a level path, quick quizzes, a carousel feed and reviewed lessons.',img:'img/c-aitutor.jpg'},
 {id:'zzz',t:'Zzz',k:'iOS + Android · 2026',g:'apps',tag:'Gamified goal tracker: quests, points and rewards you set yourself. SwiftUI and Kotlin, Supabase behind it, live on the App Store.',img:'img/c-zzz.jpg'},
 {id:'catan',t:'Catan Arena',k:'Self-learning agents · 2026',g:'research',tag:'A self-learning agent testbed with a statistical pass bar, so an agent only graduates when the improvement is real.',img:'img/c-catan.jpg'},
@@ -460,7 +460,7 @@ var P=[
 {id:'fetch',t:'Fetch Recipes',k:'iOS · 2022',g:'earlier',tag:'A Swift recipe app over TheMealDB.',img:'img/c-fetch.jpg'}];
 var GROUPS=[['all','All'],['ai','AI & agents'],['apps','Apps'],['research','Research'],['earlier','Earlier']];
 var acc=$('#acc'),wf=$('#wf'),cur='all';
-function renderAcc(){var list=P.filter(function(p){return cur==='all'?['ai','apps','research'].indexOf(p.g)>-1:p.g===cur});acc.innerHTML=list.map(function(p,i){return '<div class="item'+(i===0?' open':'')+'" data-id="'+p.id+'"><div class="vt"><small>'+String(i+1).padStart(2,'0')+'</small><b>'+p.t+'</b><span class="plus">+</span></div><div class="body"><img src="'+p.img+'" alt="'+p.t+'" loading="lazy"><div class="txt"><div class="meta">'+p.k+'</div><h3>'+p.t+'</h3><p>'+p.tag+'</p><div><a class="btn" href="#p-'+p.id+'" data-more>Full story ↗</a></div></div></div></div>'}).join('');
+function renderAcc(){var list=P.filter(function(p){return cur==='all'?['ai','apps','research'].indexOf(p.g)>-1:p.g===cur});acc.innerHTML=list.map(function(p,i){return '<div class="item'+(i===0?' open':'')+'" data-id="'+p.id+'"><div class="vt"><small>'+String(i+1).padStart(2,'0')+'</small><b>'+p.t+'</b><span class="plus">+</span></div><div class="body"><img src="'+p.img+'" alt="'+p.t+'" loading="lazy"'+(p.fit?' class="fit"':'')+'><div class="txt"><div class="meta">'+p.k+'</div><h3>'+p.t+'</h3><p>'+p.tag+'</p><div><a class="btn" href="#p-'+p.id+'" data-more>Full story ↗</a></div></div></div></div>'}).join('');
  $$('.item',acc).forEach(function(it){it.addEventListener('click',function(e){if(e.target.closest('[data-more]'))return;$$('.item',acc).forEach(function(x){x.classList.toggle('open',x===it)})})});restagger(acc)}
 GROUPS.forEach(function(g){var b=document.createElement('button');b.className='btn'+(g[0]==='all'?' dark':'');b.textContent=g[1];b.dataset.g=g[0];b.addEventListener('click',function(){cur=g[0];$$('button',wf).forEach(function(x){x.classList.toggle('dark',x.dataset.g===cur)});renderAcc()});wf.appendChild(b)});
 renderAcc();
