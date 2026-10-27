@@ -113,9 +113,9 @@ nav.top>*{pointer-events:auto}
 .fam button i{width:9px;height:9px;border-radius:2px;background:var(--c)}
 .fam button.on{background:var(--navy);color:#fff;border-color:transparent}
 .ptable{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:10px}
 .el{aspect-ratio:1;border-radius:12px;background:var(--c,#e9e4d8);color:var(--ink);padding:8px 9px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:transform .15s,opacity .2s,box-shadow .2s;position:relative}
-.el.dark{color:#fff}.el small{font-size:11px;opacity:.75;font-weight:600}.el b{font-size:22px;font-weight:800;letter-spacing:-.03em;line-height:1}.el span{font-size:11px;font-weight:600;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.el.dark{color:#fff}.el small{font-size:11px;opacity:.75;font-weight:600}.el b{font-size:26px;font-weight:800;letter-spacing:-.03em;line-height:1}.el span{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .el:hover,.el.on{transform:translateY(-3px);outline:2px solid var(--navy);outline-offset:2px}
 .grid.dim .el:not(.lit){opacity:.28}
 .elinfo{position:sticky;top:96px;border-radius:var(--r);background:var(--navy);color:#fff;border:1px solid var(--line);padding:26px;min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px}
@@ -199,13 +199,47 @@ footer{background:var(--navy);color:#b9b5cc;font-size:12px;padding:20px 0 28px;b
 @keyframes rise{from{opacity:0;transform:translateY(16px)}}
 .grid[data-stagger].in>*{animation-name:popin}@keyframes popin{from{opacity:0;transform:scale(.8)}}
 .tl[data-stagger].in>*{animation-name:slide}@keyframes slide{from{opacity:0;transform:translateX(-24px)}}
+
+/* project story pages */
+body.in-story>*:not(nav.top):not(#story){display:none}
+#story{display:none;padding-top:0}body.in-story #story{display:block}
+.sh{min-height:88svh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px;padding:120px 0 40px;position:relative}
+.sh .back{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--mute);margin-bottom:22px}
+.sh .mark{width:64px;height:64px;border-radius:18px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800;font-size:22px;letter-spacing:-.04em}
+.sh h1{font-size:clamp(48px,8vw,120px);line-height:.92;letter-spacing:-.05em;margin:18px 0 12px;font-weight:800}
+.sh .tag{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.6vw,34px);color:var(--ink2);max-width:24ch;line-height:1.2}
+.sh .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}.sh .stats div{padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:var(--card);min-width:120px}.sh .stats b{display:block;font-size:30px;letter-spacing:-.04em;line-height:1;font-weight:800}.sh .stats small{display:block;font-size:11.5px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-top:4px}
+.sh .ctas{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.sh .art{position:relative;aspect-ratio:4/5;display:grid;place-items:center}
+.sh .art::before{content:"";position:absolute;inset:6% 2%;border-radius:999px 999px 28px 28px;background:linear-gradient(180deg,#e9e4d8,var(--paper2));box-shadow:inset 0 0 0 1px rgba(23,22,26,.08);animation:haloin 1s cubic-bezier(.2,.7,.2,1) both}
+.sh .art img{position:relative;width:78%;border-radius:18px;border:1px solid var(--line);box-shadow:0 40px 60px -30px rgba(23,22,26,.45);transform:rotate(-4deg);animation:artin 1s cubic-bezier(.2,.7,.2,1) .2s both,float 7s ease-in-out 1.2s infinite}
+@keyframes artin{from{opacity:0;transform:rotate(-4deg) translateY(40px) scale(.96)}}
+@keyframes float{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(-3deg) translateY(-12px)}}
+.sh .gw{position:absolute;right:0;top:4%;font-size:clamp(90px,16vw,240px);font-weight:800;letter-spacing:-.06em;color:rgba(23,22,26,.04);pointer-events:none;white-space:nowrap;line-height:1;animation:ghostin 1.4s both}
+.sp{padding:clamp(56px,8vw,96px) 0;border-top:1px solid var(--line)}
+.pitch{font-size:clamp(22px,2.8vw,38px);line-height:1.25;letter-spacing:-.02em;max-width:30ch;font-weight:600;margin:14px 0 0}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:30px}
+.feat div{padding:22px;border-radius:18px;background:var(--card);border:1px solid var(--line)}.feat div b{display:block;font-size:11px;letter-spacing:.18em;color:var(--mute);margin-bottom:10px}.feat div p{margin:0;font-size:15px;color:var(--ink2)}
+.archwrap{margin-top:30px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);padding:20px;overflow-x:auto}
+svg.arch{width:100%;min-width:560px;height:auto;font-family:var(--sans)}
+svg.arch .e{fill:none;stroke:rgba(23,22,26,.4);stroke-width:1.5;marker-end:url(#arr);stroke-dasharray:700;stroke-dashoffset:700}
+svg.arch .n rect{fill:var(--paper2);stroke:rgba(23,22,26,.14)}svg.arch .n.hi rect{fill:var(--navy)}svg.arch .n text{font-size:13px;font-weight:600;fill:var(--ink)}svg.arch .n.hi text{fill:#fff}svg.arch .n text.s{font-size:11px;font-weight:500;opacity:.8}svg.arch .lab{font-size:11px;fill:var(--mute);font-weight:600}
+svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
+.archwrap.in .e{animation:draw 1.4s ease-out forwards;animation-delay:var(--d,0s)}.archwrap.in .n{animation:nodein .55s cubic-bezier(.3,1.4,.4,1) forwards;animation-delay:var(--d,0s)}@keyframes nodein{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}
+.gal{display:flex;gap:14px;overflow-x:auto;padding:30px 0 10px;scroll-snap-type:x mandatory;scrollbar-width:none}.gal::-webkit-scrollbar{display:none}.gal img{height:min(52vh,460px);width:auto;max-width:86vw;object-fit:contain;border-radius:16px;border:1px solid var(--line);background:var(--card);scroll-snap-align:start;flex:none}
+.stackrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.sfoot{display:flex;justify-content:space-between;gap:14px;padding:40px 0 90px;border-top:1px solid var(--line);flex-wrap:wrap}
+.sfoot a{display:flex;flex-direction:column;gap:4px;padding:18px 22px;border-radius:16px;border:1px solid var(--line);background:var(--card);min-width:200px}.sfoot a small{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:700}.sfoot a b{font-size:18px}
+.sfoot a.next{text-align:right;align-items:flex-end}
+@media(max-width:860px){.sh{grid-template-columns:1fr;padding-top:96px;gap:16px}.sh .art{order:-1;aspect-ratio:1;max-width:420px;margin:0 auto}.sh .gw{display:none}.sh .stats div{min-width:0;flex:1}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal,[data-stagger]:not(.in)>*{opacity:1;transform:none}.lanyard .strap{transform:none}}
 </style>
 </head>
 <body>
 <nav class="top">
   <a class="brand" href="#hero"><span class="mono">RK</span><span>Rahul M Koushik</span></a>
-  <div class="pill" id="pill"><a href="#about">About</a><a href="#skills">Skills</a><a href="#work">Work</a><a href="#experience">Experience</a><a href="#achievements">Achievements</a><a href="#contact">Contact</a></div>
+  <div class="pill" id="pill"><a href="#about">About</a><a href="#work">Work</a><a href="#experience">Experience</a><a href="#achievements">Achievements</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div>
 </nav>
 
 <header id="hero">
@@ -280,25 +314,11 @@ footer{background:var(--navy);color:#b9b5cc;font-size:12px;padding:20px 0 28px;b
   </div>
 </section>
 
-<section class="sec" id="skills" style="background:var(--paper2)">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow" data-n="02">Skills</div>
-      <h2>The periodic table <i>of my stack.</i></h2>
-      <p class="lede">Elements in six families. Hover a tile to see it, or pick a family to light it up.</p>
-    </div>
-    <div class="fam" id="fam" data-stagger style="--step:50ms"></div>
-    <div class="ptable">
-      <div class="grid" id="grid" data-stagger style="--step:30ms"></div>
-      <div class="elinfo" id="elinfo"><div class="big">Py</div><h4>Python</h4><p>Languages · daily driver for agents, pipelines and tooling</p></div>
-    </div>
-  </div>
-</section>
 
 <section class="sec" id="work">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow" data-n="03">Work</div>
+      <div class="eyebrow" data-n="02">Work</div>
       <h2>Things I've <i>built.</i></h2>
       <p class="lede">Personal projects across AI, apps and research. Open a panel; the HPE work lives in the experience section.</p>
       <div class="work-filters" id="wf"></div>
@@ -310,13 +330,13 @@ footer{background:var(--navy);color:#b9b5cc;font-size:12px;padding:20px 0 28px;b
 <section class="sec" id="experience" style="background:var(--paper2)">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow" data-n="04">Experience</div>
+      <div class="eyebrow" data-n="03">Experience</div>
       <h2>Where I've <i>worked.</i></h2>
     </div>
     <div class="tl" id="tl" data-stagger style="--step:90ms"></div>
     <div class="learn">
       <div class="reveal">
-        <div class="eyebrow" data-n="05">Research</div>
+        <div class="eyebrow" data-n="04">Research</div>
         <h2 style="font-size:clamp(34px,4.6vw,60px)">Always <i>learning.</i></h2>
         <p class="lede">Three published papers: hardware randomness, a streaming-analytics benchmark and distributed GAN training.</p>
       </div>
@@ -332,7 +352,7 @@ footer{background:var(--navy);color:#b9b5cc;font-size:12px;padding:20px 0 28px;b
 <section class="sec" id="achievements">
   <div class="wrap">
     <div class="reveal" style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap">
-      <div><div class="eyebrow" data-n="06">Achievements</div><h2>Proud <i>moments.</i></h2></div>
+      <div><div class="eyebrow" data-n="05">Achievements</div><h2>Proud <i>moments.</i></h2></div>
       <div class="stripnav"><button id="sl" aria-label="Scroll left">←</button><button id="sr" aria-label="Scroll right">→</button></div>
     </div>
     <div class="strip" id="strip" tabindex="0" aria-label="Achievements, scroll sideways" data-stagger style="--step:90ms"></div>
@@ -345,6 +365,21 @@ footer{background:var(--navy);color:#b9b5cc;font-size:12px;padding:20px 0 28px;b
         <h3>The lock screen <span class="ser">version.</span></h3>
         <p class="lede">The same wins, the way they actually arrived: as pings between meetings. Shipping an app, a tool server that half the org leans on, two hackathon cups and a knowledge base built in nine days.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="skills" style="background:var(--paper2)">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow" data-n="06">Skills</div>
+      <h2>The periodic table <i>of my stack.</i></h2>
+      <p class="lede">The whole stack at a glance, grouped into six families. Hover a tile for what I use it for.</p>
+    </div>
+    <div class="fam" id="fam" data-stagger style="--step:50ms"></div>
+    <div class="ptable">
+      <div class="grid" id="grid" data-stagger style="--step:30ms"></div>
+      <div class="elinfo" id="elinfo"><div class="big">Py</div><h4>Python</h4><p>Languages · daily driver for agents, pipelines and tooling</p></div>
     </div>
   </div>
 </section>
@@ -362,6 +397,7 @@ footer{background:var(--navy);color:#b9b5cc;font-size:12px;padding:20px 0 28px;b
     </div>
   </div>
 </section>
+<section id="story" class="sec" aria-live="polite"></section>
 <footer><div class="wrap">Rahul M Koushik · <a href="#hero">Back to top ↑</a> · <a href="../v2/">previous version</a></div></footer>
 
 <script>
@@ -424,7 +460,7 @@ var P=[
 {id:'fetch',t:'Fetch Recipes',k:'iOS · 2022',g:'earlier',tag:'A Swift recipe app over TheMealDB.',img:'img/c-fetch.jpg'}];
 var GROUPS=[['all','All'],['ai','AI & agents'],['apps','Apps'],['research','Research'],['earlier','Earlier']];
 var acc=$('#acc'),wf=$('#wf'),cur='all';
-function renderAcc(){var list=P.filter(function(p){return cur==='all'?['ai','apps','research'].indexOf(p.g)>-1:p.g===cur});acc.innerHTML=list.map(function(p,i){return '<div class="item'+(i===0?' open':'')+'" data-id="'+p.id+'"><div class="vt"><small>'+String(i+1).padStart(2,'0')+'</small><b>'+p.t+'</b><span class="plus">+</span></div><div class="body"><img src="'+p.img+'" alt="'+p.t+'" loading="lazy"><div class="txt"><div class="meta">'+p.k+'</div><h3>'+p.t+'</h3><p>'+p.tag+'</p><div><a class="btn" href="https://fluff18.github.io/v2/#p-'+p.id+'" target="_blank" rel="noopener" data-more>Full story ↗</a></div></div></div></div>'}).join('');
+function renderAcc(){var list=P.filter(function(p){return cur==='all'?['ai','apps','research'].indexOf(p.g)>-1:p.g===cur});acc.innerHTML=list.map(function(p,i){return '<div class="item'+(i===0?' open':'')+'" data-id="'+p.id+'"><div class="vt"><small>'+String(i+1).padStart(2,'0')+'</small><b>'+p.t+'</b><span class="plus">+</span></div><div class="body"><img src="'+p.img+'" alt="'+p.t+'" loading="lazy"><div class="txt"><div class="meta">'+p.k+'</div><h3>'+p.t+'</h3><p>'+p.tag+'</p><div><a class="btn" href="#p-'+p.id+'" data-more>Full story ↗</a></div></div></div></div>'}).join('');
  $$('.item',acc).forEach(function(it){it.addEventListener('click',function(e){if(e.target.closest('[data-more]'))return;$$('.item',acc).forEach(function(x){x.classList.toggle('open',x===it)})})});restagger(acc)}
 GROUPS.forEach(function(g){var b=document.createElement('button');b.className='btn'+(g[0]==='all'?' dark':'');b.textContent=g[1];b.dataset.g=g[0];b.addEventListener('click',function(){cur=g[0];$$('button',wf).forEach(function(x){x.classList.toggle('dark',x.dataset.g===cur)});renderAcc()});wf.appendChild(b)});
 renderAcc();
@@ -458,6 +494,165 @@ function countUp(){if(RM)return;$$('[data-n]',strip).forEach(function(el,k){var 
 var N=[['ZZ','Zzz','now','Live on the App Store. Gamified goals, SwiftUI and Kotlin, Supabase behind it.'],['MC','MCP server','4m','6,300+ tool calls this week across HPE Storage. Every team agent runs on it.'],['HK','Hackathon','1h','Winner again. Innovation projects taken into company-wide production.'],['FR','Fellow Review','3h','Selected twice: the agent, its harness and the self-learning component.'],['KB','Knowledge base','Yesterday','13,005 bugs mined into 5,600 grounded analyses. Nine days.'],['ZU','Zuo','Mon','Job finished on the PC GPU. Three workers, one planner, from the phone.']];
 $('#notes').innerHTML=N.map(function(n){return '<div class="note"><div class="app">'+n[0]+'</div><div><div class="hd">'+n[1]+'<small>'+n[2]+'</small></div><p>'+n[3]+'</p></div></div>'}).join('');
 (function(){var d=new Date(),h=d.getHours()%12||12,m=('0'+d.getMinutes()).slice(-2);$('#clock').textContent=h+':'+m;$('#today').textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})})();
+
+/* project stories: full-page mini ads rendered in place */
+  var PD = [
+    {id:'zzz', title:'Zzz', k:'iOS + Android · 2026', tag:'Gamified goal tracker for iOS: quests, points and rewards you set yourself.', cat:'Apps', year:'2026', group:'apps', cover:'img/c-zzz.jpg', tint:'#ffb454',
+      sum:'A gamified goal tracker. Weekly and monthly quests across four life sectors (health and fitness, hobbies, relationships, career), points for progress, and rewards you define yourself and redeem with those points: a boba, a LEGO kit, a trip to Japan.',
+      hl:['SwiftUI on iOS 17+ with no third-party UI dependencies, plus a Kotlin build for Android.','Supabase for auth and data; the app runs fully on local data until you sign in.','Grew out of two earlier attempts: a weekly web task tracker (Do) and a React Native prototype (DuoQuest).','Privacy policy and support site published for the store listing.'],
+      stack:['SwiftUI','Kotlin','Supabase','XcodeGen','Firebase'],
+      links:[],
+      arch:{nodes:[{id:'ios',label:'iOS app',sub:'SwiftUI',c:0,r:0},{id:'and',label:'Android app',sub:'Kotlin',c:0,r:1},{id:'sb',label:'Supabase',sub:'Auth · Postgres',c:1,r:0.5,hi:1},{id:'store',label:'App Store',sub:'iOS release',c:1,r:1.6},{id:'site',label:'Privacy site',sub:'GitHub Pages',c:2,r:1.6}],edges:[['ios','sb'],['and','sb'],['ios','store'],['store','site']]},
+      gallery:['img/g/zzz-icon.jpg']},
+    {id:'zuo', title:'Zuo', k:'Personal AI harness · 2026', tag:'Personal AI harness: job queue, budgets, voice capture and agents.', cat:'AI harness', year:'2026', group:'ai', cover:'img/c-zuo.jpg', tint:'#5aa9ff',
+      sum:'My personal AI harness: a local multi-provider prompt app with a job queue, budgets and a project board, plus the agents and clients that hang off it. Several iterations over the year, each one teaching the next.',
+      hl:['Harness on the Mac: multi-provider prompt app, job queue with budgets, project board for orchestrating agents on the Max plan.','Voice capture that works on the phone: Web Audio recorder, silence and noise gating, Whisper warmed while you talk.','Agent team that turns Instagram posts into production-ready web sections, with a gallery to review them.','iOS PromptConsole client and a Windows side that runs vLLM and receives exchange logs.','Earlier iterations: a Telegram chief-of-staff agent on LangGraph with human-in-the-loop approvals, a containerized multi-agent app builder (BuilderOS), a Go agent on the ADK, and an audio analysis and transcription pipeline.'],
+      stack:['Python','FastAPI','LangGraph','Whisper','vLLM','Swift','Next.js','Docker'],
+      links:[],
+      arch:{nodes:[{id:'ios',label:'iOS client',sub:'PromptConsole',c:0,r:0},{id:'web',label:'Web app',sub:'/app · /board',c:0,r:1},{id:'voice',label:'Voice',sub:'VAD · Whisper',c:0,r:2},{id:'h',label:'Harness',sub:'job queue · budgets',c:1,r:1,hi:1},{id:'cl',label:'Claude / OpenAI',sub:'API',c:2,r:0},{id:'pc',label:'Windows PC',sub:'vLLM',c:2,r:1},{id:'ag',label:'UI agents',sub:'posts → sections',c:2,r:2}],edges:[['ios','h'],['web','h'],['voice','h'],['h','cl'],['h','pc'],['h','ag']]},
+      gallery:['img/g/zuo-board.jpg','img/g/zuo-app.jpg','img/g/zuo-glass.jpg','img/g/zuo-bento.jpg','img/g/zuo-clay.jpg','img/g/zuo-brut.jpg']},
+    {id:'catan', title:'Catan Arena', k:'Self-learning agents · 2026', tag:'Self-learning agent testbed with a statistical pass bar.', cat:'Research', year:'2026', group:'research', cover:'img/c-catan.jpg', tint:'#ffb454',
+      sum:'A testbed that proves the forever-agent loop on a closed world: one learning agent plays full Catan against three frozen copies of its starting self. By symmetry the no-learning null is a 25% win rate; learning is demonstrated only when the rolling win rate’s 95% Wilson interval clears 25%.',
+      hl:['Loop: actor plays, watcher records, consolidator distils episodes into memory the actor reads next game.','Engine self-tests for invariants: card conservation, victory points, seat symmetry.','Dashboard with live win-rate interval; headless mode runs generations in the terminal; state persists and resumes.','Same loop later informed the self-learning work on the HPE agents.'],
+      stack:['Python','Game engine','Statistics','Claude'],
+      links:[],
+      arch:{nodes:[{id:'eng',label:'Catan engine',sub:'4 seats',c:0,r:1},{id:'act',label:'Learning actor',c:1,r:0,hi:1},{id:'frz',label:'3 frozen copies',c:1,r:2},{id:'w',label:'Watcher',sub:'episodes',c:2,r:0},{id:'con',label:'Consolidator',sub:'rules',c:3,r:0},{id:'mem',label:'Memory',c:3,r:1.3,hi:1},{id:'dash',label:'Dashboard',sub:'Wilson interval',c:2,r:2}],edges:[['eng','act'],['eng','frz'],['act','w'],['w','con'],['con','mem'],['mem','act','reads'],['eng','dash']]},
+      gallery:['img/g/catan-dash.jpg']},
+    {id:'aitutor', title:'AI Tutor', k:'Learning app · 2026', tag:'Duolingo meets Instagram for learning AI engineering.', cat:'Apps', year:'2026', group:'apps', cover:'img/c-aitutor.jpg', tint:'#6fd3ff',
+      sum:'A personal, adaptive way to learn AI engineering, built like Duolingo meets Instagram: a path of levels you unlock one at a time, and a feed of swipeable carousels built from Reddit, Hacker News, arXiv and YouTube.',
+      hl:['Path: levels → lessons → quizzes → checkpoints. Feed: swipe up for the next post, sideways through its slides; like, save, ask or skip.','Practice tab with flashcards and weak spots; profiles with separate progress for several people on one server.','Claude through the Claude Code CLI (Opus for lessons and quizzes, Sonnet for summaries and grading) with free NVIDIA Nemotron as automatic fallback.','Pure standard-library Python server, no build step; yt-dlp for video sources.'],
+      stack:['Python','PWA','Claude','Nemotron','yt-dlp'],
+      links:[],
+      arch:{nodes:[{id:'src',label:'Sources',sub:'Reddit · HN · arXiv · YouTube',c:0,r:0.5},{id:'ing',label:'Ingest',c:1,r:0.5},{id:'llm',label:'Claude / Nemotron',sub:'lessons · carousels · grading',c:2,r:0.5,hi:1},{id:'srv',label:'Server',sub:'stdlib Python',c:3,r:0.5,hi:1},{id:'path',label:'Path',c:4,r:0},{id:'feed',label:'Feed',c:4,r:1},{id:'me',label:'Practice · Me',c:4,r:2}],edges:[['src','ing'],['ing','llm'],['llm','srv'],['srv','path'],['srv','feed'],['srv','me']]},
+      gallery:['img/g/tutor-home.jpg','img/g/tutor-sub.jpg','img/g/tutor-mobile.jpg','img/g/tutor-icon.jpg']},
+    {id:'musaic', title:'musaic', k:'Generative media · 2026', tag:'Automated lo-fi music channel, from generation to upload.', cat:'Generative media', year:'2026', group:'ai', cover:'img/c-musaic.jpg', tint:'#c084fc',
+      sum:'An automated lo-fi music channel. Each run generates the music, a thumbnail and a matching background, writes SEO metadata and chapters, encodes an HD video and uploads it to YouTube.',
+      hl:['Stable Audio for 3-minute clips, ten variations per video; Pydub to merge segments and remove murmur.','GPT-4 for titles, descriptions, tags and chapter markers.','Thumbnails from DALL-E 3 (animated) or Vertex Imagen (realistic); Veo backgrounds that match the thumbnail’s style, alternating each run.','FFmpeg at 1080p CRF 18 with 320k audio; assets in Google Cloud Storage; YouTube Data API upload with OAuth.'],
+      stack:['Python','Stable Audio','GPT-4','DALL-E 3','Vertex AI','Veo','FFmpeg','YouTube API'],
+      links:[['GitHub','https://github.com/Fluff18/musaic']],
+      arch:{nodes:[{id:'sa',label:'Stable Audio',sub:'music',c:0,r:0},{id:'gpt',label:'GPT-4',sub:'metadata',c:0,r:1},{id:'img',label:'DALL-E / Imagen',sub:'thumbnail',c:0,r:2},{id:'veo',label:'Veo',sub:'background',c:1,r:2},{id:'ff',label:'FFmpeg',sub:'1080p encode',c:2,r:1,hi:1},{id:'gcs',label:'Cloud Storage',c:3,r:0},{id:'yt',label:'YouTube',sub:'upload',c:3,r:1.5,hi:1}],edges:[['sa','ff'],['gpt','yt'],['img','veo'],['veo','ff'],['ff','gcs'],['ff','yt']]},
+      gallery:[]},
+    {id:'drone', title:'Drone Inspection Sim', k:'Robotics · 2026', tag:'PX4 and Gazebo inspection drone with a Pi-class AI agent.', cat:'Robotics', year:'2026', group:'research', cover:'img/c-drone.jpg', tint:'#3fd1c9',
+      sum:'An autonomous infrastructure-inspection drone in pure simulation, no hardware. PX4 flies an X500 quad through a custom depot-yard world in Gazebo while an AI agent, capped to Raspberry Pi 5 resources, works the camera feed.',
+      hl:['PX4 v1.17 built from source so the stack runs natively on arm64 and x86_64; Gazebo Harmonic with RGB and depth cameras.','Camera bridge republishes Gazebo topics over TCP; MAVLink over UDP on a shared Docker network.','Agent constrained to 4 CPU, 8 GB and no GPU to mirror the target edge hardware.','Custom world because the stock scene renders as a white screen with a faint horizon.'],
+      stack:['PX4 SITL','Gazebo','MAVLink','Docker','Python'],
+      links:[],
+      arch:{nodes:[{id:'gz',label:'Gazebo',sub:'depot-yard world',c:0,r:0.5,hi:1},{id:'px',label:'PX4 SITL',sub:'X500 quad',c:1,r:0},{id:'cb',label:'Camera bridge',sub:'TCP',c:1,r:1},{id:'ag',label:'AI agent',sub:'Pi-5 class limits',c:2,r:0.5,hi:1}],edges:[['gz','px'],['gz','cb'],['px','ag','MAVLink'],['cb','ag','frames']]},
+      gallery:['img/g/drone.jpg']},
+    {id:'quantum', title:'Quantum Slot Machine', k:'Quantum · 2025', tag:'Randomness from real qubits on IBM Quantum hardware.', cat:'Research', year:'2025', group:'research', cover:'img/c-quantum.jpg', tint:'#a78bfa',
+      sum:'A slot machine whose randomness comes from measuring real qubits. Each spin prepares three qubits, rotates them into superposition, optionally entangles them, measures, and maps the result to symbols.',
+      hl:['Runs on real IBM Quantum hardware with an API token, or on the Qiskit Aer simulator.','FastAPI and Qiskit backend; React frontend.','A demonstration that randomness can come from quantum measurement rather than a pseudo-random generator.'],
+      stack:['Python','Qiskit','FastAPI','React','IBM Quantum'],
+      links:[['GitHub','https://github.com/Fluff18/QuantumSlot']],
+      arch:{nodes:[{id:'ui',label:'React UI',c:0,r:0.5},{id:'api',label:'FastAPI',c:1,r:0.5},{id:'qk',label:'Qiskit circuit',sub:'3 qubits · RY · CNOT',c:2,r:0.5,hi:1},{id:'ibm',label:'IBM Quantum',sub:'hardware',c:3,r:0},{id:'aer',label:'Aer simulator',c:3,r:1}],edges:[['ui','api'],['api','qk'],['qk','ibm'],['qk','aer']]},
+      gallery:['img/g/quantum-app.jpg']},
+    {id:'fetch', title:'Fetch Recipes', k:'iOS · 2022', tag:'Swift recipe app over TheMealDB.', cat:'iOS', year:'2022', group:'earlier', cover:'img/c-fetch.jpg', tint:'#ffb454',
+      sum:'A sample, scalable Swift app that shows categories of food and their recipes in a clean, user-friendly way. Built for the Fetch Rewards apprenticeship test.',
+      hl:['A network manager that handles every call to TheMealDB API.','Category list, meal list and recipe detail with ingredients and measures.'],
+      stack:['Swift','UIKit','URLSession'],
+      links:[],
+      arch:{nodes:[{id:'ui',label:'Views',sub:'categories · meals · recipe',c:0,r:0.5},{id:'nm',label:'Network manager',c:1,r:0.5,hi:1},{id:'api',label:'TheMealDB API',c:2,r:0.5}],edges:[['ui','nm'],['nm','api']]},
+      gallery:['img/g/fr1.jpg','img/g/fr2.jpg','img/g/fr3.jpg','img/g/fr4.jpg']},
+    {id:'rideshare', title:'RideShare', k:'Distributed systems · 2020', tag:'Fault-tolerant database-as-a-service on AWS for a ride app.', cat:'Distributed systems', year:'2020', group:'earlier', cover:'img/c-rideshare.jpg', tint:'#5aa9ff',
+      sum:'A ride-sharing service backed by a fault-tolerant, highly available database-as-a-service on AWS. Users and rides run as their own services behind a load balancer; every database operation goes through an orchestrator.',
+      hl:['Three EC2 instances: users, rides and orchestrator, each running Docker containers.','Orchestrator runs RabbitMQ, Zookeeper, a master and slaves; reads and writes go through separate queues for eventual consistency.','Zookeeper watches the master and promotes a slave on failure; slaves scale with request volume.'],
+      stack:['Python','Flask','Docker','RabbitMQ','Zookeeper','AWS EC2'],
+      links:[],
+      arch:{nodes:[{id:'lb',label:'Load balancer',c:0,r:0.5},{id:'u',label:'Users service',c:1,r:0},{id:'r',label:'Rides service',c:1,r:1},{id:'o',label:'Orchestrator',sub:'RabbitMQ · Zookeeper',c:2,r:0.5,hi:1},{id:'m',label:'Master DB',c:3,r:0},{id:'s',label:'Slaves',sub:'scale out',c:3,r:1}],edges:[['lb','u'],['lb','r'],['u','o'],['r','o'],['o','m','writes'],['o','s','reads']]},
+      gallery:[]},
+    {id:'hand', title:'Handwriting Recognition', k:'Android · 2022', tag:'Digit recognition split across worker phones.', cat:'Android', year:'2022', group:'earlier', cover:'img/c-hand.jpg', tint:'#6fd3ff',
+      sum:'A mobile app that improves handwritten-digit recognition throughput by splitting each captured image into four parts and sending them to worker phones for parallel classification.',
+      hl:['Distributed computing across phones over the local network.','About 30% better processing efficiency than classifying on one device.'],
+      stack:['Kotlin','Android','TensorFlow Lite'],
+      links:[],
+      arch:{nodes:[{id:'cam',label:'Capture',sub:'split into 4',c:0,r:0.5},{id:'w1',label:'Worker phone',c:1,r:0},{id:'w2',label:'Worker phone',c:1,r:1},{id:'agg',label:'Aggregate',sub:'result',c:2,r:0.5,hi:1}],edges:[['cam','w1'],['cam','w2'],['w1','agg'],['w2','agg']]},
+      gallery:['img/g/mc.jpg','img/g/hand.jpg']},
+    {id:'zoom', title:'Zoom Telehealth', k:'iOS + Android TV · 2022', tag:'Doctor-driven telehealth on the Zoom Meeting SDK.', cat:'iOS + Android TV', year:'2022', group:'earlier', cover:'img/c-zoom.jpg', tint:'#5aa9ff',
+      sum:'A practical telehealth flow built on the Zoom Meeting SDK and Firebase for ASU’s Luminosity Lab and Phoenix Children’s Hospital: a doctor starts a meeting and remotely drives the patient’s Android TV.',
+      hl:['Doctor app on iOS; patient side on Android TV with remote control from the doctor’s end.','Firebase for signalling and session state.','Saves roughly 15 minutes per visit compared with the manual flow.'],
+      stack:['Swift','Zoom Meeting SDK','Firebase','Android TV'],
+      links:[],
+      arch:{nodes:[{id:'doc',label:'Doctor app',sub:'iOS',c:0,r:0.5},{id:'fb',label:'Firebase',sub:'signalling',c:1,r:0,hi:1},{id:'zm',label:'Zoom Meeting SDK',c:1,r:1,hi:1},{id:'tv',label:'Patient',sub:'Android TV',c:2,r:0.5}],edges:[['doc','fb'],['doc','zm'],['fb','tv'],['zm','tv']]},
+      gallery:['img/g/zoom1.jpg','img/g/zoom2.jpg','img/g/zoom3.jpg']},
+    {id:'paas', title:'PaaS Face Recognition', k:'Cloud · 2022', tag:'Live face recognition with Lambda, SQS and a Raspberry Pi.', cat:'Cloud', year:'2022', group:'earlier', cover:'img/c-paas.jpg', tint:'#3fd1c9',
+      sum:'Real-time face recognition on live video from a Raspberry Pi using AWS platform services. Frames flow through SQS to Lambda, which recognises the person and looks up their academic record in DynamoDB.',
+      hl:['93% recognition accuracy on the live stream.','Raspberry Pi records and streams; Lambda functions run the model; DynamoDB stores and serves records.'],
+      stack:['AWS Lambda','SQS','S3','DynamoDB','Raspberry Pi','Python'],
+      links:[],
+      arch:{nodes:[{id:'pi',label:'Raspberry Pi',sub:'live video',c:0,r:0.5},{id:'sqs',label:'SQS',c:1,r:0.5},{id:'lam',label:'Lambda',sub:'recognition',c:2,r:0.5,hi:1},{id:'ddb',label:'DynamoDB',sub:'records',c:3,r:0},{id:'s3',label:'S3',c:3,r:1}],edges:[['pi','sqs'],['sqs','lam'],['lam','ddb'],['lam','s3']]},
+      gallery:['img/g/paas.jpg']},
+    {id:'iaas', title:'IaaS Face Recognition', k:'Cloud · 2022', tag:'Elastic face recognition on autoscaled EC2.', cat:'Cloud', year:'2022', group:'earlier', cover:'img/c-iaas.jpg', tint:'#3fd1c9',
+      sum:'A cost-effective, fault-tolerant, elastic face-recognition service on raw AWS infrastructure. A web tier takes images, an app tier runs the deep-learning model, and the app tier scales in and out with the queue.',
+      hl:['Handles up to 100 concurrent requests by scaling EC2 app-tier instances on queue depth.','SQS between tiers; S3 for inputs and outputs.'],
+      stack:['AWS EC2','SQS','S3','Python','Deep learning'],
+      links:[],
+      arch:{nodes:[{id:'web',label:'Web tier',sub:'EC2',c:0,r:0.5},{id:'q',label:'SQS',c:1,r:0.5},{id:'app',label:'App tier',sub:'EC2 autoscaling',c:2,r:0.5,hi:1},{id:'s3',label:'S3',sub:'in / out',c:3,r:0.5}],edges:[['web','q'],['q','app'],['app','s3'],['web','s3']]},
+      gallery:['img/g/iaas.jpg']}
+  ];
+  function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function archSVG(a){
+    var CW = 150, CH = 64, GX = 60, GY = 22, PAD = 14;
+    var cols = 0, rows = 0;
+    a.nodes.forEach(function(n){ cols = Math.max(cols, n.c); rows = Math.max(rows, n.r); });
+    var W = PAD * 2 + (cols + 1) * CW + cols * GX, H = PAD * 2 + (rows + 1) * (CH + GY);
+    var pos = {};
+    a.nodes.forEach(function(n){ pos[n.id] = {x:PAD + n.c * (CW + GX), y:PAD + n.r * (CH + GY)}; });
+    var out = '<svg class="arch" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Architecture"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" style="fill:rgba(31,29,43,.6)"/></marker></defs>';
+    a.edges.forEach(function(e){
+      var p = pos[e[0]], q = pos[e[1]];
+      var x1 = p.x + CW, y1 = p.y + CH / 2, x2 = q.x, y2 = q.y + CH / 2, d;
+      if (q.x <= p.x){ x1 = p.x + CW / 2; y1 = p.y + (q.y > p.y ? CH : 0); x2 = q.x + CW / 2; y2 = q.y + (q.y > p.y ? 0 : CH); d = 'M' + x1 + ' ' + y1 + ' C ' + x1 + ' ' + ((y1 + y2) / 2) + ', ' + x2 + ' ' + ((y1 + y2) / 2) + ', ' + x2 + ' ' + y2; }
+      else { var mx = (x1 + x2) / 2; d = 'M' + x1 + ' ' + y1 + ' C ' + mx + ' ' + y1 + ', ' + mx + ' ' + y2 + ', ' + x2 + ' ' + y2; }
+      out += '<path class="e m" d="' + d + '"/>';
+      if (e[2]) out += '<text class="lab" x="' + ((x1 + x2) / 2) + '" y="' + ((y1 + y2) / 2 - 5) + '" text-anchor="middle">' + esc(e[2]) + '</text>';
+    });
+    a.nodes.forEach(function(n){
+      var p = pos[n.id];
+      out += '<g class="n' + (n.hi ? ' hi' : '') + '"><rect x="' + p.x + '" y="' + p.y + '" width="' + CW + '" height="' + CH + '" rx="8"/>' +
+        '<text x="' + (p.x + CW / 2) + '" y="' + (p.y + (n.sub ? 28 : 36)) + '" text-anchor="middle">' + esc(n.label) + '</text>' +
+        (n.sub ? '<text class="s" x="' + (p.x + CW / 2) + '" y="' + (p.y + 45) + '" text-anchor="middle">' + esc(n.sub) + '</text>' : '') + '</g>';
+    });
+    return out + '</svg>';
+  }
+var STORY={zuo:{ad:'Your agents. Your machines. Your phone.',st:[['3','machines as workers'],['1','planner, Claude'],['5','iterations this year']]},
+aitutor:{ad:'Duolingo meets Instagram, for AI engineering.',st:[['4','sources mined'],['2','models, auto fallback'],['0','build steps']]},
+zzz:{ad:'Goals as quests. Rewards you pick.',st:[['2','platforms'],['4','life sectors'],['1','App Store release']]},
+catan:{ad:'An agent graduates only when the stats say so.',st:[['25%','null win rate'],['95%','Wilson interval'],['3','frozen opponents']]},
+drone:{ad:'Inspection flights on Pi-class compute.',st:[['4','CPU cores, capped'],['8 GB','RAM, no GPU'],['18x','llama.cpp vs Ollama']]},
+musaic:{ad:'A music channel that runs itself.',st:[['10','variations per video'],['1080p','CRF 18 encode'],['0','hands on upload']]},
+quantum:{ad:'Luck, measured on real qubits.',st:[['3','qubits per spin'],['1','IBM backend'],['0','pseudo-random bits']]},
+rideshare:{ad:'A database that survives its master dying.',st:[['3','EC2 nodes'],['2','queues, read and write'],['1','auto-promoted replica']]},
+zoom:{ad:'The doctor drives the TV.',st:[['15','minutes saved a visit'],['2','platforms'],['1','hospital partner']]},
+paas:{ad:'Faces to records, serverless.',st:[['93%','accuracy, live'],['3','AWS services'],['1','Raspberry Pi']]},
+iaas:{ad:'Scale with the queue, not the calendar.',st:[['100','concurrent requests'],['2','tiers'],['0','idle servers']]},
+hand:{ad:'Four phones, one digit.',st:[['4','image parts'],['30%','faster'],['1','local network']]},
+fetch:{ad:'Recipes, fetched.',st:[['25+','categories'],['2,000+','recipes'],['1','network manager']]}};
+var story=$('#story'),savedY=0,ORDER=P.map(function(p){return p.id});
+function pdOf(id){for(var i=0;i<PD.length;i++)if(PD[i].id===id)return PD[i]}
+function openStory(id){var d=pdOf(id),p=P.filter(function(x){return x.id===id})[0],st=STORY[id]||{ad:d.tag,st:[]};if(!d||!p)return;
+ if(!document.body.classList.contains('in-story'))savedY=scrollY;
+ var k=ORDER.indexOf(id),prev=P[(k-1+P.length)%P.length],next=P[(k+1)%P.length];
+ var mark=d.title.replace(/[^A-Za-z]/g,'').slice(0,2).toUpperCase();
+ var links=(d.links||[]).map(function(l){return '<a class="btn dark" href="'+l[1]+'" target="_blank" rel="noopener">'+esc(l[0])+' ↗</a>'}).join('');
+ var gal=(d.gallery&&d.gallery.length?d.gallery:[d.cover]).map(function(g){return '<img src="'+g+'" alt="'+esc(d.title)+' screenshot" loading="lazy">'}).join('');
+ var feats=d.hl.map(function(h,i){return '<div><b>0'+(i+1)+'</b><p>'+esc(h)+'</p></div>'}).join('');
+ story.innerHTML='<div class="wrap"><div class="sh"><div class="gw" aria-hidden="true">'+esc(d.title)+'</div><div class="hc"><a class="back" href="#work" data-back>← All work</a><div class="mark">'+mark+'</div><h1>'+esc(d.title)+'<span class="dot">.</span></h1><p class="tag">'+esc(st.ad)+'</p><div class="stats" data-stagger>'+st.st.map(function(x){return '<div><b>'+x[0]+'</b><small>'+esc(x[1])+'</small></div>'}).join('')+'</div><div class="ctas"><span class="chip">'+esc(d.k)+'</span></div><div class="ctas">'+links+'<a class="btn" href="#contact" data-back>Ask me about it →</a></div></div><div class="art"><img src="'+d.cover+'" alt=""></div></div>'
+ +'<div class="sp reveal"><div class="eyebrow" data-n="01">The idea</div><p class="pitch">'+esc(d.sum)+'</p></div>'
+ +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="02">What it does</div><h2 style="font-size:clamp(32px,4.6vw,60px)">Built <i>in.</i></h2></div><div class="feat" data-stagger>'+feats+'</div></div>'
+ +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="03">How it works</div><h2 style="font-size:clamp(32px,4.6vw,60px)">The <i>architecture.</i></h2></div><div class="archwrap">'+archSVG(d.arch)+'</div><div class="stackrow" data-stagger>'+d.stack.map(function(x){return '<span class="chip">'+esc(x)+'</span>'}).join('')+'</div></div>'
+ +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="04">In pixels</div><h2 style="font-size:clamp(32px,4.6vw,60px)">See <i>it.</i></h2></div><div class="gal" data-stagger>'+gal+'</div></div>'
+ +'<div class="sfoot"><a href="#p-'+prev.id+'"><small>Previous</small><b>'+esc(prev.t)+'</b></a><a class="next" href="#p-'+next.id+'"><small>Next</small><b>'+esc(next.t)+'</b></a></div></div>';
+ /* stagger the diagram: edges first, nodes after */
+ $$('svg.arch .e',story).forEach(function(e,i){e.style.setProperty('--d',(i*.12)+'s')});$$('svg.arch .n',story).forEach(function(n,i){n.style.setProperty('--d',(.3+i*.1)+'s')});
+ /* hero children enter one by one */
+ $$('.sh .hc>*',story).forEach(function(el,i){el.style.setProperty('--i',i);el.style.animation='up .9s cubic-bezier(.2,.7,.2,1) both';el.style.animationDelay=(.15+i*.09)+'s'});
+ document.body.classList.add('in-story');document.title=d.title+' — Rahul M Koushik';scrollTo(0,0);
+ $$('.reveal',story).forEach(function(el){io.observe(el)});$$('[data-stagger]',story).forEach(function(el){index(el);io.observe(el)});$$('.archwrap',story).forEach(function(el){io.observe(el)});
+ $$('[data-back]',story).forEach(function(a){a.addEventListener('click',function(){closeStory(a.getAttribute('href'))})})}
+function closeStory(to){if(!document.body.classList.contains('in-story'))return;document.body.classList.remove('in-story');story.innerHTML='';document.title='Rahul M Koushik — AI Engineer';if(to&&to!=='#work'){var t=$(to);if(t)t.scrollIntoView()}else scrollTo(0,savedY)}
+function route(){var h=location.hash;if(/^#p-/.test(h)){openStory(h.slice(3))}else if(document.body.classList.contains('in-story')){closeStory(h)}}
+addEventListener('hashchange',route);route();
+
 /* stagger containers: index the children, then watch them */
 $$('[data-stagger]').forEach(function(el){index(el);io.observe(el)});
 })();
