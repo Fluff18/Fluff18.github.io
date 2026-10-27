@@ -78,7 +78,7 @@ nav.top>*{pointer-events:auto}
 .facts{display:grid;gap:0;border-top:1px solid var(--line);margin-top:28px}
 .facts div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
 .facts dt{color:var(--mute)}.facts dd{margin:0;font-weight:600;text-align:right}
-.quote{margin-top:22px;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--ink2)}.quote small{display:block;font-family:var(--sans);font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:8px;font-weight:600}
+.quote{margin-top:22px;font-size:20px;font-weight:600;letter-spacing:-.02em;line-height:1.3;color:var(--ink)}.quote small{display:block;font-family:var(--sans);font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:8px;font-weight:600}
 .lanyard{display:flex;flex-direction:column;align-items:center;perspective:1200px;padding-top:4px}
 .strap{width:14px;height:88px;background:linear-gradient(90deg,#2d2a3b,#4a4660,#2d2a3b);border-radius:0 0 6px 6px;position:relative}
 .strap::after{content:"";position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);width:28px;height:14px;border-radius:6px;background:#c9c4b4}
@@ -104,7 +104,7 @@ nav.top>*{pointer-events:auto}
 .face .sig{margin-top:auto;font-family:var(--serif);font-style:italic;font-size:22px}
 .face .sig small{display:block;font-family:var(--sans);font-style:normal;font-size:11px;letter-spacing:.14em;color:var(--mute);text-transform:uppercase}
 .face.back img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:4px solid var(--paper2)}
-.face.back p{margin:0;font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink2)}
+.face.back p{margin:0;font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
 .flip-hint{font-size:12px;color:var(--mute);margin-top:12px;letter-spacing:.1em;text-transform:uppercase}
 @media(max-width:960px){.about{grid-template-columns:1fr}.lanyard{order:-1}}
 /* skills */
@@ -133,9 +133,9 @@ nav.top>*{pointer-events:auto}
 .acc .vt small{font-size:11px;color:var(--mute);font-weight:600}
 .acc .vt .plus{width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:16px;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
 .acc .item.open .vt .plus{transform:rotate(45deg)}
-.acc .body{position:absolute;inset:0 0 0 64px;opacity:0;transform:translateX(28px);transition:opacity .35s .15s,transform .6s .1s cubic-bezier(.2,.7,.2,1);display:grid;grid-template-columns:1.2fr .8fr;gap:20px;padding:22px}
+.acc .body{position:absolute;inset:0 0 0 64px;opacity:0;transform:translateX(28px);transition:opacity .35s .15s,transform .6s .1s cubic-bezier(.2,.7,.2,1);display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:22px}
 .acc .item.open .body{opacity:1;transform:none}
-.acc .body img{width:100%;height:100%;object-fit:cover;border-radius:16px}
+.acc .body img{width:100%;height:100%;object-fit:contain;border-radius:16px;background:var(--paper2);padding:14px;border:1px solid var(--line)}
 .acc .body .txt{display:flex;flex-direction:column;justify-content:flex-end;gap:10px;min-width:0}
 .acc .body h3{margin:0;font-size:clamp(22px,2.6vw,36px);letter-spacing:-.03em;line-height:1.05}
 .acc .body p{margin:0;color:var(--ink2);font-size:14px}
@@ -254,7 +254,7 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
    <div class="hc">
     <div class="eyebrow" data-n="">Rahul M Koushik</div>
     <h1>AI<br>Engineer<span class="dot">.</span></h1>
-    <p><span class="say" aria-hidden="true"><i></i><i></i><i></i></span><span id="say"></span><span class="cur"></span></p><p class="static">Agentic loops, self-learning and evals for the HPE Storage AI team. Open to senior AI engineering and AI product management roles.</p>
+    <p><span class="say" aria-hidden="true"><i></i><i></i><i></i></span><span id="say"></span><span class="cur"></span></p><p class="static">Autonomous triage and root-cause agents, self-learning loops and the evals behind them, for the HPE Storage AI team. Open to senior AI engineering and AI product management roles.</p>
    </div>
     <div class="hero-cta">
       <span class="hire"><i></i>Available for hire</span>
@@ -283,7 +283,7 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
           <div class="hole"></div>
           <h4>What I am</h4>
           <ul>
-            <li><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></b><div>AI engineer<small>Agentic loops · evals · self-learning</small></div></li>
+            <li><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></b><div>AI engineer<small>Autonomous triage and RCA agents · evals · self-learning</small></div></li>
             <li><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></b><div>Storage systems builder and deployer<small>Go, Kubernetes, five release lines at HPE</small></div></li>
             <li><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></b><div>Product builder<small>iOS + Android apps, a personal AI harness</small></div></li>
             <li><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></b><div>Zero-to-one<small>Idea to three deployments in four weeks</small></div></li>
@@ -293,7 +293,7 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
         </div>
         <div class="face back">
           <img src="profile.jpg" alt="">
-          <p>"Design is not just what it looks like. Design is how it works."</p><small class="flip-hint">Steve Jobs</small>
+          <p>"Design is not just what it looks like. Design is how it works."</p>
           <small class="flip-hint">M.S. Computer Science · ASU</small>
         </div>
       </div>
@@ -309,7 +309,7 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
         <div><dt>Started</dt><dd>B.Tech CSE, PES University · 2021</dd></div>
         <div><dt>Focus</dt><dd>Agents · MCP · RAG · Evaluation</dd></div>
       </dl>
-      <p class="quote">"The best way to predict the future is to invent it."<small>Alan Kay</small></p>
+      <p class="quote">"The best way to predict the future is to invent it."</p>
     </div>
   </div>
 </section>
@@ -410,7 +410,7 @@ var vsrc=document.documentElement.dataset.video;if(vsrc){v.addEventListener('loa
 /* resume link: the PDF lives outside this folder on the Mac; on GitHub Pages point it at the site root copy */
 var hasPdf=false;$$('[data-resume]').forEach(function(a){if(location.hostname.indexOf('github.io')>-1)a.href='Resume.pdf'});
 /* the talking line: types what the intro video would say */
-var SAY=['Hi, I\u2019m Rahul. I build agents that close the loop: plan, act, score, learn.','I own the evals. Rubric standards and expert feedback decide whether an agent ships.','Self-learning agents, persistent memory, context graphs. That is the work I want next.','Open to senior AI engineering and AI product roles in the Bay Area.'];
+var SAY=['Hi, I\u2019m Rahul. I build autonomous triage and root-cause agents for production storage.','Agents that close the loop: plan, act, score, learn.','I own the evals. Rubric standards and expert feedback decide whether an agent ships.','Self-learning agents, persistent memory, context graphs. That is the work I want next.','Open to senior AI engineering and AI product roles in the Bay Area.'];
 (function(){var el=$('#say'),i=0,j=0,del=false;if(!el)return;if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=SAY[0];return}
 function tick(){var t=SAY[i];if(!del){j++;el.textContent=t.slice(0,j);if(j===t.length){del=true;return setTimeout(tick,2600)}return setTimeout(tick,28+Math.random()*30)}j-=3;if(j<=0){j=0;del=false;i=(i+1)%SAY.length;el.textContent='';return setTimeout(tick,400)}el.textContent=t.slice(0,j);setTimeout(tick,12)}tick()})();
 /* nav highlight */
@@ -466,7 +466,7 @@ GROUPS.forEach(function(g){var b=document.createElement('button');b.className='b
 renderAcc();
 /* timeline */
 var T=[
-{y:'2026',s:'Feb · present',h:'AI Engineer',o:'Hewlett Packard Enterprise · Storage AI team · Bay Area',b:['Built the MCP tool server every team agent and the storage experts’ Copilot run on: 6,300+ tool calls a week across HPE Storage.','Own the evaluation platform: rubric-standard scoring against expert feedback, trace-level observability of every agentic loop, and the pass bar an agent must clear before it ships. Idea to three deployments in four weeks.','Self-learning agents: persistent agents with memory, a context graph over 13,005 mined bugs and 5,600 grounded analyses, prompt and cache optimizations that cut cost per run. Reported an honest zero-lift result after catching data leakage.','Fine-tuning and reinforcement-learning experiments on expert-labelled traces; an alert-investigation agent in production.'],c:['Agentic loops','Evals','Self-learning','Context graphs','RL']},
+{y:'2026',s:'Feb · present',h:'AI Engineer',o:'Hewlett Packard Enterprise · Storage AI team · Bay Area',b:['Built the MCP tool server every team agent and the storage experts’ Copilot run on: 6,300+ tool calls a week across HPE Storage.','Own the evaluation platform: rubric-standard scoring against expert feedback, trace-level observability of every agentic loop, and the pass bar an agent must clear before it ships. Idea to three deployments in four weeks.','Self-learning agents: persistent agents with memory, a context graph over 13,005 mined bugs and 5,600 grounded analyses, prompt and cache optimizations that cut cost per run. Reported an honest zero-lift result after catching data leakage.','Autonomous alert-triage and root-cause-analysis agents in production; fine-tuning and reinforcement-learning experiments on expert-labelled traces.'],c:['Agentic loops','Evals','Self-learning','Context graphs','RL']},
 {y:'2023',s:'Jun 2023 · Feb 2026',h:'Cloud Software Engineer',o:'Hewlett Packard Enterprise · Storage · Bay Area',b:['Go and JavaScript on HPE’s data-mobility product across 3PAR, Primera, Alletra and Nimble arrays: 15 tagged builds, 47 defects fixed, 5 release lines.','Shipped Remote Copy support in Peer Motion and a Nimble-to-Alletra iSCSI migration path, the year’s largest feature.','Built monitoring dashboards and Spark log pipelines for teams supporting 10,000+ customers. Investigation time from 30 minutes to 3.'],c:['Go','Kubernetes','Spark','Storage']},
 {y:'2022',s:'May · Aug 2022',h:'Software Engineering Intern',o:'Aruba, Hewlett Packard Enterprise · Tempe',b:['Built a test-automation tool that configures network topologies, saving an estimated 150k engineering hours a year.','Presented the work to panels of senior engineers and cross-functional partners.'],c:['Python','Networking','Automation']},
 {y:'2022',s:'Feb 2022 · May 2023',h:'Research Aide',o:'The Luminosity Lab, Arizona State University · Tempe',b:['Led the iOS team revamping the TouchPoint iOS and Android apps and shaping the client’s mobile roadmap.','HealthKit heart-rate-variability sensing that classifies users into six stress profiles; a telehealth flow that saves doctors 15 minutes a visit.'],c:['Swift','HealthKit','Product']},
