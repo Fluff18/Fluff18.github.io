@@ -72,10 +72,10 @@ nav.top>*{pointer-events:auto}
 @keyframes marq{to{transform:translateX(-50%)}}
 @media(max-width:860px){#hero{display:flex;flex-direction:column;justify-content:flex-end;padding-top:calc(76px + env(safe-area-inset-top))}.ghost span{--gy:-22vh}.stage{position:relative;left:auto;bottom:auto;transform:none;height:min(46vh,420px);width:100%;margin:0 auto;align-items:flex-end;justify-content:center}.stage .fallback img{height:100%}.hero-copy{flex-direction:column;align-items:stretch;gap:0;padding-bottom:32px;padding-top:18px;background:linear-gradient(180deg,rgba(246,243,236,0),var(--paper) 18%)}.hero-copy .hc{max-width:none}.hero-copy h1{font-size:clamp(44px,15vw,72px)}.hero-cta{flex-direction:row;flex-wrap:wrap;justify-content:flex-start;margin-top:16px}.scroll-hint{display:none}}
 /* about */
-.about{display:grid;grid-template-columns:1.1fr .9fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,80px);align-items:center}
 .about h2{font-size:clamp(40px,5.6vw,72px)}
 .about .ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-.facts{display:grid;gap:0;border-top:1px solid var(--line);margin-top:28px}
+.facts{display:grid;gap:0;border-top:1px solid var(--line);margin-top:18px}
 .facts div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
 .facts dt{color:var(--mute)}.facts dd{margin:0;font-weight:600;text-align:right}
 .quote{margin-top:22px;font-size:20px;font-weight:600;letter-spacing:-.02em;line-height:1.3;color:var(--ink)}.quote small{display:block;font-family:var(--sans);font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:8px;font-weight:600}
@@ -106,7 +106,7 @@ nav.top>*{pointer-events:auto}
 .face.back img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:4px solid var(--paper2)}
 .face.back p{margin:0;font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
 .flip-hint{font-size:12px;color:var(--mute);margin-top:12px;letter-spacing:.1em;text-transform:uppercase}
-@media(max-width:960px){.about{grid-template-columns:1fr}.lanyard{order:-1}}
+@media(max-width:960px){.about{grid-template-columns:1fr}}
 /* skills */
 .fam{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 26px}
 .fam button{height:34px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:8px}
@@ -272,42 +272,19 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
     <div class="reveal">
       <div class="eyebrow" data-n="01">About</div>
       <h2>Hi, I'm <i>Rahul.</i></h2>
-      <p class="lede">I turn messy engineering problems into AI products people actually use. On the AI team serving all of HPE Storage, I build the agents, developer tools and knowledge systems engineers use to debug production storage, and I own the platform that scores whether those agents are any good.</p>
-      <p class="lede">Founder habits, engineer's hands. Zero-to-one is where I do my best work.</p>
+      <p class="lede">Founder habits, engineer's hands. I build agents that ship, and the evals that decide whether they should.</p>
       <div class="ctas"><a class="btn dark" href="Resume.pdf" data-resume>Résumé ↓</a><a class="btn" href="https://github.com/Fluff18" target="_blank" rel="noopener">GitHub ↗</a><a class="btn" href="https://linkedin.com/in/rkoushik1808" target="_blank" rel="noopener">LinkedIn ↗</a></div>
     </div>
-    <div class="lanyard reveal">
-      <div class="strap"></div>
-      <div class="badge" id="badge" role="button" tabindex="0" aria-label="Flip the ID card">
-        <div class="face front">
-          <div class="hole"></div>
-          <h4>What I am</h4>
-          <ul>
-            <li><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></b><div>AI engineer<small>Autonomous triage and RCA agents · evals · self-learning</small></div></li>
-            <li><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></b><div>Storage systems builder and deployer<small>Go, Kubernetes, five release lines at HPE</small></div></li>
-            <li><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></b><div>Product builder<small>iOS + Android apps, a personal AI harness</small></div></li>
-            <li><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></b><div>Zero-to-one<small>Idea to three deployments in four weeks</small></div></li>
-            <li><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></b><div>Hackathon winner, twice<small>Fellow Review selected, twice</small></div></li>
-          </ul>
-          <div class="sig">Rahul<small>rkoushik@asu.edu · Bay Area</small></div>
-        </div>
-        <div class="face back">
-          <img src="profile.jpg" alt="">
-          <p>Rahul M Koushik</p>
-          <small class="flip-hint">M.S. Computer Science · ASU</small>
-        </div>
-      </div>
-      <div class="flip-hint">Tap the card to flip</div>
-    </div>
     <div class="reveal">
-      <div class="eyebrow" data-n="">Other facts</div>
+      <div class="eyebrow" data-n="">Facts</div>
       <dl class="facts" data-stagger>
         <div><dt>Based in</dt><dd>San Francisco Bay Area</dd></div>
         <div><dt>Doing</dt><dd>AI Engineer, HPE Storage</dd></div>
         <div><dt>Before that</dt><dd>Cloud Software Engineer, HPE</dd></div>
         <div><dt>Studied</dt><dd>M.S. CS, Arizona State · 2023</dd></div>
         <div><dt>Started</dt><dd>B.Tech CSE, PES University · 2021</dd></div>
-        <div><dt>Focus</dt><dd>Agents · MCP · RAG · Evaluation</dd></div>
+        <div><dt>Focus</dt><dd>Agent loops · Memory · Evals · Self-learning</dd></div>
+        <div><dt>Open to</dt><dd>Senior AI engineering · AI product</dd></div>
       </dl>
     </div>
   </div>
@@ -425,8 +402,7 @@ $$('.reveal').forEach(function(el){io.observe(el)});
 var WORDS=['Agents','MCP tool servers','RAG','Evals','Python','Go','TypeScript','Swift','Kubernetes','Spark','Postgres','FastAPI','React','SwiftUI','LangGraph','vLLM','Observability','Zero-to-one'];
 (function(){var t=$('#marq');if(!t)return;var html=WORDS.map(function(w){return '<span>'+w+'</span>'}).join('');t.innerHTML=html+html})();
 /* badge */
-var badge=$('#badge');function flip(){badge.classList.toggle('flip')}
-badge.addEventListener('click',flip);badge.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}});
+var badge=$('#badge');if(badge){var flip=function(){badge.classList.toggle('flip')};badge.addEventListener('click',flip);badge.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}})}
 /* periodic table */
 var FAM=[['AI & agents','#1f1d2b',1],['Languages','#3a3650',1],['Backend','#6f6a7a',1],['Data','#b9b3a8',0],['Cloud','#d8d2c6',0],['Apps & UI','#ece7db',0]];
 var EL=[
@@ -465,7 +441,8 @@ GROUPS.forEach(function(g){var b=document.createElement('button');b.className='b
 renderAcc();
 /* timeline */
 var T=[
-{y:'2026',s:'Feb · present',h:'AI Engineer',o:'Hewlett Packard Enterprise · Storage AI team · Bay Area',b:['Built the MCP tool server every team agent and the storage experts’ Copilot run on: 6,300+ tool calls a week across HPE Storage.','Own the evaluation platform: rubric-standard scoring against expert feedback, trace-level observability of every agentic loop, and the pass bar an agent must clear before it ships. Idea to three deployments in four weeks.','Self-learning agents: persistent agents with memory, a context graph over 13,005 mined bugs and 5,600 grounded analyses, prompt and cache optimizations that cut cost per run. Reported an honest zero-lift result after catching data leakage.','Autonomous alert-triage and root-cause-analysis agents in production; fine-tuning and reinforcement-learning experiments on expert-labelled traces.'],c:['Agentic loops','Evals','Self-learning','Context graphs','RL']},
+{y:'2026',s:'Feb · present',h:'AI Engineer',o:'Hewlett Packard Enterprise · Storage AI team · Bay Area',b:['Designed the agent loop every team agent runs on: plan, act through tools, score, learn. The MCP tool server behind it serves 6,300+ tool calls a week across HPE Storage, for the storage experts’ Copilot and every team agent.','Built the memory layer for persistent agents: episodic memory across runs, a context graph over 13,005 mined bugs and 5,600 grounded analyses, cache-aware prompts that cut cost per run.','Own the evaluation platform: rubric-standard scoring against expert feedback, trace-level observability of every loop, and the pass bar an agent must clear before it ships. Idea to three deployments in four weeks.','Self-learning loops: agents that mine their own failures, propose patches and re-run against the pass bar; autonomous alert-triage and root-cause-analysis agents in production. Reported an honest zero-lift result after catching data leakage.'],c:['Agent loop','MCP','Memory','Evals','Self-learning']},
+
 {y:'2023',s:'Jun 2023 · Feb 2026',h:'Cloud Software Engineer',o:'Hewlett Packard Enterprise · Storage · Bay Area',b:['Go and JavaScript on HPE’s data-mobility product across 3PAR, Primera, Alletra and Nimble arrays: 15 tagged builds, 47 defects fixed, 5 release lines.','Shipped Remote Copy support in Peer Motion and a Nimble-to-Alletra iSCSI migration path, the year’s largest feature.','Built monitoring dashboards and Spark log pipelines for teams supporting 10,000+ customers. Investigation time from 30 minutes to 3.'],c:['Go','Kubernetes','Spark','Storage']},
 {y:'2022',s:'May · Aug 2022',h:'Software Engineering Intern',o:'Aruba, Hewlett Packard Enterprise · Tempe',b:['Built a test-automation tool that configures network topologies, saving an estimated 150k engineering hours a year.','Presented the work to panels of senior engineers and cross-functional partners.'],c:['Python','Networking','Automation']},
 {y:'2022',s:'Feb 2022 · May 2023',h:'Research Aide',o:'The Luminosity Lab, Arizona State University · Tempe',b:['Led the iOS team revamping the TouchPoint iOS and Android apps and shaping the client’s mobile roadmap.','HealthKit heart-rate-variability sensing that classifies users into six stress profiles; a telehealth flow that saves doctors 15 minutes a visit.'],c:['Swift','HealthKit','Product']},
