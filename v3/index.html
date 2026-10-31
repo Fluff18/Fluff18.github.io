@@ -305,7 +305,7 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
     <div class="hero-cta">
       <span class="hire"><i></i>Available for hire</span>
             <a class="btn dark" href="#contact">Let's talk <span class="arr">→</span></a>
-      <a class="btn" href="Resume.pdf" target="_blank" rel="noopener" data-resume>Resume ↗</a>
+      <a class="btn" href="resume.html" data-resume>Resume ↗</a>
     </div>
   </div>
   <a class="scroll-hint" href="#about" aria-label="Scroll to About"><span>↓</span></a>
@@ -318,7 +318,7 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
       <div class="eyebrow" data-n="01">About</div>
       <h2>Hi, I'm <i>Rahul.</i></h2>
       <p class="lede">Founder habits, engineer's hands. I build agents that ship, and the evals that decide whether they should.</p><p class="lede">I scope the problem with the people who have it, ship the first version fast, and keep the metric that says whether it helped.</p>
-      <div class="ctas"><a class="btn dark" href="Resume.pdf" target="_blank" rel="noopener" data-resume>Résumé ↗</a><a class="btn" href="https://github.com/Fluff18" target="_blank" rel="noopener">GitHub ↗</a><a class="btn" href="https://linkedin.com/in/rkoushik1808" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+      <div class="ctas"><a class="btn dark" href="resume.html" data-resume>Résumé ↗</a><a class="btn" href="https://github.com/Fluff18" target="_blank" rel="noopener">GitHub ↗</a><a class="btn" href="https://www.linkedin.com/in/rahulkoushik/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
     </div>
     <div class="reveal">
       <div class="eyebrow" data-n="">Facts</div>
@@ -395,9 +395,9 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
     <p class="lede">Best reached by email or LinkedIn. Based in the San Francisco Bay Area.</p>
     <div class="clinks">
       <a href="mailto:rkoushik@asu.edu"><small>Email</small><b>rkoushik@asu.edu</b></a>
-      <a href="https://linkedin.com/in/rkoushik1808" target="_blank" rel="noopener"><small>LinkedIn</small><b>in/rkoushik1808</b></a>
+      <a href="https://www.linkedin.com/in/rahulkoushik/" target="_blank" rel="noopener"><small>LinkedIn</small><b>in/rahulkoushik</b></a>
       <a href="https://github.com/Fluff18" target="_blank" rel="noopener"><small>GitHub</small><b>github.com/Fluff18</b></a>
-      <a href="Resume.pdf" target="_blank" rel="noopener" data-resume><small>Resume</small><b>PDF ↗</b></a>
+      <a href="resume.html" data-resume><small>Resume</small><b>PDF ↗</b></a>
     </div>
   </div>
 </section>
@@ -412,7 +412,7 @@ var $=function(s,r){return (r||document).querySelector(s)};var $$=function(s,r){
 var v=$('#herovid'),fb=$('#herofallback');
 var vsrc=document.documentElement.dataset.video;if(vsrc){v.addEventListener('loadeddata',function(){v.hidden=false;fb.hidden=true;v.play().catch(function(){})});v.src=vsrc;v.load()}
 /* resume link: the PDF lives outside this folder on the Mac; on GitHub Pages point it at the site root copy */
-var hasPdf=false;$$('[data-resume]').forEach(function(a){if(location.hostname.indexOf('github.io')>-1)a.href='Resume.pdf'});
+/* resume buttons open the in-site PDF viewer (resume.html) */
 /* the talking line: types what the intro video would say */
 var SAY=['Hi, I\u2019m Rahul. I build autonomous triage and root-cause agents for production storage.','Agents that close the loop: plan, act, score, learn.','I own the evals. Rubric standards and expert feedback decide whether an agent ships.','Self-learning agents, persistent memory, context graphs. That is the work I want next.','I start from the user\u2019s problem and measure whether the agent actually solved it.','Open to AI Engineer and AI Product roles in the Bay Area.'];
 (function(){var el=$('#say'),i=0,j=0,del=false;if(!el)return;if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=SAY[0];return}
