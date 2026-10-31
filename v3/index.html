@@ -282,41 +282,15 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
 @keyframes chin{from{opacity:0;transform:translateY(40%) rotate(4deg)}}
 @media(prefers-reduced-motion:reduce){.case{opacity:1;transform:none}.w>span{transform:none}.tl::before{transform:none}*,*::before,*::after{animation:none!important;transition:none!important}.reveal,[data-stagger]:not(.in)>*{opacity:1;transform:none}.lanyard .strap{transform:none}}
 
-/* ---------- themes (palettes from the harness template library, professional cuts) ---------- */
-html{transition:background-color .4s}
-body,.case,.trow>div:last-child,.ach,.btn,.pill,.chip,.srow,#contact,footer{transition:background-color .4s,color .4s,border-color .4s,box-shadow .4s}
-/* Clay: warm, soft, rounded; claymorphism without the purple */
-:root[data-theme="clay"]{--accent:#f08c72;--paper:#f7ece4;--paper2:#f1e0d5;--card:#fffaf6;--ink:#2f2a3a;--ink2:#524c62;--mute:#625b70;--line:rgba(47,42,58,.12);--navy:#f08c72;--on:#2a1a14;--on2:#5a3a2e;--deep:#3a3448;--ondeep:#fff;--ondeep2:#d8d0e4;--ghost:rgba(240,140,114,.13);--r:28px}
-:root[data-theme="clay"] .case,:root[data-theme="clay"] .trow>div:last-child,:root[data-theme="clay"] .ach{border-color:transparent;box-shadow:inset 0 2px 0 #fff,inset 0 -8px 16px rgba(240,140,114,.10),0 18px 30px -22px rgba(120,60,40,.45)}
-:root[data-theme="clay"] .btn{border-radius:16px}
-:root[data-theme="clay"] .btn.dark{box-shadow:inset 0 2px 0 rgba(255,255,255,.45),inset 0 -4px 0 rgba(0,0,0,.08)}
-:root[data-theme="clay"] .pill{border-radius:18px}:root[data-theme="clay"] .pill a{border-radius:12px}
-/* Mint: soft brutalism; ink outlines, offset blocks, mint and butter accents */
-:root[data-theme="mint"]{--accent:#1d1a22;--paper:#e8edea;--paper2:#dde6e1;--card:#fcfdfe;--ink:#1d1a22;--ink2:#3c3842;--mute:#55515c;--line:rgba(29,26,34,.22);--navy:#1d1a22;--on:#fff;--on2:#c9e9e3;--deep:#1d1a22;--ondeep:#fff;--ondeep2:#c9e9e3;--ghost:rgba(29,26,34,.06);--r:6px}
-:root[data-theme="mint"] .case,:root[data-theme="mint"] .trow>div:last-child,:root[data-theme="mint"] .ach{border:1.5px solid var(--ink);box-shadow:5px 5px 0 var(--ink);border-radius:6px}
-:root[data-theme="mint"] .case:nth-child(3n+1) .shot{background:#a8dfd7}:root[data-theme="mint"] .case:nth-child(3n+2) .shot{background:#f2e8be}
-:root[data-theme="mint"] .btn{border:1.5px solid var(--ink);border-radius:6px;box-shadow:3px 3px 0 var(--ink)}
-:root[data-theme="mint"] .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
-:root[data-theme="mint"] .pill{border:1.5px solid var(--ink);border-radius:8px}:root[data-theme="mint"] .pill a{border-radius:4px}
-:root[data-theme="mint"] .pill a.on{background:#a8dfd7;color:var(--ink)}
-:root[data-theme="mint"] .chip{background:#f2e8be;border-color:var(--ink)}
-:root[data-theme="mint"] .ach:nth-child(odd){background:#a8dfd7}:root[data-theme="mint"] .ach:nth-child(even){background:#f2e8be}
-/* Night: product-launch dark with an amber accent */
-:root[data-theme="night"]{--accent:#ffb454;--paper:#0f1115;--paper2:#14171d;--card:#171a21;--ink:#f5f6f8;--ink2:#c3c9d4;--mute:#9aa3b2;--line:rgba(245,246,248,.12);--navy:#ffb454;--on:#1a1206;--on2:#5c3d0e;--deep:#171a21;--ondeep:#f5f6f8;--ondeep2:#9aa3b2;--ghost:rgba(245,246,248,.045)}
-:root[data-theme="night"] .case .shot{background:#1d2129}
-:root[data-theme="night"] .case .more{border-color:var(--ink)}
 /* switcher */
 .themes{position:fixed;right:16px;bottom:16px;z-index:55;display:flex;align-items:center;gap:6px;padding:6px 8px 6px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--ink2)}
 .themes span{margin-right:2px}
-.themes button{width:26px;height:26px;border-radius:50%;border:2px solid transparent;padding:0;background:var(--sw);box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
-.themes button.on{border-color:var(--ink)}
-.themes button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-@media(max-width:560px){.themes span{display:none}.themes{right:10px;bottom:10px}}
+.themes a{padding:5px 9px;border-radius:7px;color:var(--ink2)}.themes a:hover{background:var(--paper2)}.themes a.on{background:var(--navy);color:var(--on)}
+@media(max-width:560px){.themes span{display:none}.themes{right:8px;bottom:8px;gap:2px;padding:4px}.themes a{padding:5px 7px;font-size:11.5px}}
 </style>
-<script>(function(){var t=null;try{t=new URLSearchParams(location.search).get('style')||localStorage.getItem('rk-style')}catch(e){}if(t&&t!=='paper')document.documentElement.setAttribute('data-theme',t)})();</script>
 </head>
 <body>
-<div class="themes" role="group" aria-label="Choose a style"><span>Style</span><button data-t="paper" style="--sw:#f6f3ec" aria-label="Paper"></button><button data-t="clay" style="--sw:#f08c72" aria-label="Clay"></button><button data-t="mint" style="--sw:#a8dfd7" aria-label="Mint"></button><button data-t="night" style="--sw:#0f1115" aria-label="Night"></button></div>
+<nav class="themes" aria-label="Other styles of this site"><span>Style</span><a class="on" href="./" aria-current="page">Paper</a><a href="styles/spatial.html">Spatial</a><a href="styles/swiss.html">Swiss</a><a href="styles/clay.html">Clay</a><a href="styles/brutal.html">Brutal</a></nav>
 <nav class="top">
   <a class="brand" href="#hero"><span class="mono">RK</span><span>Rahul M Koushik</span></a>
   <div class="pill" id="pill"><a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#work">Projects</a><a href="#achievements">Achievements</a><a href="#contact">Contact</a></div>
@@ -685,9 +659,6 @@ $$('.reveal h2').forEach(function(h){var k=0,out=[];function wrap(n){var o=docum
 (function(){var h=$('.hero-copy h1');if(!h||RM)return;var k=0;Array.prototype.slice.call(h.childNodes).forEach(function(n){if(n.nodeType===3){var f=document.createDocumentFragment();n.textContent.split('').forEach(function(c){var sp=document.createElement('span');sp.className='ch';sp.textContent=c;sp.style.animationDelay=(.5+k++*.04)+'s';f.appendChild(sp)});h.replaceChild(f,n)}})})();
 
 
-/* style switcher */
-(function(){var root=document.documentElement;function set(t){if(t==='paper')root.removeAttribute('data-theme');else root.setAttribute('data-theme',t);try{localStorage.setItem('rk-style',t)}catch(e){}$$('.themes button').forEach(function(b){var on=b.dataset.t===t;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)})}
-var cur=root.getAttribute('data-theme')||'paper';set(cur);$$('.themes button').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.t)})})})();
 /* stagger containers: index the children, then watch them */
 $$('[data-stagger]').forEach(function(el){index(el);io.observe(el)});
 })();
