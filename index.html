@@ -295,13 +295,16 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
 #work .case.in{animation:fold .8s cubic-bezier(.2,.7,.2,1) both}
 @keyframes fold{from{opacity:0;transform:perspective(900px) rotateX(-14deg) translateY(28px)}}
 #work .earlier ol{border-top:1.5px solid var(--ink)}#work .earlier li a{border-bottom:1px dashed rgba(23,22,26,.35)}
-/* off the clock */
-.life{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
-.life>div{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:22px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
-.life svg{width:52px;height:52px}
-.life b{display:block;font-size:20px;letter-spacing:-.02em}
-.life span{color:var(--ink2);font-size:14px}
-@media(max-width:860px){.life{grid-template-columns:1fr}}
+/* off the clock: folded paper tiles, no icons */
+.life{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.life>div{position:relative;border:1.5px solid var(--ink);border-radius:4px;padding:26px 24px 24px;min-height:210px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:6px 6px 0 var(--ink);clip-path:polygon(0 0,calc(100% - 30px) 0,100% 30px,100% 100%,0 100%)}
+.life>div::after{content:"";position:absolute;right:0;top:0;width:30px;height:30px;background:linear-gradient(225deg,transparent 50%,rgba(23,22,26,.18) 50%);border-left:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
+.life>div:nth-child(1){background:#e2e6dd}.life>div:nth-child(2){background:#e1e1e8}.life>div:nth-child(3){background:#ece0d8}
+.life small{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--ink2)}
+.life b{display:block;font-size:clamp(34px,3.6vw,48px);line-height:1;letter-spacing:-.045em;font-weight:800;margin-top:18px}
+.life span{display:block;font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.25;color:var(--ink);margin-top:10px}
+.life>div{box-shadow:none}.life{filter:drop-shadow(6px 6px 0 var(--ink))}
+@media(max-width:860px){.life{grid-template-columns:1fr}.life>div{min-height:0}}
 @media(prefers-reduced-motion:reduce){#work .case.in{animation:none}}
 </style>
 </head>
@@ -417,10 +420,10 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
       <div class="eyebrow" data-n="07">Off the clock</div>
       <h2>When I'm not <i>shipping.</i></h2>
     </div>
-    <div class="life" data-stagger style="--step:100ms">
-      <div><svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24" fill="#17161a"/><path d="M26 16l7 5-3 8h-8l-3-8z" fill="#f6f3ec"/><path d="M26 16V3M33 21l11-4M30 29l7 11M22 29l-7 11M19 21L8 17" stroke="#f6f3ec" stroke-width="2.4" fill="none"/></svg><div><b>Soccer</b><span>Weekend pickup games, and early alarms for the big matches.</span></div></div>
-      <div><svg viewBox="0 0 52 52" aria-hidden="true"><rect x="2" y="12" width="48" height="28" rx="14" fill="#17161a"/><path d="M14 20v12M8 26h12" stroke="#f6f3ec" stroke-width="3"/><circle cx="35" cy="23" r="3" fill="#f6f3ec"/><circle cx="41" cy="29" r="3" fill="#f6f3ec"/></svg><div><b>Gaming</b><span>Strategy and co-op games, which is how Catan Arena started.</span></div></div>
-      <div><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M4 27h44a22 22 0 0 1-44 0z" fill="#17161a"/><path d="M15 21c0-5 4-5 4-10M25 21c0-5 4-5 4-10M35 21c0-5 4-5 4-10" stroke="#17161a" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg><div><b>Food</b><span>Always hunting the next great spot around the Bay.</span></div></div>
+    <div class="life" data-stagger style="--step:110ms">
+      <div><small>01 · Weekends</small><div><b>Soccer</b><span>Pickup games, and early alarms for the big matches.</span></div></div>
+      <div><small>02 · Evenings</small><div><b>Gaming</b><span>Strategy and co-op. It is how Catan Arena started.</span></div></div>
+      <div><small>03 · Always</small><div><b>Food</b><span>Hunting the next great spot around the Bay.</span></div></div>
     </div>
   </div>
 </section>
