@@ -300,7 +300,7 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
    <div class="hc">
     <div class="eyebrow" data-n="">Rahul M Koushik</div>
     <h1>AI<br>Engineer<span class="dot">.</span></h1>
-    <p><span class="say" aria-hidden="true"><i></i><i></i><i></i></span><span id="say"></span><span class="cur"></span></p><p class="static">I build production AI agents end to end: the user problem, the agent loop, and the evals that prove it works. Open to AI Engineer and AI Product roles.</p>
+    <p><span class="say" aria-hidden="true"><i></i><i></i><i></i></span><span id="say"></span><span class="cur"></span></p><p class="static">I build production LLM agents end to end: the user problem, the multi-agent loop, and the evals that prove it works. Open to AI Engineer and AI Product roles.</p>
    </div>
     <div class="hero-cta">
       <span class="hire"><i></i>Available for hire</span>
@@ -328,7 +328,7 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
         <div><dt>Before that</dt><dd>Cloud Software Engineer, HPE</dd></div>
         <div><dt>Studied</dt><dd>M.S. CS, Arizona State · 2023</dd></div>
         <div><dt>Started</dt><dd>B.Tech CSE, PES University · 2021</dd></div>
-        <div><dt>Focus</dt><dd>Agent loops · Memory · Evals · Self-learning</dd></div>
+        <div><dt>Focus</dt><dd>LLM agents · Memory · Evals · Inference</dd></div>
         <div><dt>Open to</dt><dd>AI Engineer · AI Product</dd></div>
       </dl>
     </div>
@@ -433,7 +433,7 @@ var WORDS=['Agents','MCP tool servers','RAG','Evals','Python','Go','TypeScript',
 var badge=$('#badge');if(badge){var flip=function(){badge.classList.toggle('flip')};badge.addEventListener('click',flip);badge.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}})}
 /* stack: one row per family, each skill with what I use it for */
 var STK=[
-['AI and agents','What I build on',[['Agent loops','plan, act, score, learn'],['MCP','tool servers across HPE Storage'],['Evals','rubric scoring, pass bars'],['Memory','episodic memory, context graphs'],['RAG','retrieval over 13,005 bugs'],['LangGraph','multi-agent teams'],['LLM serving','vLLM, llama.cpp, Ollama']]],
+['Generative AI','What I build on',[['LLM agents','multi-agent, agentic workflows'],['MCP','tool servers and tool calling'],['Evals','rubric scoring, LLM-as-a-judge'],['Guardrails','checks every agent passes'],['Memory and RAG','embeddings, vector search, context graphs'],['Tracing','a dashboard for every agent run'],['Inference','vLLM, Qwen 27B and 35B, KV-cache reuse'],['LangGraph','multi-agent orchestration']]],
 ['Languages','Daily',[['Python','agents, pipelines, tooling'],['Go','HPE data-mobility services'],['TypeScript','React and Next.js'],['Swift','SwiftUI on iOS'],['Kotlin','Android'],['SQL','Postgres, Trino']]],
 ['Backend and data','Services and storage',[['FastAPI','services and tool servers'],['Node.js','product services'],['gRPC','service interfaces'],['Postgres','plus pgvector'],['Spark','log pipelines at scale'],['Supabase','auth and data for apps']]],
 ['Cloud and infra','Where it runs',[['Kubernetes','Helm, operators'],['Docker','everything ships in one'],['AWS','Lambda, SQS, EC2'],['Observability','dashboards, alerts, RCA']]],
@@ -460,7 +460,7 @@ early.innerHTML=P.filter(function(p){return p.g==='earlier'}).map(function(p){re
 $$('.case',cases).forEach(function(c,i){c.style.transitionDelay=(i%3)*90+'ms';io.observe(c)});
 /* timeline */
 var T=[
-{y:'2026',s:'Feb · present',h:'AI Engineer',o:'Hewlett Packard Enterprise · Storage AI team · Bay Area',b:['Architected the production agent harness every team agent runs on; its MCP tool server handles 6,300+ tool calls a week across HPE Storage.','Built the memory layer for persistent agents: episodic memory and a context graph over 13,005 mined bugs and 5,600 grounded analyses.','Took the agent evaluation platform from idea to three production deployments in four weeks; its rubric-based evals are the release gate every agent must pass.','Shipped autonomous alert-triage and root-cause-analysis agents to production, with self-improving loops that learn from their own failures.'],c:['Agent harness','MCP','Memory','Evals','Self-improving loops']},
+{y:'2026',s:'Feb · present',h:'AI Engineer',o:'Hewlett Packard Enterprise · Storage AI team · Bay Area',b:['Architected the production multi-agent LLM harness with guardrails that every team agent runs on; its Model Context Protocol (MCP) tool server handles 6,300+ tool calls a week across HPE Storage.','Built the memory layer for persistent agents: episodic memory, embeddings and vector search, and a context graph over 13,005 mined bugs and 5,600 grounded analyses.','Cut agent latency and cost per run with inference optimization: prompt caching and KV-cache reuse across agent steps, cache-coherent context updates, and prefill/decode-aware serving of Qwen models (27B, 35B) on vLLM.','Took the agent evaluation platform from idea to three production deployments in four weeks; rubric-based evals, LLM-as-a-judge scoring and a tracing dashboard for every agent run form the release gate.','Shipped agentic alert-triage and root-cause-analysis (RCA) systems to production, with self-improving loops that learn from their own failures.'],c:['Multi-agent','MCP','Memory and RAG','Inference','Evals','Guardrails']},
 
 
 {y:'2023',s:'Jun 2023 · Feb 2026',h:'Cloud Software Engineer',o:'Hewlett Packard Enterprise · Storage · Bay Area',b:['Built the observability platform for 10K customers: cross-stack root-cause analysis cut resolution time from 30 to 3 minutes.','Shipped 6 Peer Motion features in Go across four storage array families, including the Nimble-to-Alletra migration path.','Built a documentation agent that updates docs on every pull request, saving 5 engineer-hours a week per team.'],c:['Go','Kubernetes','Spark','Storage']},
