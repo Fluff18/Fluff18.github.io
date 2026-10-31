@@ -1,0 +1,139 @@
+%------------------------
+% Resume Template
+% Author : Anubhav Singh
+% Github : https://github.com/xprilion
+% License : MIT
+%------------------------
+
+\documentclass[a4paper]{article}
+
+\RequirePackage{fix-cm}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex,hidelinks]{hyperref}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\input{glyphtounicode}
+\pdfgentounicode=1
+\usepackage{microtype}
+\DisableLigatures[f]{encoding = *, family = *}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.530in}
+\addtolength{\evensidemargin}{-0.375in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.35in}
+
+\urlstyle{rm}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section headings
+\titleformat{\section}{\vspace{-4pt}\scshape\raggedright\large}{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{\item\fontsize{9.8}{11.9}\selectfont{\textbf{#1}{: #2}}}
+\newcommand{\bul}[1]{\item\fontsize{9.8}{11.9}\selectfont{#1}}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{1pt}\item
+    \begin{tabular*}{0.985\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{#3} & \textit{#4} \\
+    \end{tabular*}\vspace{-1pt}
+}
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-1pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0pt,label={},itemsep=2pt,topsep=3pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=12pt,itemsep=1.6pt,topsep=2pt,parsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-3pt}}
+
+%-----------------------------
+\begin{document}
+\fontfamily{cmss}\selectfont
+
+%---------- HEADING ----------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{{\LARGE Rahul Muralidhara Koushik}} & San Francisco Bay Area \\
+  Email: \href{mailto:rkoushik@asu.edu}{rkoushik@asu.edu} & Mobile:~+1-480-791-6597 \\
+  \href{https://github.com/Fluff18}{GitHub: github.com/Fluff18} \;|\; \href{https://fluff18.github.io/}{Portfolio: fluff18.github.io} & LinkedIn: \href{https://linkedin.com/in/rahulkoushik}{linkedin.com/in/rahulkoushik} \\
+\end{tabular*}
+
+\vspace{2pt}
+{\fontsize{9.8}{11.9}\selectfont \textbf{AI Engineer \textbar{} LLM Agents, Evals, Inference.} Builds generative AI (GenAI) and large language model (LLM) agents end to end: the user problem, the agent loop, the memory layer and the evals that decide whether an agent is ready to ship. Three HPE hackathon wins, two selected for Fellow Review and BU-wide rollout; patent under way; HPE Early Career Technologist.}
+
+%---------- EXPERIENCE ----------
+\section{Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading{Hewlett Packard Enterprise, Storage AI Team}{San Jose, US}{AI Engineer}{Feb 2026 -- Present}
+  \resumeItemListStart
+    \bul{Architected the production \textbf{multi-agent LLM harness} with \textbf{guardrails} that every team agent runs on; its \textbf{Model Context Protocol (MCP)} tool server handles \textbf{6,300+ tool calls a week} across HPE Storage.}
+    \bul{Built the \textbf{memory layer} for persistent agents: episodic memory, \textbf{embeddings and vector search}, and a \textbf{context graph} over \textbf{13,005} mined bugs and \textbf{5,600} grounded analyses.}
+    \bul{Cut agent latency and cost per run with \textbf{inference optimization}: \textbf{prompt caching} and \textbf{KV-cache reuse} across agent steps, \textbf{cache-coherent} context updates, and \textbf{prefill/decode-aware} serving of \textbf{Qwen} models (27B, 35B) on \textbf{vLLM}.}
+    \bul{Took the \textbf{agent evaluation platform} from idea to \textbf{three production deployments in four weeks}; rubric-based evals, \textbf{LLM-as-a-judge} scoring and a \textbf{tracing dashboard} for every agent run form the \textbf{release gate}.}
+    \bul{Shipped \textbf{agentic alert-triage and root-cause-analysis (RCA)} systems to production, with \textbf{self-improving loops} that learn from their own failures.}
+  \resumeItemListEnd
+
+  \resumeSubheading{Hewlett Packard Enterprise, Storage}{San Jose, US}{Cloud Software Engineer}{Jun 2023 -- Feb 2026}
+  \resumeItemListStart
+    \bul{Built the \textbf{observability platform} for \textbf{10K customers}: cross-stack root-cause analysis cut resolution time from \textbf{30 to 3 minutes} and raised first-time fix success from \textbf{55\% to 85\%}.}
+    \bul{Shipped \textbf{6 Peer Motion features} in Go across four storage array families, including the Nimble-to-Alletra migration path.}
+    \bul{Built a \textbf{documentation agent} that updates docs on every pull request, saving \textbf{5 engineer-hours a week} per team.}
+  \resumeItemListEnd
+
+  \resumeSubheading{The Luminosity Lab, Arizona State University}{Tempe, US}{Research Aide}{Feb 2022 -- May 2023}
+  \resumeItemListStart
+    \bul{Led the iOS team on the \href{https://thetouchpointsolution.com/}{TouchPoint} apps; a telehealth flow saved doctors \textbf{15 minutes} per visit.}
+  \resumeItemListEnd
+
+  \resumeSubheading{Aruba, Hewlett Packard Enterprise}{Tempe, US}{Software Engineering Intern}{May 2022 -- Aug 2022}
+  \resumeItemListStart
+    \bul{Built a test-automation tool that configures network topologies, saving an estimated \textbf{150k engineering hours a year}.}
+  \resumeItemListEnd
+
+  \resumeSubheading{Webex by Cisco}{Bengaluru, India}{Technical Undergraduate Intern}{Jan 2021 -- Jul 2021}
+  \resumeItemListStart
+    \bul{Built call and meeting scheduling APIs for the \href{https://developer.webex.com/docs/sdks/ios}{Webex iOS SDK v3} and the \href{https://github.com/webex/webex-ios-sdk-example}{Kitchen Sink} sample app.}
+  \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%---------- SKILLS ----------
+\section{Skills}
+\resumeSubHeadingListStart
+  \resumeSubItem{\textbullet\ Generative AI (GenAI)}{LLM agents, agentic workflows, MCP and tool calling, evals and LLM-as-a-judge, Retrieval-Augmented Generation (RAG), embeddings and vector search (pgvector), guardrails, multi-agent orchestration, prompt and context engineering, memory, tracing, LangGraph, vLLM, Qwen, llama.cpp}
+  \resumeSubItem{\textbullet\ Languages}{Python, Go, TypeScript, JavaScript, Swift, Kotlin, C++, SQL}
+  \resumeSubItem{\textbullet\ Infrastructure}{Distributed systems, Kubernetes, Helm, Docker, AWS, Kafka, Spark, Postgres, Prometheus, Grafana, gRPC, FastAPI, React, Next.js}
+\resumeSubHeadingListEnd
+
+%---------- PROJECTS ----------
+\section{Selected Projects}
+\resumeSubHeadingListStart
+  \resumeSubItem{\textbullet\ Zuo, personal AI harness (2026)}{Agent teams, job queue and budgets run from my phone across three machines.}
+  \resumeSubItem{\textbullet\ Catan Arena, self-learning agents (2026)}{Agents graduate only when a statistical pass bar says the learning is real.}
+  \resumeSubItem{\textbullet\ Zzz, iOS and Android (2026)}{Gamified goal tracker, live on the App Store. SwiftUI, Kotlin, Supabase.}
+\resumeSubHeadingListEnd
+
+%---------- EDUCATION AND PUBLICATIONS ----------
+\section{Education and Publications}
+\resumeSubHeadingListStart
+  \resumeSubheading{Arizona State University}{Tempe, US}{Master of Science, Computer Science}{Aug 2021 -- May 2023}
+  \resumeSubheading{PES University}{Bengaluru, India}{Bachelor of Technology, Computer Science and Engineering}{Aug 2017 -- Jul 2021}
+  \vspace{2pt}\bul{\textbf{Publications:} ViStA: Video Streaming and Analytics Benchmark, IEEE ISPASS 2021; Generation of True Random Numbers using Entropy Sources in Portable Computers, IEEE CONECCT 2021; PipeGAN, a pipelined parallel GAN, Springer LNNS vol. 171, 2020.}
+\resumeSubHeadingListEnd
+
+\end{document}
