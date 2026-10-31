@@ -43,10 +43,10 @@ nav.top>*{pointer-events:auto}
 /* studio backdrop behind the portrait: an arch in the darker paper tone with a hairline edge */
 @keyframes haloin{from{opacity:0;transform:translateX(-50%) scaleY(.92)}}
 .stage .fallback{position:relative;height:100%;width:100%;display:flex;align-items:flex-end;justify-content:center}
-.stage .fallback img{height:100%;width:auto;max-width:100%;object-fit:contain;object-position:bottom center;transform-origin:50% 100%;animation:figin 1.2s cubic-bezier(.2,.7,.2,1) .25s both,breathe 7s ease-in-out 1.5s infinite}
+.stage .fallback img{height:100%;width:auto;max-width:100%;object-fit:contain;object-position:bottom center;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);transform-origin:50% 100%;animation:figin 1.2s cubic-bezier(.2,.7,.2,1) .25s both,breathe 7s ease-in-out 1.5s infinite}
 @keyframes figin{from{opacity:0;transform:translateY(36px)}}
 @keyframes breathe{0%,100%{transform:none}50%{transform:scaleY(1.012) translateY(-2px)}}
-.stage .fallback::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:70%;height:14px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(23,22,26,.18),transparent 70%);animation:shadowin 1.2s .25s both}
+.stage .fallback::after{content:none}
 @keyframes shadowin{from{opacity:0}}
 .stage .fallback small{display:none}
 .hero-copy{position:relative;z-index:2;padding-bottom:clamp(36px,6vh,72px);width:100%;display:flex;justify-content:space-between;align-items:flex-end;gap:24px}.hero-copy .hc{max-width:min(44%,600px)}
@@ -294,13 +294,13 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
   <div class="stage" id="stage">
     <!-- Talking intro clip: save it as v3/hero.mp4 (cream/white studio background, 3:4 or 9:16, muted loop) and set data-video="hero.mp4" on the <html> tag. Until then the photo shows. -->
     <video id="herovid" playsinline muted autoplay loop preload="metadata" hidden></video>
-    <div class="fallback" id="herofallback"><img src="img/figure.webp" alt="Rahul M Koushik" width="820" height="900" fetchpriority="high"><small>San Francisco Bay Area</small></div>
+    <div class="fallback" id="herofallback"><img src="img/figure.webp?v=2" alt="Rahul M Koushik" width="1034" height="900" fetchpriority="high"><small>San Francisco Bay Area</small></div>
   </div>
   <div class="wrap hero-copy">
    <div class="hc">
     <div class="eyebrow" data-n="">Rahul M Koushik</div>
     <h1>AI<br>Engineer<span class="dot">.</span></h1>
-    <p><span class="say" aria-hidden="true"><i></i><i></i><i></i></span><span id="say"></span><span class="cur"></span></p><p class="static">I build production LLM agents end to end: the user problem, the multi-agent loop, and the evals that prove it works. Open to AI Engineer and AI Product roles.</p>
+    <p class="static">I build production LLM agents end to end: the user problem, the multi-agent loop, and the evals that prove it works. Open to AI Engineer and AI Product roles.</p>
    </div>
     <div class="hero-cta">
       <span class="hire"><i></i>Available for hire</span>
