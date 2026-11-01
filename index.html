@@ -305,6 +305,24 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
 @media(prefers-reduced-motion:reduce){#work .case.in{animation:none}}
 .facts.edu dt{color:var(--ink);font-weight:700}.facts.edu dd{font-weight:500;color:var(--ink2)}
 .aphones{display:flex;gap:22px;overflow-x:auto;padding:34px 4px 14px;scroll-snap-type:x mandatory;scrollbar-width:none}.aphones::-webkit-scrollbar{display:none}.aphone{flex:0 0 auto;width:clamp(170px,17vw,230px);margin:0;scroll-snap-align:start}.aphone .ascr{border-radius:34px;padding:9px;background:#111;box-shadow:0 1px 0 2px #2a2a2a inset,0 18px 40px -18px rgba(0,0,0,.45)}.aphone img{display:block;width:100%;aspect-ratio:540/1168;object-fit:cover;border-radius:26px}.aphone figcaption{font:600 12px/1.2 var(--mono,ui-monospace,monospace);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);text-align:center;margin-top:12px}@media(max-width:620px){.aphone{width:62vw}}
+
+/* project intro: card image grows to center, title, three short beats, then the story */
+#pintro{position:fixed;inset:0;z-index:90;background:var(--paper);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .35s ease}
+#pintro.on{opacity:1;pointer-events:auto;cursor:pointer}
+#pintro .pi-img{position:fixed;object-fit:cover;border-radius:16px;box-shadow:0 30px 60px -30px rgba(0,0,0,.35);transition:all .6s cubic-bezier(.2,.7,.2,1)}
+#pintro .pi-txt{position:relative;z-index:2;width:min(92vw,1280px);box-sizing:border-box;padding:0 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+#pintro .pi-k{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);opacity:0;transform:translateY(10px);transition:all .45s ease}
+#pintro h2{margin:0;font-size:clamp(44px,8vw,112px);line-height:.95;opacity:0;transform:translateY(24px);transition:all .55s cubic-bezier(.2,.7,.2,1)}
+#pintro ol{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:10px;counter-reset:b}
+#pintro li{counter-increment:b;display:flex;align-items:baseline;gap:14px;font-family:var(--serif);font-style:italic;font-size:clamp(22px,3vw,38px);line-height:1.15;color:var(--ink2);opacity:0;transform:translateX(-18px);transition:all .45s cubic-bezier(.2,.7,.2,1)}
+#pintro li::before{content:"0" counter(b);font:700 12px/1 var(--sans);font-style:normal;letter-spacing:.12em;color:var(--mute);min-width:22px}
+#pintro .in{opacity:1;transform:none}
+#pintro .pi-skip{position:fixed;right:20px;bottom:18px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+#pintro .pi-bar{position:fixed;left:0;top:0;height:3px;background:var(--ink);width:0}
+#pintro.run .pi-bar{width:100%;transition:width 2.9s linear}
+@media(min-width:720px){#pintro .pi-txt{padding:0 calc(min(34vw,420px) + 80px) 0 40px}}
+@media(max-width:719px){#pintro .pi-txt{margin-top:36vh}#pintro h2{font-size:clamp(40px,12vw,64px)}#pintro li{font-size:22px}}
+@media(prefers-reduced-motion:reduce){#pintro{display:none}}
 </style>
 </head>
 <body>
@@ -319,7 +337,7 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
   <div class="stage" id="stage">
     <!-- Talking intro clip: save it as hero.mp4 (cream/white studio background, 3:4 or 9:16, muted loop) and set data-video="hero.mp4" on the <html> tag. Until then the photo shows. -->
     <video id="herovid" playsinline muted autoplay loop preload="metadata" hidden></video>
-    <div class="fallback" id="herofallback"><img src="img/figure.webp?v=2" alt="Rahul M Koushik" width="1034" height="900" fetchpriority="high"><small>San Francisco Bay Area</small></div>
+    <div class="fallback" id="herofallback"><img src="img/figure-classic.webp" alt="Rahul M Koushik" width="774" height="900" fetchpriority="high"><small>San Francisco Bay Area</small></div>
   </div>
   <div class="wrap hero-copy">
    <div class="hc">
@@ -683,6 +701,42 @@ function openStory(id){var d=pdOf(id),p=P.filter(function(x){return x.id===id})[
 function closeStory(to){if(!document.body.classList.contains('in-story'))return;document.body.classList.remove('in-story');story.innerHTML='';document.title='Rahul M Koushik · AI Engineer';if(to&&to!=='#work'){var t=$(to);if(t)t.scrollIntoView()}else scrollTo(0,savedY)}
 function route(){var h=location.hash;if(/^#p-/.test(h)){openStory(h.slice(3))}else if(document.body.classList.contains('in-story')){closeStory(h)}}
 addEventListener('hashchange',route);route();
+/* project intro animation */
+var BEATS={zuo:['Queue jobs from my phone','Agents run on free and spare GPUs','Claude plans, the workers ship'],
+drone:['A drone flies a PX4 simulation','YOLOv8 spots the defects','A small vision model explains them on-device'],
+musaic:['Agents compose lo-fi tracks','They make the art and the video','And upload to YouTube, hands-free'],
+aitutor:['Pick anything to learn','Climb a path of levels and quizzes','Scroll a feed that teaches'],
+catan:['One agent, three frozen rivals','It learns through memory, not weights','Promoted only when the stats agree'],
+zzz:['Your goals become quests','Progress earns points','Spend them on rewards you choose'],
+quantum:['Real qubits on IBM hardware','Truly random outcomes','Pulled like a slot-machine lever']};
+(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ var ov=document.createElement('div');ov.id='pintro';ov.setAttribute('aria-hidden','true');document.body.appendChild(ov);
+ var busy=false,timers=[];
+ function T(f,ms){timers.push(setTimeout(f,ms))}
+ function finish(id){if(!busy)return;timers.forEach(clearTimeout);timers=[];
+  location.hash='#p-'+id;setTimeout(function(){ov.classList.remove('on','run');setTimeout(function(){ov.innerHTML='';busy=false},380)},80)}
+ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('#work a.case');
+  if(!a||busy||e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;
+  var id=(a.getAttribute('href')||'').replace('#p-','');var d=pdOf(id),p=P.filter(function(x){return x.id===id})[0];if(!d||!p)return;
+  e.preventDefault();busy=true;
+  var beats=BEATS[id]||[d.tag],img=a.querySelector('.shot img'),r=img?img.getBoundingClientRect():null;
+  ov.innerHTML='<div class="pi-bar"></div>'+(img?'<img class="pi-img" src="'+img.getAttribute('src')+'" alt="">':'')+
+   '<div class="pi-txt"><div class="pi-k">'+esc(d.k)+'</div><h2>'+esc(d.title)+'<span class="dot">.</span></h2><ol>'+beats.map(function(b){return '<li>'+esc(b)+'</li>'}).join('')+'</ol></div><span class="pi-skip">Click to skip</span>';
+  var pi=ov.querySelector('.pi-img');
+  if(pi&&r){pi.style.left=r.left+'px';pi.style.top=r.top+'px';pi.style.width=r.width+'px';pi.style.height=r.height+'px'}
+  ov.classList.add('on');void ov.offsetWidth;ov.classList.add('run');
+  if(pi){var w=Math.min(innerWidth*.34,420),h=w*10/16,small=innerWidth<720;
+   T(function(){if(small){pi.style.left=(innerWidth-w*1.6)/2+'px';pi.style.top='12vh';pi.style.width=w*1.6+'px';pi.style.height=h*1.6+'px'}
+    else{pi.style.left=(innerWidth-w-40)+'px';pi.style.top=(innerHeight-h)/2+'px';pi.style.width=w+'px';pi.style.height=h+'px'}
+    pi.style.opacity='1'},40)}
+  var seq=['.pi-k','h2'].map(function(q){return ov.querySelector(q)}).concat([].slice.call(ov.querySelectorAll('li')));
+  seq.forEach(function(el,i){T(function(){el.classList.add('in')},380+i*(i<2?160:430))});
+  T(function(){finish(id)},3000);
+  ov.onclick=function(){finish(id)};
+  document.addEventListener('keydown',function k(){document.removeEventListener('keydown',k);finish(id)});
+ },true);
+})();
+
 
 /* motion: scroll progress, timeline draw, image parallax, word reveals, hero letters */
 document.body.insertAdjacentHTML('afterbegin','<div class="prog" aria-hidden="true"></div>');
