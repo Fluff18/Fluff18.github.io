@@ -83,7 +83,7 @@
   \bul{\textbf{Defined the ship bar for AI agents at HPE Storage:} worked with storage experts to turn ``is this agent good?'' into rubric-based evals and a release gate, then took the platform from idea to three production deployments in four weeks.}
   \bul{\textbf{Built for adoption, not mandate:} the MCP tool server became the shared path every team agent and the experts' Copilot use, at 6,300+ tool calls a week.}
   \bul{\textbf{Chose honesty over a win:} reported a zero-lift result on self-learning agents after finding data leakage, which made the team trust the evaluation platform more.}
-  \bul{\textbf{Shipped a consumer app solo:} scoped, designed, built and launched \textbf{Zzz} on the App Store, from the goal-and-reward model to the privacy site.}
+  \bul{\textbf{Shipped a consumer app solo:} scoped, designed, built and launched \textbf{Zzz} on the \href{https://apps.apple.com/us/app/zzz-live-your-dream/id6815101315}{App Store}, from the goal-and-reward model to the privacy site.}
   \bul{\textbf{Product decisions with clients:} at the Luminosity Lab, led the iOS team and shaped the client's mobile roadmap; the telehealth flow saved doctors 15 minutes a visit.}
   \bul{\textbf{Zero-to-one under constraints:} won three HPE hackathons, two taken into BU-wide production through Fellow Review; Best Project at a lean-startup program across 34 teams.}
 \resumeSubHeadingListEnd
@@ -93,17 +93,17 @@
 \resumeSubHeadingListStart
   \resumeSubheading{Hewlett Packard Enterprise, Storage AI Team}{San Jose, US}{AI Engineer}{Feb 2026 -- Present}
   \resumeItemListStart
-    \bul{Architected the production \textbf{multi-agent LLM harness} with \textbf{guardrails} that every team agent runs on; its \textbf{Model Context Protocol (MCP)} tool server handles \textbf{6,300+ tool calls a week} across HPE Storage and backs the storage experts' Copilot.}
+    \bul{Architected the production \textbf{multi-agent LLM harness} with \textbf{guardrails} that every team agent runs on. I built and maintain its \textbf{Model Context Protocol (MCP)} server and all of its tools, used across HPE Storage software engineering and by the storage experts' Copilot: \textbf{6,300+ tool calls a week}.}
     \bul{Built the \textbf{memory layer} for persistent agents: episodic memory across runs, \textbf{embeddings and vector search} on pgvector, and a \textbf{context graph} linking \textbf{13,005} mined bugs and \textbf{5,600} grounded analyses by component, symptom and fix, built in nine days.}
-    \bul{Cut agent latency and cost per run with \textbf{inference optimization}: \textbf{prompt caching} and \textbf{KV-cache reuse} across agent steps, \textbf{cache-coherent} context updates, and \textbf{prefill/decode-aware} serving of \textbf{Qwen} models (27B, 35B) on \textbf{vLLM}.}
+    \bul{Cut agent latency \textbf{45\%} with \textbf{cache-coherent} context updates, alongside \textbf{prompt caching}, \textbf{KV-cache reuse} across agent steps and \textbf{prefill/decode-aware} serving of \textbf{Qwen} models (27B, 35B) on \textbf{vLLM}.}
     \bul{Took the \textbf{agent evaluation platform} from idea to \textbf{three production deployments in four weeks}: rubric-based evals scored against expert feedback, \textbf{LLM-as-a-judge}, and a \textbf{tracing dashboard} showing every step, tool call and failure of each agent run. It is the \textbf{release gate} every agent must pass.}
-    \bul{Shipped \textbf{agentic alert-triage and root-cause-analysis (RCA)} systems to production, with \textbf{self-improving loops} where agents mine their own failures, propose patches and re-run against the pass bar.}
+    \bul{Shipped \textbf{agentic alert-triage and root-cause-analysis (RCA)} systems to production, with \textbf{self-improving loops}: a reflector agent reviews every run to check the agent took the right path, and subject-matter experts confirm the corrections.}
   \resumeItemListEnd
 
   \resumeSubheading{Hewlett Packard Enterprise, Storage}{San Jose, US}{Cloud Software Engineer}{Jun 2023 -- Feb 2026}
   \resumeItemListStart
-    \bul{Built the \textbf{observability platform} for \textbf{30K devices} and \textbf{10K customers}: log-level root-cause analysis across hardware, OS, backend, UI and cloud cut resolution time from \textbf{30 to 3 minutes} and raised first-time fix success from \textbf{55\% to 85\%}, with Spark log pipelines behind it.}
-    \bul{Shipped \textbf{6 full-stack Peer Motion features} in Go and JavaScript across 3PAR, Primera, Alletra and Nimble arrays: Remote Copy support, the Nimble-to-Alletra iSCSI migration path, and domain, multi-link and VLAN tagging for migration flows. \textbf{15 tagged builds}, \textbf{47 defects} fixed across \textbf{5 release lines}.}
+    \bul{Built the \textbf{observability platform} used by the internal teams supporting \textbf{30K devices} and \textbf{10K customers}: log-level root-cause analysis across hardware, OS, backend, UI and cloud cut resolution time from \textbf{30 to 3 minutes} and raised first-time fix success from \textbf{55\% to 85\%}.}
+    \bul{Shipped \textbf{6 full-stack enterprise data-migration features} (HPE Peer Motion) in Go and JavaScript across four generations of storage arrays (3PAR, Primera, Alletra, Nimble), over Fibre Channel and iSCSI: Remote Copy support, the Nimble-to-Alletra iSCSI migration path, and domain, multi-link and VLAN handling. \textbf{15 tagged builds}, \textbf{47 defects} fixed across \textbf{5 release lines}.}
     \bul{Built a \textbf{documentation agent} over a vector knowledge base that updates docs and API references on every pull request, saving about \textbf{5 engineer-hours a week per team}.}
     \bul{\textbf{2024 HPE hackathon winner} with an end-to-end RAG chatbot over PDFs; named \textbf{HPE Early Career Technologist}.}
   \resumeItemListEnd
@@ -144,7 +144,7 @@
   \resumeSubItem{\textbullet\ Zuo, personal AI harness (2026)}{Job queue, budgets, project board and agent teams controlled from my phone; free NVIDIA endpoints, a PC GPU on vLLM and a laptop on llama.cpp as workers, Claude as planner. Voice capture with silence gating and Whisper; an iOS client; a UI agent team that turns design posts into web sections. Python, FastAPI, LangGraph, Docker.}
   \resumeSubItem{\textbullet\ Catan Arena, self-learning agents (2026)}{One learning agent plays full Catan against three frozen copies of itself; it graduates only when the 95\% Wilson interval of its win rate clears the 25\% null. Actor, watcher and consolidator loop with persistent memory.}
   \resumeSubItem{\textbullet\ AI Tutor (2026)}{Adaptive learning app for AI engineering: a level path, quizzes and a swipeable feed built from Reddit, Hacker News, arXiv and YouTube; Claude with an automatic NVIDIA Nemotron fallback.}
-  \resumeSubItem{\textbullet\ Zzz, iOS and Android (2026)}{Gamified goal tracker with quests, points and rewards, live on the App Store. SwiftUI, Kotlin, Supabase.}
+  \resumeSubItem{\textbullet\ Zzz, iOS and Android (2026)}{Gamified goal tracker with quests, points and rewards, live on the App Store. SwiftUI, Kotlin, Supabase. \href{https://apps.apple.com/us/app/zzz-live-your-dream/id6815101315}{App Store}}
   \resumeSubItem{\textbullet\ Drone inspection simulation (2026)}{PX4 and Gazebo inspection drone with an agent capped to Raspberry Pi 5 resources: YOLOv8 plus a small vision-language model; llama.cpp 18x faster than Ollama on the same limits.}
   \resumeSubItem{\textbullet\ musaic (2026)}{Automated lo-fi music channel: Stable Audio, GPT-4 metadata, DALL-E and Imagen thumbnails, Veo backgrounds, FFmpeg encode and YouTube upload. \href{https://github.com/Fluff18/musaic}{GitHub}}
   \resumeSubItem{\textbullet\ Quantum slot machine (2025)}{Randomness from real qubits on IBM Quantum hardware; Qiskit and FastAPI backend, React frontend. \href{https://github.com/Fluff18/QuantumSlot}{GitHub}}
@@ -154,7 +154,7 @@
 %---------- RECOGNITION ----------
 \section{Recognition and Leadership}
 \resumeSubHeadingListStart
-  \resumeSubItem{\textbullet\ HPE}{Early Career Technologist (2024); patent filing under way.}
+  \resumeSubItem{\textbullet\ HPE}{Early Career Technologist (2024); patent application filed (2026).}
   \resumeSubItem{\textbullet\ PES Center for Innovation and Entrepreneurship}{Led a team of six from idea to prototype of a smart attendance wristband; Best Project across 34 teams.}
   \resumeSubItem{\textbullet\ Stanford Continuing Studies}{Building Interpersonal Skills (COM 19), the T-group workshop modelled on Stanford GSB's Interpersonal Dynamics.}
 \resumeSubHeadingListEnd
@@ -162,16 +162,16 @@
 %---------- PUBLICATIONS ----------
 \section{Publications}
 \resumeSubHeadingListStart
-  \bul{N. Raju, \textbf{R. M. Koushik}, H. Om, S. Kalambur. \textit{ViStA: Video Streaming and Analytics Benchmark.} IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS), 2021.}
-  \bul{\textbf{R. M. Koushik}, A. Perichiappan, H. Om, A. Banerji, S. Eswaran, P. Honnavalli. \textit{Generation of True Random Numbers using Entropy Sources Present within Portable Computers.} IEEE CONECCT, 2021.}
-  \bul{R. Chandan, N. Pentapati, \textbf{R. M. Koushik}, R. Nagpal. \textit{A High Performance Pipelined Parallel Generative Adversarial Network (PipeGAN).} Lecture Notes in Networks and Systems, Springer, vol. 171, pp. 769--777, ICICSE 2020.}
+  \bul{N. Raju, \textbf{R. M. Koushik}, H. Om, S. Kalambur. \textit{ViStA: Video Streaming and Analytics Benchmark.} IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS), 2021. \href{https://doi.org/10.1109/ISPASS51385.2021.00019}{doi:10.1109/ISPASS51385.2021.00019}}
+  \bul{\textbf{R. M. Koushik}, A. Perichiappan, H. Om, A. Banerji, S. Eswaran, P. Honnavalli. \textit{Generation of True Random Numbers using Entropy Sources Present within Portable Computers.} IEEE CONECCT, 2021. \href{https://doi.org/10.1109/CONECCT52877.2021.9622734}{doi:10.1109/CONECCT52877.2021.9622734}}
+  \bul{R. Chandan, N. Pentapati, \textbf{R. M. Koushik}, R. Nagpal. \textit{A High Performance Pipelined Parallel Generative Adversarial Network (PipeGAN).} Lecture Notes in Networks and Systems, Springer, vol. 171, pp. 769--777, 2021. \href{https://doi.org/10.1007/978-981-33-4543-0_81}{doi:10.1007/978-981-33-4543-0\_81}}
 \resumeSubHeadingListEnd
 
 %---------- EDUCATION ----------
 \section{Education}
 \resumeSubHeadingListStart
-  \resumeSubheading{Arizona State University}{Tempe, US}{Master of Science, Computer Science. GPA 3.59}{Aug 2021 -- May 2023}
-  \resumeSubheading{PES University}{Bengaluru, India}{Bachelor of Technology, Computer Science and Engineering. GPA 8.2}{Aug 2017 -- Jul 2021}
+  \bul{\textbf{M.S. Computer Science}, Arizona State University, Tempe. GPA 3.59 \hfill Aug 2021 -- May 2023}
+  \bul{\textbf{B.Tech Computer Science and Engineering}, PES University, Bengaluru. GPA 8.2 \hfill Aug 2017 -- Jul 2021}
 \resumeSubHeadingListEnd
 
 \end{document}
