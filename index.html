@@ -202,6 +202,15 @@ footer{--on2:var(--ondeep2);background:var(--deep);color:var(--on2);font-size:12
 body.in-story>*:not(nav.top):not(#story){display:none}
 #story{display:none;padding-top:0}body.in-story #story{display:block}
 .sh{min-height:88svh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px;padding:120px 0 40px;position:relative}
+.sh.one{min-height:0;grid-template-columns:1fr;padding:clamp(48px,7vw,96px) 0 10px}.sh.one .back{display:none}
+.rwrap{position:relative}
+.preel.full{aspect-ratio:auto;height:100svh;min-height:560px;max-height:none;margin:0;border-radius:0}
+.preel.full .segs{top:86px;left:clamp(16px,3vw,40px);right:clamp(16px,3vw,40px)}.preel.full .meta{top:102px;left:clamp(16px,3vw,40px)}
+.preel.full .nx{right:clamp(16px,3vw,40px);bottom:24px}
+.rback{position:absolute;left:clamp(16px,3vw,40px);bottom:20px;z-index:5;display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:999px;background:rgba(246,243,236,.9);color:#17161a;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.rback:hover{background:#fff}
+.rdown{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:5;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(246,243,236,.9);color:#17161a;font-size:14px;animation:bob 1.8s ease-in-out infinite;pointer-events:none}
+@media(max-width:720px){.preel.full{aspect-ratio:auto;height:100svh;border-radius:0}.preel.full .segs{top:84px}.preel.full .meta{top:100px}.preel.full .cov{top:20cqh}.rdown{display:none}}
 .sh .back{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--mute);margin-bottom:22px}
 .sh .mark{width:64px;height:64px;border-radius:18px;background:var(--navy);color:var(--on);display:grid;place-items:center;font-weight:800;font-size:22px;letter-spacing:-.04em}
 .sh h1{font-size:clamp(48px,8vw,120px);line-height:.92;letter-spacing:-.05em;margin:18px 0 12px;font-weight:800}
@@ -738,8 +747,7 @@ function openStory(id){var d=pdOf(id),p=P.filter(function(x){return x.id===id})[
  var gal=(d.gallery&&d.gallery.length?d.gallery:[d.cover]).map(function(g){return '<img src="'+g+'" alt="'+esc(d.title)+' screenshot" loading="lazy">'}).join('');
  var phones=(d.screens||[]).map(function(x){return '<figure class="aphone"><div class="ascr"><img src="'+x[0]+'" alt="'+esc(d.title)+': '+esc(x[1])+' screen" loading="lazy"></div><figcaption>'+esc(x[1])+'</figcaption></figure>'}).join('');
  var feats=d.hl.map(function(h,i){return '<div><b>0'+(i+1)+'</b><p>'+esc(h)+'</p></div>'}).join('');
- story.innerHTML='<div class="wrap"><div class="sh"><div class="gw" aria-hidden="true">'+esc(d.title)+'</div><div class="hc"><a class="back" href="#work" data-back>← All work</a><div class="mark">'+mark+'</div><h1>'+esc(d.title)+'<span class="dot">.</span></h1><p class="tag">'+esc(st.ad)+'</p><div class="stats" data-stagger>'+st.st.map(function(x){return '<div><b>'+x[0]+'</b><small>'+esc(x[1])+'</small></div>'}).join('')+'</div><div class="ctas"><span class="chip">'+esc(d.k)+'</span></div><div class="ctas">'+links+'<a class="btn" href="#contact" data-back>Ask me about it →</a></div></div><div class="art"><img src="'+d.cover+'" alt=""></div></div>'
- +'<div class="sp"><div class="preel" id="preel" role="img" aria-label="Animated overview of '+esc(d.title)+'"></div></div>'
+ story.innerHTML='<div class="rwrap"><div class="preel full" id="preel" role="img" aria-label="Animated overview of '+esc(d.title)+'"></div><a class="rback" href="#work" data-back>← All work</a><span class="rdown" aria-hidden="true">↓</span></div><div class="wrap"><div class="sh one"><div class="hc"><a class="back" href="#work" data-back>← All work</a><div class="mark">'+mark+'</div><h1>'+esc(d.title)+'<span class="dot">.</span></h1><p class="tag">'+esc(st.ad)+'</p><div class="stats" data-stagger>'+st.st.map(function(x){return '<div><b>'+x[0]+'</b><small>'+esc(x[1])+'</small></div>'}).join('')+'</div><div class="ctas"><span class="chip">'+esc(d.k)+'</span></div><div class="ctas">'+links+'<a class="btn" href="#contact" data-back>Ask me about it →</a></div></div></div>'
  +'<div class="sp reveal"><div class="eyebrow" data-n="01">The idea</div><p class="pitch">'+esc(d.sum)+'</p></div>'
  +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="02">What it does</div><h2 style="font-size:clamp(32px,4.6vw,60px)">Built <i>in.</i></h2></div><div class="feat" data-stagger>'+feats+'</div></div>'
  +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="03">How it works</div><h2 style="font-size:clamp(32px,4.6vw,60px)">The <i>architecture.</i></h2></div><div class="archwrap">'+archSVG(d.arch)+'</div><div class="stackrow" data-stagger>'+d.stack.map(function(x){return '<span class="chip">'+esc(x)+'</span>'}).join('')+'</div></div>'
