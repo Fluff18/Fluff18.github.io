@@ -54,8 +54,6 @@ nav.top>*{pointer-events:auto}
 .hero-copy h1 .dot{color:var(--accent)}
 .hero-copy p{margin:14px 0 0;color:var(--ink2);font-size:15px;max-width:40ch;min-height:3.2em}.hero-copy p.static{min-height:0;margin-top:8px;color:var(--ink);font-weight:500;font-size:14px}.hero-copy p .cur{display:inline-block;width:2px;height:1em;background:var(--ink);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(2) infinite}@keyframes blink{50%{opacity:0}}.say{display:inline-flex;align-items:center;gap:4px;margin-right:8px;vertical-align:middle}.say i{width:3px;border-radius:2px;background:var(--navy);animation:eq .9s ease-in-out infinite}.say i:nth-child(2){animation-delay:.15s}.say i:nth-child(3){animation-delay:.3s}@keyframes eq{0%,100%{height:5px}50%{height:14px}}
 .hero-cta{display:flex;flex-direction:column;gap:10px;align-items:flex-end;flex:none}
-.hire{display:inline-flex;align-items:center;gap:9px;height:30px;padding:0 12px 0 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);margin-bottom:4px}
-.hire i{width:8px;height:8px;border-radius:50%;background:var(--navy);position:relative}.hire i::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--navy);animation:ping 2.2s ease-out infinite}
 @keyframes ping{0%{transform:scale(.5);opacity:.9}100%{transform:scale(1.6);opacity:0}}
 /* hero load sequence: letters, figure, then the copy and the actions one by one */
 .hero-copy .hc>*,.hero-cta>*{animation:up .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.45s + var(--i,0)*.09s)}
@@ -330,7 +328,6 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
     <p class="static"><b>I build AI agents that work in production.</b> Agent infrastructure, memory, inference serving and the evaluations behind them, at HPE. Open to AI Engineer and AI Product roles.</p>
    </div>
     <div class="hero-cta">
-      <span class="hire"><i></i>Available for hire</span>
             <a class="btn dark" href="#contact">Let's talk <span class="arr">→</span></a>
       <a class="btn" href="resume.html" data-resume>Resume ↗</a>
       <a class="btn quiet" href="Resume.pdf" target="_blank" rel="noopener">PDF ↓</a>
