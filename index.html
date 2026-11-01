@@ -306,22 +306,42 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
 .facts.edu dt{color:var(--ink);font-weight:700}.facts.edu dd{font-weight:500;color:var(--ink2)}
 .aphones{display:flex;gap:22px;overflow-x:auto;padding:34px 4px 14px;scroll-snap-type:x mandatory;scrollbar-width:none}.aphones::-webkit-scrollbar{display:none}.aphone{flex:0 0 auto;width:clamp(170px,17vw,230px);margin:0;scroll-snap-align:start}.aphone .ascr{border-radius:34px;padding:9px;background:#111;box-shadow:0 1px 0 2px #2a2a2a inset,0 18px 40px -18px rgba(0,0,0,.45)}.aphone img{display:block;width:100%;aspect-ratio:540/1168;object-fit:cover;border-radius:26px}.aphone figcaption{font:600 12px/1.2 var(--mono,ui-monospace,monospace);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);text-align:center;margin-top:12px}@media(max-width:620px){.aphone{width:62vw}}
 
-/* project intro: card image grows to center, title, three short beats, then the story */
-#pintro{position:fixed;inset:0;z-index:90;background:var(--paper);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .35s ease}
-#pintro.on{opacity:1;pointer-events:auto;cursor:pointer}
-#pintro .pi-img{position:fixed;object-fit:cover;border-radius:16px;box-shadow:0 30px 60px -30px rgba(0,0,0,.35);transition:all .6s cubic-bezier(.2,.7,.2,1)}
-#pintro .pi-txt{position:relative;z-index:2;width:min(92vw,1280px);box-sizing:border-box;padding:0 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
-#pintro .pi-k{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);opacity:0;transform:translateY(10px);transition:all .45s ease}
-#pintro h2{margin:0;font-size:clamp(44px,8vw,112px);line-height:.95;opacity:0;transform:translateY(24px);transition:all .55s cubic-bezier(.2,.7,.2,1)}
-#pintro ol{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:10px;counter-reset:b}
-#pintro li{counter-increment:b;display:flex;align-items:baseline;gap:14px;font-family:var(--serif);font-style:italic;font-size:clamp(22px,3vw,38px);line-height:1.15;color:var(--ink2);opacity:0;transform:translateX(-18px);transition:all .45s cubic-bezier(.2,.7,.2,1)}
-#pintro li::before{content:"0" counter(b);font:700 12px/1 var(--sans);font-style:normal;letter-spacing:.12em;color:var(--mute);min-width:22px}
-#pintro .in{opacity:1;transform:none}
-#pintro .pi-skip{position:fixed;right:20px;bottom:18px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
-#pintro .pi-bar{position:fixed;left:0;top:0;height:3px;background:var(--ink);width:0}
-#pintro.run .pi-bar{width:100%;transition:width 2.9s linear}
-@media(min-width:720px){#pintro .pi-txt{padding:0 calc(min(34vw,420px) + 80px) 0 40px}}
-@media(max-width:719px){#pintro .pi-txt{margin-top:36vh}#pintro h2{font-size:clamp(40px,12vw,64px)}#pintro li{font-size:22px}}
+/* project reel: a short story-style explainer that plays before a project's page */
+#pintro{position:fixed;inset:0;z-index:90;background:rgba(23,22,26,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .4s ease}
+#pintro.on{opacity:1;pointer-events:auto}
+.reel{position:relative;height:min(88vh,860px);aspect-ratio:9/16;max-width:94vw;border-radius:22px;overflow:hidden;background:var(--paper);box-shadow:0 40px 80px -30px rgba(0,0,0,.6);transform:scale(.94);transition:transform .5s cubic-bezier(.2,.7,.2,1);user-select:none;-webkit-user-select:none}
+#pintro.on .reel{transform:none}
+.reel .bars{position:absolute;left:12px;right:12px;top:12px;display:flex;gap:4px;z-index:5}
+.reel .bars i{flex:1;height:3px;border-radius:2px;background:rgba(23,22,26,.16);overflow:hidden}
+.reel .bars b{display:block;height:100%;width:0;background:var(--ink)}
+.reel .top{position:absolute;left:14px;right:10px;top:24px;display:flex;align-items:center;gap:10px;z-index:5;font-size:12px;font-weight:700}
+.reel .top .av{width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-size:10px;letter-spacing:.04em}
+.reel .top span{flex:1;color:var(--ink)}.reel .top small{color:var(--mute);font-weight:600}
+.reel .top button{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:18px;color:var(--ink)}
+.reel .top button:hover{background:rgba(23,22,26,.08)}
+.reel .sc{position:absolute;inset:0;padding:84px 26px 92px;display:flex;flex-direction:column;justify-content:center;gap:14px;opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .7s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.reel .sc.on{opacity:1;transform:none}
+.reel .sc.out{opacity:0;transform:translateY(-18px)}
+.reel .k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.reel h3{margin:0;font-size:clamp(34px,5.4vh,52px);line-height:.98;font-weight:800;letter-spacing:-.04em}
+.reel .ser{font-family:var(--serif);font-style:italic;font-size:clamp(20px,3vh,28px);line-height:1.2;color:var(--ink2)}
+.reel .cover{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;border:1px solid var(--line);transform:scale(.9);transition:transform 3.4s cubic-bezier(.2,.7,.2,1)}
+.reel .sc.on .cover{transform:scale(1)}
+.reel .n{font:800 clamp(64px,11vh,108px)/1 var(--sans);letter-spacing:-.05em;color:var(--ink)}
+.reel .beat{font-size:clamp(26px,4.2vh,40px);line-height:1.08;font-weight:800;letter-spacing:-.03em}
+.reel .beat .w{display:inline-block;opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .45s ease}
+.reel .sc.on .beat .w{opacity:1;transform:none}
+.reel .stat{display:flex;align-items:baseline;gap:12px;border-top:1px solid var(--line);padding-top:12px;opacity:0;transform:translateX(-14px);transition:all .5s ease}
+.reel .sc.on .stat{opacity:1;transform:none}
+.reel .stat b{font-size:clamp(30px,5vh,46px);font-weight:800;letter-spacing:-.04em;min-width:44%}
+.reel .stat small{font-size:13px;color:var(--ink2);font-weight:600}
+.reel .end{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;height:46px;padding:0 18px;border-radius:12px;background:var(--ink);color:var(--paper);font-weight:700;font-size:14px;pointer-events:auto}
+.reel .ctl{position:absolute;left:0;right:0;bottom:0;padding:14px 16px 16px;display:flex;justify-content:space-between;align-items:center;z-index:5;background:linear-gradient(transparent,var(--paper) 40%)}
+.reel .ctl button{height:38px;padding:0 14px;border-radius:10px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--line);background:var(--card)}
+.reel .ctl button.go{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.reel .tap{position:absolute;top:70px;bottom:70px;width:34%;z-index:4;cursor:pointer}
+.reel .tap.l{left:0}.reel .tap.r{right:0}
+@media(max-width:620px){.reel{height:100%;max-width:100%;width:100%;aspect-ratio:auto;border-radius:0}#pintro{background:var(--paper)}}
 @media(prefers-reduced-motion:reduce){#pintro{display:none}}
 </style>
 </head>
@@ -701,7 +721,7 @@ function openStory(id){var d=pdOf(id),p=P.filter(function(x){return x.id===id})[
 function closeStory(to){if(!document.body.classList.contains('in-story'))return;document.body.classList.remove('in-story');story.innerHTML='';document.title='Rahul M Koushik · AI Engineer';if(to&&to!=='#work'){var t=$(to);if(t)t.scrollIntoView()}else scrollTo(0,savedY)}
 function route(){var h=location.hash;if(/^#p-/.test(h)){openStory(h.slice(3))}else if(document.body.classList.contains('in-story')){closeStory(h)}}
 addEventListener('hashchange',route);route();
-/* project intro animation */
+/* project reel: story-style explainer before a project's page */
 var BEATS={zuo:['Queue jobs from my phone','Agents run on free and spare GPUs','Claude plans, the workers ship'],
 drone:['A drone flies a PX4 simulation','YOLOv8 spots the defects','A small vision model explains them on-device'],
 musaic:['Agents compose lo-fi tracks','They make the art and the video','And upload to YouTube, hands-free'],
@@ -710,30 +730,48 @@ catan:['One agent, three frozen rivals','It learns through memory, not weights',
 zzz:['Your goals become quests','Progress earns points','Spend them on rewards you choose'],
 quantum:['Real qubits on IBM hardware','Truly random outcomes','Pulled like a slot-machine lever']};
 (function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
- var ov=document.createElement('div');ov.id='pintro';ov.setAttribute('aria-hidden','true');document.body.appendChild(ov);
- var busy=false,timers=[];
- function T(f,ms){timers.push(setTimeout(f,ms))}
- function finish(id){if(!busy)return;timers.forEach(clearTimeout);timers=[];
-  location.hash='#p-'+id;setTimeout(function(){ov.classList.remove('on','run');setTimeout(function(){ov.innerHTML='';busy=false},380)},80)}
+ var ov=document.createElement('div');ov.id='pintro';ov.setAttribute('role','dialog');ov.setAttribute('aria-label','Project explainer');document.body.appendChild(ov);
+ var cur=null;
+ function words(t){return t.split(' ').map(function(w,i){return '<span class="w" style="transition-delay:'+(250+i*110)+'ms">'+esc(w)+'</span>'}).join(' ')}
+ function build(id){var d=pdOf(id),st=STORY[id]||{ad:d.tag,st:[]},beats=BEATS[id]||[d.tag],sc=[],dur=[];
+  sc.push('<div class="k">'+esc(d.k)+'</div><img class="cover" src="'+d.cover+'" alt=""><h3>'+esc(d.title)+'<span class="dot">.</span></h3><div class="ser">'+esc(st.ad)+'</div>');dur.push(4200);
+  beats.forEach(function(b,i){sc.push('<div class="n">0'+(i+1)+'</div><div class="beat">'+words(b)+'</div>');dur.push(3600)});
+  if(st.st&&st.st.length){sc.push('<div class="k">By the numbers</div>'+st.st.map(function(x,i){return '<div class="stat" style="transition-delay:'+(200+i*350)+'ms"><b>'+esc(x[0])+'</b><small>'+esc(x[1])+'</small></div>'}).join(''));dur.push(4200)}
+  sc.push('<h3>'+esc(d.title)+'<span class="dot">.</span></h3><div class="ser">The full story: the idea, the architecture and screenshots.</div><a class="end" href="#p-'+id+'" data-open>Read the full story →</a>');dur.push(3200);
+  return {d:d,sc:sc,dur:dur}}
+ function close(open){if(!cur)return;var id=cur.id;cancelAnimationFrame(cur.raf);cur=null;document.removeEventListener('keydown',onKey);
+  if(open)location.hash='#p-'+id;ov.classList.remove('on');setTimeout(function(){if(!cur)ov.innerHTML=''},420)}
+ function show(i){var c=cur;if(!c)return;if(i>=c.n){close(true);return}if(i<0)i=0;
+  var scs=ov.querySelectorAll('.sc'),bars=ov.querySelectorAll('.bars b');
+  scs.forEach(function(el,k){el.classList.toggle('on',k===i);el.classList.toggle('out',k<i)});
+  bars.forEach(function(b,k){b.style.width=k<i?'100%':'0'});
+  c.i=i;c.t0=performance.now();c.elapsed=0}
+ function tick(now){var c=cur;if(!c)return;
+  if(!c.paused){var e=c.elapsed+(now-c.t0),D=c.dur[c.i],bar=ov.querySelectorAll('.bars b')[c.i];if(bar)bar.style.width=Math.min(100,e/D*100)+'%';
+   if(e>=D){show(c.i+1);if(!cur)return}}
+  c.raf=requestAnimationFrame(tick)}
+ function pause(p){var c=cur;if(!c||c.paused===p)return;var now=performance.now();if(p)c.elapsed+=now-c.t0;else c.t0=now;c.paused=p;
+  var b=ov.querySelector('[data-pause]');if(b)b.textContent=p?'Play':'Pause'}
+ function onKey(e){if(!cur)return;if(e.key==='Escape')close(false);else if(e.key==='ArrowRight')show(cur.i+1);else if(e.key==='ArrowLeft')show(cur.i-1);else if(e.key===' '){e.preventDefault();pause(!cur.paused)}else if(e.key==='Enter')close(true)}
  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('#work a.case');
-  if(!a||busy||e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;
-  var id=(a.getAttribute('href')||'').replace('#p-','');var d=pdOf(id),p=P.filter(function(x){return x.id===id})[0];if(!d||!p)return;
-  e.preventDefault();busy=true;
-  var beats=BEATS[id]||[d.tag],img=a.querySelector('.shot img'),r=img?img.getBoundingClientRect():null;
-  ov.innerHTML='<div class="pi-bar"></div>'+(img?'<img class="pi-img" src="'+img.getAttribute('src')+'" alt="">':'')+
-   '<div class="pi-txt"><div class="pi-k">'+esc(d.k)+'</div><h2>'+esc(d.title)+'<span class="dot">.</span></h2><ol>'+beats.map(function(b){return '<li>'+esc(b)+'</li>'}).join('')+'</ol></div><span class="pi-skip">Click to skip</span>';
-  var pi=ov.querySelector('.pi-img');
-  if(pi&&r){pi.style.left=r.left+'px';pi.style.top=r.top+'px';pi.style.width=r.width+'px';pi.style.height=r.height+'px'}
-  ov.classList.add('on');void ov.offsetWidth;ov.classList.add('run');
-  if(pi){var w=Math.min(innerWidth*.34,420),h=w*10/16,small=innerWidth<720;
-   T(function(){if(small){pi.style.left=(innerWidth-w*1.6)/2+'px';pi.style.top='12vh';pi.style.width=w*1.6+'px';pi.style.height=h*1.6+'px'}
-    else{pi.style.left=(innerWidth-w-40)+'px';pi.style.top=(innerHeight-h)/2+'px';pi.style.width=w+'px';pi.style.height=h+'px'}
-    pi.style.opacity='1'},40)}
-  var seq=['.pi-k','h2'].map(function(q){return ov.querySelector(q)}).concat([].slice.call(ov.querySelectorAll('li')));
-  seq.forEach(function(el,i){T(function(){el.classList.add('in')},380+i*(i<2?160:430))});
-  T(function(){finish(id)},3000);
-  ov.onclick=function(){finish(id)};
-  document.addEventListener('keydown',function k(){document.removeEventListener('keydown',k);finish(id)});
+  if(!a||cur||e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;
+  var id=(a.getAttribute('href')||'').replace('#p-','');if(!pdOf(id))return;e.preventDefault();
+  var r=build(id);
+  ov.innerHTML='<div class="reel"><div class="bars">'+r.sc.map(function(){return '<i><b></b></i>'}).join('')+'</div>'
+   +'<div class="top"><span class="av">RK</span><span>'+esc(r.d.title)+'</span><small>Explainer</small><button type="button" data-x aria-label="Close">×</button></div>'
+   +r.sc.map(function(h){return '<div class="sc">'+h+'</div>'}).join('')
+   +'<div class="tap l" data-prev aria-hidden="true"></div><div class="tap r" data-next aria-hidden="true"></div>'
+   +'<div class="ctl"><button type="button" data-pause>Pause</button><button type="button" class="go" data-skip>Skip to story →</button></div></div>';
+  cur={id:id,dur:r.dur,n:r.sc.length,i:0,paused:false,elapsed:0,t0:performance.now()};
+  ov.querySelector('[data-x]').onclick=function(){close(false)};
+  ov.querySelector('[data-skip]').onclick=function(){close(true)};
+  ov.querySelector('[data-pause]').onclick=function(){pause(!cur.paused)};
+  ov.querySelector('[data-prev]').onclick=function(){show(cur.i-1)};
+  ov.querySelector('[data-next]').onclick=function(){show(cur.i+1)};
+  ov.querySelector('[data-open]').onclick=function(ev){ev.preventDefault();close(true)};
+  ov.onclick=function(ev){if(ev.target===ov)close(false)};
+  document.addEventListener('keydown',onKey);
+  ov.classList.add('on');requestAnimationFrame(function(){show(0);cur.raf=requestAnimationFrame(tick)});
  },true);
 })();
 
