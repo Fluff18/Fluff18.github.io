@@ -39,13 +39,13 @@ main{max-width:1000px;margin:0 auto;padding:24px 20px 80px}
 <header class="bar"><div class="in">
   <a class="back" href="./"><i>RK</i><span>Rahul M Koushik</span></a>
   <div class="tabs" role="tablist" aria-label="Choose document">
-    <button role="tab" data-doc="resume" class="on" aria-selected="true">One page</button>
-    <button role="tab" data-doc="cv" aria-selected="false">Full CV</button>
+    <button role="tab" data-doc="cv" class="on" aria-selected="true">Full resume</button>
+    <button role="tab" data-doc="resume" aria-selected="false">One page</button>
   </div>
-  <a class="btn dark" id="dl" href="Resume.pdf" download="Rahul_Koushik_Resume.pdf">Download PDF</a>
+  <a class="btn dark" id="dl" href="CV.pdf" download="Rahul_Koushik_Resume_Full.pdf">Download PDF</a>
 </div></header>
 <main>
-  <div class="meta"><span id="what">One-page resume</span><span id="count"></span></div>
+  <div class="meta"><span id="what">Full resume: engineering and product</span><span id="count"></span></div>
   <div class="pages" id="pages"><div class="skel"></div></div>
   <div class="fallback" id="fb">The viewer could not load here. <a href="Resume.pdf" id="fblink" style="text-decoration:underline">Open the PDF directly</a>.</div>
 </main>
@@ -53,7 +53,7 @@ main{max-width:1000px;margin:0 auto;padding:24px 20px 80px}
 <script>
 (function(){
 'use strict';
-var DOCS={resume:{file:'Resume.pdf',name:'Rahul_Koushik_Resume.pdf',label:'One-page resume'},cv:{file:'CV.pdf',name:'Rahul_Koushik_CV.pdf',label:'Full CV, every role, project and paper'}};
+var DOCS={resume:{file:'Resume.pdf',name:'Rahul_Koushik_Resume.pdf',label:'One-page resume'},cv:{file:'CV.pdf',name:'Rahul_Koushik_Resume_Full.pdf',label:'Full resume: engineering and product'}};
 var pagesEl=document.getElementById('pages'),dl=document.getElementById('dl'),what=document.getElementById('what'),count=document.getElementById('count'),fb=document.getElementById('fb'),fblink=document.getElementById('fblink');
 var cur=null,token=0;
 var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.05}):null;
@@ -61,7 +61,7 @@ function show(key){
   if(cur===key)return;cur=key;var d=DOCS[key],my=++token;
   document.querySelectorAll('.tabs button').forEach(function(b){var on=b.dataset.doc===key;b.classList.toggle('on',on);b.setAttribute('aria-selected',on)});
   dl.href=d.file;dl.setAttribute('download',d.name);what.textContent=d.label;fblink.href=d.file;count.textContent='';
-  history.replaceState(null,'',key==='cv'?'#cv':'#resume');
+  history.replaceState(null,'',key==='cv'?'#full':'#one-page');
   pagesEl.innerHTML='<div class="skel"></div>';fb.style.display='none';
   if(!window.pdfjsLib){pagesEl.innerHTML='';fb.style.display='block';return}
   pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -77,7 +77,7 @@ function show(key){
   }).catch(function(){if(my!==token)return;pagesEl.innerHTML='';fb.style.display='block'});
 }
 document.querySelectorAll('.tabs button').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.doc)})});
-show(location.hash==='#cv'?'cv':'resume');
+show(location.hash==='#resume'||location.hash==='#one-page'?'resume':'cv');
 })();
 </script>
 </body>
