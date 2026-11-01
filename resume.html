@@ -42,6 +42,7 @@ main{max-width:1000px;margin:0 auto;padding:24px 20px 80px}
     <button role="tab" data-doc="cv" class="on" aria-selected="true">Full resume</button>
     <button role="tab" data-doc="resume" aria-selected="false">One page</button>
   </div>
+  <a class="btn" id="op" href="CV.pdf" target="_blank" rel="noopener">Open PDF</a>
   <a class="btn dark" id="dl" href="CV.pdf" download="Rahul_Koushik_Resume_Full.pdf">Download PDF</a>
 </div></header>
 <main>
@@ -60,7 +61,7 @@ var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){
 function show(key){
   if(cur===key)return;cur=key;var d=DOCS[key],my=++token;
   document.querySelectorAll('.tabs button').forEach(function(b){var on=b.dataset.doc===key;b.classList.toggle('on',on);b.setAttribute('aria-selected',on)});
-  dl.href=d.file;dl.setAttribute('download',d.name);what.textContent=d.label;fblink.href=d.file;count.textContent='';
+  dl.href=d.file;document.getElementById('op').href=d.file;dl.setAttribute('download',d.name);what.textContent=d.label;fblink.href=d.file;count.textContent='';
   history.replaceState(null,'',key==='cv'?'#full':'#one-page');
   pagesEl.innerHTML='<div class="skel"></div>';fb.style.display='none';
   if(!window.pdfjsLib){pagesEl.innerHTML='';fb.style.display='block';return}

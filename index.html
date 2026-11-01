@@ -4,7 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rahul M Koushik · AI Engineer</title>
-<meta name="description" content="Rahul M Koushik: AI engineer and product builder on the HPE Storage AI team. Agents, MCP tooling, RAG, evaluation.">
+<meta name="description" content="Rahul M Koushik, AI Engineer at HPE. Production agent infrastructure, evaluation systems and LLM inference serving for enterprise storage, plus independent AI projects.">
+<link rel="canonical" href="https://fluff18.github.io/">
+<meta property="og:type" content="website"><meta property="og:url" content="https://fluff18.github.io/">
+<meta property="og:title" content="Rahul M Koushik · AI Engineer"><meta property="og:description" content="I build AI agents that work in production: agent infrastructure, memory, inference and the evaluations behind them.">
+<meta property="og:image" content="https://fluff18.github.io/img/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Rahul M Koushik · AI Engineer"><meta name="twitter:image" content="https://fluff18.github.io/img/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
 <style>
@@ -154,7 +159,7 @@ nav.top>*{pointer-events:auto}
 .trow .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.chip{font-size:11px;font-weight:700;padding:5px 10px;border-radius:6px;background:var(--card);border:1px solid var(--line)}
 .learn{margin-top:64px;display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
 .learn ol{list-style:none;margin:0;padding:0;counter-reset:p}
-.learn li{counter-increment:p;display:grid;grid-template-columns:40px 1fr auto;gap:14px;padding:16px 14px;margin:0 -14px;border-radius:12px;border-bottom:1px solid var(--line);align-items:center;font-weight:600;font-size:15px;transition:background .3s,color .3s,transform .3s}
+.learn li a{display:contents}.learn li{counter-increment:p;display:grid;grid-template-columns:40px 1fr auto;gap:14px;padding:16px 14px;margin:0 -14px;border-radius:12px;border-bottom:1px solid var(--line);align-items:center;font-weight:600;font-size:15px;transition:background .3s,color .3s,transform .3s}
 .learn li::before{content:"0" counter(p);font-size:11px;color:var(--mute);letter-spacing:.1em;transition:color .3s}
 .learn li small{display:block;font-weight:500;color:var(--mute);font-size:12px;transition:color .3s}
 .learn li:hover{background:var(--navy);color:var(--on);transform:translateX(4px)}.learn li:hover small,.learn li:hover::before{color:var(--on2)}
@@ -234,7 +239,7 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
 @media(max-width:860px){.sh{grid-template-columns:1fr;padding-top:96px;gap:16px}.sh .art{order:-1;aspect-ratio:1;max-width:420px;margin:0 auto}.sh .gw{display:none}.sh .stats div{min-width:0;flex:1}}
 
 /* projects: compact grid */
-.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:40px}.cases.more{grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px}.cases.more h3{font-size:20px}.others{margin-top:clamp(48px,6vw,80px)}
 .case{display:flex;flex-direction:column;color:inherit;border:1px solid var(--line);border-radius:16px;background:var(--card);overflow:hidden;opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1),border-color .2s}
 .case.in{opacity:1;transform:none}
 .case:hover{border-color:rgba(23,22,26,.35)}
@@ -248,9 +253,8 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
 .case h3{font-size:24px;line-height:1.05;letter-spacing:-.03em;margin:8px 0 8px;font-weight:800}
 .case p{margin:0;color:var(--ink2);font-size:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .case .more{margin-top:auto;padding-top:14px;font-weight:700;font-size:13px}
-.case:first-child,.case:nth-child(7){grid-column:span 2}.case:first-child .shot,.case:nth-child(7) .shot{aspect-ratio:auto;height:clamp(180px,16vw,240px)}
-@media(max-width:1000px){.cases{grid-template-columns:1fr 1fr}.case:nth-child(7){grid-column:auto}.case:nth-child(7) .shot{aspect-ratio:16/10;height:auto}}
-@media(max-width:620px){.cases{grid-template-columns:1fr}.case:first-child{grid-column:auto}.case:first-child .shot{aspect-ratio:16/10;height:auto}}
+@media(max-width:1000px){.cases.more{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.cases,.cases.more{grid-template-columns:1fr}}
 .earlier{margin-top:clamp(64px,8vw,104px)}
 .earlier ol{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--line)}
 .earlier li a{display:grid;grid-template-columns:70px 240px 1fr 24px;gap:18px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line)}
@@ -306,6 +310,8 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
 .life>div{box-shadow:none}.life{filter:drop-shadow(6px 6px 0 var(--ink))}
 @media(max-width:860px){.life{grid-template-columns:1fr}.life>div{min-height:0}}
 @media(prefers-reduced-motion:reduce){#work .case.in{animation:none}}
+.nojs h3{margin:28px 0 8px;font-size:20px}.nojs p,.nojs li{color:var(--ink2);max-width:72ch}.nojs a{text-decoration:underline}
+.facts.edu dt{color:var(--ink);font-weight:700}.facts.edu dd{font-weight:500;color:var(--ink2)}
 </style>
 </head>
 <body>
@@ -326,16 +332,32 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
    <div class="hc">
     <div class="eyebrow" data-n="">Rahul M Koushik</div>
     <h1>AI<br>Engineer<span class="dot">.</span></h1>
-    <p class="static">I build production LLM agents end to end: the user problem, the multi-agent loop, and the evals that prove it works. Open to AI Engineer and AI Product roles.</p>
+    <p class="static"><b>I build AI agents that work in production.</b> Agent infrastructure, memory, inference serving and the evaluations behind them, at HPE. Open to AI Engineer and AI Product roles.</p>
    </div>
     <div class="hero-cta">
       <span class="hire"><i></i>Available for hire</span>
             <a class="btn dark" href="#contact">Let's talk <span class="arr">→</span></a>
-      <a class="btn" href="resume.html" data-resume>Resume ↗</a>
+      <a class="btn" href="resume.html" data-resume>Resume</a>
+      <a class="btn quiet" href="Resume.pdf">PDF ↓</a>
     </div>
   </div>
   <a class="scroll-hint" href="#about" aria-label="Scroll to About"><span>↓</span></a>
 </header>
+<noscript>
+<section class="sec nojs"><div class="wrap">
+<h2>Rahul M Koushik, AI Engineer</h2>
+<p>I build AI agents that work in production: agent infrastructure, memory, inference serving and the evaluations behind them, at HPE. Resume: <a href="Resume.pdf">one-page PDF</a> or <a href="CV.pdf">full PDF</a>.</p>
+<h3>Experience</h3>
+<p><b>AI Engineer, Hewlett Packard Enterprise, Storage AI team</b> (Feb 2026 to present). Multi-agent LLM harness with an MCP tool server serving 6,300+ tool calls a week; memory layer with embeddings, vector search and a context graph; vLLM serving of Qwen models; the agent evaluation platform used as the release gate; alert-triage and root-cause-analysis agents in production.</p>
+<p><b>Cloud Software Engineer, Hewlett Packard Enterprise, Storage</b> (Jun 2023 to Feb 2026). Cross-stack observability for a platform serving 10,000+ customers; enterprise data-migration features in Go; a documentation agent.</p>
+<p>Earlier: Research Aide, The Luminosity Lab, Arizona State University; Software Engineering Intern, Aruba (HPE); Technical Undergraduate Intern, Webex by Cisco.</p>
+<h3>Projects</h3>
+<ul><li><a href="#p-zuo">Zuo</a>, personal agent infrastructure</li><li><a href="#p-catan">Catan Arena</a>, an agent evaluation testbed</li><li><a href="#p-drone">Drone Inspection Sim</a>, simulation only</li><li><a href="https://github.com/Fluff18/musaic">musaic</a>, an automated music pipeline</li><li><a href="#p-zzz">Zzz</a>, an iOS app on the App Store</li></ul>
+<h3>Education</h3>
+<p>M.S. Computer Science, Arizona State University (2023). B.Tech Computer Science and Engineering, PES University (2021).</p>
+<p>Contact: <a href="mailto:rkoushik@asu.edu">rkoushik@asu.edu</a> · <a href="https://www.linkedin.com/in/rahulkoushik/">LinkedIn</a> · <a href="https://github.com/Fluff18">GitHub</a></p>
+</div></section>
+</noscript>
 <div class="marq" aria-hidden="true"><div class="track" id="marq"></div></div>
 
 <section class="sec" id="about">
@@ -343,8 +365,8 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
     <div class="reveal">
       <div class="eyebrow" data-n="01">About</div>
       <h2>Hi, I'm <i>Rahul.</i></h2>
-      <p class="lede">Founder habits, engineer's hands. I build agents that ship, and the evals that decide whether they should.</p><p class="lede">I scope the problem with the people who have it, ship the first version fast, and keep the metric that says whether it helped.</p>
-      <div class="ctas"><a class="btn dark" href="resume.html" data-resume>Résumé ↗</a><a class="btn" href="https://github.com/Fluff18" target="_blank" rel="noopener">GitHub ↗</a><a class="btn" href="https://www.linkedin.com/in/rahulkoushik/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+      <p class="lede">AI Engineer on the HPE Storage AI team: I build the agent harness, memory layer and evaluation platform the team's agents run on. Before that, three years of Go, Kubernetes and observability on HPE's storage platform.</p><p class="lede">Outside work I ship my own AI products, from a personal agent harness to an iOS app on the App Store.</p>
+      <div class="ctas"><a class="btn dark" href="resume.html" data-resume>Résumé</a><a class="btn" href="Resume.pdf">PDF ↓</a><a class="btn" href="https://github.com/Fluff18" target="_blank" rel="noopener">GitHub ↗</a><a class="btn" href="https://www.linkedin.com/in/rahulkoushik/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
     </div>
     <div class="reveal">
       <div class="eyebrow" data-n="">Facts</div>
@@ -370,14 +392,17 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
     <div class="tl" id="tl" data-stagger style="--step:90ms"></div>
     <div class="learn">
       <div class="reveal">
-        <div class="eyebrow" data-n="03">Research</div>
-        <h2 style="font-size:clamp(34px,4.6vw,60px)">Always <i>learning.</i></h2>
-        <p class="lede">Three published papers: hardware randomness, a streaming-analytics benchmark and distributed GAN training.</p>
+        <div class="eyebrow" data-n="03">Education</div>
+        <h2 style="font-size:clamp(34px,4.6vw,60px)">Degrees and <i>papers.</i></h2>
+        <dl class="facts edu">
+          <div><dt>M.S. Computer Science</dt><dd>Arizona State University · 2021 to 2023</dd></div>
+          <div><dt>B.Tech Computer Science and Engineering</dt><dd>PES University · 2017 to 2021</dd></div>
+        </dl>
       </div>
       <ol data-stagger>
-        <li><div>True Random Numbers from Entropy Sources in Portable Computers<small>Hardware randomness</small></div><span>↗</span></li>
-        <li><div>ViStA: Video Streaming and Analytics Benchmark<small>Systems benchmark</small></div><span>↗</span></li>
-        <li><div>PipeGAN: pipeline parallelism for GANs<small>Distributed training</small></div><span>↗</span></li>
+        <li><div>ViStA: Video Streaming and Analytics Benchmark<small>IEEE ISPASS 2021 · co-author</small></div></li>
+        <li><div>Generation of True Random Numbers using Entropy Sources Present within Portable Computers<small>IEEE CONECCT 2021 · first author</small></div></li>
+        <li><a href="https://doi.org/10.1007/978-981-33-4543-0_81" target="_blank" rel="noopener"><div>A High Performance Pipelined Parallel GAN (PipeGAN)<small>Springer LNNS vol. 171, 2021 · co-author</small></div><span>↗</span></a></li>
       </ol>
     </div>
   </div>
@@ -401,6 +426,7 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
       <p class="lede">Personal projects, built end to end: the problem, the product and the system behind it. Each one opens into its full story.</p>
     </div>
     <div class="cases" id="cases"></div>
+    <div class="others reveal"><div class="eyebrow" data-n="">Other projects</div><div class="cases more" id="more"></div></div>
     <div class="earlier reveal"><div class="eyebrow" data-n="">Earlier</div><ol id="earlier" data-stagger></ol></div>
   </div>
 </section>
@@ -437,7 +463,7 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
       <a href="mailto:rkoushik@asu.edu"><small>Email</small><b>rkoushik@asu.edu</b></a>
       <a href="https://www.linkedin.com/in/rahulkoushik/" target="_blank" rel="noopener"><small>LinkedIn</small><b>in/rahulkoushik</b></a>
       <a href="https://github.com/Fluff18" target="_blank" rel="noopener"><small>GitHub</small><b>github.com/Fluff18</b></a>
-      <a href="resume.html" data-resume><small>Resume</small><b>PDF ↗</b></a>
+      <a href="Resume.pdf"><small>Resume</small><b>PDF ↓</b></a>
     </div>
   </div>
 </section>
@@ -481,12 +507,12 @@ var STK=[
 $('#stack').innerHTML=STK.map(function(f,i){return '<div class="srow"><div class="sh2"><small>'+String(i+1).padStart(2,'0')+' · '+f[1]+'</small><h3>'+f[0]+'</h3></div><ul>'+f[2].map(function(k){return '<li>'+k[0]+'<span>'+k[1]+'</span></li>'}).join('')+'</ul></div>'}).join('');
 /* work accordion */
 var P=[
-{id:'zuo',t:'Zuo',k:'Personal AI harness · 2026',g:'ai',fit:1,tag:'Job queue, budgets, voice capture and agent teams, controlled from my phone; free NVIDIA, a PC GPU and a laptop as workers, Claude as planner.',img:'img/c-zuo.jpg'},
-{id:'aitutor',t:'AI Tutor',k:'Learning app · 2026',g:'apps',tag:'Duolingo meets Instagram for learning AI engineering: a level path, quick quizzes, a carousel feed and reviewed lessons.',img:'img/c-aitutor.jpg'},
-{id:'zzz',t:'Zzz',k:'iOS + Android · 2026',g:'apps',tag:'Gamified goal tracker: quests, points and rewards you set yourself. SwiftUI and Kotlin, Supabase behind it, live on the App Store.',img:'img/c-zzz.jpg'},
-{id:'catan',t:'Catan Arena',k:'Self-learning agents · 2026',g:'research',tag:'A self-learning agent testbed with a statistical pass bar, so an agent only graduates when the improvement is real.',img:'img/c-catan.jpg'},
-{id:'drone',t:'Drone Inspection Sim',k:'Robotics · 2026',g:'research',tag:'PX4 and Gazebo inspection drone with a Pi-class AI agent: YOLOv8 plus a small vision-language model, llama.cpp 18x faster than Ollama.',img:'img/c-drone.jpg'},
+{id:'zuo',t:'Zuo',k:'Agent infrastructure · 2026',g:'ai',fit:1,tag:'Job queue, budgets, voice capture and agent teams, controlled from my phone; free NVIDIA, a PC GPU and a laptop as workers, Claude as planner.',img:'img/c-zuo.jpg'},
+{id:'catan',t:'Catan Arena',k:'Self-learning agents · 2026',g:'research',tag:'An evaluation testbed: a learning agent plays three frozen copies of itself and graduates only when a statistical pass bar says the gain is real.',img:'img/c-catan.jpg'},
+{id:'drone',t:'Drone Inspection Sim',k:'Robotics · 2026',g:'research',tag:'Simulation-only inspection drone in PX4 and Gazebo, with an agent capped to Raspberry Pi 5 resources running YOLOv8 and a small vision-language model.',img:'img/c-drone.jpg'},
 {id:'musaic',t:'musaic',k:'Generative media · 2026',g:'ai',tag:'An automated lo-fi music channel, from generation to upload, run by a small team of agents.',img:'img/c-musaic.jpg'},
+{id:'zzz',t:'Zzz',k:'iOS + Android · 2026',g:'apps',tag:'Gamified goal tracker: quests, points and rewards you set yourself. SwiftUI and Kotlin, Supabase behind it, live on the App Store.',img:'img/c-zzz.jpg'},
+{id:'aitutor',t:'AI Tutor',k:'Learning app · 2026',g:'apps',tag:'Duolingo meets Instagram for learning AI engineering: a level path, quick quizzes, a carousel feed and reviewed lessons.',img:'img/c-aitutor.jpg'},
 {id:'quantum',t:'Quantum Slot Machine',k:'Quantum · 2025',g:'research',tag:'Randomness from real qubits on IBM Quantum hardware, wrapped in a slot machine so people can feel it.',img:'img/c-quantum.jpg'},
 {id:'rideshare',t:'RideShare',k:'Distributed systems · 2020',g:'earlier',tag:'Fault-tolerant database-as-a-service on AWS for a ride-sharing app.',img:'img/c-rideshare.jpg'},
 {id:'zoom',t:'Zoom Telehealth',k:'iOS + Android TV · 2022',g:'earlier',tag:'Doctor-driven telehealth on the Zoom Meeting SDK.',img:'img/c-zoom.jpg'},
@@ -495,25 +521,25 @@ var P=[
 {id:'hand',t:'Handwriting Recognition',k:'Android · 2022',g:'earlier',tag:'Digit recognition split across worker phones.',img:'img/c-hand.jpg'},
 {id:'fetch',t:'Fetch Recipes',k:'iOS · 2022',g:'earlier',tag:'A Swift recipe app over TheMealDB.',img:'img/c-fetch.jpg'}];
 var cases=$('#cases'),early=$('#earlier');
-cases.innerHTML=P.filter(function(p){return p.g!=='earlier'}).map(function(p,i){return '<a class="case" href="#p-'+p.id+'"><div class="shot"><img src="'+p.img+'" alt="'+p.t+'" loading="lazy"'+(p.fit?' class="fit"':'')+'></div><div class="ctext"><span class="no">'+String(i+1).padStart(2,'0')+'</span><div class="k">'+p.k+'</div><h3>'+p.t+'</h3><p>'+p.tag+'</p><span class="more">Read the story <span class="arr">→</span></span></div></a>'}).join('');
+var FLAG=['zuo','catan','drone','musaic'];
+cases.innerHTML=P.filter(function(p){return FLAG.indexOf(p.id)>-1}).map(function(p,i){return '<a class="case" href="#p-'+p.id+'"><div class="shot"><img src="'+p.img+'" alt="'+p.t+'" loading="lazy"'+(p.fit?' class="fit"':'')+'></div><div class="ctext"><span class="no">'+String(i+1).padStart(2,'0')+'</span><div class="k">'+p.k+'</div><h3>'+p.t+'</h3><p>'+p.tag+'</p><span class="more">Read the story <span class="arr">→</span></span></div></a>'}).join('');
 early.innerHTML=P.filter(function(p){return p.g==='earlier'}).map(function(p){return '<li><a href="#p-'+p.id+'"><span class="ey">'+p.k.split('·').pop().trim()+'</span><b>'+p.t+'</b><span class="et">'+p.tag+'</span><span class="arr">→</span></a></li>'}).join('');
-$$('.case',cases).forEach(function(c,i){c.style.transitionDelay=(i%3)*90+'ms';io.observe(c)});
+$('#more').innerHTML=P.filter(function(p){return p.g!=='earlier'&&FLAG.indexOf(p.id)<0}).map(function(p){return '<a class="case" href="#p-'+p.id+'"><div class="shot"><img src="'+p.img+'" alt="'+p.t+' cover" loading="lazy"></div><div class="ctext"><div class="k">'+p.k+'</div><h3>'+p.t+'</h3><p>'+p.tag+'</p><span class="more">Read the story <span class="arr">→</span></span></div></a>'}).join('');
+$$('.case').forEach(function(c,i){c.style.transitionDelay=(i%2)*90+'ms';io.observe(c)});
 /* timeline */
 var T=[
-{y:'2026',s:'Feb · present',h:'AI Engineer',o:'Hewlett Packard Enterprise · Storage AI team · Bay Area',b:['Architected the production multi-agent LLM harness with guardrails that every team agent runs on; its Model Context Protocol (MCP) tool server handles 6,300+ tool calls a week across HPE Storage.','Built the memory layer for persistent agents: episodic memory, embeddings and vector search, and a context graph over 13,005 mined bugs and 5,600 grounded analyses.','Cut agent latency and cost per run with inference optimization: prompt caching and KV-cache reuse across agent steps, cache-coherent context updates, and prefill/decode-aware serving of Qwen models (27B, 35B) on vLLM.','Took the agent evaluation platform from idea to three production deployments in four weeks; rubric-based evals, LLM-as-a-judge scoring and a tracing dashboard for every agent run form the release gate.','Shipped agentic alert-triage and root-cause-analysis (RCA) systems to production, with self-improving loops that learn from their own failures.'],c:['Multi-agent','MCP','Memory and RAG','Inference','Evals','Guardrails']},
+{y:'2026',s:'Feb · present',h:'AI Engineer',o:'Hewlett Packard Enterprise · Storage AI team · Bay Area',b:['Architected the multi-agent LLM harness every team agent runs on: tool execution through a Model Context Protocol (MCP) server, guardrails and tracing. It serves 6,300+ tool calls a week across HPE Storage.','Built the memory layer for persistent agents: embeddings, vector search and a context graph linking 13,005 past bugs and 5,600 analyses by component, symptom and fix.','Tuned vLLM serving of Qwen 27B and 35B for agent workloads: prompt-prefix caching, KV-cache reuse across steps and prefill/decode-aware request handling.','Built the agent evaluation platform, from idea to three production deployments in four weeks: rubric scoring against expert feedback, LLM-as-a-judge and run tracing. It is the release gate for team agents.','Shipped alert-triage and root-cause-analysis (RCA) agents to production, with eval-guided feedback loops that re-test prompt and memory fixes against the pass bar.'],c:['Multi-agent','MCP','Memory and RAG','vLLM','Evals','Guardrails']},
 
 
-{y:'2023',s:'Jun 2023 · Feb 2026',h:'Cloud Software Engineer',o:'Hewlett Packard Enterprise · Storage · Bay Area',b:['Built the observability platform for 10K customers: cross-stack root-cause analysis cut resolution time from 30 to 3 minutes.','Shipped 6 Peer Motion features in Go across four storage array families, including the Nimble-to-Alletra migration path.','Built a documentation agent that updates docs on every pull request, saving 5 engineer-hours a week per team.'],c:['Go','Kubernetes','Spark','Storage']},
+{y:'2023',s:'Jun 2023 · Feb 2026',h:'Cloud Software Engineer',o:'Hewlett Packard Enterprise · Storage · Bay Area',b:['Built cross-stack observability for a storage platform serving 10,000+ customers, cutting typical issue resolution from 30 to 3 minutes; failure-trend analysis raised first-time success from 55% to 85%.','Implemented six enterprise data-migration features in Go across four storage array generations, over Fibre Channel and iSCSI.','Built a documentation agent that updates docs on every pull request, saving about 5 engineer-hours a week per team.'],c:['Go','Kubernetes','Observability','Storage']},
 {y:'2022',s:'May · Aug 2022',h:'Software Engineering Intern',o:'Aruba, Hewlett Packard Enterprise · Tempe',b:['Built a test-automation tool that configures network topologies, saving an estimated 150k engineering hours a year.'],c:['Python','Automation']},
 {y:'2022',s:'Feb 2022 · May 2023',h:'Research Aide',o:'The Luminosity Lab, Arizona State University · Tempe',b:['Led the iOS team on the TouchPoint apps; a telehealth flow saved doctors 15 minutes per visit.'],c:['Swift','Product']},
-{y:'2021',s:'Jan · Jul 2021',h:'Technical Undergraduate Intern',o:'Webex by Cisco · Bengaluru',b:['APIs for scheduling calls and meetings in the Webex iOS SDK v3, and the Kitchen Sink sample app that demonstrates them.'],c:['iOS','SDK']},
-{y:'2021',s:'2021 · 2023',h:'M.S. Computer Science',o:'Arizona State University · GPA 3.59',b:['Distributed systems and cloud computing.'],c:['Research','Cloud']},
-{y:'2017',s:'2017 · 2021',h:'B.Tech Computer Science & Engineering',o:'PES University, Bengaluru · GPA 8.2',b:[],c:['C++','Java']}];
+{y:'2021',s:'Jan · Jul 2021',h:'Technical Undergraduate Intern',o:'Webex by Cisco · Bengaluru',b:['APIs for scheduling calls and meetings in the Webex iOS SDK v3, and the Kitchen Sink sample app that demonstrates them.'],c:['iOS','SDK']}];
 $('#tl').innerHTML=T.map(function(t){return '<div class="trow"><div class="yr">'+t.y+'<small>'+t.s+'</small></div><div><h3>'+t.h+'</h3><div class="org">'+t.o+'</div>'+(t.b.length?'<ul>'+t.b.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>':'')+'<div class="chips">'+t.c.map(function(x){return '<span class="chip">'+x+'</span>'}).join('')+'</div></div></div>'}).join('');
 /* achievements */
 var A=[
 {n:'3',u:'wins',h:'HPE hackathons won',p:'Two of the three were selected for HPE Fellow Review and are being implemented across the business unit.',y:'2024 · 2026'},
-{n:'1',u:'patent',h:'Patent under way',p:'Filing in progress. The link goes here in a few weeks.',y:'2026'},
+{n:'1',u:'patent',h:'Patent application in progress',p:'An application based on the agent work at HPE.',y:'2026'},
 {n:'3',u:'papers',h:'Published research',p:'True random numbers from entropy sources, ViStA, PipeGAN.',y:'2021 · 2023'},
 {n:'1',u:'award',h:'HPE Early Career Technologist',p:'Recognition for the RAG work and the shipping record.',y:'2024'}];
 var IC={trophy:'<path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3M12 14v4M8 20h8"/>',star:'<path d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.2 6-5.3-3-5.3 3 1.2-6L3.4 9.3l6-.7z"/>',gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/>',search:'<circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/>',clock:'<circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/>',award:'<circle cx="12" cy="9" r="5"/><path d="m9 13-1.5 8 4.5-2.5 4.5 2.5L15 13"/>',doc:'<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>',phone:'<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18h2"/>'};
@@ -645,7 +671,7 @@ var STORY={zuo:{ad:'Your agents. Your machines. Your phone.',st:[['3','machines 
 aitutor:{ad:'Duolingo meets Instagram, for AI engineering.',st:[['4','sources mined'],['2','models, auto fallback'],['0','build steps']]},
 zzz:{ad:'Goals as quests. Rewards you pick.',st:[['2','platforms'],['4','life sectors'],['1','App Store release']]},
 catan:{ad:'An agent graduates only when the stats say so.',st:[['25%','null win rate'],['95%','Wilson interval'],['3','frozen opponents']]},
-drone:{ad:'Inspection flights on Pi-class compute.',st:[['4','CPU cores, capped'],['8 GB','RAM, no GPU'],['18x','llama.cpp vs Ollama']]},
+drone:{ad:'Inspection flights on Pi-class compute, in simulation.',st:[['4','CPU cores, capped'],['8 GB','RAM, no GPU'],['18x','llama.cpp vs Ollama, same container']]},
 musaic:{ad:'A music channel that runs itself.',st:[['10','variations per video'],['1080p','CRF 18 encode'],['0','hands on upload']]},
 quantum:{ad:'Luck, measured on real qubits.',st:[['3','qubits per spin'],['1','IBM backend'],['0','pseudo-random bits']]},
 rideshare:{ad:'A database that survives its master dying.',st:[['3','EC2 nodes'],['2','queues, read and write'],['1','auto-promoted replica']]},
@@ -654,6 +680,7 @@ paas:{ad:'Faces to records, serverless.',st:[['93%','accuracy, live'],['3','AWS 
 iaas:{ad:'Scale with the queue, not the calendar.',st:[['100','concurrent requests'],['2','tiers'],['0','idle servers']]},
 hand:{ad:'Four phones, one digit.',st:[['4','image parts'],['30%','faster'],['1','local network']]},
 fetch:{ad:'Recipes, fetched.',st:[['25+','categories'],['2,000+','recipes'],['1','network manager']]}};
+var STATUS={"zuo": "In daily personal use · solo", "catan": "Prototype · solo", "drone": "Simulation only · solo", "musaic": "Working pipeline · public code · solo", "zzz": "Released on the App Store · solo", "aitutor": "Prototype · solo", "quantum": "Experiment · public code", "rideshare": "Course project · team", "zoom": "Built for a client · team", "paas": "Course project", "iaas": "Course project", "hand": "Course project", "fetch": "Take-home app · solo"};
 var story=$('#story'),savedY=0,ORDER=P.map(function(p){return p.id});
 function pdOf(id){for(var i=0;i<PD.length;i++)if(PD[i].id===id)return PD[i]}
 function openStory(id){var d=pdOf(id),p=P.filter(function(x){return x.id===id})[0],st=STORY[id]||{ad:d.tag,st:[]};if(!d||!p)return;
@@ -663,7 +690,7 @@ function openStory(id){var d=pdOf(id),p=P.filter(function(x){return x.id===id})[
  var links=(d.links||[]).map(function(l){return '<a class="btn dark" href="'+l[1]+'" target="_blank" rel="noopener">'+esc(l[0])+' ↗</a>'}).join('');
  var gal=(d.gallery&&d.gallery.length?d.gallery:[d.cover]).map(function(g){return '<img src="'+g+'" alt="'+esc(d.title)+' screenshot" loading="lazy">'}).join('');
  var feats=d.hl.map(function(h,i){return '<div><b>0'+(i+1)+'</b><p>'+esc(h)+'</p></div>'}).join('');
- story.innerHTML='<div class="wrap"><div class="sh"><div class="gw" aria-hidden="true">'+esc(d.title)+'</div><div class="hc"><a class="back" href="#work" data-back>← All work</a><div class="mark">'+mark+'</div><h1>'+esc(d.title)+'<span class="dot">.</span></h1><p class="tag">'+esc(st.ad)+'</p><div class="stats" data-stagger>'+st.st.map(function(x){return '<div><b>'+x[0]+'</b><small>'+esc(x[1])+'</small></div>'}).join('')+'</div><div class="ctas"><span class="chip">'+esc(d.k)+'</span></div><div class="ctas">'+links+'<a class="btn" href="#contact" data-back>Ask me about it →</a></div></div><div class="art"><img src="'+d.cover+'" alt=""></div></div>'
+ story.innerHTML='<div class="wrap"><div class="sh"><div class="gw" aria-hidden="true">'+esc(d.title)+'</div><div class="hc"><a class="back" href="#work" data-back>← All work</a><div class="mark">'+mark+'</div><h1>'+esc(d.title)+'<span class="dot">.</span></h1><p class="tag">'+esc(st.ad)+'</p><div class="stats" data-stagger>'+st.st.map(function(x){return '<div><b>'+x[0]+'</b><small>'+esc(x[1])+'</small></div>'}).join('')+'</div><div class="ctas"><span class="chip">'+esc(d.k)+'</span>'+(STATUS[id]?'<span class="chip">'+esc(STATUS[id])+'</span>':'')+'</div><div class="ctas">'+links+'<a class="btn" href="#contact" data-back>Ask me about it →</a></div></div><div class="art"><img src="'+d.cover+'" alt=""></div></div>'
  +'<div class="sp reveal"><div class="eyebrow" data-n="01">The idea</div><p class="pitch">'+esc(d.sum)+'</p></div>'
  +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="02">What it does</div><h2 style="font-size:clamp(32px,4.6vw,60px)">Built <i>in.</i></h2></div><div class="feat" data-stagger>'+feats+'</div></div>'
  +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="03">How it works</div><h2 style="font-size:clamp(32px,4.6vw,60px)">The <i>architecture.</i></h2></div><div class="archwrap">'+archSVG(d.arch)+'</div><div class="stackrow" data-stagger>'+d.stack.map(function(x){return '<span class="chip">'+esc(x)+'</span>'}).join('')+'</div></div>'
