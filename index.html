@@ -754,7 +754,7 @@ function openStory(id){var d=pdOf(id),p=P.filter(function(x){return x.id===id})[
  $$('[data-back]',story).forEach(function(a){a.addEventListener('click',function(){closeStory(a.getAttribute('href'))})})}
 function closeStory(to){if(!document.body.classList.contains('in-story'))return;stopReel();document.body.classList.remove('in-story');story.innerHTML='';document.title='Rahul M Koushik · AI Engineer';if(to&&to!=='#work'){var t=$(to);if(t)t.scrollIntoView()}else scrollTo(0,savedY)}
 function route(){var h=location.hash;if(/^#p-/.test(h)){openStory(h.slice(3))}else if(document.body.classList.contains('in-story')){closeStory(h)}}
-addEventListener('hashchange',route);route();
+addEventListener('hashchange',route);addEventListener('pageshow',function(e){if(e.persisted)route()});route();
 /* project reel data */
 var BEATS={zuo:['Jobs from my <i>phone.</i>','Spare GPUs do the <i>work.</i>','Claude <i>plans.</i>'],
 drone:['Fly the <i>sim.</i>','Spot the <i>defects.</i>','On Pi-class <i>compute.</i>'],
