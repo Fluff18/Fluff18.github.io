@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /v2/
-Disallow: /v3/
-Sitemap: https://fluff18.github.io/sitemap.xml
