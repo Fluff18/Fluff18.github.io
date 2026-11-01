@@ -24,6 +24,7 @@ h2 i,.ser{font-family:var(--serif);font-style:italic;font-weight:400;letter-spac
 .btn:hover{background:var(--paper2)}.btn.dark:hover{filter:brightness(1.12)}.btn.dark{background:var(--navy);color:var(--on);border-color:transparent}.btn.quiet{background:transparent}
 .btn .arr{display:inline-block;transition:transform .2s}
 /* nav */
+body.in-story nav.top .brand>span:last-child{background:rgba(246,243,236,.92);padding:5px 12px;border-radius:999px}
 nav.top{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(16px,3vw,40px);pointer-events:none}
 nav.top>*{pointer-events:auto}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px}
@@ -34,6 +35,7 @@ nav.top>*{pointer-events:auto}
 .pill a.on{color:var(--on)}
 @media(max-width:720px){nav.top{padding:12px 12px 0}.pill{max-width:calc(100vw - 70px);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.pill::-webkit-scrollbar{display:none}.pill a{padding:7px 10px;font-size:11.5px;white-space:nowrap}.brand span{display:none}}
 /* hero */
+#hero .eyebrow{color:var(--ink2)}
 #hero{--hero:#dde6ef;--arch:#1f1d2b;--ghost:rgba(31,29,43,.07);min-height:100svh;display:grid;align-items:end;overflow:hidden;position:relative;background:var(--hero)}
 .ghost{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;user-select:none}
 .ghost span{--gy:-8vh;font-weight:800;font-size:clamp(120px,25vw,380px);letter-spacing:-.06em;line-height:1;color:var(--ghost);transform:translateY(var(--gy));animation:ghostin 1.4s cubic-bezier(.2,.7,.2,1) both}
@@ -343,8 +345,8 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
 .preel .segs i.done{opacity:.85}
 .preel .meta{position:absolute;left:16px;top:36px;display:flex;gap:14px;align-items:baseline;z-index:4;font:700 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase}
 .preel .meta .cnt{font-variant-numeric:tabular-nums;opacity:.9}
-.preel .meta .lbl{opacity:.6}
-.preel .nx{position:absolute;right:20px;bottom:18px;z-index:4;display:flex;align-items:center;gap:10px;font:700 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;opacity:.75}
+.preel .meta .lbl{opacity:.9}
+.preel .nx{position:absolute;right:20px;bottom:18px;z-index:4;display:flex;align-items:center;gap:10px;font:700 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;opacity:.9}
 .preel .nx svg{width:30px;height:30px;transform:rotate(-90deg)}
 .preel .nx circle{fill:none;stroke:currentColor;stroke-width:2.5}
 .preel .nx circle.bg{opacity:.2}
@@ -588,7 +590,7 @@ var T=[
 {y:'2026',s:'Feb · present',h:'AI Engineer',o:'Hewlett Packard Enterprise · Storage AI team · Bay Area',b:['Built the production multi-agent LLM harness with guardrails that every team agent runs on. I also own its Model Context Protocol (MCP) server and all of its tools, used across HPE Storage software engineering: 6,300+ tool calls a week.','Engineered the memory layer for persistent agents: episodic memory, embeddings and vector search, and a context graph over 13,005 mined bugs and 5,600 grounded analyses.','Cut agent latency 45% with cache-coherent context updates, alongside prompt caching, KV-cache reuse across agent steps and prefill/decode-aware serving of Qwen models (27B, 35B) on vLLM.','Scaled the agent evaluation platform from idea to three production deployments in four weeks; rubric-based evals, LLM-as-a-judge scoring and a tracing dashboard for every agent run form the release gate.','Shipped agentic alert-triage and root-cause-analysis (RCA) systems to production, with self-improving loops: a reflector agent reviews each run to check the agent took the right path, and subject-matter experts confirm the corrections.'],c:['Multi-agent','MCP','Memory and RAG','Inference','Evals','Guardrails']},
 
 
-{y:'2023',s:'Jun 2023 · Feb 2026',h:'Cloud Software Engineer',o:'Hewlett Packard Enterprise · Storage · Bay Area',b:['Developed the observability platform for the internal teams supporting 10,000+ customers: cross-stack root-cause analysis cut resolution time from 30 to 3 minutes.','Delivered six enterprise data-migration features in Go across four generations of storage arrays, over Fibre Channel and iSCSI.','Launched a documentation agent that updates docs on every pull request, saving 5 engineer-hours a week per team.'],c:['Go','Kubernetes','Spark','Storage']},
+{y:'2023',s:'Jun 2023 · Feb 2026',h:'Cloud Software Engineer',o:'Hewlett Packard Enterprise · Storage · Bay Area',b:['Developed the observability platform for the internal teams supporting 10,000+ customers: cross-stack root-cause analysis cut resolution time from 30 to 3 minutes, and first-attempt array setup success rose from 55% to 85%.','Delivered six enterprise data-migration features in Go across four generations of storage arrays, over Fibre Channel and iSCSI.','Launched a documentation agent that updates docs on every pull request, saving 5 engineer-hours a week per team.'],c:['Go','Kubernetes','Spark','Storage']},
 {y:'2022',s:'May · Aug 2022',h:'Software Engineering Intern',o:'Aruba, Hewlett Packard Enterprise · Tempe',b:['Created a test-automation tool that configures network topologies, saving an estimated 150k engineering hours a year.'],c:['Python','Automation']},
 {y:'2022',s:'Feb 2022 · May 2023',h:'Research Aide',o:'The Luminosity Lab, Arizona State University · Tempe',b:['Led the iOS team on the TouchPoint apps; a telehealth flow saved doctors 15 minutes per visit.'],c:['Swift','Product']},
 {y:'2021',s:'Jan · Jul 2021',h:'Technical Undergraduate Intern',o:'Webex by Cisco · Bengaluru',b:['Added call and meeting scheduling APIs to the Webex iOS SDK v3, plus the Kitchen Sink sample app that demonstrates them.'],c:['iOS','SDK']}];
@@ -751,7 +753,7 @@ function openStory(id){var d=pdOf(id),p=P.filter(function(x){return x.id===id})[
  +'<div class="sp reveal"><div class="eyebrow" data-n="01">The idea</div><p class="pitch">'+esc(d.sum)+'</p></div>'
  +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="02">What it does</div><h2 style="font-size:clamp(32px,4.6vw,60px)">Built <i>in.</i></h2></div><div class="feat" data-stagger>'+feats+'</div></div>'
  +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="03">How it works</div><h2 style="font-size:clamp(32px,4.6vw,60px)">The <i>architecture.</i></h2></div><div class="archwrap">'+archSVG(d.arch)+'</div><div class="stackrow" data-stagger>'+d.stack.map(function(x){return '<span class="chip">'+esc(x)+'</span>'}).join('')+'</div></div>'
- +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="04">In pixels</div><h2 style="font-size:clamp(32px,4.6vw,60px)">See <i>it.</i></h2></div>'+(phones?'<div class="aphones" data-stagger>'+phones+'</div>':'')+'<div class="gal" data-stagger>'+gal+'</div></div>'
+ +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="04">In pixels</div><h2 style="font-size:clamp(32px,4.6vw,60px)">See <i>it.</i></h2></div>'+(phones?'<div class="aphones" data-stagger tabindex="0" role="region" aria-label="'+esc(d.title)+' app screens">'+phones+'</div>':'')+'<div class="gal" data-stagger>'+gal+'</div></div>'
  +'<div class="sfoot"><a href="#p-'+prev.id+'"><small>Previous</small><b>'+esc(prev.t)+'</b></a><a class="next" href="#p-'+next.id+'"><small>Next</small><b>'+esc(next.t)+'</b></a></div></div>';
  /* stagger the diagram: edges first, nodes after */
  $$('svg.arch .e',story).forEach(function(e,i){e.style.setProperty('--d',(i*.12)+'s')});$$('svg.arch .n',story).forEach(function(n,i){n.style.setProperty('--d',(.3+i*.1)+'s')});
@@ -772,7 +774,7 @@ catan:['One agent, three <i>rivals.</i>','Learns in <i>memory.</i>','Stats <i>de
 zzz:['Goals become <i>quests.</i>','Earn <i>points.</i>','Pick your <i>reward.</i>'],
 quantum:['Real <i>qubits.</i>','True <i>randomness.</i>','Pull the <i>lever.</i>']};
 /* colour themes come from each project's own screens; demo is the slide background behind the screenshots, picked to contrast with them */
-var THEME={drone:{tint:'#3fd1c9',demo:'#f6f3ec'},aitutor:{tint:'#8c1c40',demo:'#f3e6dc'},zuo:{tint:'#4f8df7',demo:'#e8eefb'},musaic:{tint:'#7b2a8c',demo:'#f4ecf6'},catan:{tint:'#1d4e89',demo:'#f2c14e'},zzz:{tint:'#4b3385',demo:'#fed33d'},quantum:{tint:'#6a66c6',demo:'#17161a'}};
+var THEME={drone:{tint:'#3fd1c9',demo:'#f6f3ec'},aitutor:{tint:'#8c1c40',demo:'#f3e6dc'},zuo:{tint:'#4f8df7',demo:'#e8eefb'},musaic:{tint:'#7b2a8c',demo:'#f4ecf6'},catan:{tint:'#1d4e89',demo:'#f2c14e'},zzz:{tint:'#4b3385',demo:'#fed33d'},quantum:{tint:'#5651b5',demo:'#17161a'}};
 var DEMO={drone:['img/g/drone.jpg','img/g/drone-2.jpg'],aitutor:['img/g/tutor-s1.jpg','img/g/tutor-s2.jpg','img/g/tutor-s5.jpg'],zuo:['img/c-zuo.jpg','img/g/zuo-app.jpg'],musaic:['img/c-musaic.jpg'],catan:['img/c-catan.jpg','img/g/catan-dash.jpg'],zzz:['img/c-zzz.jpg','img/g/zzz-icon.jpg'],quantum:['img/g/quantum-app.jpg']};
 function lum(h){h=h.replace('#','');var r=parseInt(h.substr(0,2),16)/255,g=parseInt(h.substr(2,2),16)/255,b=parseInt(h.substr(4,2),16)/255;return .2126*r+.7152*g+.0722*b}
 var NUMI={zuo:0,drone:2,musaic:0,aitutor:0,catan:0,zzz:1,quantum:0};
