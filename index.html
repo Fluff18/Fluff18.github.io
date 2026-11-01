@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rahul M Koushik · AI Engineer</title>
+<title>Rahul M Koushik · AI Engineer</title><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="description" content="Rahul M Koushik: AI engineer and product builder on the HPE Storage AI team. Agents, MCP tooling, RAG, evaluation.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
@@ -205,7 +205,12 @@ body.in-story>*:not(nav.top):not(#story){display:none}
 #story{display:none;padding-top:0}body.in-story #story{display:block}
 .sh{min-height:88svh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px;padding:120px 0 40px;position:relative}
 .sh.one{min-height:0;grid-template-columns:1fr;padding:clamp(48px,7vw,96px) 0 10px}.sh.one .back{display:none}
-.rwrap{position:relative}
+.sh.shx{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;padding:0;min-height:100svh;align-items:stretch}
+.sh.shx .hc{align-self:center;padding:120px clamp(24px,4vw,64px) 60px max(clamp(20px,4vw,56px),calc((100vw - 1240px)/2 + clamp(20px,4vw,56px)))}
+.preel.side{aspect-ratio:auto;height:100svh;min-height:620px;max-height:none;margin:0;border-radius:0}
+.preel.side .segs{top:86px}.preel.side .meta{top:102px}
+@container (orientation: portrait){.preel.side .cov{top:21cqh}}
+@media(max-width:860px){.sh.shx{grid-template-columns:1fr;min-height:0}.sh.shx .preel{order:-1;height:86svh;min-height:520px}.sh.shx .hc{padding:36px clamp(20px,4vw,56px) 10px}.sh.shx .preel .segs{top:84px}.sh.shx .preel .meta{top:100px}}
 .preel.full{aspect-ratio:auto;height:100svh;min-height:560px;max-height:none;margin:0;border-radius:0}
 .preel.full .segs{top:86px;left:clamp(16px,3vw,40px);right:clamp(16px,3vw,40px)}.preel.full .meta{top:102px;left:clamp(16px,3vw,40px)}
 .preel.full .nx{right:clamp(16px,3vw,40px);bottom:24px}
@@ -334,11 +339,11 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
 .preel.sd .blob{opacity:.25;transform:translate(10cqw,50cqh) scale(.9)}.preel.sd .blob.b2{opacity:.2}
 .preel .demo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:clamp(12px,2.4cqw,36px);padding:90px max(16px,5cqw) 80px;z-index:2;pointer-events:none;visibility:hidden}
 .preel .demo.show{visibility:visible}
-.preel .demo img{display:block;max-height:62cqh;max-width:calc((100% - 72px)/var(--n));object-fit:contain;border-radius:14px;box-shadow:0 36px 70px -30px rgba(0,0,0,.55);opacity:0;transform:translateY(60px) rotate(var(--r,0deg)) scale(.94);transition:opacity .8s ease,transform 1.2s cubic-bezier(.22,.8,.2,1)}
-.preel .demo.ph img{border-radius:30px;border:7px solid #111;max-height:66cqh}
+.preel .demo img{display:block;min-width:0;max-height:62cqh;max-width:calc((100% - 72px)/var(--n));object-fit:contain;border-radius:14px;box-shadow:0 36px 70px -30px rgba(0,0,0,.55);opacity:0;transform:translateY(60px) rotate(var(--r,0deg)) scale(.94);transition:opacity .8s ease,transform 1.2s cubic-bezier(.22,.8,.2,1)}
+.preel .demo.phn img{border-radius:30px;border:7px solid #111;max-height:66cqh}
 .preel .demo.show img{opacity:1;transform:translateY(0) rotate(var(--r,0deg)) scale(1)}
 .preel .demo.hide img{opacity:0;transform:translateY(-30px) rotate(var(--r,0deg)) scale(.97);transition-duration:.6s}
-@media(max-width:720px){.preel .demo{flex-wrap:wrap;align-content:center}.preel .demo img{max-width:86cqw;max-height:30cqh}.preel .demo.ph{flex-wrap:nowrap;gap:3cqw}.preel .demo.ph img{max-width:28cqw;max-height:60cqh;border-width:4px;border-radius:16px}}
+@container (orientation: portrait){.preel .demo{flex-wrap:wrap;align-content:center}.preel .demo img{max-width:78cqw;max-height:30cqh}.preel .demo.phn{flex-wrap:nowrap;gap:3cqw}.preel .demo.phn img{flex:0 0 auto;width:27cqw;height:auto;max-width:none;max-height:none;border-width:4px;border-radius:16px}}
 .preel .segs{position:absolute;left:16px;right:16px;top:18px;display:flex;gap:6px;z-index:4}
 .preel .segs i{flex:1;height:4px;border-radius:3px;background:currentColor;opacity:.22;overflow:hidden;position:relative}
 .preel .segs b{position:absolute;inset:0;width:0;background:currentColor;opacity:1}
@@ -385,7 +390,8 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
 .preel .num b{font-size:clamp(90px,18cqw,260px);font-weight:800;letter-spacing:-.06em;line-height:.9;color:var(--tl);transform:scale(.85);opacity:0;transition:all 1.1s cubic-bezier(.22,.8,.2,1)}
 .preel .num small{margin-top:14px;font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6cqw,32px);opacity:0;transition:opacity .8s .5s}
 .preel .num.show b{opacity:1;transform:none}.preel .num.show small{opacity:.8}
-@media(max-width:720px){.preel{aspect-ratio:4/5;max-height:none;border-radius:18px}.preel .cov{left:7cqw;right:auto;top:12cqh;width:86cqw;height:auto;transform:scale(.92)}.preel .cov.in{transform:none}.preel .cov.out{transform:scale(.95)}.preel .t{max-width:none;font-size:clamp(44px,13cqw,72px)}.preel .sc.cover{justify-content:flex-end;padding-bottom:16cqh}.preel .segs{right:16px}}
+@media(max-width:720px){.preel{aspect-ratio:4/5;max-height:none;border-radius:18px}}
+@container (orientation: portrait){.preel .cov{left:7cqw;right:auto;top:12cqh;width:86cqw;height:auto;transform:scale(.92)}.preel .cov.in{transform:none}.preel .cov.out{transform:scale(.95)}.preel .t{max-width:none;font-size:clamp(44px,13cqw,72px)}.preel .sc.cover{justify-content:flex-end;padding-bottom:16cqh}.preel .segs{right:16px}}
 </style>
 </head>
 <body>
@@ -749,11 +755,11 @@ function openStory(id){var d=pdOf(id),p=P.filter(function(x){return x.id===id})[
  var gal=(d.gallery&&d.gallery.length?d.gallery:[d.cover]).map(function(g){return '<img src="'+g+'" alt="'+esc(d.title)+' screenshot" loading="lazy">'}).join('');
  var phones=(d.screens||[]).map(function(x){return '<figure class="aphone"><div class="ascr"><img src="'+x[0]+'" alt="'+esc(d.title)+': '+esc(x[1])+' screen" loading="lazy"></div><figcaption>'+esc(x[1])+'</figcaption></figure>'}).join('');
  var feats=d.hl.map(function(h,i){return '<div><b>0'+(i+1)+'</b><p>'+esc(h)+'</p></div>'}).join('');
- story.innerHTML='<div class="rwrap"><div class="preel full" id="preel" role="img" aria-label="Animated overview of '+esc(d.title)+'"></div><a class="rback" href="#work" data-back>← All work</a><span class="rdown" aria-hidden="true">↓</span></div><div class="wrap"><div class="sh one"><div class="hc"><a class="back" href="#work" data-back>← All work</a><div class="mark">'+mark+'</div><h1>'+esc(d.title)+'<span class="dot">.</span></h1><p class="tag">'+esc(st.ad)+'</p><div class="stats" data-stagger>'+st.st.map(function(x){return '<div><b>'+x[0]+'</b><small>'+esc(x[1])+'</small></div>'}).join('')+'</div><div class="ctas"><span class="chip">'+esc(d.k)+'</span></div><div class="ctas">'+links+'<a class="btn" href="#contact" data-back>Ask me about it →</a></div></div></div>'
+ story.innerHTML='<div class="sh shx"><div class="hc"><a class="back" href="#work" data-back>← All work</a><div class="mark">'+mark+'</div><h1>'+esc(d.title)+'<span class="dot">.</span></h1><p class="tag">'+esc(st.ad)+'</p><div class="stats" data-stagger>'+st.st.map(function(x){return '<div><b>'+x[0]+'</b><small>'+esc(x[1])+'</small></div>'}).join('')+'</div><div class="ctas"><span class="chip">'+esc(d.k)+'</span></div><div class="ctas">'+links+'<a class="btn" href="#contact" data-back>Ask me about it →</a></div></div><div class="preel side" id="preel" role="img" aria-label="Animated overview of '+esc(d.title)+'"></div></div><div class="wrap">'
  +'<div class="sp reveal"><div class="eyebrow" data-n="01">The idea</div><p class="pitch">'+esc(d.sum)+'</p></div>'
  +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="02">What it does</div><h2 style="font-size:clamp(32px,4.6vw,60px)">Built <i>in.</i></h2></div><div class="feat" data-stagger>'+feats+'</div></div>'
  +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="03">How it works</div><h2 style="font-size:clamp(32px,4.6vw,60px)">The <i>architecture.</i></h2></div><div class="archwrap">'+archSVG(d.arch)+'</div><div class="stackrow" data-stagger>'+d.stack.map(function(x){return '<span class="chip">'+esc(x)+'</span>'}).join('')+'</div></div>'
- +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="04">In pixels</div><h2 style="font-size:clamp(32px,4.6vw,60px)">See <i>it.</i></h2></div>'+(phones?'<div class="aphones" data-stagger tabindex="0" role="region" aria-label="'+esc(d.title)+' app screens">'+phones+'</div>':'')+'<div class="gal" data-stagger>'+gal+'</div></div>'
+ +'<div class="sp"><div class="reveal"><div class="eyebrow" data-n="04">In pixels</div><h2 style="font-size:clamp(32px,4.6vw,60px)">See <i>it.</i></h2></div>'+(phones?'<div class="aphones" data-stagger tabindex="0" role="region" aria-label="'+esc(d.title)+' app screens">'+phones+'</div>':'')+'<div class="gal" data-stagger tabindex="0" role="region" aria-label="'+esc(d.title)+' screenshots">'+gal+'</div></div>'
  +'<div class="sfoot"><a href="#p-'+prev.id+'"><small>Previous</small><b>'+esc(prev.t)+'</b></a><a class="next" href="#p-'+next.id+'"><small>Next</small><b>'+esc(next.t)+'</b></a></div></div>';
  /* stagger the diagram: edges first, nodes after */
  $$('svg.arch .e',story).forEach(function(e,i){e.style.setProperty('--d',(i*.12)+'s')});$$('svg.arch .n',story).forEach(function(n,i){n.style.setProperty('--d',(.3+i*.1)+'s')});
@@ -798,7 +804,7 @@ function mountReel(host,id){
    +'<img class="cov" src="'+d.cover+'" alt="">'
    +'<div class="sc cover"><div class="k">'+esc(d.k)+'</div><h2 class="t">'+W(esc(d.title))+'<span class="dot">.</span></h2></div>'
    +'<div class="sc beat"><div class="phs">'+beats.map(function(b,i){return '<div class="ph"><span class="idx">0'+(i+1)+'</span>'+W(b)+'</div>'}).join('')+'</div></div>'
-   +(dm.length?'<div class="demo'+(isPh?' ph':'')+'" style="--n:'+dm.length+'">'+dm.map(function(u,i){var r=dm.length>1?((i-(dm.length-1)/2)*(isPh?5:3)):0;return '<img src="'+u+'" alt="" style="--r:'+r+'deg;transition-delay:'+(i*220)+'ms">'}).join('')+'</div>':'')
+   +(dm.length?'<div class="demo'+(isPh?' phn':'')+'" style="--n:'+dm.length+'">'+dm.map(function(u,i){var r=dm.length>1?((i-(dm.length-1)/2)*(isPh?5:3)):0;return '<img src="'+u+'" alt="" style="--r:'+r+'deg;transition-delay:'+(i*220)+'ms">'}).join('')+'</div>':'')
    +(d.arch?'<div class="gw">'+archSVG(d.arch)+'</div>':'')
    +(num?'<div class="sc num"><b>'+esc(num[0])+'</b><small>'+esc(num[1])+'</small></div>':'');
   var cov=host.querySelector('.cov'),cover=host.querySelector('.sc.cover'),b=host.querySelector('.sc.beat'),dv=host.querySelector('.demo'),gw=host.querySelector('.gw'),nm=host.querySelector('.sc.num');
