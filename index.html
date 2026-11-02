@@ -209,6 +209,7 @@ body.in-story>*:not(nav.top):not(#story){display:none}
 .sh.shx .hc{align-self:center;padding:120px clamp(24px,4vw,64px) 60px max(clamp(20px,4vw,56px),calc((100vw - 1240px)/2 + clamp(20px,4vw,56px)))}
 .preel.side{aspect-ratio:auto;height:100svh;min-height:620px;max-height:none;margin:0;border-radius:0}
 .preel.side .segs{top:86px}.preel.side .meta{top:102px}
+.preel.side .rgw{padding:128px 16px 72px}.preel.side svg.arch{max-height:calc(100cqh - 210px)}
 @container (orientation: portrait){.preel.side .cov{top:21cqh}}
 @media(max-width:860px){.sh.shx{grid-template-columns:1fr;min-height:0}.sh.shx .preel{order:-1;height:86svh;min-height:520px}.sh.shx .hc{padding:36px clamp(20px,4vw,56px) 10px}.sh.shx .preel .segs{top:84px}.sh.shx .preel .meta{top:100px}}
 .preel.full{aspect-ratio:auto;height:100svh;min-height:560px;max-height:none;margin:0;border-radius:0}
@@ -235,9 +236,9 @@ body.in-story>*:not(nav.top):not(#story){display:none}
 .feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:30px}
 .feat div{padding:22px;border-radius:18px;background:var(--card);border:1px solid var(--line)}.feat div b{display:block;font-size:11px;letter-spacing:.18em;color:var(--mute);margin-bottom:10px}.feat div p{margin:0;font-size:15px;color:var(--ink2)}
 .archwrap{margin-top:30px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);padding:20px;overflow-x:auto}
-svg.arch{width:100%;min-width:560px;height:auto;font-family:var(--sans)}
-svg.arch .e{fill:none;stroke:rgba(23,22,26,.4);stroke-width:1.5;marker-end:url(#arr);stroke-dasharray:700;stroke-dashoffset:700}
-svg.arch .n rect{fill:var(--paper2);stroke:rgba(23,22,26,.14)}svg.arch .n.hi rect{fill:var(--navy)}svg.arch .n text{font-size:13px;font-weight:600;fill:var(--ink)}svg.arch .n.hi text{fill:var(--on)}svg.arch .n text.s{font-size:11px;font-weight:500;opacity:.8}svg.arch .lab{font-size:11px;fill:var(--mute);font-weight:600}
+svg.arch{display:block;margin:0 auto;width:100%;min-width:560px;height:auto;font-family:var(--sans);letter-spacing:0;word-spacing:0;text-transform:none;font-style:normal;line-height:normal}svg.arch text{letter-spacing:0}
+svg.arch .e{fill:none;stroke:rgba(23,22,26,.45);stroke-width:1.5;marker-end:var(--mk);stroke-dasharray:2400;stroke-dashoffset:2400}
+svg.arch .n rect{fill:var(--paper2);stroke:rgba(23,22,26,.14)}svg.arch .n.hi rect{fill:var(--navy)}svg.arch .n text{font-size:13px;font-weight:600;fill:var(--ink)}svg.arch .n.hi text{fill:var(--on)}svg.arch .n text.s{font-size:11px;font-weight:500;opacity:.8}svg.arch .lab{paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round;font-size:11px;fill:var(--mute);font-weight:600}
 svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
 .archwrap.in .e{animation:draw 1.4s ease-out forwards;animation-delay:var(--d,0s)}.archwrap.in .n{animation:nodein .55s cubic-bezier(.3,1.4,.4,1) forwards;animation-delay:var(--d,0s)}@keyframes nodein{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
 @keyframes draw{to{stroke-dashoffset:0}}
@@ -373,8 +374,8 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
 .preel .ph i{font-family:var(--serif);font-weight:400;letter-spacing:-.02em}
 .preel .idx{display:inline-block;width:2.4em;font:700 13px/1 var(--sans);letter-spacing:.16em;opacity:0;transition:opacity .6s;vertical-align:middle}
 .preel .show .idx{opacity:.55}.preel .hide .idx{opacity:0}
-.preel .gw{position:absolute;inset:0;display:grid;place-items:center;padding:80px 16px;opacity:0;transition:opacity .8s;z-index:2;pointer-events:none;visibility:hidden}
-.preel .gw.show{visibility:visible;opacity:1}
+.preel .rgw{position:absolute;inset:0;display:grid;place-items:center;padding:80px 16px;opacity:0;transition:opacity .8s;z-index:2;pointer-events:none;visibility:hidden}
+.preel .rgw.show{visibility:visible;opacity:1}
 .preel svg.arch{min-width:0;width:min(94cqw,1240px);max-height:70cqh}
 .preel svg.arch .n rect{fill:#fffdf8;stroke:rgba(23,22,26,.16)}
 .preel svg.arch .n.hi rect{fill:var(--tint);stroke:none}
@@ -382,7 +383,7 @@ svg.arch .n{opacity:0;transform-origin:center;transform-box:fill-box}
 .preel svg.arch .n{opacity:0;transform:scale(.6);transition:opacity .6s ease,transform .8s cubic-bezier(.3,1.5,.5,1)}
 .preel svg.arch .n.in{opacity:1;transform:none}
 .preel svg.arch .e{stroke:#17161a;stroke-opacity:.5;stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 1.2s ease;marker-end:none}
-.preel svg.arch .e.done{marker-end:url(#arr)}
+.preel svg.arch .e.done{marker-end:var(--mk)}
 .preel svg.arch .lab{opacity:0;transition:opacity .6s}
 .preel .go svg.arch .lab{opacity:1}
 .preel svg.arch circle.pk{fill:#17161a;stroke:var(--tint);stroke-width:3}
@@ -619,28 +620,28 @@ function countUp(){if(RM)return;$$('[data-n]',strip).forEach(function(el,k){var 
       hl:['SwiftUI on iOS 17+ with no third-party UI dependencies, plus a Kotlin build for Android.','Supabase for auth and data; the app runs fully on local data until you sign in.','Grew out of two earlier attempts: a weekly web task tracker (Do) and a React Native prototype (DuoQuest).','Privacy policy and support site published for the store listing.'],
       stack:['SwiftUI','Kotlin','Supabase','XcodeGen','Firebase'],
       links:[['App Store','https://apps.apple.com/us/app/zzz-live-your-dream/id6815101315']],
-      arch:{nodes:[{id:'ios',label:'iOS app',sub:'SwiftUI',c:0,r:0},{id:'and',label:'Android app',sub:'Kotlin',c:0,r:1},{id:'sb',label:'Supabase',sub:'Auth · Postgres',c:1,r:0.5,hi:1},{id:'store',label:'App Store',sub:'iOS release',c:1,r:1.6},{id:'site',label:'Privacy site',sub:'GitHub Pages',c:2,r:1.6}],edges:[['ios','sb'],['and','sb'],['ios','store'],['store','site']]},
+      arch:{nodes:[{id:'ios',label:'iOS app',sub:'SwiftUI',c:0,r:0},{id:'and',label:'Android app',sub:'Kotlin',c:0,r:2},{id:'sb',label:'Supabase',sub:'Auth · Postgres sync',c:1,r:1,hi:1},{id:'store',label:'App Store',sub:'live listing',c:2,r:0},{id:'site',label:'Privacy + support',sub:'GitHub Pages',c:3,r:0}],edges:[['ios','sb'],['and','sb'],['ios','store'],['store','site']]},
       gallery:['img/g/zzz-icon.jpg']},
     {id:'zuo', title:'Zuo', k:'Personal AI harness · 2026', tag:'Personal AI harness: job queue, budgets, voice capture and agents.', cat:'AI harness', year:'2026', group:'ai', cover:'img/c-zuo.jpg', tint:'#5aa9ff',
       sum:'My personal AI harness: a local multi-provider prompt app with a job queue, budgets and a project board, plus the agents and clients that hang off it. Several iterations over the year, each one teaching the next.',
       hl:['Harness on the Mac: multi-provider prompt app, job queue with budgets, project board for orchestrating agents on the Max plan.','Voice capture that works on the phone: Web Audio recorder, silence and noise gating, Whisper warmed while you talk.','Agent team that turns Instagram posts into production-ready web sections, with a gallery to review them.','iOS PromptConsole client and a Windows side that runs vLLM and receives exchange logs.','Earlier iterations: a Telegram chief-of-staff agent on LangGraph with human-in-the-loop approvals, a containerized multi-agent app builder (BuilderOS), a Go agent on the ADK, and an audio analysis and transcription pipeline.'],
       stack:['Python','FastAPI','LangGraph','Whisper','vLLM','Swift','Next.js','Docker'],
       links:[],
-      arch:{nodes:[{id:'ios',label:'iOS client',sub:'PromptConsole',c:0,r:0},{id:'web',label:'Web app',sub:'/app · /board',c:0,r:1},{id:'voice',label:'Voice',sub:'VAD · Whisper',c:0,r:2},{id:'h',label:'Harness',sub:'job queue · budgets',c:1,r:1,hi:1},{id:'cl',label:'Claude / OpenAI',sub:'API',c:2,r:0},{id:'pc',label:'Windows PC',sub:'vLLM',c:2,r:1},{id:'ag',label:'UI agents',sub:'posts → sections',c:2,r:2}],edges:[['ios','h'],['web','h'],['voice','h'],['h','cl'],['h','pc'],['h','ag']]},
+      arch:{nodes:[{id:'ios',label:'iOS client',sub:'PromptConsole',c:0,r:0},{id:'web',label:'Web app',sub:'/app · /board',c:0,r:1},{id:'voice',label:'Voice',sub:'phone mic → Whisper',c:0,r:2},{id:'h',label:'Harness',sub:'job queue · budgets · board',c:1,r:1,hi:1},{id:'orch',label:'Orchestrator',sub:'Claude plans · checks',c:2,r:1,hi:1},{id:'nv',label:'NVIDIA API',sub:'free workers',c:3,r:0},{id:'pc',label:'Windows PC',sub:'vLLM worker',c:3,r:1},{id:'sb',label:'Docker sandbox',sub:'tests the code',c:3,r:2}],edges:[['ios','h'],['web','h'],['voice','h'],['h','orch'],['orch','nv'],['orch','pc'],['orch','sb']]},
       gallery:['img/g/zuo-board.jpg','img/g/zuo-app.jpg','img/g/zuo-glass.jpg','img/g/zuo-bento.jpg','img/g/zuo-clay.jpg','img/g/zuo-brut.jpg']},
     {id:'catan', title:'Catan Arena', k:'Self-learning agents · 2026', tag:'Self-learning agent testbed with a statistical pass bar.', cat:'Research', year:'2026', group:'research', cover:'img/c-catan.jpg', tint:'#ffb454',
       sum:'A testbed that proves the forever-agent loop on a closed world. One learning agent plays full-rules Catan against three frozen opponents; its whole strategy is 13 numbers. Each generation, three mutants challenge the champion over 100 games, a watcher promotes only proven winners, and every attempt, won or lost, goes into a memory graph. The model weights never change: all improvement lives in the memory. Over about 19,000 games it went from the 25% no-learning baseline to about 60%, then was cloned into its own opponents and had to learn again.',
       hl:['About 19,000 games, 190 generations, 74 promotions and 494 rejected strategies: 87% of what the memory knows is what does not work, each with its evidence.','Era 0: win rate 25% to about 60% against the starting field. It found its own strategies: road expansion first, then hoarding ore and skipping sheep.','Era 1, against three clones of itself: it reversed its own discoveries, cutting ore and maxing out robbing the leader, while keeping about 57% against the original field.','Emergent arbitrage nobody programmed: it builds roads constantly but values wood low, settling on ore and wheat and buying wood from opponents.','Trustworthy numbers: 25% is the exact null, the win rate carries a 95% Wilson band, and freezing the memory flattens the curve on demand.','Same loop later informed the self-learning work on the HPE agents.'],
       stack:['Python','Game engine','Statistics','Claude'],
       links:[],
-      arch:{nodes:[{id:'eng',label:'Catan engine',sub:'4 seats',c:0,r:1},{id:'act',label:'Learning actor',c:1,r:0,hi:1},{id:'frz',label:'3 frozen copies',c:1,r:2},{id:'w',label:'Watcher',sub:'episodes',c:2,r:0},{id:'con',label:'Consolidator',sub:'rules',c:3,r:0},{id:'mem',label:'Memory',c:3,r:1.3,hi:1},{id:'dash',label:'Dashboard',sub:'Wilson interval',c:2,r:2}],edges:[['eng','act'],['eng','frz'],['act','w'],['w','con'],['con','mem'],['mem','act','reads'],['eng','dash']]},
+      arch:{nodes:[{id:'mem',label:'Memory graph',sub:'genomes · lessons',c:0,r:0.5,hi:1},{id:'cand',label:'Champion + 3 mutants',sub:'13-gene strategies',c:1,r:0},{id:'lg',label:'League',sub:'current + past baselines',c:1,r:1},{id:'eng',label:'Catan engine',sub:'100 games each',c:2,r:0.5},{id:'w',label:'Watcher',sub:'95% Wilson interval',c:3,r:0.5,hi:1},{id:'dash',label:'Dashboard',sub:'win rate · eras',c:4,r:0.5}],edges:[['mem','cand'],['cand','eng'],['lg','eng'],['eng','w'],['w','dash'],['w','mem','promote or reject'],['w','lg','graduate']]},
       gallery:['img/g/catan-dash.jpg']},
     {id:'aitutor', title:'AI Tutor', k:'Learning app · 2026', tag:'Duolingo meets Instagram for learning anything.', cat:'Apps', year:'2026', group:'apps', cover:'img/c-aitutor.jpg', tint:'#6fd3ff',
       sum:'An adaptive way to learn anything, built like Duolingo meets Instagram. Tell it a topic and it designs the course: a placement quiz finds your level, then a path of levels you unlock one at a time, short lessons with a quiz after each, and a feed of swipeable carousels. It started as my own AI-engineering tutor, with the feed built from Reddit, Hacker News, arXiv and YouTube; the iOS app now follows up to three topics at once.',
       hl:['Path: levels → lessons → quizzes → checkpoints. Feed: swipe up for the next post, sideways through its slides; like, save, ask or skip.','Practice tab with flashcards and weak spots; profiles with separate progress for several people on one server.','Claude through the Claude Code CLI (Opus for lessons and quizzes, Sonnet for summaries and grading) with free NVIDIA Nemotron as automatic fallback.','Pure standard-library Python server, no build step; yt-dlp for video sources.'],
       stack:['Python','PWA','Claude','Nemotron','yt-dlp'],
       links:[],
-      arch:{nodes:[{id:'src',label:'Sources',sub:'Reddit · HN · arXiv · YouTube',c:0,r:0.5},{id:'ing',label:'Ingest',c:1,r:0.5},{id:'llm',label:'Claude / Nemotron',sub:'lessons · carousels · grading',c:2,r:0.5,hi:1},{id:'srv',label:'Server',sub:'stdlib Python',c:3,r:0.5,hi:1},{id:'path',label:'Path',c:4,r:0},{id:'feed',label:'Feed',c:4,r:1},{id:'me',label:'Practice · Me',c:4,r:2}],edges:[['src','ing'],['ing','llm'],['llm','srv'],['srv','path'],['srv','feed'],['srv','me']]},
+      arch:{nodes:[{id:'src',label:'Sources',sub:'Reddit · HN · arXiv · YouTube',c:0,r:0},{id:'ag',label:'Feed agents',sub:'keep/drop · carousels',c:1,r:0},{id:'posts',label:'Shared posts',sub:'items.json',c:2,r:0},{id:'llm',label:'Claude CLI · Nemotron',sub:'lessons · quizzes · path',c:2,r:1,hi:1},{id:'srv',label:'Server',sub:'stdlib Python · profiles',c:3,r:0.5,hi:1},{id:'app',label:'PWA + iOS app',sub:'Path · Feed · Topics · Me',c:4,r:0.5}],edges:[['src','ag'],['ag','posts'],['ag','llm','summaries'],['posts','srv'],['llm','srv'],['srv','app']]},
       screens:[['img/g/tutor-s1.jpg','Path'],['img/g/tutor-s2.jpg','Feed'],['img/g/tutor-s3.jpg','Carousel slide'],['img/g/tutor-s4.jpg','Topics'],['img/g/tutor-s5.jpg','Quiz']],
       gallery:['img/g/tutor-home.jpg','img/g/tutor-sub.jpg','img/g/tutor-icon.jpg']},
     {id:'musaic', title:'musaic', k:'Generative media · 2026', tag:'Automated lo-fi music channel, from generation to upload.', cat:'Generative media', year:'2026', group:'ai', cover:'img/c-musaic.jpg', tint:'#c084fc',
@@ -648,14 +649,14 @@ function countUp(){if(RM)return;$$('[data-n]',strip).forEach(function(el,k){var 
       hl:['Stable Audio for 3-minute clips, ten variations per video; Pydub to merge segments and remove murmur.','GPT-4 for titles, descriptions, tags and chapter markers.','Thumbnails from DALL-E 3 (animated) or Vertex Imagen (realistic); Veo backgrounds that match the thumbnail’s style, alternating each run.','FFmpeg at 1080p CRF 18 with 320k audio; assets in Google Cloud Storage; YouTube Data API upload with OAuth.'],
       stack:['Python','Stable Audio','GPT-4','DALL-E 3','Vertex AI','Veo','FFmpeg','YouTube API'],
       links:[['GitHub','https://github.com/Fluff18/musaic']],
-      arch:{nodes:[{id:'sa',label:'Stable Audio',sub:'music',c:0,r:0},{id:'gpt',label:'GPT-4',sub:'metadata',c:0,r:1},{id:'img',label:'DALL-E / Imagen',sub:'thumbnail',c:0,r:2},{id:'veo',label:'Veo',sub:'background',c:1,r:2},{id:'ff',label:'FFmpeg',sub:'1080p encode',c:2,r:1,hi:1},{id:'gcs',label:'Cloud Storage',c:3,r:0},{id:'yt',label:'YouTube',sub:'upload',c:3,r:1.5,hi:1}],edges:[['sa','ff'],['gpt','yt'],['img','veo'],['veo','ff'],['ff','gcs'],['ff','yt']]},
+      arch:{nodes:[{id:'pl',label:'Planner agent',sub:'episode plan',c:0,r:1.5},{id:'mu',label:'Music agent',sub:'Stable Audio · Pydub',c:1,r:0},{id:'vi',label:'Visuals agent',sub:'Veo background',c:1,r:1},{id:'th',label:'Thumbnail agent',sub:'DALL-E 3 / Imagen',c:1,r:2},{id:'seo',label:'SEO agent',sub:'GPT-4 metadata',c:1,r:3},{id:'vid',label:'Video agent',sub:'FFmpeg 1080p',c:2,r:0.5,hi:1},{id:'up',label:'Upload agent',sub:'YouTube Data API',c:3,r:1.5,hi:1}],edges:[['pl','mu'],['pl','vi'],['pl','th'],['pl','seo'],['mu','vid'],['vi','vid'],['vid','up'],['th','up'],['seo','up']]},
       gallery:[]},
     {id:'drone', title:'Drone Inspection Sim', k:'Robotics · 2026', tag:'PX4 and Gazebo inspection drone with a Pi-class AI agent.', cat:'Robotics', year:'2026', group:'research', cover:'img/c-drone.jpg?v=2', tint:'#3fd1c9',
       sum:'An autonomous infrastructure-inspection drone in pure simulation, no hardware. PX4 flies an X500 quad through a custom depot-yard world in Gazebo while an AI agent, capped to Raspberry Pi 5 resources, works the camera feed.',
       hl:['PX4 v1.17 built from source so the stack runs natively on arm64 and x86_64; Gazebo Harmonic with RGB and depth cameras.','Camera bridge republishes Gazebo topics over TCP; MAVLink over UDP on a shared Docker network.','Agent constrained to 4 CPU, 8 GB and no GPU to mirror the target edge hardware.','Custom world because the stock scene renders as a white screen with a faint horizon.'],
       stack:['PX4 SITL','Gazebo','MAVLink','Docker','Python'],
       links:[],
-      arch:{nodes:[{id:'gz',label:'Gazebo',sub:'depot-yard world',c:0,r:0.5,hi:1},{id:'px',label:'PX4 SITL',sub:'X500 quad',c:1,r:0},{id:'cb',label:'Camera bridge',sub:'TCP',c:1,r:1},{id:'ag',label:'AI agent',sub:'Pi-5 class limits',c:2,r:0.5,hi:1}],edges:[['gz','px'],['gz','cb'],['px','ag','MAVLink'],['cb','ag','frames']]},
+      arch:{nodes:[{id:'sim',label:'PX4 SITL + Gazebo',sub:'X500 · depot-yard world',c:0,r:0.5,hi:1},{id:'cb',label:'Camera bridge',sub:'TCP frames',c:1,r:0},{id:'ag',label:'AI agent',sub:'4 CPU · 8 GB · no GPU',c:2,r:0.5,hi:1},{id:'yolo',label:'YOLOv8n',sub:'ONNX · detection',c:3,r:0},{id:'vlm',label:'Qwen2.5-VL-3B',sub:'llama.cpp · verdict',c:3,r:1}],edges:[['sim','cb','camera'],['cb','ag','frames'],['sim','ag','MAVLink'],['ag','yolo'],['ag','vlm','crops']]},
       gallery:['img/g/drone.jpg','img/g/drone-2.jpg','img/g/drone-3.jpg']},
     {id:'quantum', title:'Quantum Slot Machine', k:'Quantum · 2025', tag:'Randomness from real qubits on IBM Quantum hardware.', cat:'Research', year:'2025', group:'research', cover:'img/c-quantum.jpg', tint:'#a78bfa',
       sum:'A slot machine whose randomness comes from measuring real qubits. Each spin prepares three qubits, rotates them into superposition, optionally entangles them, measures, and maps the result to symbols.',
@@ -683,7 +684,7 @@ function countUp(){if(RM)return;$$('[data-n]',strip).forEach(function(el,k){var 
       hl:['Distributed computing across phones over the local network.','About 30% better processing efficiency than classifying on one device.'],
       stack:['Kotlin','Android','TensorFlow Lite'],
       links:[],
-      arch:{nodes:[{id:'cam',label:'Capture',sub:'split into 4',c:0,r:0.5},{id:'w1',label:'Worker phone',c:1,r:0},{id:'w2',label:'Worker phone',c:1,r:1},{id:'agg',label:'Aggregate',sub:'result',c:2,r:0.5,hi:1}],edges:[['cam','w1'],['cam','w2'],['w1','agg'],['w2','agg']]},
+      arch:{nodes:[{id:'cam',label:'Capture phone',sub:'splits image into 4',c:0,r:0},{id:'w',label:'4 worker phones',sub:'TensorFlow Lite · one part each',c:1,r:0,hi:1},{id:'agg',label:'Aggregate',sub:'final digit',c:2,r:0}],edges:[['cam','w','local network'],['w','agg']]},
       gallery:['img/g/mc.jpg','img/g/hand.jpg']},
     {id:'zoom', title:'Zoom Telehealth', k:'iOS + Android TV · 2022', tag:'Doctor-driven telehealth on the Zoom Meeting SDK.', cat:'iOS + Android TV', year:'2022', group:'earlier', cover:'img/c-zoom.jpg', tint:'#5aa9ff',
       sum:'A practical telehealth flow built on the Zoom Meeting SDK and Firebase for ASU’s Luminosity Lab and Phoenix Children’s Hospital: a doctor starts a meeting and remotely drives the patient’s Android TV.',
@@ -704,33 +705,55 @@ function countUp(){if(RM)return;$$('[data-n]',strip).forEach(function(el,k){var 
       hl:['Handles up to 100 concurrent requests by scaling EC2 app-tier instances on queue depth.','SQS between tiers; S3 for inputs and outputs.'],
       stack:['AWS EC2','SQS','S3','Python','Deep learning'],
       links:[],
-      arch:{nodes:[{id:'web',label:'Web tier',sub:'EC2',c:0,r:0.5},{id:'q',label:'SQS',c:1,r:0.5},{id:'app',label:'App tier',sub:'EC2 autoscaling',c:2,r:0.5,hi:1},{id:'s3',label:'S3',sub:'in / out',c:3,r:0.5}],edges:[['web','q'],['q','app'],['app','s3'],['web','s3']]},
+      arch:{nodes:[{id:'web',label:'Web tier',sub:'EC2 · takes images',c:0,r:0.5},{id:'q',label:'SQS',sub:'request queue',c:1,r:0},{id:'s3',label:'S3',sub:'input + output buckets',c:1,r:1},{id:'app',label:'App tier',sub:'EC2 · scales on queue depth',c:2,r:0.5,hi:1}],edges:[['web','q'],['web','s3','image'],['q','app'],['app','s3','result'],['app','web','response queue']]},
       gallery:['img/g/iaas.jpg']}
   ];
   function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-  function archSVG(a){
-    var CW = 150, CH = 64, GX = 60, GY = 22, PAD = 14;
-    var cols = 0, rows = 0;
-    a.nodes.forEach(function(n){ cols = Math.max(cols, n.c); rows = Math.max(rows, n.r); });
-    var W = PAD * 2 + (cols + 1) * CW + cols * GX, H = PAD * 2 + (rows + 1) * (CH + GY);
-    var pos = {};
-    a.nodes.forEach(function(n){ pos[n.id] = {x:PAD + n.c * (CW + GX), y:PAD + n.r * (CH + GY)}; });
-    var out = '<svg class="arch" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Architecture"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" style="fill:rgba(31,29,43,.6)"/></marker></defs>';
+  var ARCHN=0;
+  function archSVG(a,vert){
+    /* boxes on a grid (c = step along the flow, r = lane). Wide screens read left to right; tall
+       panels (vert) read top to bottom. Forward edges curve between neighbours; edges that go back
+       loop around the outside so they never cross a box. */
+    var uid='a'+(++ARCHN), CH=64, PAD=16, LANE=26, GA=vert?46:64, GB=vert?22:26;
+    var CW=a.nodes.reduce(function(m,n){return Math.max(m,n.label.length*7.6+28,(n.sub||'').length*6.2+24)},150);
+    CW=Math.min(Math.ceil(CW),230);
+    var nc=0,nr=0;a.nodes.forEach(function(n){nc=Math.max(nc,n.c);nr=Math.max(nr,n.r)});
+    var pos={};a.nodes.forEach(function(n){pos[n.id]=vert?{x:PAD+n.r*(CW+GB),y:PAD+n.c*(CH+GA),c:n.c}:{x:PAD+n.c*(CW+GA),y:PAD+n.r*(CH+GB),c:n.c}});
+    var back=a.edges.filter(function(e){return pos[e[1]].c<=pos[e[0]].c});
+    var extra=back.length?back.length*LANE+8:0;
+    var contW=vert?PAD+(nr+1)*CW+nr*GB:PAD+(nc+1)*CW+nc*GA, contH=vert?PAD+(nc+1)*CH+nc*GA:PAD+(nr+1)*CH+nr*GB;
+    var W=contW+PAD+(vert?extra:0), H=contH+PAD+(vert?0:extra);
+    var out='<svg class="arch" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Architecture diagram" style="--mk:url(#'+uid+');max-width:'+Math.round(W*1.15)+'px"><defs><marker id="'+uid+'" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#4d4a52"/></marker></defs>';
+    var labs='',bi=0;
     a.edges.forEach(function(e){
-      var p = pos[e[0]], q = pos[e[1]];
-      var x1 = p.x + CW, y1 = p.y + CH / 2, x2 = q.x, y2 = q.y + CH / 2, d;
-      if (q.x <= p.x){ x1 = p.x + CW / 2; y1 = p.y + (q.y > p.y ? CH : 0); x2 = q.x + CW / 2; y2 = q.y + (q.y > p.y ? 0 : CH); d = 'M' + x1 + ' ' + y1 + ' C ' + x1 + ' ' + ((y1 + y2) / 2) + ', ' + x2 + ' ' + ((y1 + y2) / 2) + ', ' + x2 + ' ' + y2; }
-      else { var mx = (x1 + x2) / 2; d = 'M' + x1 + ' ' + y1 + ' C ' + mx + ' ' + y1 + ', ' + mx + ' ' + y2 + ', ' + x2 + ' ' + y2; }
-      out += '<path class="e m" d="' + d + '"/>';
-      if (e[2]) out += '<text class="lab" x="' + ((x1 + x2) / 2) + '" y="' + ((y1 + y2) / 2 - 5) + '" text-anchor="middle">' + esc(e[2]) + '</text>';
+      var p=pos[e[0]],q=pos[e[1]],d,lx,ly,anc='middle';
+      if(q.c<=p.c){
+        if(vert){ // loop around the right-hand side
+          var xl=contW+10+(bi++)*LANE,y1=p.y+CH/2,y2=q.y+CH/2,x1=p.x+CW,x2=q.x+CW;
+          d='M'+x1+' '+y1+' L'+(xl-10)+' '+y1+' Q'+xl+' '+y1+' '+xl+' '+(y1-10)+' L'+xl+' '+(y2+10)+' Q'+xl+' '+y2+' '+(xl-10)+' '+y2+' L'+(x2+2)+' '+y2;
+          lx=xl+4;ly=(y1+y2)/2;anc='start';
+        }else{ // loop underneath every row
+          var yb=contH+10+(bi++)*LANE,x1=p.x+CW/2,x2=q.x+CW/2,y1=p.y+CH,y2=q.y+CH;
+          d='M'+x1+' '+y1+' L'+x1+' '+(yb-10)+' Q'+x1+' '+yb+' '+(x1-10)+' '+yb+' L'+(x2+10)+' '+yb+' Q'+x2+' '+yb+' '+x2+' '+(yb-10)+' L'+x2+' '+(y2+2);
+          lx=(x1+x2)/2;ly=yb-6;
+        }
+      }else if(vert){
+        var x1=p.x+CW/2,y1=p.y+CH,x2=q.x+CW/2,y2=q.y-2,my=(y1+y2)/2;
+        d='M'+x1+' '+y1+' C '+x1+' '+my+', '+x2+' '+my+', '+x2+' '+y2;lx=(x1+x2)/2+6;ly=my+4;anc='start';
+      }else{
+        var x1=p.x+CW,y1=p.y+CH/2,x2=q.x-2,y2=q.y+CH/2,mx=(x1+x2)/2;
+        d='M'+x1+' '+y1+' C '+mx+' '+y1+', '+mx+' '+y2+', '+x2+' '+y2;lx=mx;ly=(y1+y2)/2-7;
+      }
+      out+='<path class="e m" d="'+d+'"/>';
+      if(e[2])labs+='<text class="lab" x="'+lx+'" y="'+ly+'" text-anchor="'+anc+'">'+esc(e[2])+'</text>';
     });
     a.nodes.forEach(function(n){
-      var p = pos[n.id];
-      out += '<g class="n' + (n.hi ? ' hi' : '') + '"><rect x="' + p.x + '" y="' + p.y + '" width="' + CW + '" height="' + CH + '" rx="8"/>' +
-        '<text x="' + (p.x + CW / 2) + '" y="' + (p.y + (n.sub ? 28 : 36)) + '" text-anchor="middle">' + esc(n.label) + '</text>' +
-        (n.sub ? '<text class="s" x="' + (p.x + CW / 2) + '" y="' + (p.y + 45) + '" text-anchor="middle">' + esc(n.sub) + '</text>' : '') + '</g>';
+      var p=pos[n.id];
+      out+='<g class="n'+(n.hi?' hi':'')+'"><rect x="'+p.x+'" y="'+p.y+'" width="'+CW+'" height="'+CH+'" rx="8"/>'+
+        '<text x="'+(p.x+CW/2)+'" y="'+(p.y+(n.sub?28:37))+'" text-anchor="middle">'+esc(n.label)+'</text>'+
+        (n.sub?'<text class="s" x="'+(p.x+CW/2)+'" y="'+(p.y+46)+'" text-anchor="middle">'+esc(n.sub)+'</text>':'')+'</g>';
     });
-    return out + '</svg>';
+    return out+labs+'</svg>';
   }
 var STORY={zuo:{ad:'Your agents. Your machines. Your phone.',st:[['3','machines as workers'],['1','planner, Claude'],['5','iterations this year']]},
 aitutor:{ad:'Duolingo meets Instagram, for anything you want to learn.',st:[['3','topics at once'],['2','models, auto fallback'],['5','tabs: path, feed, topics, practice, me']]},
@@ -805,9 +828,9 @@ function mountReel(host,id){
    +'<div class="sc cover"><div class="k">'+esc(d.k)+'</div><h2 class="t">'+W(esc(d.title))+'<span class="dot">.</span></h2></div>'
    +'<div class="sc beat"><div class="phs">'+beats.map(function(b,i){return '<div class="ph"><span class="idx">0'+(i+1)+'</span>'+W(b)+'</div>'}).join('')+'</div></div>'
    +(dm.length?'<div class="demo'+(isPh?' phn':'')+'" style="--n:'+dm.length+'">'+dm.map(function(u,i){var r=dm.length>1?((i-(dm.length-1)/2)*(isPh?5:3)):0;return '<img src="'+u+'" alt="" style="--r:'+r+'deg;transition-delay:'+(i*220)+'ms">'}).join('')+'</div>':'')
-   +(d.arch?'<div class="gw">'+archSVG(d.arch)+'</div>':'')
+   +(d.arch?'<div class="rgw">'+archSVG(d.arch,host.clientHeight>host.clientWidth)+'</div>':'')
    +(num?'<div class="sc num"><b>'+esc(num[0])+'</b><small>'+esc(num[1])+'</small></div>':'');
-  var cov=host.querySelector('.cov'),cover=host.querySelector('.sc.cover'),b=host.querySelector('.sc.beat'),dv=host.querySelector('.demo'),gw=host.querySelector('.gw'),nm=host.querySelector('.sc.num');
+  var cov=host.querySelector('.cov'),cover=host.querySelector('.sc.cover'),b=host.querySelector('.sc.beat'),dv=host.querySelector('.demo'),gw=host.querySelector('.rgw'),nm=host.querySelector('.sc.num');
   var segs=[].slice.call(host.querySelectorAll('.segs i')),cnt=host.querySelector('.cnt'),lbl=host.querySelector('.lbl'),fg=host.querySelector('.nx .fg'),nl=host.querySelector('.nl'),SC=[],t=0;
   function scene(start,dur,cls){SC.push({s:start,d:dur});at(start,function(){host.classList.remove('s2','s3','s4','sd');if(cls)host.classList.add(cls)})}
   // 1. intro: dark, tinted; the cover settles and the title rises
