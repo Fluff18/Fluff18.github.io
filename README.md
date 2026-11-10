@@ -6,3 +6,4 @@ Portfolio of Rahul M Koushik, AI Engineer.
 - `resume.html` renders `Resume.pdf` (one page) and `CV.pdf` (full CV) in the browser.
 - `latex/` holds the LaTeX sources for both PDFs. Compile with `pdflatex`.
 - `v2/` and `v3/` only redirect old links to the homepage.
+- `speak/` is Speak, a daily speaking-practice app (not linked from the site). See `speak/README.md`.
